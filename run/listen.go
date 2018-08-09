@@ -17,13 +17,13 @@ import (
 
 func Listen(cmd *cobra.Command, args []string) {
 	certPath, keyPath := vars.CertPath, vars.KeyPath
-	certData, err := ioutil.ReadAll(certPath)
+	certData, err := ioutil.ReadFile(certPath)
 	if err != nil {
-		tlsReadAllError(certPath, keyPath, err)
+		tlsReadFileError(certPath, keyPath, err)
 	}
-	keyData, err := ioutil.ReadAll(keyPath)
+	keyData, err := ioutil.ReadFile(keyPath)
 	if err != nil {
-		tlsReadAllError(certPath, keyPath, err)
+		tlsReadFileError(certPath, keyPath, err)
 	}
 	if chroot := vars.Chroot; len(chroot) > 0 {
 		if err := security.Chroot(chroot, onfail.Fatal); err != nil {
@@ -47,10 +47,10 @@ func Listen(cmd *cobra.Command, args []string) {
 	}
 }
 
-func tlsReadAllError(certPath, keyPath string, err error) {
+func tlsReadFileError(certPath, keyPath string, err error) {
 	log.Printf(
 		"You need a TLS certificate file and a TLS key file.  "+
 		"By default, these are called \"cert.pem\" and \"key.pem\", respectively.  "+
 		"The paths as configured are %q and %q.", certPath, keyPath)
-	log.Fatalf("ioutil.ReadAll: %q\n", err)
+	log.Fatalf("ioutil.ReadFile: %q\n", err)
 }
