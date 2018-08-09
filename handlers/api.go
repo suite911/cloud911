@@ -6,17 +6,17 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var OverrideApi func(*fasthttp.RequestCtx)
+var OverrideApi func(*fasthttp.RequestCtx, string)
 
-func Api(ctx *fasthttp.RequestCtx) {
+func Api(ctx *fasthttp.RequestCtx, path string) {
 	switch {
 	case OverrideApi == nil:
-		api(ctx)
+		api(ctx, path)
 	default:
-		OverrideApi(ctx)
+		OverrideApi(ctx, path)
 	}
 }
 
-func api(ctx *fasthttp.RequestCtx) {
-	fmt.Fprintf(ctx, "Hello, from the API!")
+func api(ctx *fasthttp.RequestCtx, path string) {
+	ctx.Error("Not Implemented", 501)
 }
