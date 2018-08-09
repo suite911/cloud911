@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"fmt"
+	"github.com/amy911/amy911/str"
 
 	"github.com/valyala/fasthttp"
 )
@@ -18,13 +18,8 @@ func Http(ctx *fasthttp.RequestCtx) {
 }
 
 func http(ctx *fasthttp.RequestCtx) {
-	path := strings.Split(ctx.Path, "/")
-	if len(path) > 0 {
-		switch simp := str.Simp(path[0]); simp {
-		case "api":
-			Api(ctx)
-			return
-		}
+	if str.CaseHasPrefix(ctx.Path(), "/api") {
+		Api(ctx)
 	}
 	var uri fasthttp.URI
 	ctx.URI.CopyTo(&uri)
