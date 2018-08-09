@@ -1,6 +1,7 @@
 package run
 
 import (
+	"crypto/tls"
 	"log"
 
 	"github.com/amy911/amy911/onfail"
@@ -25,13 +26,19 @@ func Listen(cmd *cobra.Command, args []string) {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
 		}
 	}(cmd, args)
+	certPath, keyPath := vars.CertPath, vars.KeyPath
 	if err := fasthttp.ListenAndServeTLS(
 		vars.AddrHttps,
-		vars.CertPath,
-		vars.KeyPath,
+		certPath,
+		keyPath,
 		handlers.Https,
 	); err != nil {
-		log.Printf("<%T>", err)
+		if _, err := tls.LoadX509KeyPair(certPath, keyPath); err != nil {
+			log.Printf(
+				"You need a TLS certificate file and a TLS key file.  "+
+				"By default, these are called \"cert.pem\" and \"key.pem\", respectively.  "+
+				"The paths as configured are %q and %q.", certPath, keyPath)
+		}
 		log.Fatalln("fasthttp.ListenAndServeTLS: \""+err.Error()+"\"")
 	}
 }
