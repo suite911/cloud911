@@ -41,8 +41,6 @@ func Listen(cmd *cobra.Command, args []string) {
 		keyData,
 		handlers.Https,
 	); err != nil {
-		if _, err := tls.LoadX509KeyPair(certPath, keyPath); err != nil {
-		}
 		log.Fatalln("fasthttp.ListenAndServeTLS: \""+err.Error()+"\"")
 	}
 }
