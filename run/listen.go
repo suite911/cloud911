@@ -26,7 +26,12 @@ func Listen(cmd *cobra.Command, args []string) {
 		}
 	}(cmd, args)
 	go func(cmd *cobra.Command, args []string) {
-		if err := fasthttp.ListenAndServeTLS(vars.AddrHttps, handlers.Https); err != nil {
+		if err := fasthttp.ListenAndServeTLS(
+			vars.AddrHttps,
+			vars.CertPath,
+			vars.KeyPath,
+			handlers.Https,
+		); err != nil {
 			log.Fatalln("fasthttp.ListenAndServeTLS: \""+err.Error()+"\"")
 		}
 	}(cmd, args)
