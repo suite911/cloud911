@@ -5,6 +5,7 @@ import (
 	"syscall"
 
 	"github.com/amy911/srv911/handlers"
+	"github.com/amy911/srv911/security"
 	"github.com/amy911/srv911/vars"
 
 	"github.com/spf13/cobra"
@@ -13,10 +14,7 @@ import (
 )
 
 func Listen(cmd *cobra.Command, args []string) {
-	if chroot := vars.Chroot; len(chroot) > 0 {
-		syscall.Chroot(chroot)
-	}
-	os.Chdir(".")
+	security.Chroot()
 	if err := fasthttp.ListenAndServe(vars.AddrHttp, handlers.Root); err != nil {
 		log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
 	}
