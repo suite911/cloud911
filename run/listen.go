@@ -31,6 +31,7 @@ func Listen(cmd *cobra.Command, args []string) {
 		vars.KeyPath,
 		handlers.Https,
 	); err != nil {
+		log.Printf("<%T>", err)
 		log.Fatalln("fasthttp.ListenAndServeTLS: \""+err.Error()+"\"")
 	}
 }
