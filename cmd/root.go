@@ -40,10 +40,11 @@ var rootCmd = &cobra.Command{
 	Short: "An application server over HTTP and HTTPS",
 	Long: `An application server over HTTP and HTTPS based on [srv911](https://github.com/amy911/srv911)`,
 	Run: func(cmd *cobra.Command, args []string) {
-		if OverrideRoot != nil {
+		switch {
+		case OverrideRoot == nil:
+			run.Listen(cmd, args)
+		default:
 			OverrideRoot(cmd, args)
-		} else {
-			run.Root(cmd, args)
 		}
 	},
 }
