@@ -18,8 +18,8 @@ func Http(ctx *fasthttp.RequestCtx) {
 }
 
 func http(ctx *fasthttp.RequestCtx) {
-	if str.CaseHasPrefix(ctx.Path(), "/api") {
-		Api(ctx)
+	if match, tail := str.CaseHasPrefix(ctx.Path(), "/api"); match {
+		Api(ctx, tail)
 	}
 	var uri fasthttp.URI
 	ctx.URI.CopyTo(&uri)
