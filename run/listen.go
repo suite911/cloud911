@@ -3,8 +3,10 @@ package run
 import (
 	"log"
 
+	"github.com/amy911/amy911/onfail"
+	"github.com/amy911/amy911/security"
+
 	"github.com/amy911/srv911/handlers"
-	"github.com/amy911/srv911/util/security"
 	"github.com/amy911/srv911/vars"
 
 	"github.com/spf13/cobra"
@@ -13,7 +15,7 @@ import (
 )
 
 func Listen(cmd *cobra.Command, args []string) {
-	security.Chroot()
+	security.Chroot(vars.Chroot, onfail.Fatal)
 	go func(cmd *cobra.Command, args []string) {
 		if err := fasthttp.ListenAndServe(vars.AddrHttp, handlers.Http); err != nil {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
