@@ -15,7 +15,11 @@ import (
 )
 
 func Listen(cmd *cobra.Command, args []string) {
-	security.Chroot(vars.Chroot, onfail.Fatal)
+	if chroot := vars.Chroot; len(chroot) > 0 {
+		if err := security.Chroot(chroot, onfail.Fatal); err != nil {
+			panic(err) // just in case
+		}
+	}
 	go func(cmd *cobra.Command, args []string) {
 		if err := fasthttp.ListenAndServe(vars.AddrHttp, handlers.Http); err != nil {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
