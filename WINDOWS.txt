@@ -1,0 +1,1 @@
+The Windows® family of operating systems is not officially supported.
