@@ -17,21 +17,17 @@ func Http(ctx *fasthttp.RequestCtx) {
 	}
 }
 
-func root(ctx *fasthttp.RequestCtx) {
-	fmt.Fprintf(ctx, "Hello, world!\n\n")
-
-	fmt.Fprintf(ctx, "Request method is %q\n", ctx.Method())
-	fmt.Fprintf(ctx, "RequestURI is %q\n", ctx.RequestURI())
-	fmt.Fprintf(ctx, "Requested path is %q\n", ctx.Path())
-	fmt.Fprintf(ctx, "Host is %q\n", ctx.Host())
-	fmt.Fprintf(ctx, "Query string is %q\n", ctx.QueryArgs())
-	fmt.Fprintf(ctx, "User-Agent is %q\n", ctx.UserAgent())
-	fmt.Fprintf(ctx, "Connection has been established at %s\n", ctx.ConnTime())
-	fmt.Fprintf(ctx, "Request has been started at %s\n", ctx.Time())
-	fmt.Fprintf(ctx, "Serial request number for the current connection is %d\n", ctx.ConnRequestNum())
-	fmt.Fprintf(ctx, "Your ip is %q\n\n", ctx.RemoteIP())
-
-	fmt.Fprintf(ctx, "Raw request is:\n---CUT---\n%s\n---CUT---", &ctx.Request)
-
-	ctx.SetContentType("text/plain; charset=utf8")
+func http(ctx *fasthttp.RequestCtx) {
+	path := strings.Split(ctx.Path, "/")
+	if len(path) > 0 {
+		switch simp := str.Simp(path[0]); simp {
+		case "api":
+			Api(ctx)
+			return
+		}
+	}
+	var uri fasthttp.URI
+	ctx.URI.CopyTo(&uri)
+	uri.SetScheme("https")
+	ctx.RedirectBytes(uri.FullURI(), 301) // 301 recommended by Google
 }
