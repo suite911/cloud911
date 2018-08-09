@@ -11,7 +11,7 @@ var OverrideHttp func(*fasthttp.RequestCtx)
 func Http(ctx *fasthttp.RequestCtx) {
 	switch {
 	case OverrideHttp == nil:
-		root(ctx)
+		http(ctx)
 	default:
 		OverrideHttp(ctx)
 	}
