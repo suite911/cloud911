@@ -1,1 +1,3 @@
-The Windows® family of operating systems is not an officially supported platform for running this backend framework.  Clients running Windows® can still connect, but the server should run a supported operating system.
+The Windows® family of operating systems is not an officially supported platform
+for running this backend framework.  Clients running Windows® can still connect,
+but the server should run a supported operating system.
