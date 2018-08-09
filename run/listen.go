@@ -1,7 +1,7 @@
 package run
 
 import (
-	"crypto/tls"
+	"io/ioutil"
 	"log"
 
 	"github.com/amy911/amy911/onfail"
@@ -19,11 +19,11 @@ func Listen(cmd *cobra.Command, args []string) {
 	certPath, keyPath := vars.CertPath, vars.KeyPath
 	certData, err := ioutil.ReadAll(certPath)
 	if err != nil {
-		tlsReadAllError(err)
+		tlsReadAllError(certPath, keyPath, err)
 	}
 	keyData, err := ioutil.ReadAll(keyPath)
 	if err != nil {
-		tlsReadAllError(err)
+		tlsReadAllError(certPath, keyPath, err)
 	}
 	if chroot := vars.Chroot; len(chroot) > 0 {
 		if err := security.Chroot(chroot, onfail.Fatal); err != nil {
