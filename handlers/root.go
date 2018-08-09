@@ -33,5 +33,5 @@ func root(ctx *fasthttp.RequestCtx) {
 
 	fmt.Fprintf(ctx, "Raw request is:\n---CUT---\n%s\n---CUT---", &ctx.Request)
 
-	ctx.SetContentType("text/plain; charset=utf8")}
+	ctx.SetContentType("text/plain; charset=utf8")
 }
