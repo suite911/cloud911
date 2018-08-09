@@ -43,7 +43,7 @@ var rootCmd = &cobra.Command{
 		if OverrideRoot != nil {
 			OverrideRoot(cmd, args)
 		} else {
-			runRoot(cmd, args)
+			run.Root(cmd, args)
 		}
 	},
 }
