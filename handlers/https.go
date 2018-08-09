@@ -11,13 +11,13 @@ var OverrideHttps func(*fasthttp.RequestCtx)
 func Https(ctx *fasthttp.RequestCtx) {
 	switch {
 	case OverrideHttps == nil:
-		root(ctx)
+		https(ctx)
 	default:
 		OverrideHttps(ctx)
 	}
 }
 
-func root(ctx *fasthttp.RequestCtx) {
+func https(ctx *fasthttp.RequestCtx) {
 	fmt.Fprintf(ctx, "Hello, world!\n\n")
 
 	fmt.Fprintf(ctx, "Request method is %q\n", ctx.Method())
