@@ -13,6 +13,9 @@ build: .phony
 	@if test -d $(USER); then cp -frv $(USER) $(cloud911)/user ; fi
 	$(GO) build
 
+travis: .phony
+	gmake -C examples -f travis.mk
+
 update: .phony
 	$(GO) get -u github.com/amy911/cloud911
 
