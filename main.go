@@ -9,6 +9,11 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	// Set this in your `init()` function somewhere
+	OverrideRoot func(*cobra.Command, []string)
+)
+
 func main() {
 	snek.InitRoot = func(cmd *cobra.Command) {
 		cmd.PersistentFlags().StringVar(&vars.AddrHttp, "http", "", "Address on which to listen to incoming HTTP traffic")
@@ -17,9 +22,16 @@ func main() {
 		cmd.PersistentFlags().StringVar(&vars.CertPath, "cert", "", "Path of TLS certificate file")
 		cmd.PersistentFlags().StringVar(&vars.KeyPath, "key", "", "Path of TLS key file")
 		snek.Bind("http", "https", "chroot", "cert", "key")
-		cmd.Short = "Listen and serve"
-		cmd.Long = `Listen and serve`
-		cmd.Run = run.Listen
+		cmd.Short = "An application server over HTTP and HTTPS"
+		cmd.Long = `An application server over HTTP and HTTPS based on [srv911](https://github.com/amy911/srv911)`
+		cmd.Run = func(cmd *cobra.Command, args []string) {
+			switch {
+			case OverrideRoot == nil:
+				run.Listen(cmd, args)
+			default:
+				OverrideRoot(cmd, args)
+			}
+		}
 	}
 	snek.Main()
 }
