@@ -25,5 +25,5 @@ var listenCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(listenCmd)
+	//rootCmd.AddCommand(listenCmd)
 }
