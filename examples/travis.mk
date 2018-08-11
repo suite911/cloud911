@@ -2,7 +2,7 @@
 # This is a build script for GNU make
 
 all:
-	gmake -C 0-hello -f ../travis.mk example
+	make -C 0-hello -f ../travis.mk example
 
 example:
 	go build
