@@ -1,3 +1,11 @@
 language: go
 go: master
+install:
+- go get -u github.com/amy911/amy911/...
+- go get -u github.com/amy911/snek911/...
+- go get -u github.com/spf13/pflag
+- go get -u github.com/spf13/cobra
+- go get -u github.com/spf13/viper
+- go get -u github.com/valyala/fasthttp
+
 script: make travis
