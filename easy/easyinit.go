@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/amy911/snek911/snek"
 
-	"github.com/amy911/srv911/run"
-	"github.com/amy911/srv911/vars"
+	"github.com/amy911/cloud911/run"
+	"github.com/amy911/cloud911/vars"
 
 	"github.com/spf13/cobra"
 )
@@ -23,7 +23,7 @@ func EasyInit() {
 		cmd.PersistentFlags().StringVar(&vars.KeyPath, "key", "", "Path of TLS key file")
 		snek.Bind("http", "https", "chroot", "cert", "key")
 		cmd.Short = "An application server over HTTP and HTTPS"
-		cmd.Long = `An application server over HTTP and HTTPS based on [srv911](https://github.com/amy911/srv911)`
+		cmd.Long = `An application server over HTTP and HTTPS based on [cloud911](https://github.com/amy911/cloud911)`
 		cmd.Run = func(cmd *cobra.Command, args []string) {
 			switch {
 			case OverrideRoot == nil:
