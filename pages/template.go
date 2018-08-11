@@ -22,7 +22,7 @@ type Page struct {
 func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail.OnFail) error {
 	fail := func(err error) error {
 		page.shell = shell
-		ctx.Error(500, "Internal Server Error")
+		ctx.Error("Internal Server Error", 500)
 		return onfail.Fail(err, page, onfail.Print, onFail)
 	}
 	if len(page.Raw) > 0 {
