@@ -1,4 +1,4 @@
-package vars
+package pages
 
 var FavIcon []ubyte
 
