@@ -9,7 +9,7 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var Pages map[string]Page
+var Pages map[string]Page = make(map[string]Page)
 
 type Page struct {
 	Author, Autorun, Body, Description, GoogleWebFonts, Head, Keywords, Title string
