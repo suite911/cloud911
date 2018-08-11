@@ -28,7 +28,7 @@ func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail
 	if len(page.Raw) > 0 {
 		n, err := ctx.Write(page.Raw)
 		if err == nil {
-			if n == len(raw) {
+			if n == len(page.Raw) {
 				return nil
 			}
 			err = errors.New("Failed to serve complete page")
