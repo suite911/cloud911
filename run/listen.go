@@ -7,8 +7,8 @@ import (
 	"github.com/amy911/amy911/onfail"
 	"github.com/amy911/amy911/security"
 
-	"github.com/amy911/srv911/handlers"
-	"github.com/amy911/srv911/vars"
+	"github.com/amy911/cloud911/handlers"
+	"github.com/amy911/cloud911/vars"
 
 	"github.com/spf13/cobra"
 
