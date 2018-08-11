@@ -1,5 +1,5 @@
-![Pre-alpha](https://raw.githubusercontent.com/amy911/assets/master/shields/release-Pre--alpha-red.svg)
-[![CC0-1.0](https://raw.githubusercontent.com/amy911/assets/master/shields/license-CC0--1.0-efbfff.svg)](https://raw.githubusercontent.com/amy911/cloud911/master/LICENSE.txt)
+![Pre-alpha](https://rawgit.com/amy911/assets/master/shields/release-Pre--alpha-red.svg)
+[![CC0-1.0](https://rawgit.com/amy911/assets/master/shields/license-CC0--1.0-efbfff.svg)](https://raw.githubusercontent.com/amy911/cloud911/master/LICENSE.txt)
 
 # Cloud911
 
