@@ -1,4 +1,4 @@
-package main
+package easy
 
 import (
 	"github.com/amy911/snek911/snek"
