@@ -14,22 +14,10 @@ import (
 
 var (
 	// Set this in your `init()` function somewhere
-	VendorName = "amy911"
-
-	// Set this in your `init()` function somewhere
-	ApplicationName = "srv911"
-
-	// Set this in your `init()` function somewhere
-	DefaultConfType = "yaml"
-
-	// Set this in your `init()` function somewhere
 	OverrideRoot func(*cobra.Command, []string)
 )
 
 var (
-	// Not usable in `init()` functions
-	SysPath *syspath.SysPath
-
 	cfgFile string
 )
 
@@ -65,7 +53,10 @@ func init() {
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	SysPath = syspath.New(VendorName, ApplicationName)
+	if snek.SysPath == nil {
+		snek.SysPath = syspath.New("amy911", "srv911")
+		log.Print("Initialize github.com/amy911/snek911/snek.SysPath in an `init()` function somewhere!")
+	}
 	if len(cfgFile) > 0 {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
