@@ -4,7 +4,7 @@ import (
 	"errors"
 	"text/template"
 
-	"github.com/amy911/amy911/onfail"
+	"github.com/suite911/error911/onfail"
 
 	"github.com/valyala/fasthttp"
 )
