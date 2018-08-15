@@ -5,6 +5,6 @@ addons:
 language: go
 go: master
 install:
-  - go get -u github.com/cloud911/cloud911/...
+  - go get -u github.com/suite911/cloud911/...
 
 script: make -C examples -f travis.mk
