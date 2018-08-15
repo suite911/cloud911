@@ -1,8 +1,9 @@
 package cloud911
 
 import (
+	"encoding/json"
 	"errors"
-	"io"
+	"io/ioutil"
 	"os"
 	"os/exec"
 
@@ -74,18 +75,28 @@ func Main(fns ...func() error) error {
 	if err != nil {
 		return err
 	}
-	str := "Hello, world"
-	n, err := io.WriteString(stdin, str)
+	b, err := json.Marshal(vars.Pass)
 	if err != nil {
 		return err
 	}
-	if n != len(str) { // just in case
+	n, err := stdin.Write(b)
+	if err != nil {
+		return err
+	}
+	if n != len(b) { // just in case
 		return errors.New("Write error")
 	}
 	return child.Run()
 }
 
 func child(fns []func() error) error {
+	b, err := ioutil.ReadAll(os.Stdin)
+	if err != nil {
+		return err
+	}
+	if err := json.Unmarshal(b, &vars.Pass); err != nil {
+		return err
+	}
 	for _, fn := range fns {
 		if err := fn(); err != nil {
 			return err
