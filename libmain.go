@@ -1,12 +1,10 @@
-package easy
+package cloud911
 
 import (
-	"github.com/amy911/snek911/snek"
-
 	"github.com/amy911/cloud911/run"
 	"github.com/amy911/cloud911/vars"
 
-	"github.com/spf13/cobra"
+	"github.com/amy911/env911"
 )
 
 var (
@@ -14,7 +12,7 @@ var (
 	OverrideRoot func(*cobra.Command, []string)
 )
 
-func EasyInit() {
+func Main() {
 	snek.InitRoot = func(cmd *cobra.Command) {
 		cmd.PersistentFlags().StringVar(&vars.AddrHttp, "http", "", "Address on which to listen to incoming HTTP traffic")
 		cmd.PersistentFlags().StringVar(&vars.AddrHttps, "https", "", "Address on which to listen to incoming HTTPS traffic")
