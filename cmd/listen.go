@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/amy911/cloud911/run"
+	"github.com/suite911/cloud911/run"
 
 	"github.com/spf13/cobra"
 )
