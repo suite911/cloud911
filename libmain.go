@@ -7,12 +7,12 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/amy911/cloud911/run"
-	"github.com/amy911/cloud911/vars"
+	"github.com/suite911/cloud911/run"
+	"github.com/suite911/cloud911/vars"
 
-	"github.com/amy911/env911"
-	"github.com/amy911/env911/config"
-	"github.com/amy911/term911/vt"
+	"github.com/suite911/env911"
+	"github.com/suite911/env911/config"
+	"github.com/suite911/term911/vt"
 
 	"github.com/mattn/go-isatty"
 )
@@ -48,7 +48,7 @@ func Main(fns ...func() error) error {
 	// Parent
 	if pchroot == nil {
 		// This can happen if the user's custom FlagSet instance is broken
-		panic("Something is wrong with the custom github.com/amy911/flag911/flag.FlagSet you used with github.com/amy911/env911[/config]")
+		panic("Something is wrong with the custom github.com/suite911/flag911/flag.FlagSet you used with github.com/suite911/env911[/config]")
 	}
 	chroot := *pchroot
 	if len(chroot) > 0 {
