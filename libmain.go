@@ -87,6 +87,7 @@ func parent() error {
 }
 
 func child(fns []func() error) error {
+	/*
 	if err := syscall.Mount("rootfs", "rootfs", "", syscall.MS_BIND, ""); err != nil {
 		return err
 	}
@@ -102,6 +103,7 @@ func child(fns []func() error) error {
 	if err := os.Chdir(".."); err == nil {
 		return errors.New("Trivial escape from chroot possible!")
 	}
+	*/
 	return runChild(fns)
 }
 
