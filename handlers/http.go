@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/amy911/amy911/str"
+	"github.com/suite911/str911/str"
 
 	"github.com/valyala/fasthttp"
 )
