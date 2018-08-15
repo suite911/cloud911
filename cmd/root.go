@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/amy911/amy911/syspath"
-
-	"github.com/amy911/cloud911/run"
+	"github.com/suite911/cloud911/run"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -23,10 +21,6 @@ func Execute() {
 
 func init() {
 	cobra.OnInitialize(func() {
-		if snek.SysPath == nil {
-			snek.SysPath = syspath.New("amy911", "cloud911")
-			log.Print("Initialize github.com/amy911/snek911/snek.SysPath in an `init()` function somewhere!")
-		}
 		if len(cfgFile) > 0 {
 			// Use config file from the flag.
 			viper.SetConfigFile(cfgFile)
