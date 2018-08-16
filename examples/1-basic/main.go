@@ -52,3 +52,5 @@ func exampleCallback() error {
 	}
 	return nil
 }
+
+var www = map[string][]byte{}
