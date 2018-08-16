@@ -3,8 +3,10 @@ package cloud911
 import (
 	"encoding/json"
 	"io/ioutil"
+	"os"
 
 	"github.com/suite911/cloud911/run"
+	"github.com/suite911/cloud911/vars"
 )
 
 func child(fns []func() error) error {
@@ -20,5 +22,5 @@ func child(fns []func() error) error {
 			return err
 		}
 	}
-	run.Listen()
+	return run.Listen()
 }
