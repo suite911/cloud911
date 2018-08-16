@@ -1,5 +1,7 @@
 package main
 
+// go:generate slurp911 main www www
+
 import (
 	"fmt"
 
@@ -22,8 +24,21 @@ func main() {
 	flagSet.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
 
 	pages.Pages["index.html"] = pages.Page{
-		Title: "Hello",
-		Body: `Hello, world`,
+		Title: "My App",
+		Body: www["index.htm"],
+		CSS: www["index.css"],
+	}
+
+	pages.Pages["about"] = pages.Page{
+		Title: "My App - About",
+		Body: www["about.htm"],
+		CSS: www["about.css"],
+	}
+
+	pages.Pages["register"] = pages.Page{
+		Title: "My App - Register",
+		Body: www["register.htm"],
+		CSS: www["register.css"],
 	}
 
 	cloud911.Main(exampleCallback)
