@@ -31,8 +31,8 @@ func main() {
 
 func exampleCallback() error {
 	if verbose {
-		fmt.Printfn("Vendor:", app.Vendor()) // prints "MyCompany"
-		fmt.Printfn("App:   ", app.Name()) // prints "myapp"
-		fmt.Printfn("Path:  ", app.Path()) // prints "MyCompany/myapp" on POSIX systems
+		fmt.Println("Vendor:", app.Vendor()) // prints "MyCompany"
+		fmt.Println("App:   ", app.Name()) // prints "myapp"
+		fmt.Println("Path:  ", app.Path()) // prints "MyCompany/myapp" on POSIX systems
 	}
 }
