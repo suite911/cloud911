@@ -43,5 +43,5 @@ func Main(fns ...func() error) error {
 		return child(fns)
 	}
 	// Parent
-	return parent()
+	return parent(pchroot)
 }
