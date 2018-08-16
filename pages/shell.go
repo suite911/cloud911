@@ -20,7 +20,8 @@ var Shell = `<!DOCTYPE html>
 </head>
 <body>{{.Body}}
 <script type="text/javascript"><!-- //<![CDATA[
-{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
+{{if .JavaScript}}{{.JavaScript}}
+{{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
 }
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){{{.OnPageLoaded}}
 }
