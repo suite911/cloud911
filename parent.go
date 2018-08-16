@@ -58,19 +58,18 @@ func parent() error {
 }
 
 func loadTLSCert() error {
+	var err error
 	certPath, keyPath := vars.CertPath, vars.KeyPath
-	certData, err := ioutil.ReadFile(certPath)
-	if err != nil {
+	if vars.Pass.TLSCertData, err = ioutil.ReadFile(certPath); err != nil {
 		return tlsReadFileError(certPath, keyPath, err)
 	}
-	keyData, err := ioutil.ReadFile(keyPath)
-	if err != nil {
+	if vars.Pass.TLSKeyData, err = ioutil.ReadFile(keyPath); err != nil {
 		return tlsReadFileError(certPath, keyPath, err)
 	}
 	return nil
 }
 
-func tlsReadFileError(certPath, keyPath string, err error) error {
+func tlsReadFileError(certPath, keyPath string, err error) error { // TODO
 	log.Printf(
 		"You need a TLS certificate file and a TLS key file.  "+
 		"By default, these are called \"cert.pem\" and \"key.pem\", respectively.  "+
