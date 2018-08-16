@@ -33,9 +33,11 @@ func Main(fns ...func() error) error {
 	if len(os.Args) < 2 {
 		stdin := os.Stdin.Fd()
 		if isatty.IsTerminal(stdin) || isatty.IsCygwinTerminal(stdin) {
+			// Run without args from a terminal: Usage
 			config.Usage()
 			os.Exit(0)
 		}
+		// Child
 		return child(fns)
 	}
 	// Parent
