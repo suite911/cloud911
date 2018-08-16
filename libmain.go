@@ -1,6 +1,8 @@
 package cloud911
 
 import (
+	"os"
+
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/suite911/env911"
@@ -34,7 +36,7 @@ func Main(fns ...func() error) error {
 		stdin := os.Stdin.Fd()
 		if isatty.IsTerminal(stdin) || isatty.IsCygwinTerminal(stdin) {
 			// Run without args from a terminal: Usage
-			config.Usage()
+			flagSet.Usage()
 			os.Exit(0)
 		}
 		// Child
