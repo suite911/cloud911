@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/suite911/cloud911"
 	"github.com/suite911/cloud911/pages"
 
