@@ -7,10 +7,11 @@ import (
 	"log" // TODO
 	"os"
 	"os/exec"
-	"syscall"
+
+	"golang.org/x/sys/unix"
 )
 
-func parent() error {
+func parent(pchroot *string) error {
 	if err := loadTLSCert(); err != nil {
 		return err
 	}
@@ -23,7 +24,7 @@ func parent() error {
 		if err := os.Chdir(chroot); err != nil {
 			return err
 		}
-		if err := os.Chroot(chroot); err != nil {
+		if err := unix.Chroot(chroot); err != nil {
 			return err
 		}
 		if err := os.Chdir("/"); err != nil {
@@ -33,9 +34,13 @@ func parent() error {
 			return errors.New("Trivial escape from chroot possible!")
 		}
 	}
-	child := exec.Command(os.Executable())
-	child.SysProcAttr = &syscall.SysProcAttr{
-		CloneFlags: syscall.CLONE_NEWNS | syscall.CLONE_NEWPID | syscall.CLONE_NEWUTS,
+	self, err := os.Executable()
+	if err != nil {
+		return err
+	}
+	child := exec.Command(self)
+	child.SysProcAttr = &unix.SysProcAttr{
+		Cloneflags: unix.CLONE_NEWNS | unix.CLONE_NEWPID | unix.CLONE_NEWUTS,
 	}
 	child.Stdout = os.Stdout
 	child.Stderr = os.Stderr
