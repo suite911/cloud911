@@ -6,6 +6,7 @@ all:
 	make -C 1-basic -f ../travis.mk example
 
 example:
+	go get github.com/suite911/slurp911/tools/cmd/slurp911
 	go generate
 	go build
 	go test
