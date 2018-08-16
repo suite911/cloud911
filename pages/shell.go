@@ -15,8 +15,9 @@ var Shell = `<!DOCTYPE html>
 {{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}">
 {{end}}<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
 {{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
-{{end}}<style type="text/css"><!-- /*<![CDATA[*/
-/*]]>*/ --></style>{{.Head}}
+{{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
+{{.CSS}}
+/*]]>*/ --></style>{{end}}{{.Head}}
 </head>
 <body>{{.Body}}
 <script type="text/javascript"><!-- //<![CDATA[
