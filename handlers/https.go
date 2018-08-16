@@ -18,6 +18,10 @@ func HTTPS(ctx *fasthttp.RequestCtx) {
 }
 
 func https(ctx *fasthttp.RequestCtx) {
+	if match, tail := str.CaseHasPrefix(string(ctx.Path()), "/api"); match {
+		API(ctx, tail)
+		return
+	}
 	fmt.Fprintf(ctx, "Hello, world!\n\n")
 
 	fmt.Fprintf(ctx, "Request method is %q\n", ctx.Method())
