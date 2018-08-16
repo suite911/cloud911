@@ -12,7 +12,7 @@ import (
 var Pages map[string]Page = make(map[string]Page)
 
 type Page struct {
-	Author, Body, Description, GoogleWebFonts, Head, Keywords, OnDOMReady, OnPageLoaded, Title string
+	Author, Body, CSS, Description, GoogleWebFonts, Head, JavaScript, Keywords, OnDOMReady, OnPageLoaded, Title string
 
 	Raw []byte
 
