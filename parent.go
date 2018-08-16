@@ -8,6 +8,8 @@ import (
 	"os"
 	"os/exec"
 
+	"github.com/suite911/cloud911/vars"
+
 	"golang.org/x/sys/unix"
 )
 
