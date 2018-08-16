@@ -3,6 +3,8 @@ package cloud911
 import (
 	"encoding/json"
 	"errors"
+	"io/ioutil"
+	"log" // TODO
 	"os"
 	"os/exec"
 	"syscall"
@@ -53,4 +55,26 @@ func parent() error {
 		return errors.New("Write error")
 	}
 	return child.Run()
+}
+
+func loadTLSCert() error {
+	certPath, keyPath := vars.CertPath, vars.KeyPath
+	certData, err := ioutil.ReadFile(certPath)
+	if err != nil {
+		return tlsReadFileError(certPath, keyPath, err)
+	}
+	keyData, err := ioutil.ReadFile(keyPath)
+	if err != nil {
+		return tlsReadFileError(certPath, keyPath, err)
+	}
+	return nil
+}
+
+func tlsReadFileError(certPath, keyPath string, err error) error {
+	log.Printf(
+		"You need a TLS certificate file and a TLS key file.  "+
+		"By default, these are called \"cert.pem\" and \"key.pem\", respectively.  "+
+		"The paths as configured are %q and %q.", certPath, keyPath)
+	log.Fatalf("ioutil.ReadFile: %q\n", err)
+	return err
 }
