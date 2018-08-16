@@ -9,7 +9,7 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-func Listen() {
+func Listen() error {
 	go func() {
 		if err := fasthttp.ListenAndServe(vars.Pass.HTTP, handlers.HTTP); err != nil {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
@@ -23,4 +23,5 @@ func Listen() {
 	); err != nil {
 		log.Fatalln("fasthttp.ListenAndServeTLSEmbed: \""+err.Error()+"\"")
 	}
+	return nil
 }
