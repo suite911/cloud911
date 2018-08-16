@@ -6,6 +6,8 @@ all:
 	make -C 1-basic -f ../travis.mk example
 
 example:
+	go generate
+	go build
 	go test
 
 .PHONY: all example
