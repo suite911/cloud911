@@ -1,6 +1,6 @@
 package pages
 
-var FavIcon []ubyte
+var FavIcon []byte
 
 var Robots = `User-agent: *
 Disallow: /api/
