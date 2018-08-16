@@ -1,8 +1,8 @@
 package vars
 
 var Pass = PassType{
-	HTTP: ":10080",
-	HTTPS: ":10443",
+	HTTP: ":80",
+	HTTPS: ":443",
 }
 
 type PassType struct {
