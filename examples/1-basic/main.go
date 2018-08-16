@@ -35,4 +35,5 @@ func exampleCallback() error {
 		fmt.Println("App:   ", app.Name()) // prints "myapp"
 		fmt.Println("Path:  ", app.Path()) // prints "MyCompany/myapp" on POSIX systems
 	}
+	return nil
 }
