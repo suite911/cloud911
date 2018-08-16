@@ -4,14 +4,14 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var OverrideApi func(*fasthttp.RequestCtx, string)
+var OverrideAPI func(*fasthttp.RequestCtx, string)
 
-func Api(ctx *fasthttp.RequestCtx, path string) {
+func API(ctx *fasthttp.RequestCtx, path string) {
 	switch {
-	case OverrideApi == nil:
+	case OverrideAPI == nil:
 		api(ctx, path)
 	default:
-		OverrideApi(ctx, path)
+		OverrideAPI(ctx, path)
 	}
 }
 
