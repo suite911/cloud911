@@ -17,8 +17,8 @@ func Listen() {
 	}()
 	if err := fasthttp.ListenAndServeTLSEmbed(
 		vars.HTTPS,
-		vars.CertData,
-		vars.KeyData,
+		vars.TLSCertData,
+		vars.TLSKeyData,
 		handlers.HTTPS,
 	); err != nil {
 		log.Fatalln("fasthttp.ListenAndServeTLSEmbed: \""+err.Error()+"\"")
