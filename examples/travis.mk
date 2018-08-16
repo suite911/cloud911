@@ -8,6 +8,8 @@ all:
 example:
 	go get github.com/suite911/tools911/tools/cmd/slurp911
 	go generate
+	pwd
+	ls
 	go build
 	go test
 
