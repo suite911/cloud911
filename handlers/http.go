@@ -6,14 +6,14 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var OverrideHttp func(*fasthttp.RequestCtx)
+var OverrideHTTP func(*fasthttp.RequestCtx)
 
-func Http(ctx *fasthttp.RequestCtx) {
+func HTTP(ctx *fasthttp.RequestCtx) {
 	switch {
-	case OverrideHttp == nil:
+	case OverrideHTTP == nil:
 		http(ctx)
 	default:
-		OverrideHttp(ctx)
+		OverrideHTTP(ctx)
 	}
 }
 
