@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
+	"log" // TODO
 	"os"
 	"os/exec"
 
@@ -46,6 +47,13 @@ func Main(fns ...func() error) error {
 		return child(fns)
 	}
 	// Parent
+	return parent()
+}
+
+func parent() error {
+	if err := loadTLSCert(); err != nil {
+		return err
+	}
 	if pchroot == nil {
 		// This can happen if the user's custom FlagSet instance is broken
 		panic("Something is wrong with the custom github.com/suite911/flag911/flag.FlagSet you used with github.com/suite911/env911[/config]")
@@ -103,4 +111,26 @@ func child(fns []func() error) error {
 		}
 	}
 	run.Listen()
+}
+
+func loadTLSCert() error {
+	certPath, keyPath := vars.CertPath, vars.KeyPath
+	certData, err := ioutil.ReadFile(certPath)
+	if err != nil {
+		return tlsReadFileError(certPath, keyPath, err)
+	}
+	keyData, err := ioutil.ReadFile(keyPath)
+	if err != nil {
+		return tlsReadFileError(certPath, keyPath, err)
+	}
+	return nil
+}
+
+func tlsReadFileError(certPath, keyPath string, err error) error {
+	log.Printf(
+		"You need a TLS certificate file and a TLS key file.  "+
+		"By default, these are called \"cert.pem\" and \"key.pem\", respectively.  "+
+		"The paths as configured are %q and %q.", certPath, keyPath)
+	log.Fatalf("ioutil.ReadFile: %q\n", err)
+	return err
 }
