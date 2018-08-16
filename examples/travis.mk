@@ -3,6 +3,7 @@
 
 all:
 	make -C 0-hello -f ../travis.mk example
+	make -C 1-basic -f ../travis.mk example
 
 example:
 	go build
