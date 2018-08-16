@@ -25,20 +25,20 @@ func main() {
 
 	pages.Pages["index.html"] = pages.Page{
 		Title: "My App",
-		Body: www["index.htm"],
-		CSS: www["index.css"],
+		Body: string(www["index.htm"]),
+		CSS: string(www["index.css"]),
 	}
 
 	pages.Pages["about"] = pages.Page{
 		Title: "My App - About",
-		Body: www["about.htm"],
-		CSS: www["about.css"],
+		Body: string(www["about.htm"]),
+		CSS: string(www["about.css"]),
 	}
 
 	pages.Pages["register"] = pages.Page{
 		Title: "My App - Register",
-		Body: www["register.htm"],
-		CSS: www["register.css"],
+		Body: string(www["register.htm"]),
+		CSS: string(www["register.css"]),
 	}
 
 	cloud911.Main(exampleCallback)
