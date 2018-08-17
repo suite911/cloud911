@@ -10,22 +10,36 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-var PageBytes map[string]Page = make(map[string][]byte)
+type CompiledPage struct {
+	ContentType string
+	Raw         []byte
+}
 
-func PreparePageBytes(defaultShell *template.Template, onFail ...onfail.OnFail) error {
+func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
+	if len(c.ContentType) > 0 {
+		ctx.SetContentType(c.ContentType)
+	}
+	ctx.Write(c.Raw)
+}
+
+var CompiledPages = make(map[string]*CompiledPage)
+
+func CompilePages(defaultShell *template.Template, onFail ...onfail.OnFail) error {
 	for k, v := range Pages {
-		b, err := v.Execute(defaultShell, onFail...)
+		c, err := v.Compile(defaultShell, onFail...)
 		if err != nil {
 			return err
 		}
-		PageBytes[k] = b
+		CompiledPages[k] = c
 	}
 	return nil
 }
 
-var Pages map[string]Page = make(map[string]Page)
+var Pages = make(map[string]Page)
 
 type Page struct {
+	ContentType string
+
 	Author, Description, FavIcon, Keywords, Title string
 
 	CSS, GoogleWebFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
@@ -41,9 +55,15 @@ type Page struct {
 	Shell *template.Template
 }
 
-func (page *Page) Execute(defaultShell *template.Template, onFail ...onfail.OnFail) ([]byte, error) {
+func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFail) (*CompiledPage, error) {
+	c := new(CompiledPage)
+	c.ContentType = page.ContentType
 	if len(page.Raw) > 0 {
-		return page.Raw, nil
+		c.Raw = page.Raw
+		return c, nil
+	}
+	if len(page.ContentType) < 1 {
+		page.ContentType = "text/html"
 	}
 	if len(page.Shell) < 1 {
 		page.Shell = defaultShell
@@ -52,33 +72,6 @@ func (page *Page) Execute(defaultShell *template.Template, onFail ...onfail.OnFa
 	if err := page.Shell.Execute(b, nil); err != nil {
 		return nil, err
 	}
-	return b.Bytes(), nil
+	c.Raw = c.Bytes()
+	return c, nil
 }
-
-/*func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail.OnFail) error {
-	fail := func(err error) error {
-		ctx.Error("Internal Server Error", 500)
-		return onfail.Fail(err, page, onfail.Print, onFail)
-	}
-	if len(page.Shell) < 1 {
-		page.Shell = shell
-	}
-	if len(page.Raw) > 0 {
-		n, err := ctx.Write(page.Raw)
-		if err == nil {
-			if n == len(page.Raw) {
-				return nil
-			}
-			err = errors.New("Failed to serve complete page")
-		}
-		return fail(err)
-	}
-	tmpl, err := template.New("test").Parse(page.Shell)
-	if err != nil {
-		return fail(err)
-	}
-	if err = tmpl.Execute(ctx, nil); err != nil {
-		return fail(err)
-	}
-	return nil
-}*/
