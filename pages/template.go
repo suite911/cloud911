@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"bytes"
 	"errors"
 	"text/template"
 
@@ -20,14 +21,28 @@ type Page struct {
 
 	TopNavHead, TopNavTail string
 
-	Shell string
-
 	TopNav map[string]string
 
 	Raw []byte
+
+	Shell *template.Template
 }
 
-func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail.OnFail) error {
+func (page *Page) Execute(defaultShell *template.Template, onFail ...onfail.OnFail) ([]byte, error) {
+	if len(page.Raw) > 0 {
+		return page.Raw, nil
+	}
+	if len(page.Shell) < 1 {
+		page.Shell = defaultShell
+	}
+	var b bytes.Buffer
+	if err := page.Shell.Execute(b, nil); err != nil {
+		return nil, err
+	}
+	return b.Bytes(), nil
+}
+
+/*func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail.OnFail) error {
 	fail := func(err error) error {
 		ctx.Error("Internal Server Error", 500)
 		return onfail.Fail(err, page, onfail.Print, onFail)
@@ -53,4 +68,4 @@ func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail
 		return fail(err)
 	}
 	return nil
-}
+}*/
