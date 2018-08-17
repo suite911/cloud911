@@ -12,7 +12,7 @@ import (
 )
 
 func Listen() error {
-	if err := pages.PreparePageBytes(shells.Basic); err != nil {
+	if err := pages.Compile(shells.Basic); err != nil {
 		return err
 	}
 	go func() {
