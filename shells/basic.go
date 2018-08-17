@@ -20,8 +20,8 @@ var Basic = `<!DOCTYPE html>
 /*]]>*/ --></style>{{end}}{{.Head}}
 </head>
 <body>{{if .Body}}{{.Body}}{{else}}{{.BodyHead}}
-<div class="topnav">{{range $k, $v := .TopNav}}
-	<a class="topnav" href="{{$k}}"><span class="topnav">{{$v}}</span></a>{{end}}
+<div class="topnav">{{.TopNavHead}}{{range $k, $v := .TopNav}}
+	<a class="topnav" href="{{$k}}"><span class="topnav">{{$v}}</span></a>{{end}}{{.TopNavTail}}
 </div>
 <div class="header">{{.Header}}
 </div>
