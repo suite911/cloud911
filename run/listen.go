@@ -4,13 +4,15 @@ import (
 	"log"
 
 	"github.com/suite911/cloud911/handlers"
+	"github.com/suite911/cloud911/pages"
+	"github.com/suite911/cloud911/shells"
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/valyala/fasthttp"
 )
 
 func Listen() error {
-	if err := PreparePageBytes(shells.Basic); err != nil {
+	if err := pages.PreparePageBytes(shells.Basic); err != nil {
 		return err
 	}
 	go func() {
