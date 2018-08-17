@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 
+	"github.com/suite911/cloud911/droppriv"
 	"github.com/suite911/cloud911/pages"
 
 	"github.com/suite911/str911/str"
@@ -22,6 +23,7 @@ func HTTPS(ctx *fasthttp.RequestCtx) {
 }
 
 func https(ctx *fasthttp.RequestCtx) {
+	droppriv.LinuxDrop()
 	path := string(ctx.Path())
 	if match, tail := str.CaseHasPrefix(path, "/api"); match {
 		API(ctx, tail)
