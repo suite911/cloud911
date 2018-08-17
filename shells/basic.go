@@ -36,9 +36,9 @@ func init() {
 </div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
 {{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
-{{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
+{{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}
 }
-{{end}}{{if .OnPageLoaded}}function onPageLoaded(){{{.OnPageLoaded}}
+{{end}}{{if .OnPageLoaded}}function onPageLoaded(){ {{.OnPageLoaded}}
 	cookieAgree();
 }
 {{end}}{{if .OnDOMReady}}if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
@@ -52,7 +52,7 @@ else window.onload = onPageLoaded;
 </html>
 `
 	var err error
-	if Basic, err = template.New("Basic").Delims("<[", "]>").Parse(text); err != nil {
+	if Basic, err = template.New("Basic").Parse(text); err != nil {
 		panic(err)
 	}
 }
