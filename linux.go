@@ -8,7 +8,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-func ApplyLinuxCloneFlags(cmd *exec.Command) {
+func ApplyLinuxCloneFlags(cmd *exec.Cmd) {
 	if cmd.SysProcAttr == nil {
 		cmd.SysProcAttr = new(unix.SysProcAttr)
 	}
