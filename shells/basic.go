@@ -48,7 +48,7 @@ else window.onload = onDOMReady;
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
 {{end}}//]]> --></script>
-{{end}}</body>
+</body>
 </html>
 `
 	var err error
