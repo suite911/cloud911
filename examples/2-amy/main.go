@@ -113,4 +113,4 @@ func main() {
 	cloud911.Main()
 }
 
-var www = map[string][]byte{}
+var www = make(map[string][]byte)
