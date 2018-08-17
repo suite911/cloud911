@@ -26,9 +26,9 @@ func Main(fns ...func() error) error {
 
 	flagSet.SetUsageHeader(
 		os.Args[0] + " " + vt.U("VERB") + " " + vt.U("OPTIONS") + vt.NewLine +
-		"The following are recognized for VERB:\n" +
-		"    " + vt.U("help") + "  \t: Print this help text and exit.\n" +
-		"    " + vt.U("listen") + "\t: Listen and serve.\n" +
+		"The following are recognized for " + vt.U("VERB") + ":\n" +
+		"  help"   + "\n    \tPrint this help text and exit.\n" +
+		"  listen" + "\n    \tListen and serve.\n" +
 		"The following are recognized for OPTIONS:\n",
 	)
 
