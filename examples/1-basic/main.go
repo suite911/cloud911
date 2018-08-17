@@ -53,7 +53,9 @@ func main() {
 		Raw: www["robots.txt"],
 	}
 
-	cloud911.Main(exampleCallback)
+	if err := cloud911.Main(exampleCallback); err != nil {
+		panic(err)
+	}
 }
 
 func exampleCallback() error {
