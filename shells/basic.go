@@ -1,6 +1,10 @@
 package shells
 
-import "text/template"
+import (
+	"text/template"
+
+	"github.com/pkg/errors"
+)
 
 var Basic *template.Template
 
@@ -53,6 +57,6 @@ else window.onload = onPageLoaded;
 `
 	var err error
 	if Basic, err = template.New("Basic").Parse(text); err != nil {
-		panic(err)
+		panic(errors.Wrap(err, `template.New("Basic").Parse(text)`))
 	}
 }
