@@ -2,6 +2,6 @@
 
 package droppriv
 
-func LinuxDrop(uid, gid int) error {
+func LinuxDrop() error {
 	return nil
 }
