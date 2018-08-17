@@ -57,6 +57,14 @@ func main() {
 		TopNav: topNav,
 	}
 
+	pages.Pages["/cookies"] = pages.Page{
+		FavIcon: favIcon,
+		Footer: string(www["cookies.htm"]),
+		Shell: shells.Amy,
+		Title: "My App - Cookie Policy",
+		TopNav: topNav,
+	}
+
 	pages.Pages["/eula"] = pages.Page{
 		FavIcon: favIcon,
 		Footer: string(www["eula.htm"]),
