@@ -45,6 +45,13 @@ func main() {
 		TopNav: topNav,
 	}
 
+	pages.Pages["404"] = pages.Page{
+		FavIcon: favIcon,
+		Title: "My App - Not Found",
+		Body: string(www["404.htm"]),
+		CSS: string(www["404.css"]),
+	}
+
 	pages.Pages["/about"] = pages.Page{
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
