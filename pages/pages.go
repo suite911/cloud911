@@ -5,6 +5,8 @@ import (
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
+
+	"github.com/pkg/errors"
 )
 
 // Pages is a map of all of the pages before they are compiled.
@@ -89,7 +91,7 @@ function cookieSet(name, value, hours) {
 	}
 	var b bytes.Buffer
 	if err := page.Shell.Execute(&b, nil); err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "page.Shell.Execute")
 	}
 	c.Bytes = b.Bytes()
 	return c, nil
