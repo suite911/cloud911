@@ -25,11 +25,13 @@ func Main(fns ...func() error) error {
 	config.LoadAndParse()
 
 	flagSet.SetUsageHeader(
-		os.Args[0] + " " + vt.U("VERB") + " " + vt.U("OPTIONS") + vt.NewLine +
-		"The following are recognized for " + vt.U("VERB") + ":\n" +
+		"Usage: " + os.Args[0] + " " + vt.U("VERB") + " " + vt.U("OPTIONS") + vt.NewLine +
+		"\n" +
+		"The following are recognized for " + vt.U("VERB") + ":" + vt.NewLine +
 		"  help"   + "\n    \tPrint this help text and exit.\n" +
 		"  listen" + "\n    \tListen and serve.\n" +
-		"The following are recognized for OPTIONS:\n",
+		"\n" +
+		"The following are recognized for " + vt.U("OPTIONS") + ":" + vt.NewLine,
 	)
 
 	if len(os.Args) < 2 {
