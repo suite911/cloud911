@@ -18,7 +18,11 @@ type Page struct {
 
 	Body, BodyHead, BodyTail, Content, Footer, Header string
 
+	TopNavHead, TopNavTail string
+
 	Shell string
+
+	TopNav map[string]string
 
 	Raw []byte
 }
