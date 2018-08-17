@@ -52,7 +52,7 @@ else window.onload = onPageLoaded;
 </html>
 `
 	var err error
-	if Basic, err = template.New("Basic").Parse(text); err != nil {
+	if Basic, err = template.New("Basic").Delims("<[", "]>").Parse(text); err != nil {
 		panic(err)
 	}
 }
