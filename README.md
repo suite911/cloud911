@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/suite911/cloud911.svg?branch=master)](https://travis-ci.org/suite911/cloud911)
 [![CC0-1.0](https://rawgit.com/suite911/assets/master/shields/license-cc0--1.0-efbfff.svg)](https://raw.githubusercontent.com/suite911/cloud911/master/LICENSE.txt)
 
-# Cloud911
+# Cloud911&trade;
 
 Cloud911 is a fast and hackable cloud app framework for Google Go (golang).  It helps you make your app's backend and connect it to a very small built-in web server.
 
