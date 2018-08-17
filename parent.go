@@ -41,9 +41,7 @@ func parent(pchroot *string) error {
 		return err
 	}
 	child := exec.Command(self)
-	child.SysProcAttr = &unix.SysProcAttr{
-		Cloneflags: unix.CLONE_NEWNS | unix.CLONE_NEWPID | unix.CLONE_NEWUTS,
-	}
+	ApplyLinuxCloneFlags(child)
 	child.Stdout = os.Stdout
 	child.Stderr = os.Stderr
 	stdin, err := child.StdinPipe()
