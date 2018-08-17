@@ -9,33 +9,10 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-type CompiledPage struct {
-	ContentType string
-	Bytes       []byte
-}
-
-func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
-	if len(c.ContentType) > 0 {
-		ctx.SetContentType(c.ContentType)
-	}
-	ctx.Write(c.Bytes)
-}
-
-var CompiledPages = make(map[string]*CompiledPage)
-
-func Compile(defaultShell *template.Template, onFail ...onfail.OnFail) error {
-	for k, v := range Pages {
-		c, err := v.Compile(defaultShell, onFail...)
-		if err != nil {
-			return err
-		}
-		CompiledPages[k] = c
-	}
-	return nil
-}
-
+// Pages is a map of all of the pages before they are compiled.
 var Pages = make(map[string]Page)
 
+// Page is a type representing a page before it is compiled.
 type Page struct {
 	ContentType string
 
@@ -57,6 +34,7 @@ type Page struct {
 	Shell *template.Template
 }
 
+// Compile compiles a page.
 func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFail) (*CompiledPage, error) {
 	c := new(CompiledPage)
 	c.ContentType = page.ContentType
