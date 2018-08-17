@@ -24,17 +24,16 @@ func init() {
 {{.CSS}}
 /*]]>*/ --></style>{{end}}{{.Head}}
 </head>
-<body>{{if .Body}}{{.Body}}{{else}}{{.BodyHead}}
+<body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <div class="topnav">{{.TopNavHead}}{{range $k, $v := .TopNav}}
 	<a class="topnav" href="{{$k}}"><span class="topnav">{{$v}}</span></a>{{end}}{{.TopNavTail}}
 </div>
-<div class="header">{{.Header}}
+<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 </div>
-<div class="content">{{.Content}}
+<div class="content">{{.ContentHead}}{{.Content}}{{.ContentTail}}
 </div>
-<div class="footer">{{.Footer}}
-</div>
-{{.BodyTail}}{{end}}
+<div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
+</div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
 {{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
