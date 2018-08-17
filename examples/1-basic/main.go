@@ -33,17 +33,19 @@ func main() {
 	}
 
 	pages.Pages[""] = pages.Page{
-		FavIcon: favIcon,
-		Title: "My App",
 		Body: string(www["index.htm"]),
 		CSS: string(www["index.css"]),
+		FavIcon: favIcon,
+		Shell: shells.Basic,
+		Title: "My App",
 	}
 
 	pages.Pages["404"] = pages.Page{
-		FavIcon: favIcon,
-		Title: "My App - Not Found",
 		Body: string(www["404.htm"]),
 		CSS: string(www["404.css"]),
+		FavIcon: favIcon,
+		Shell: shells.Basic,
+		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/robots.txt"] = pages.Page{
