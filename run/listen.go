@@ -10,6 +10,9 @@ import (
 )
 
 func Listen() error {
+	if err := PreparePageBytes(shells.Basic); err != nil {
+		return err
+	}
 	go func() {
 		if err := fasthttp.ListenAndServe(vars.Pass.HTTP, handlers.HTTP); err != nil {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
