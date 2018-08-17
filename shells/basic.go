@@ -35,10 +35,11 @@ func init() {
 <div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
 </div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-{{if .JavaScript}}{{.JavaScript}}
+{{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
 }
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){{{.OnPageLoaded}}
+	cookieAgree();
 }
 {{end}}{{if .OnDOMReady}}if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
 else if (document.attachEvent) document.attachEvent("onreadystatechange", onDOMReady);
