@@ -83,8 +83,8 @@ func Main(fns ...func() error) error {
 
 	// Drop privileges
 
-	targetUID, targetGID = strconv.Itoa(args[0]), strconv.Itoa(args[1])
-	if err := droppriv.Drop(targetUID, targetGID); err != nil {
+	vars.UID, vars.GID = strconv.Itoa(args[0]), strconv.Itoa(args[1])
+	if err := droppriv.Drop(); err != nil {
 		return err
 	}
 
@@ -93,7 +93,7 @@ func Main(fns ...func() error) error {
 			return err
 		}
 	}
-	return run.Listen(targetUID, targetGID)
+	return run.Listen()
 }
 
 func loadTLSCert() error {
