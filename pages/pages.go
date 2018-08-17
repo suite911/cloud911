@@ -12,6 +12,8 @@ var Pages = make(map[string]Page)
 
 // Page is a type representing a page before it is compiled.
 type Page struct {
+	DefaultCookieStuff string
+	
 	ContentType string
 
 	Author, Description, FavIcon, Keywords, Title string
@@ -45,6 +47,45 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	}
 	if page.Shell == nil {
 		page.Shell = defaultShell
+	}
+	if len(page.DefaultCookieStuff) < 1 {
+		page.DefaultCookieStuff = `
+function cookieAlert() {
+	alert("This site uses cookies to enhance the user experience.");
+	return "1"
+}
+function cookieAgree() {
+	if (cookieGet("agreed") == "") {
+		cookieSet("agreed", cookieAlert(), 1);
+	}
+}
+function cookieGet(name) {
+	var n = name + "=";
+	var a = document.cookie.split(';');
+	for(var i = 0; i < a.length; i++) {
+		var c = a[i];
+		while(c.charAt[0] == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(n) == 0) {
+			return c.substring(n.length, c.length);
+		}
+	}
+	return "";
+}
+function cookieSet(name, value, hours) {
+	var nv = name + "=" + value;
+	var p = ";path=/";
+	if hours === undefined {
+		document.cookie = nv + p;
+	} else {
+		var d = new Date();
+		d.setTime(d.getTime() + (hours * 3600000 ));
+		var x = ";expires=" + d.toUTCString();
+		document.cookie = nv + x + p;
+	}
+}
+		`
 	}
 	var b bytes.Buffer
 	if err := page.Shell.Execute(&b, nil); err != nil {
