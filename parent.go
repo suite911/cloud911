@@ -10,6 +10,7 @@ import (
 
 	"github.com/suite911/cloud911/vars"
 
+	pkgErrors "github.com/pkg/errors"
 	"golang.org/x/sys/unix"
 )
 
@@ -24,13 +25,13 @@ func parent(pchroot *string) error {
 	chroot := *pchroot
 	if len(chroot) > 0 {
 		if err := os.Chdir(chroot); err != nil {
-			return err
+			return pkgErrors.Wrap(err, "os.Chdir(chroot)")
 		}
 		if err := unix.Chroot(chroot); err != nil {
-			return err
+			return pkgErrors.Wrap(err, "os.Chroot(chroot)")
 		}
 		if err := os.Chdir("/"); err != nil {
-			return err
+			return pkgErrors.Wrap(err, "os.Chdir(\"/\")")
 		}
 		if err := os.Chdir(".."); err == nil {
 			return errors.New("Trivial escape from chroot possible!")
@@ -38,7 +39,7 @@ func parent(pchroot *string) error {
 	}
 	self, err := os.Executable()
 	if err != nil {
-		return err
+		return pkgErrors.Wrap(err, "os.Executable")
 	}
 	child := exec.Command(self)
 	ApplyLinuxCloneFlags(child)
@@ -46,15 +47,15 @@ func parent(pchroot *string) error {
 	child.Stderr = os.Stderr
 	stdin, err := child.StdinPipe()
 	if err != nil {
-		return err
+		return pkgErrors.Wrap(err, "(child *exec.Cmd).StdinPipe()")
 	}
 	b, err := json.Marshal(vars.Pass)
 	if err != nil {
-		return err
+		return pkgErrors.Wrap(err, "json.Marshall")
 	}
 	n, err := stdin.Write(b)
 	if err != nil {
-		return err
+		return pkgErrors.Wrap(err, "(stdin io.WriteCloser).Write")
 	}
 	if n != len(b) { // just in case
 		return errors.New("Write error")
@@ -66,10 +67,10 @@ func loadTLSCert() error {
 	var err error
 	certPath, keyPath := vars.CertPath, vars.KeyPath
 	if vars.Pass.TLSCertData, err = ioutil.ReadFile(certPath); err != nil {
-		return tlsReadFileError(certPath, keyPath, err)
+		return tlsReadFileError(certPath, keyPath, pkgErrors.Wrap(err, "ioutil.ReadFile(certPath)"))
 	}
 	if vars.Pass.TLSKeyData, err = ioutil.ReadFile(keyPath); err != nil {
-		return tlsReadFileError(certPath, keyPath, err)
+		return tlsReadFileError(certPath, keyPath, pkgErrors.Wrap(err, "ioutil.ReadFile(keyPath)"))
 	}
 	return nil
 }
