@@ -33,7 +33,7 @@ func Drop() error {
 	return nil
 }
 
-func syscall1(trap uintptr, arg int) {
+func syscall1(trap uintptr, arg int) error {
 	var err error
 	_, _, en := unix.Syscall(trap, uintptr(arg), 0, 0)
 	if en != 0 {
