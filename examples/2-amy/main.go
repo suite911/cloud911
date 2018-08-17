@@ -28,6 +28,12 @@ func main() {
 	topNav["/about"] = "About"
 	topNav["/register"] = "Register"
 
+	if raw, ok := www["favicon.ico"]; ok {
+		pages.Pages["favicon.ico"] = pages.Page{
+			Raw: raw,
+		}
+	}
+
 	pages.Pages["index.html"] = pages.Page{
 		Shell: shells.Amy,
 		Title: "My App",
