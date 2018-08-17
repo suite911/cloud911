@@ -14,7 +14,7 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-func parent(pchroot *string) error {
+func parent(pchroot *string, fns []func() error) error {
 	if err := loadTLSCert(); err != nil {
 		return err
 	}
@@ -37,6 +37,7 @@ func parent(pchroot *string) error {
 			return errors.New("Trivial escape from chroot possible!")
 		}
 	}
+	/*
 	self, err := os.Executable()
 	if err != nil {
 		return pkgErrors.Wrap(err, "os.Executable")
@@ -61,6 +62,13 @@ func parent(pchroot *string) error {
 		return errors.New("Write error")
 	}
 	return child.Run()
+	*/
+	for _, fn := range fns {
+		if err := fn(); err != nil {
+			return err
+		}
+	}
+	return run.Listen()
 }
 
 func loadTLSCert() error {
