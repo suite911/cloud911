@@ -23,13 +23,16 @@ func main() {
 	flagSet := config.FlagSet()
 	flagSet.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
 
+	var favIcon string
 	if raw, ok := www["favicon.ico"]; ok {
 		pages.Pages["favicon.ico"] = pages.Page{
 			Raw: raw,
 		}
+		favIcon = "favicon.ico"
 	}
 
 	pages.Pages["index.html"] = pages.Page{
+		FavIcon: favIcon,
 		Title: "My App",
 		Body: string(www["index.htm"]),
 		CSS: string(www["index.css"]),
