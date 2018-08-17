@@ -1,6 +1,11 @@
 package shells
 
-var Basic = `<!DOCTYPE html>
+import "text/template"
+
+var Basic *template.Template
+
+func init() {
+	text := `<!DOCTYPE html>
 <!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
 <!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
 <!--[if IE 8]><html class="preIE9"><![endif]-->
@@ -46,3 +51,8 @@ else window.onload = onPageLoaded;
 {{end}}</body>
 </html>
 `
+	var err error
+	if Basic, err = template.New("Basic").Parse(text); err != nil {
+		panic(err)
+	}
+}
