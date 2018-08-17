@@ -212,7 +212,7 @@ button.register:hover {
 {{.CSS}}
 /*]]>*/ --></style>{{end}}{{.Head}}
 </head>
-<body>{{if .Body}}{{.Body}}{{else}}{{.BodyHead}}
+<body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="night" id="night" checked />
 <div class="night">
 	<div class="topnav">{{.TopNavHead}}
@@ -222,13 +222,13 @@ button.register:hover {
 		<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
 		<div class="topnavhack"></div>{{.TopNavTail}}
 	</div>
-	<div class="header">{{.Header}}
+	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 	</div>
-	<div class="content">{{.Content}}
+	<div class="content">{{.ContentHead}}{{.Content}}{{.ContentTail}}
 	</div>
-	<div class="footer">{{.Footer}}
+	<div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
 	</div>
-</div>{{.BodyTail}}{{end}}
+</div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
 {{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
