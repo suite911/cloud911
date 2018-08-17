@@ -5,8 +5,6 @@ import (
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
-
-	"github.com/valyala/fasthttp"
 )
 
 // Pages is a map of all of the pages before they are compiled.
