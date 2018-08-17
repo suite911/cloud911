@@ -10,6 +10,19 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
+var PageBytes map[string]Page = make(map[string][]byte)
+
+func PreparePageBytes(defaultShell *template.Template, onFail ...onfail.OnFail) error {
+	for k, v := range Pages {
+		b, err := v.Execute(defaultShell, onFail...)
+		if err != nil {
+			return err
+		}
+		PageBytes[k] = b
+	}
+	return nil
+}
+
 var Pages map[string]Page = make(map[string]Page)
 
 type Page struct {
