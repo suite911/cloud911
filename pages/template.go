@@ -23,7 +23,7 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 
 var CompiledPages = make(map[string]*CompiledPage)
 
-func CompilePages(defaultShell *template.Template, onFail ...onfail.OnFail) error {
+func Compile(defaultShell *template.Template, onFail ...onfail.OnFail) error {
 	for k, v := range Pages {
 		c, err := v.Compile(defaultShell, onFail...)
 		if err != nil {
