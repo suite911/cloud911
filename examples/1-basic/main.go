@@ -26,7 +26,7 @@ func main() {
 
 	var favIcon string
 	if raw, ok := www["favicon.ico"]; ok {
-		pages.Pages["favicon.ico"] = pages.Page{
+		pages.Pages["/favicon.ico"] = pages.Page{
 			Raw: raw,
 		}
 		favIcon = "favicon.ico"
