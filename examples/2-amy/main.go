@@ -43,10 +43,10 @@ func main() {
 	}
 
 	pages.Pages["404"] = pages.Page{
-		FavIcon: favIcon,
-		Title: "My App - Not Found",
 		Body: string(www["404.htm"]),
 		CSS: string(www["404.css"]),
+		FavIcon: favIcon,
+		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/about"] = pages.Page{
@@ -58,16 +58,20 @@ func main() {
 	}
 
 	pages.Pages["/cookies"] = pages.Page{
+		Content: string(www["cookies.htm"]),
+		CSS: string(www["cookies.css"]),
 		FavIcon: favIcon,
-		Footer: string(www["cookies.htm"]),
+		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - Cookie Policy",
 		TopNav: topNav,
 	}
 
 	pages.Pages["/eula"] = pages.Page{
+		Content: string(www["eula.htm"]),
+		CSS: string(www["eula.css"]),
 		FavIcon: favIcon,
-		Footer: string(www["eula.htm"]),
+		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - End User License Agreement (EULA)",
 		TopNav: topNav,
@@ -75,6 +79,7 @@ func main() {
 
 	pages.Pages["/privacy"] = pages.Page{
 		Content: string(www["privacy.htm"]),
+		CSS: string(www["privacy.css"]),
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
@@ -97,6 +102,7 @@ func main() {
 
 	pages.Pages["/terms"] = pages.Page{
 		Content: string(www["terms.htm"]),
+		CSS: string(www["terms.css"]),
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
