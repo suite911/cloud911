@@ -32,7 +32,14 @@ func main() {
 		favIcon = "favicon.ico"
 	}
 
-	pages.Pages["index.html"] = pages.Page{
+	pages.Pages["404"] = pages.Page{
+		FavIcon: favIcon,
+		Title: "My App - Not Found",
+		Body: string(www["404.htm"]),
+		CSS: string(www["404.css"]),
+	}
+
+	pages.Pages["/index.html"] = pages.Page{
 		FavIcon: favIcon,
 		Title: "My App",
 		Body: string(www["index.htm"]),
