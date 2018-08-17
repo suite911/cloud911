@@ -28,8 +28,8 @@ func Main(fns ...func() error) error {
 		"Usage: " + os.Args[0] + " " + vt.SafeU("VERB") + " " + vt.SafeU("OPTIONS") + "\n" +
 		"\n" +
 		"The following are recognized for " + vt.SafeU("VERB") + ":\n" +
-		"  help"   + "\n    \tPrint this help text and exit.\n" +
-		"  listen" + "\n    \tListen and serve.\n" +
+		"  " + vt.SafeB("help")   + "\n    \tPrint this help text and exit.\n" +
+		"  " + vt.SafeB("listen") + "\n    \tListen and serve.\n" +
 		"\n" +
 		"The following are recognized for " + vt.SafeU("OPTIONS") + ":\n",
 	)
