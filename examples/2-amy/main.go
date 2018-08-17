@@ -8,7 +8,6 @@ import (
 	"github.com/suite911/cloud911/shells"
 
 	"github.com/suite911/env911"
-	"github.com/suite911/env911/config"
 )
 
 func init() {
@@ -18,9 +17,6 @@ func init() {
 var verbose = false
 
 func main() {
-	flagSet := config.FlagSet()
-	flagSet.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
-
 	topNav := make(map[string]string)
 	topNav["/"] = "Top Page"
 	topNav["/about"] = "About"
@@ -111,7 +107,9 @@ func main() {
 		TopNav: topNav,
 	}
 
-	cloud911.Main()
+	if err := cloud911.Main(); err != nil {
+		panic(err)
+	}
 }
 
 var www = make(map[string][]byte)
