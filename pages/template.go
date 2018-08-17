@@ -18,7 +18,7 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 	if len(c.ContentType) > 0 {
 		ctx.SetContentType(c.ContentType)
 	}
-	ctx.Write(c.Raw)
+	ctx.Write(c.Bytes)
 }
 
 var CompiledPages = make(map[string]*CompiledPage)
@@ -64,7 +64,7 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	if len(page.ContentType) < 1 {
 		page.ContentType = "text/html"
 	}
-	if len(page.Shell) < 1 {
+	if page.Shell == nil {
 		page.Shell = defaultShell
 	}
 	var b bytes.Buffer
