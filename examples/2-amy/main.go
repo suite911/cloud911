@@ -88,6 +88,7 @@ func main() {
 	}
 
 	pages.Pages["/register"] = pages.Page{
+		Content: string(www["register.htm"]),
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
