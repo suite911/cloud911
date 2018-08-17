@@ -39,6 +39,7 @@ func main() {
 
 	pages.Pages["/index.html"] = pages.Page{
 		FavIcon: favIcon,
+		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App",
 		TopNav: topNav,
@@ -46,15 +47,35 @@ func main() {
 
 	pages.Pages["/about"] = pages.Page{
 		FavIcon: favIcon,
+		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - About",
 		TopNav: topNav,
 	}
 
+	pages.Pages["/privacy"] = pages.Page{
+		Content: string(www["privacy.htm"]),
+		FavIcon: favIcon,
+		Footer: string(www["footer.htm"]),
+		Shell: shells.Amy,
+		Title: "My App - Privacy Policy",
+		TopNav: topNav,
+	}
+
 	pages.Pages["/register"] = pages.Page{
 		FavIcon: favIcon,
+		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - Register",
+		TopNav: topNav,
+	}
+
+	pages.Pages["/terms"] = pages.Page{
+		Content: string(www["terms.htm"]),
+		FavIcon: favIcon,
+		Footer: string(www["footer.htm"]),
+		Shell: shells.Amy,
+		Title: "My App - Terms of Use",
 		TopNav: topNav,
 	}
 
