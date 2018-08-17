@@ -69,7 +69,7 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 		page.Shell = defaultShell
 	}
 	var b bytes.Buffer
-	if err := page.Shell.Execute(b, nil); err != nil {
+	if err := page.Shell.Execute(&b, nil); err != nil {
 		return nil, err
 	}
 	c.Bytes = b.Bytes()
