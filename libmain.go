@@ -7,7 +7,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/suite911/cloud911/drop"
+	"github.com/suite911/cloud911/droppriv"
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/suite911/env911"
@@ -47,6 +47,12 @@ func Main(fns ...func() error) error {
 		os.Exit(0)
 	}
 
+	args := flagSet.Args()
+	if len(args) != 2 {
+		flagSet.Usage()
+		os.Exit(1)
+	}
+
 	if err := loadTLSCert(); err != nil {
 		return err
 	}
@@ -77,14 +83,17 @@ func Main(fns ...func() error) error {
 
 	// Drop privileges
 
-	drop.Drop()
+	targetUID, targetGID = strconv.Itoa(args[0]), strconv.Itoa(args[1])
+	if err := droppriv.Drop(targetUID, targetGID); err != nil {
+		return err
+	}
 
 	for _, fn := range fns {
 		if err := fn(); err != nil {
 			return err
 		}
 	}
-	return run.Listen()
+	return run.Listen(targetUID, targetGID)
 }
 
 func loadTLSCert() error {
