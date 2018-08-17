@@ -59,7 +59,7 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	c := new(CompiledPage)
 	c.ContentType = page.ContentType
 	if len(page.Raw) > 0 {
-		c.Raw = page.Raw
+		c.Bytes = page.Raw
 		return c, nil
 	}
 	if len(page.ContentType) < 1 {
@@ -72,6 +72,6 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	if err := page.Shell.Execute(b, nil); err != nil {
 		return nil, err
 	}
-	c.Raw = c.Bytes()
+	c.Bytes = b.Bytes()
 	return c, nil
 }
