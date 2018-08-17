@@ -210,12 +210,12 @@ button.register:hover {
 <body>{{if .Body}}{{.Body}}{{else}}{{.BodyHead}}
 <input type="checkbox" class="night" id="night" checked />
 <div class="night">
-	<div class="topnav">
+	<div class="topnav">{{.TopNavHead}}
 		<div class="topnavleft"{{range $k, $v := .TopNav}}
 			><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
 		></div>
 		<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
-		<div class="topnavhack"></div>
+		<div class="topnavhack"></div>{{.TopNavTail}}
 	</div>
 	<div class="header">{{.Header}}
 	</div>
