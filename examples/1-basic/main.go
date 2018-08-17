@@ -23,8 +23,10 @@ func main() {
 	flagSet := config.FlagSet()
 	flagSet.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
 
-	pages.Pages["favicon.ico"] = pages.Page{
-		Raw: www["favicon.ico"],
+	if raw, ok := www["favicon.ico"]; ok {
+		pages.Pages["favicon.ico"] = pages.Page{
+			Raw: raw,
+		}
 	}
 
 	pages.Pages["index.html"] = pages.Page{
