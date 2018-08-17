@@ -65,4 +65,4 @@ func exampleCallback() error {
 	return nil
 }
 
-var www = map[string][]byte{}
+var www = make(map[string][]byte)
