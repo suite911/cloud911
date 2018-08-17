@@ -82,7 +82,7 @@ input[type=checkbox].night:checked + div {
 	color: var(--fg-night);
 }
 
-.topnav {
+div.topnav {
 	background-color: var(--bg-topnav);
 	display: block;
 	height: calc(2px + 10px + 15pt + 10px + 2px);
@@ -119,7 +119,7 @@ input[type=checkbox].night:checked + div {
 	width: 100%;
 }
 
-.topnava {
+span.topnav {
 	background-color: var(--topnav-bg);
 	border: none;
 	border-radius: 0 0 8px 8px;
@@ -130,7 +130,7 @@ input[type=checkbox].night:checked + div {
 	padding: 10px 4px;
 }
 
-.topnava:hover {
+span.topnav:hover {
 	background-color: var(--topnav-hover);
 }
 
@@ -212,7 +212,7 @@ button.register:hover {
 <div class="night">
 	<div class="topnav">
 		<div class="topnavleft"{{range $k, $v := .TopNav}}
-			><a href="{{$k}}"><span class="topnava">{{$v}}</span></a{{end}}
+			><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
 		></div>
 		<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
 		<div class="topnavhack"></div>
