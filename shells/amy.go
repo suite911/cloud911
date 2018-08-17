@@ -14,13 +14,13 @@ func init() {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-{{if .Title}}<title>{{.Title}}</title>
-{{end}}{{if .Author}}<meta name="author" content="{{.Author}}">
-{{end}}{{if .Description}}<meta name="description" content="{{.Description}}">
-{{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}">
-{{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon">
-{{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
-{{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
+<[if .Title]><title><[.Title]></title>
+<[end]><[if .Author]><meta name="author" content="<[.Author]>">
+<[end]><[if .Description]><meta name="description" content="<[.Description]>">
+<[end]><[if .Keywords]><meta name="keywords" content="<[.Keywords]>">
+<[end]><[if .FavIcon]><link rel="shortcut icon" href="<[.FavIcon]>" type="image/vnd.microsoft.icon">
+<[end]><[if .GoogleFonts]><link rel="stylesheet" href="//fonts.googleapis.com/css?family=<[.GoogleFonts]>" type="text/css">
+<[end]><[if .CSS]><style type="text/css"><!-- /*<![CDATA[*/
 * {
 	box-sizing: border-box;
 }
@@ -209,41 +209,41 @@ button.register:hover {
 	text-align: center;
 }
 
-{{.CSS}}
-/*]]>*/ --></style>{{end}}{{.Head}}
+<[.CSS]>
+/*]]>*/ --></style><[end]><[.Head]>
 </head>
-<body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
+<body><[.BodyHead]><[if .Body]><[.Body]><[else]>
 <input type="checkbox" class="night" id="night" checked />
 <div class="night">
-	<div class="topnav">{{.TopNavHead}}
-		<div class="topnavleft"{{range $k, $v := .TopNav}}
-			><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
+	<div class="topnav"><[.TopNavHead]>
+		<div class="topnavleft"<[range $k, $v := .TopNav]>
+			><a href="<[$k]>"><span class="topnav"><[$v]></span></a<[end]>
 		></div>
 		<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
-		<div class="topnavhack"></div>{{.TopNavTail}}
+		<div class="topnavhack"></div><[.TopNavTail]>
 	</div>
-	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
+	<div class="header"><[.HeaderHead]><[.Header]><[.HeaderTail]>
 	</div>
-	<div class="content">{{.ContentHead}}{{.Content}}{{.ContentTail}}
+	<div class="content"><[.ContentHead]><[.Content]><[.ContentTail]>
 	</div>
-	<div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
+	<div class="footer"><[.FooterHead]><[.Footer]><[.FooterTail]>
 	</div>
-</div>{{end}}{{.BodyTail}}
+</div><[end]><[.BodyTail]>
 <script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
-{{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
+<[.DefaultCookieStuff]><[if .JavaScript]><[.JavaScript]>
+<[end]><[if .OnDOMReady]>function onDOMReady(){<[.OnDOMReady]>
 }
-{{end}}{{if .OnPageLoaded}}function onPageLoaded(){{{.OnPageLoaded}}
+<[end]><[if .OnPageLoaded]>function onPageLoaded(){<[.OnPageLoaded]>
 	cookieAgree();
 }
-{{end}}{{if .OnDOMReady}}if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
+<[end]><[if .OnDOMReady]>if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
 else if (document.attachEvent) document.attachEvent("onreadystatechange", onDOMReady);
 else window.onload = onDOMReady;
-{{end}}{{if .OnPageLoaded}}if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
+<[end]><[if .OnPageLoaded]>if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
-{{end}}//]]> --></script>
-{{end}}</body>
+<[end]>//]]> --></script>
+<[end]></body>
 </html>
 `
 	var err error
