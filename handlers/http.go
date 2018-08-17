@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"github.com/suite911/cloud911/droppriv"
+
 	"github.com/suite911/str911/str"
 
 	"github.com/valyala/fasthttp"
@@ -18,6 +20,7 @@ func HTTP(ctx *fasthttp.RequestCtx) {
 }
 
 func http(ctx *fasthttp.RequestCtx) {
+	droppriv.LinuxDrop()
 	if match, tail := str.CaseHasPrefix(string(ctx.Path()), "/api"); match {
 		API(ctx, tail)
 		return
