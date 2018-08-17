@@ -12,7 +12,7 @@ import (
 
 type CompiledPage struct {
 	ContentType string
-	Raw         []byte
+	Bytes       []byte
 }
 
 func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
