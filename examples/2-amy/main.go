@@ -37,7 +37,7 @@ func main() {
 		favIcon = "favicon.ico"
 	}
 
-	pages.Pages["/index.html"] = pages.Page{
+	pages.Pages[""] = pages.Page{
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
@@ -76,6 +76,11 @@ func main() {
 		Shell: shells.Amy,
 		Title: "My App - Register",
 		TopNav: topNav,
+	}
+
+	pages.Pages["/robots.txt"] = pages.Page{
+		ContentType: "text/plain; charset=utf8",
+		Raw: www["robots.txt"],
 	}
 
 	pages.Pages["/terms"] = pages.Page{
