@@ -14,16 +14,16 @@ func Drop() error {
 	if uid < 1 || gid < 1 {
 		return pkgErrors.WithStack(errors.New("Bad UID or GID!"))
 	}
-	if err := syscall1(unix.SYS_SETUID, uid); err != nil {
+	if err := syscall1(SYS_SETUID, uid); err != nil {
 		return pkgErrors.Wrap(err, "SYS_SETUID")
 	}
-	if err := syscall1(unix.SYS_SETGID, gid); err != nil {
+	if err := syscall1(SYS_SETGID, gid); err != nil {
 		return pkgErrors.Wrap(err, "SYS_SETGID")
 	}
-	if err := syscall1(unix.SYS_SETEUID, uid); err != nil {
+	if err := syscall1(SYS_SETEUID, uid); err != nil {
 		return pkgErrors.Wrap(err, "SYS_SETEUID")
 	}
-	if err := syscall1(unix.SYS_SETEGID, gid); err != nil {
+	if err := syscall1(SYS_SETEGID, gid); err != nil {
 		return pkgErrors.Wrap(err, "SYS_SETEGID")
 	}
 	newUID, newGID := os.Getuid(), os.Getgid()
