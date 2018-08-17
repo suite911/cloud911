@@ -23,22 +23,14 @@ func main() {
 	flagSet := config.FlagSet()
 	flagSet.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
 
+	pages.Pages["favicon.ico"] = pages.Page{
+		Raw: www["favicon.ico"],
+	}
+
 	pages.Pages["index.html"] = pages.Page{
 		Title: "My App",
 		Body: string(www["index.htm"]),
 		CSS: string(www["index.css"]),
-	}
-
-	pages.Pages["about"] = pages.Page{
-		Title: "My App - About",
-		Body: string(www["about.htm"]),
-		CSS: string(www["about.css"]),
-	}
-
-	pages.Pages["register"] = pages.Page{
-		Title: "My App - Register",
-		Body: string(www["register.htm"]),
-		CSS: string(www["register.css"]),
 	}
 
 	cloud911.Main(exampleCallback)
