@@ -2,7 +2,6 @@ package pages
 
 import (
 	"bytes"
-	"errors"
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
