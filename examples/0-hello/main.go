@@ -19,5 +19,7 @@ func main() {
 		Body: `Hello, world`,
 	}
 
-	cloud911.Main()
+	if err := cloud911.Main(); err != nil {
+		panic(err)
+	}
 }
