@@ -3,14 +3,11 @@ package main
 // go:generate slurp911 -o g_www.go -n www www
 
 import (
-	"fmt"
-
 	"github.com/suite911/cloud911"
 	"github.com/suite911/cloud911/pages"
 	"github.com/suite911/cloud911/shells"
 
 	"github.com/suite911/env911"
-	"github.com/suite911/env911/app"
 	"github.com/suite911/env911/config"
 )
 
