@@ -19,7 +19,17 @@ var Basic = `<!DOCTYPE html>
 {{.CSS}}
 /*]]>*/ --></style>{{end}}{{.Head}}
 </head>
-<body>{{.Body}}
+<body>{{if .Body}}{{.Body}}{{else}}{{.BodyHead}}
+<div class="topnav">{{range $k, $v := .TopNav}}
+	<a class="topnav" href="{{$k}}"><span class="topnav">{{$v}}</span></a>{{end}}
+</div>
+<div class="header">{{.Header}}
+</div>
+<div class="content">{{.Content}}
+</div>
+<div class="footer">{{.Footer}}
+</div>
+{{.BodyTail}}{{end}}
 <script type="text/javascript"><!-- //<![CDATA[
 {{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
