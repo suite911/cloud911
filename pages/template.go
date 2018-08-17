@@ -12,18 +12,24 @@ import (
 var Pages map[string]Page = make(map[string]Page)
 
 type Page struct {
-	Author, Body, CSS, Description, GoogleWebFonts, Head, JavaScript, Keywords, OnDOMReady, OnPageLoaded, Title string
+	Author, Description, Keywords, Title string
+
+	CSS, GoogleWebFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
+
+	Body, BodyHead, BodyTail, Content, Footer, Header string
+
+	Shell string
 
 	Raw []byte
-
-	shell string
 }
 
 func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail.OnFail) error {
 	fail := func(err error) error {
-		page.shell = shell
 		ctx.Error("Internal Server Error", 500)
 		return onfail.Fail(err, page, onfail.Print, onFail)
+	}
+	if len(page.Shell) < 1 {
+		page.Shell = shell
 	}
 	if len(page.Raw) > 0 {
 		n, err := ctx.Write(page.Raw)
@@ -35,7 +41,7 @@ func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail
 		}
 		return fail(err)
 	}
-	tmpl, err := template.New("test").Parse(shell)
+	tmpl, err := template.New("test").Parse(page.Shell)
 	if err != nil {
 		return fail(err)
 	}
@@ -43,8 +49,4 @@ func (page *Page) Serve(ctx *fasthttp.RequestCtx, shell string, onFail ...onfail
 		return fail(err)
 	}
 	return nil
-}
-
-func (page *Page) Shell() string {
-	return page.shell
 }
