@@ -43,7 +43,10 @@ type Page struct {
 
 	CSS, GoogleWebFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
 
-	Body, BodyHead, BodyTail, Content, Footer, Header string
+	Body, BodyHead, BodyTail          string
+	Content, ContentHead, ContentTail string
+	Footer, FooterHead, FooterTail    string
+	Header, HeaderHead, HeaderTail    string
 
 	TopNavHead, TopNavTail string
 
