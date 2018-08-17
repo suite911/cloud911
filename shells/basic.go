@@ -13,8 +13,8 @@ var Basic = `<!DOCTYPE html>
 {{end}}{{if .Author}}<meta name="author" content="{{.Author}}">
 {{end}}{{if .Description}}<meta name="description" content="{{.Description}}">
 {{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}">
-{{end}}<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
-{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
+{{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon">
+{{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
 {{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
 {{.CSS}}
 /*]]>*/ --></style>{{end}}{{.Head}}
