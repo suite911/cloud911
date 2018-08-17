@@ -3,11 +3,17 @@ package droppriv
 import (
 	"errors"
 
+	"github.com/suite911/cloud911/vars"
+
 	pkgErrors "github.com/pkg/errors"
 	"golang.org/x/sys/unix"
 )
 
-func Drop(uid, gid int) error {
+func Drop() error {
+	uid, gid := vars.UID, vars.GID
+	if uid < 1 || gid < 1 {
+		return pkgErrors.WithStack(errors.New("Bad UID or GID!"))
+	}
 	if err := syscall1(unix.SYS_SETUID, uid); err != nil {
 		return pkgErrors.Wrap(err, "SYS_SETUID")
 	}
@@ -27,9 +33,9 @@ func Drop(uid, gid int) error {
 	return nil
 }
 
-func syscall1(trap, arg uintptr) {
+func syscall1(trap uintptr, arg int) {
 	var err error
-	_, _, en := unix.Syscall(trap, arg, 0, 0)
+	_, _, en := unix.Syscall(trap, uintptr(arg), 0, 0)
 	if en != 0 {
 		err = en
 	}
