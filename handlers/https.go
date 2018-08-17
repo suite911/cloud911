@@ -27,12 +27,12 @@ func https(ctx *fasthttp.RequestCtx) {
 		API(ctx, tail)
 		return
 	}
-	if c, ok := CompiledPages[path]; ok && c != nil {
+	if c, ok := pages.CompiledPages[path]; ok && c != nil {
 		c.Serve(ctx)
 		return
 	}
-	c.SetStatusCode(404)
-	if c, ok := CompiledPages["404"]; ok && c != nil {
+	ctx.SetStatusCode(404)
+	if c, ok := pages.CompiledPages["404"]; ok && c != nil {
 		c.Serve(ctx)
 		return
 	}
