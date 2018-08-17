@@ -53,6 +53,14 @@ func main() {
 		TopNav: topNav,
 	}
 
+	pages.Pages["/eula"] = pages.Page{
+		FavIcon: favIcon,
+		Footer: string(www["eula.htm"]),
+		Shell: shells.Amy,
+		Title: "My App - End User License Agreement (EULA)",
+		TopNav: topNav,
+	}
+
 	pages.Pages["/privacy"] = pages.Page{
 		Content: string(www["privacy.htm"]),
 		FavIcon: favIcon,
