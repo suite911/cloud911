@@ -46,6 +46,11 @@ func main() {
 		CSS: string(www["index.css"]),
 	}
 
+	pages.Pages["/robots.txt"] = pages.Page{
+		ContentType: "text/plain; charset=utf8",
+		Raw: www["robots.txt"],
+	}
+
 	cloud911.Main(exampleCallback)
 }
 
