@@ -230,39 +230,7 @@ button.register:hover {
 	</div>
 </div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-function cookieAgree() {
-	if (cookieGet("agreed") == "") {
-		alert("This site uses cookies to enhance the user experience.");
-		cookieSet("agreed", "y", 1);
-	}
-}
-function cookieGet(name) {
-	var n = name + "=";
-	var a = document.cookie.split(';');
-	for(var i = 0; i < a.length; i++) {
-		var c = a[i];
-		while(c.charAt[0] == ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(n) == 0) {
-			return c.substring(n.length, c.length);
-		}
-	}
-	return "";
-}
-function cookieSet(name, value, hours) {
-	var nv = name + "=" + value;
-	var p = ";path=/";
-	if hours === undefined {
-		document.cookie = nv + p;
-	} else {
-		var d = new Date();
-		d.setTime(d.getTime() + (hours * 3600000 ));
-		var x = ";expires=" + d.toUTCString();
-		document.cookie = nv + x + p;
-	}
-}
-{{if .JavaScript}}{{.JavaScript}}
+{{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){{{.OnDOMReady}}
 }
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){{{.OnPageLoaded}}
