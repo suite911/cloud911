@@ -171,7 +171,7 @@ input[type=text]:focus, input[type=password]:focus {
 	color: {{.Vars.FocusFg}};
 }
 
-button.submit {
+button.submit, button.g-recaptcha {
 	background-color: {{.Vars.ButtonSubmitBg}};
 	border: none;
 	border-radius: 4px;
@@ -183,7 +183,7 @@ button.submit {
 	width: 100%;
 }
 
-button.submit:hover {
+button.submit:hover, button.g-recaptcha:hover {
 	background-color: {{.Vars.ButtonSubmitHover}};
 }
 
