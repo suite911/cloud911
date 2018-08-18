@@ -32,10 +32,6 @@ func init() {
 :root {
 	background-color: #000;
 
-	--fg-night:		{{.Vars.FgNight}};
-	--topnav-bg:		{{.Vars.TopNavBg}};
-	--topnav-hover:		{{.Vars.TopNavHover}};
-	--topnav-fg:		{{.Vars.TopNavFg}};
 	--entry-border:		{{.Vars.EntryBorder}};
 	--entry-bg:		{{.Vars.EntryBg}};
 	--entry-fg:		{{.Vars.EntryFg}};
@@ -82,7 +78,7 @@ a:hover {
 
 input[type=checkbox].night:checked ~ div {
 	background-color: {{.Vars.BgNight}};
-	color: var(--fg-night);
+	color: {{.Vars.FgNight}};
 }
 
 div.topnav {
@@ -123,10 +119,10 @@ div.topnav {
 }
 
 span.topnav {
-	background-color: var(--topnav-bg);
+	background-color: {{.Vars.TopNavBg}};
 	border: none;
 	border-radius: 0 0 8px 8px;
-	color: var(--topnav-fg);
+	color: {{.Vars.TopNavFg}};
 	display: inline-block;
 	height: 100%;
 	margin: 0 1px 0 0;
@@ -134,7 +130,7 @@ span.topnav {
 }
 
 span.topnav:hover {
-	background-color: var(--topnav-hover);
+	background-color: {{.Vars.TopNavHover}};
 }
 
 /* The "Night Mode" toggle */
