@@ -34,6 +34,12 @@ func https(ctx *fasthttp.RequestCtx) {
 	}
 	for var head string;; path = head {
 		var match bool
+		if match, head = str.CaseHasSuffix(path, "/"); match {
+			continue
+		}
+		if match, head = str.CaseHasSuffix(path, "/index"); match {
+			continue
+		}
 		if match, head = str.CaseHasSuffix(path, ".html"); match {
 			continue
 		}
@@ -41,9 +47,6 @@ func https(ctx *fasthttp.RequestCtx) {
 			continue
 		}
 		if match, head = str.CaseHasSuffix(path, ".php"); match {
-			continue
-		}
-		if match, head = str.CaseHasSuffix(path, "/index"); match {
 			continue
 		}
 		goto noRedirect
