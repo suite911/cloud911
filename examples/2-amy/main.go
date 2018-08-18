@@ -24,13 +24,13 @@ func main() {
 
 	var favIcon string
 	if raw, ok := www["favicon.ico"]; ok {
-		pages.Pages["/favicon.ico"] = pages.Page{
+		pages.Pages["/favicon.ico"] = &pages.Page{
 			Raw: raw,
 		}
 		favIcon = "favicon.ico"
 	}
 
-	pages.Pages[""] = pages.Page{
+	pages.Pages[""] = &pages.Page{
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
@@ -38,14 +38,14 @@ func main() {
 		TopNav: topNav,
 	}
 
-	pages.Pages["404"] = pages.Page{
+	pages.Pages["404"] = &pages.Page{
 		Body: string(www["404.htm"]),
 		CSS: string(www["404.css"]),
 		FavIcon: favIcon,
 		Title: "My App - Not Found",
 	}
 
-	pages.Pages["/about"] = pages.Page{
+	pages.Pages["/about"] = &pages.Page{
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
 		Shell: shells.Amy,
@@ -53,7 +53,7 @@ func main() {
 		TopNav: topNav,
 	}
 
-	pages.Pages["/cookies"] = pages.Page{
+	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["cookies.htm"]),
 		CSS: string(www["cookies.css"]),
 		FavIcon: favIcon,
@@ -63,7 +63,7 @@ func main() {
 		TopNav: topNav,
 	}
 
-	pages.Pages["/eula"] = pages.Page{
+	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["eula.htm"]),
 		CSS: string(www["eula.css"]),
 		FavIcon: favIcon,
@@ -73,7 +73,7 @@ func main() {
 		TopNav: topNav,
 	}
 
-	pages.Pages["/privacy"] = pages.Page{
+	pages.Pages["/privacy"] = &pages.Page{
 		Content: string(www["privacy.htm"]),
 		CSS: string(www["privacy.css"]),
 		FavIcon: favIcon,
@@ -83,7 +83,7 @@ func main() {
 		TopNav: topNav,
 	}
 
-	pages.Pages["/register"] = pages.Page{
+	pages.Pages["/register"] = &pages.Page{
 		Content: string(www["register.htm"]),
 		FavIcon: favIcon,
 		Footer: string(www["footer.htm"]),
@@ -92,12 +92,12 @@ func main() {
 		TopNav: topNav,
 	}
 
-	pages.Pages["/robots.txt"] = pages.Page{
+	pages.Pages["/robots.txt"] = &pages.Page{
 		ContentType: "text/plain; charset=utf8",
 		Raw: www["robots.txt"],
 	}
 
-	pages.Pages["/terms"] = pages.Page{
+	pages.Pages["/terms"] = &pages.Page{
 		Content: string(www["terms.htm"]),
 		CSS: string(www["terms.css"]),
 		FavIcon: favIcon,
