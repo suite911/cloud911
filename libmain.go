@@ -82,11 +82,11 @@ func Main(fns ...func() error) error {
 			return errors.Wrap(err, "os.Chdir(\"/\")")
 		}
 	}
-	http, err := net.Listen("tcp4", vars.HTTP)
+	http, err := net.Listen("tcp4", vars.Pass.HTTP)
 	if err != nil {
 		return err
 	}
-	https, err := net.Listen("tcp4", vars.HTTPS)
+	https, err := net.Listen("tcp4", vars.Pass.HTTPS)
 	if err != nil {
 		return err
 	}
