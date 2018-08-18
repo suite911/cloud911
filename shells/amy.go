@@ -31,8 +31,6 @@ func init() {
 
 :root {
 	background-color: #000;
-	margin: 0;
-	padding: 0;
 
 	--padding-widget-horz:	16px;
 	--padding-widget-vert:	12px;
@@ -63,7 +61,8 @@ func init() {
 	--button-submit-fg:	#fff;/**/
 }
 
-body {
+:root, html, body {
+	height: 100%;
 	margin: 0;
 	padding: 0;
 }
