@@ -90,6 +90,9 @@ function cookieSet(name, value, hours) {
 	}
 }`
 	}
+	if page.Vars == nil {
+		page.Vars = make(map[string]string)
+	}
 	for _, pair := range [][2]string{
 		[2]string{"PaddingWidgetHorz", "16px"},
 		[2]string{"PaddingWidgetVert", "12px"},
