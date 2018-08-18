@@ -2,6 +2,7 @@ package run
 
 import (
 	"log"
+	"net"
 
 	"github.com/suite911/cloud911/handlers"
 	"github.com/suite911/cloud911/pages"
@@ -11,16 +12,17 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-func Listen() error {
+func Listen(http, https net.Listener) error {
 	if err := pages.Compile(shells.Basic); err != nil {
 		return err
 	}
 	go func() {
-		if err := fasthttp.ListenAndServe(vars.Pass.HTTP, handlers.HTTP); err != nil {
+		if err := fasthttp.Serve(http, vars.Pass.HTTP, handlers.HTTP); err != nil {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
 		}
 	}()
-	if err := fasthttp.ListenAndServeTLSEmbed(
+	if err := fasthttp.ServeTLSEmbed(
+		https,
 		vars.Pass.HTTPS,
 		vars.Pass.TLSCertData,
 		vars.Pass.TLSKeyData,
