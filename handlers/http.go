@@ -25,7 +25,7 @@ func http(ctx *fasthttp.RequestCtx) {
 	if err := droppriv.Drop(); err != nil {
 		log.Fatalln(err)
 	}
-	if match, tail := str.CaseHasPrefix(string(ctx.Path()), "/api"); match {
+	if match, tail := str.CaseHasPrefix(string(ctx.Path()), "/api"); match && (len(tail) < 1 || tail[0] == '/') {
 		API(ctx, tail)
 		return
 	}
