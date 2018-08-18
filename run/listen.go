@@ -13,7 +13,7 @@ import (
 )
 
 func Listen(http, https net.Listener) error {
-	if err := pages.Compile(shells.Basic); err != nil {
+	if err := pages.Compile(shells.Basic.Option("missingkey=zero")); err != nil {
 		return err
 	}
 	go func() {
