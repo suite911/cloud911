@@ -25,7 +25,7 @@ func main() {
 	flagSet.BoolVarP(&verbose, "verbose", "v", false, "Use verbose mode")
 
 	var favIcon string
-	if raw, ok := www["favicon.ico"]; ok {
+	if raw, ok := www["/favicon.ico"]; ok {
 		pages.Pages["/favicon.ico"] = &pages.Page{
 			Raw: raw,
 		}
@@ -33,16 +33,16 @@ func main() {
 	}
 
 	pages.Pages[""] = &pages.Page{
-		Body: string(www["index.htm"]),
-		CSS: string(www["index.css"]),
+		Body: string(www["/index.htm"]),
+		CSS: string(www["/index.css"]),
 		FavIcon: favIcon,
 		Shell: shells.Basic,
 		Title: "My App",
 	}
 
 	pages.Pages["404"] = &pages.Page{
-		Body: string(www["404.htm"]),
-		CSS: string(www["404.css"]),
+		Body: string(www["/404.htm"]),
+		CSS: string(www["/404.css"]),
 		FavIcon: favIcon,
 		Shell: shells.Basic,
 		Title: "My App - Not Found",
@@ -50,7 +50,7 @@ func main() {
 
 	pages.Pages["/robots.txt"] = &pages.Page{
 		ContentType: "text/plain; charset=utf8",
-		Raw: www["robots.txt"],
+		Raw: www["/robots.txt"],
 	}
 
 	if err := cloud911.Main(exampleCallback); err != nil {
