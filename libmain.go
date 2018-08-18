@@ -31,6 +31,8 @@ func Main(fns ...func() error) error {
 	config.LoadAndParse()
 
 	flagSet.SetUsageHeader(
+		"Usage: " + os.Args[0] + " " +
+		vt.SafeS("[") + vt.SafeU("OPTIONS") + vt.SafeS("]") + "\n" +
 		"Usage: " + vt.SafeB("sudo") + " " + os.Args[0] + " " +
 		vt.SafeS("[") + vt.SafeU("OPTIONS") + vt.SafeS("]") + " " +
 		vt.SafeU("UID") + " " + vt.SafeU("GID") + "\n" +
@@ -39,16 +41,25 @@ func Main(fns ...func() error) error {
 	)
 
 	uid, gid := os.Getuid(), os.Getgid()
+	args := flagSet.Args()
 	switch {
 	case uid < 0 || gid < 0: // Windows
 		log.Fatalln("Operating system not supported.")
-	case uid > 0 || gid > 0:
-		flagSet.Usage()
-		os.Exit(0)
-	}
-
-	args := flagSet.Args()
-	if len(args) != 2 {
+	case uid > 0 && gid > 0:
+		if len(args) != 0 {
+			flagSet.Usage()
+			os.Exit(1)
+		}
+		if len(os.Args) < 2 {
+			flagSet.Usage()
+			os.Exit(0)
+		}
+	case uid == 0:
+		if len(args) != 2 {
+			flagSet.Usage()
+			os.Exit(1)
+		}
+	default:
 		flagSet.Usage()
 		os.Exit(1)
 	}
