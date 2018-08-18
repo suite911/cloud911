@@ -36,6 +36,7 @@ func init() {
 
 	--padding-widget-horz:	16px;
 	--padding-widget-vert:	12px;
+	--footer:               64px;
 	--a-fg:			#03A9F4;
 	--a-hover:		#40C4FF;
 	--bg-day:		#fff;
@@ -81,7 +82,7 @@ div.wrapper {
 	background-color: var(--bg-day);
 	color: var(--fg-day);
 	min-height: 100%;
-	margin: 0 0 -64px 0;
+	margin: 0 0 calc(0 - var(--footer)) 0;
 	padding: 0;
 }
 
@@ -211,7 +212,7 @@ button.register:hover {
 
 footer.footer {
 	background-color: var(--bg-footer);
-	height: 64px;
+	height: var(--footer);
 	text-align: center;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
