@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"log"
+
 	"github.com/suite911/cloud911/droppriv"
 
 	"github.com/suite911/str911/str"
@@ -20,7 +22,9 @@ func HTTP(ctx *fasthttp.RequestCtx) {
 }
 
 func http(ctx *fasthttp.RequestCtx) {
-	droppriv.LinuxDrop()
+	if err := droppriv.Drop(); err != nil {
+		log.Fatalln(err)
+	}
 	if match, tail := str.CaseHasPrefix(string(ctx.Path()), "/api"); match {
 		API(ctx, tail)
 		return
