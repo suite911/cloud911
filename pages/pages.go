@@ -90,7 +90,7 @@ function cookieSet(name, value, hours) {
 		`
 	}
 	var b bytes.Buffer
-	if err := page.Shell.Option("missingkey=zero").Execute(&b, page); err != nil {
+	if err := page.Shell.Execute(&b, page); err != nil {
 		return nil, errors.Wrap(err, "page.Shell.Execute")
 	}
 	c.Bytes = b.Bytes()
