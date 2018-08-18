@@ -51,10 +51,12 @@ func https(ctx *fasthttp.RequestCtx) {
 		}
 		goto noRedirect
 	}
-	var uri fasthttp.URI
-	ctx.URI().CopyTo(&uri)
-	uri.SetPath(path)
-	ctx.RedirectBytes(uri.FullURI(), 301)
+	{ // Scope required for goto
+		var uri fasthttp.URI
+		ctx.URI().CopyTo(&uri)
+		uri.SetPath(path)
+		ctx.RedirectBytes(uri.FullURI(), 301)
+	}
 	return
 
 noRedirect:
