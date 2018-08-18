@@ -199,7 +199,13 @@ footer.footer {
 	text-align: center;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
-</head>
+{{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+{{end}}<script type="text/javascript"><!-- //<![CDATA[
+	function onSubmit(token) {
+		document.getElementById("{{.Form}}").submit();
+	}
+//]]> --></script>
+{{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="night" id="night" checked />
 <div class="page-outer"><div class="page-inner">
@@ -212,7 +218,11 @@ footer.footer {
 	</div>
 	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 	</div>
-	<div class="content">{{.ContentHead}}{{.Content}}{{.ContentTail}}
+	<div class="content">{{.ContentHead}}{{if .Form}}
+		<form id="{{.Form}}" action="?" method="POST">{{end}}{{.Content}}{{if .Form}}
+		{{if .ReCaptchaV2}}<button class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
+			data-callback='onSubmit'>Submit</button>
+		{{end}}<br /></form>{{end}}{{.ContentTail}}
 	</div>
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
