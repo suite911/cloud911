@@ -87,6 +87,8 @@ func main() {
 		Content: string(www["/register.htm"]),
 		FavIcon: favIcon,
 		Footer: string(www["/footer.htm"]),
+		Form: "form",
+		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
 		Shell: shells.Amy,
 		Title: "My App - Register",
 		TopNav: topNav,
