@@ -32,14 +32,6 @@ func init() {
 :root {
 	background-color: #000;
 
-	--a-fg:			{{.Vars.LinkFg}};
-	--a-hover:		{{.Vars.LinkHover}};
-	--bg-day:		{{.Vars.BgDay}};
-	--bg-night:		{{.Vars.BgNight}};
-	--bg-topnav:		{{.Vars.TopNavBg1}};
-	--bg-header:		{{.Vars.HeaderBg}};
-	--bg-footer:		{{.Vars.FooterBg}};
-	--fg-day:		{{.Vars.FgDay}};
 	--fg-night:		{{.Vars.FgNight}};
 	--topnav-bg:		{{.Vars.TopNavBg}};
 	--topnav-hover:		{{.Vars.TopNavHover}};
@@ -65,18 +57,18 @@ func init() {
 }
 
 a {
-	color: var(--a-fg);
+	color: {{.Vars.LinkFg}};
 }
 
 a:hover {
-	color: var(--a-hover);
+	color: {{.Vars.LinkHover}};
 }
 
 /* Day Mode */
 
 div.wrapper {
-	background-color: var(--bg-day);
-	color: var(--fg-day);
+	background-color: {{.Vars.BgDay}};
+	color: {{.Vars.FgDay}};
 	min-height: 100%;
 	margin: 0 0 -{{.Vars.FooterHeight}} 0;
 	padding: 0;
@@ -85,12 +77,12 @@ div.wrapper {
 /* Night Mode */
 
 input[type=checkbox].night:checked ~ div {
-	background-color: var(--bg-night);
+	background-color: {{.Vars.BgNight}};
 	color: var(--fg-night);
 }
 
 div.topnav {
-	background-color: var(--bg-topnav);
+	background-color: {{.Vars.TopNavBg1}};
 	display: block;
 	height: calc(2px + 10px + 15pt + 10px + 2px);
 	margin: 0;
@@ -160,7 +152,7 @@ input[type=checkbox].night {
 }
 
 .header {
-	background-color: var(--bg-header);
+	background-color: {{.Vars.HeaderBg}};
 }
 
 .container {
@@ -206,9 +198,12 @@ button.register:hover {
 	background-color: var(--button-submit-hover);
 }
 
-footer.footer {
-	background-color: var(--bg-footer);
+div.push, footer.footer {
 	height: {{.Vars.FooterHeight}};
+}
+
+footer.footer {
+	background-color: {{.Vars.FooterBg}};
 	text-align: center;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
@@ -227,6 +222,7 @@ footer.footer {
 	</div>
 	<div class="content">{{.ContentHead}}{{.Content}}{{.ContentTail}}
 	</div>
+	<div class="push"></div>
 </div>
 <div class="footer">
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
