@@ -38,14 +38,14 @@ type Page struct {
 
 // Compile compiles a page.
 func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFail) (*CompiledPage, error) {
+	if len(page.ContentType) < 1 {
+		page.ContentType = "text/html"
+	}
 	c := new(CompiledPage)
 	c.ContentType = page.ContentType
 	if len(page.Raw) > 0 {
 		c.Bytes = page.Raw
 		return c, nil
-	}
-	if len(page.ContentType) < 1 {
-		page.ContentType = "text/html"
 	}
 	if page.Shell == nil {
 		page.Shell = defaultShell
@@ -90,7 +90,7 @@ function cookieSet(name, value, hours) {
 		`
 	}
 	var b bytes.Buffer
-	if err := page.Shell.Execute(&b, nil); err != nil {
+	if err := page.Shell.Option("missingkey=zero").Execute(&b, nil); err != nil {
 		return nil, errors.Wrap(err, "page.Shell.Execute")
 	}
 	c.Bytes = b.Bytes()
