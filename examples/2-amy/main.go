@@ -17,15 +17,6 @@ func init() {
 var verbose = false
 
 func main() {
-	// DEBUG CODE -- I'm having issues with it thinking these are nil
-	if shells.Amy == nil {
-		panic("shells.Amy == nil")
-	}
-	if shells.Basic == nil {
-		panic("shells.Basic == nil")
-	}
-	// END OF DEBUG CODE
-
 	topNav := make(map[string]string)
 	topNav["/"] = "Top Page"
 	topNav["/about"] = "About"
