@@ -29,18 +29,8 @@ func init() {
 	box-sizing: border-box;
 }
 
-:root {
-	background-color: #000;
-
-	--button-cancel-bg:	{{.Vars.ButtonCancelBg}};
-	--button-cancel-hover:	{{.Vars.ButtonCancelHover}};
-	--button-cancel-fg:	{{.Vars.ButtonCancelFg}};
-	--button-submit-bg:	{{.Vars.ButtonSubmitBg}};
-	--button-submit-hover:	{{.Vars.ButtonSubmitHover}};
-	--button-submit-fg:	{{.Vars.ButtonSubmitFg}};
-}
-
 :root, html, body {
+	background-color: #000;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -177,10 +167,10 @@ input[type=text]:focus, input[type=password]:focus {
 }
 
 button.submit {
-	background-color: var(--button-submit-bg);
+	background-color: {{.Vars.ButtonSubmitBg}};
 	border: none;
 	border-radius: 4px;
-	color: var(--button-submit-fg);
+	color: {{.Vars.ButtonSubmitFg}};
 	cursor: pointer;
 	padding: {{.Vars.PaddingWidgetVert}} {{.Vars.PaddingWidgetHorz}};
 	margin: 8px 0;
@@ -189,7 +179,7 @@ button.submit {
 }
 
 button.submit:hover {
-	background-color: var(--button-submit-hover);
+	background-color: {{.Vars.ButtonSubmitHover}};
 }
 
 footer.footer {
