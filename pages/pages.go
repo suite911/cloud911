@@ -27,6 +27,8 @@ type Page struct {
 	Footer, FooterHead, FooterTail    string
 	Header, HeaderHead, HeaderTail    string
 
+	Form, ReCaptchaV2 string
+
 	TopNavHead, TopNavTail string
 
 	TopNav map[string]string
