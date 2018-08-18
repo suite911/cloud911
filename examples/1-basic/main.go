@@ -1,6 +1,6 @@
 package main
 
-//go:generate slurp911 -o g_www.go -n www www
+//go:generate slurp911 -o=g_www.go -n=www www
 
 import (
 	"fmt"
