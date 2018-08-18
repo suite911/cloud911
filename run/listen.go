@@ -17,13 +17,12 @@ func Listen(http, https net.Listener) error {
 		return err
 	}
 	go func() {
-		if err := fasthttp.Serve(http, vars.Pass.HTTP, handlers.HTTP); err != nil {
+		if err := fasthttp.Serve(http, handlers.HTTP); err != nil {
 			log.Fatalln("fasthttp.ListenAndServe: \""+err.Error()+"\"")
 		}
 	}()
 	if err := fasthttp.ServeTLSEmbed(
 		https,
-		vars.Pass.HTTPS,
 		vars.Pass.TLSCertData,
 		vars.Pass.TLSKeyData,
 		handlers.HTTPS,
