@@ -77,16 +77,17 @@ a:hover {
 
 /* Day Mode */
 
-div.night {
+div.wrapper {
 	background-color: var(--bg-day);
 	color: var(--fg-day);
-	margin: 0;
+	min-height: 100%;
+	margin: 0 0 -64px 0;
 	padding: 0;
 }
 
 /* Night Mode */
 
-input[type=checkbox].night:checked + div {
+input[type=checkbox].night:checked ~ div {
 	background-color: var(--bg-night);
 	color: var(--fg-night);
 }
@@ -208,15 +209,16 @@ button.register:hover {
 	background-color: var(--button-submit-hover);
 }
 
-.footer {
+footer.footer {
 	background-color: var(--bg-footer);
+	height: 64px;
 	text-align: center;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
 </head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="night" id="night" checked />
-<div class="night">
+<div class="wrapper">
 	<div class="topnav">{{.TopNavHead}}
 		<div class="topnavleft"{{range $k, $v := .TopNav}}
 			><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
@@ -228,8 +230,10 @@ button.register:hover {
 	</div>
 	<div class="content">{{.ContentHead}}{{.Content}}{{.ContentTail}}
 	</div>
-	<div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
-	</div>
+</div>
+<div class="footer">
+<footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
+</footer>
 </div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
 {{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
