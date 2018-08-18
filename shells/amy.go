@@ -200,8 +200,8 @@ button.register:hover {
 
 footer.footer {
 	background-color: {{.Vars.FooterBg}};
-	height: {{.Vars.FooterHeight}};
 	margin: -{{.Vars.FooterHeight}} 0 0 0;
+	min-height: {{.Vars.FooterHeight}};
 	text-align: center;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
