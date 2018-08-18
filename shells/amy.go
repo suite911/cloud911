@@ -32,9 +32,6 @@ func init() {
 :root {
 	background-color: #000;
 
-	--padding-widget-horz:	{{.Vars.PaddingWidgetHorz}};
-	--padding-widget-vert:	{{.Vars.PaddingWidgetVert}};
-	--footer:               {{.Vars.FooterHeight}};
 	--a-fg:			{{.Vars.LinkFg}};
 	--a-hover:		{{.Vars.LinkHover}};
 	--bg-day:		{{.Vars.BgDay}};
@@ -81,7 +78,7 @@ div.wrapper {
 	background-color: var(--bg-day);
 	color: var(--fg-day);
 	min-height: 100%;
-	margin: 0 0 calc(0 - var(--footer)) 0;
+	margin: 0 0 -{{.Vars.FooterHeight}} 0;
 	padding: 0;
 }
 
@@ -183,7 +180,7 @@ input[type=text], input[type=password] {
 	display: inline-block;
 	margin: 0 0 24px 0;
 	outline: none;
-	padding: var(--padding-widget-vert) var(--padding-widget-horz);
+	padding: {{.Vars.PaddingWidgetVert}} {{.Vars.PaddingWidgetHorz}};
 	width: 100%;
 }
 
@@ -199,7 +196,7 @@ button.register {
 	border-radius: 4px;
 	color: var(--button-submit-fg);
 	cursor: pointer;
-	padding: var(--padding-widget-vert) var(--padding-widget-horz);
+	padding: {{.Vars.PaddingWidgetVert}} {{.Vars.PaddingWidgetHorz}};
 	margin: 8px 0;
 	font-weight: bold;
 	width: 100%;
@@ -211,7 +208,7 @@ button.register:hover {
 
 footer.footer {
 	background-color: var(--bg-footer);
-	height: var(--footer);
+	height: {{.Vars.FooterHeight}};
 	text-align: center;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
