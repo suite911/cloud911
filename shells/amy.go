@@ -149,7 +149,7 @@ input[type=checkbox].night {
 	background-color: {{.Vars.HeaderBg}};
 }
 
-.container {
+div.form {
 	padding: 16px;
 }
 
@@ -176,7 +176,7 @@ input[type=text]:focus, input[type=password]:focus {
 	color: {{.Vars.FocusFg}};
 }
 
-button.register {
+button.submit {
 	background-color: var(--button-submit-bg);
 	border: none;
 	border-radius: 4px;
@@ -188,7 +188,7 @@ button.register {
 	width: 100%;
 }
 
-button.register:hover {
+button.submit:hover {
 	background-color: var(--button-submit-hover);
 }
 
@@ -219,10 +219,10 @@ footer.footer {
 	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 	</div>
 	<div class="content">{{.ContentHead}}{{if .Form}}
-		<form id="{{.Form}}" action="?" method="POST">{{end}}{{.Content}}{{if .Form}}
+		<div class="form"><form id="{{.Form}}" action="?" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<button class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			data-callback='onSubmit'>Submit</button>
-		{{end}}<br /></form>{{end}}{{.ContentTail}}
+		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
 	</div>
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
