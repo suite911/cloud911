@@ -31,6 +31,8 @@ type Page struct {
 
 	TopNav map[string]string
 
+	Vars map[string]string
+
 	Raw []byte
 
 	Shell *template.Template
@@ -87,6 +89,39 @@ function cookieSet(name, value, hours) {
 		document.cookie = nv + x + p;
 	}
 }`
+	}
+	for _, pair := range [][2]string{
+		[2]string{"PaddingWidgetHorz", "16px"},
+		[2]string{"PaddingWidgetVert", "12px"},
+		[2]string{"FooterHeight", "16pt"},
+		[2]string{"LinkFg", "#03A9F4"},
+		[2]string{"LinkHover", "#40C4FF"},
+		[2]string{"BgDay", "#fff"},
+		[2]string{"BgNight", "#2c2f33"},//TODO:
+		[2]string{"TopNavBg1", "#0000"},//TODO:
+		[2]string{"HeaderBg", "#9993"},//TODO:
+		[2]string{"FooterBg", "#9993"},//TODO:
+		[2]string{"FgDay", "#000"},//TODO:
+		[2]string{"FgNight", "#fafafa"},//TODO:
+		[2]string{"TopNavBg", "#B0BEC5"},
+		[2]string{"TopNavHover", "#E0E0E0"},
+		[2]string{"TopNavFg", "#fff"},
+		[2]string{"EntryBorder", "#000"},//TODO:
+		[2]string{"EntryBg", "#FAFAFA"},//TODO:
+		[2]string{"EntryFg", "#000"},//TODO:
+		[2]string{"FocusBorder", "#7cf"},//TODO:
+		[2]string{"FocusBg", "#fff"},//TODO:
+		[2]string{"FocusFg", "#000"},//TODO:
+		[2]string{"ButtonCancelBg", "#c00"},//TODO:
+		[2]string{"ButtonCancelHover", "#f00"},//TODO:
+		[2]string{"ButtonCancelFg", "#fff"},//TODO:
+		[2]string{"ButtonSubmitBg", "#03A9F4"},//TODO:
+		[2]string{"ButtonSubmitHover", "#40C4FF"},//TODO:
+		[2]string{"ButtonSubmitFg", "#fff"},//TODO:
+	} {
+		if _, ok := page.Vars[pair[0]]; !ok {
+			page.Vars[pair[0]] = pair[1]
+		}
 	}
 	var b bytes.Buffer
 	if err := page.Shell.Execute(&b, page); err != nil {
