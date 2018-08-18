@@ -15,28 +15,28 @@ func Drop() error {
 	if uid < 1 || gid < 1 {
 		return pkgErrors.WithStack(errors.New("Bad UID or GID!"))
 	}
-	if err := syscall1(SYS_SETUID, uid); err != nil {
-		return pkgErrors.Wrap(err, "SYS_SETUID")
+	if os.Getuid() == 0 {
+		if err := syscall2(SYS_SETREUID, uid); err != nil {
+			return pkgErrors.Wrap(err, "SYS_SETREUID")
+		}
+		if os.Getuid() == 0 {
+			return pkgErrors.WithStack(errors.New("Unable to drop uid 0!"))
+		}
 	}
-	if err := syscall1(SYS_SETGID, gid); err != nil {
-		return pkgErrors.Wrap(err, "SYS_SETGID")
-	}
-	if err := syscall1(SYS_SETEUID, uid); err != nil {
-		return pkgErrors.Wrap(err, "SYS_SETEUID")
-	}
-	if err := syscall1(SYS_SETEGID, gid); err != nil {
-		return pkgErrors.Wrap(err, "SYS_SETEGID")
-	}
-	newUID, newGID := os.Getuid(), os.Getgid()
-	if newUID == 0 || newGID == 0 {
-		return pkgErrors.WithStack(errors.New("Unable to drop privileges!"))
+	if os.Getgid() == 0 {
+		if err := syscall2(SYS_SETREGID, gid); err != nil {
+			return pkgErrors.Wrap(err, "SYS_SETREGID")
+		}
+		if os.Getgid() == 0 {
+			return pkgErrors.WithStack(errors.New("Unable to drop gid 0!"))
+		}
 	}
 	return nil
 }
 
-func syscall1(trap uintptr, arg int) error {
+func syscall2(trap uintptr, arg int) error {
 	var err error
-	_, _, en := unix.Syscall(trap, uintptr(arg), 0, 0)
+	_, _, en := unix.Syscall(trap, uintptr(arg), uintptr(arg), uintptr(arg))
 	if en != 0 {
 		err = en
 	}
