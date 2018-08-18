@@ -11,11 +11,11 @@ import (
 )
 
 func Drop() error {
-	uid, gid := vars.UID, vars.GID
-	if uid < 1 || gid < 1 {
-		return pkgErrors.WithStack(errors.New("Bad UID or GID!"))
-	}
 	if os.Getuid() == 0 {
+		uid := vars.UID
+		if uid < 1 {
+			return pkgErrors.WithStack(errors.New("Bad UID!"))
+		}
 		if err := syscall2(SYS_SETREUID, uid); err != nil {
 			return pkgErrors.Wrap(err, "SYS_SETREUID")
 		}
@@ -24,6 +24,10 @@ func Drop() error {
 		}
 	}
 	if os.Getgid() == 0 {
+		gid := vars.GID
+		if gid < 1 {
+			return pkgErrors.WithStack(errors.New("Bad GID!"))
+		}
 		if err := syscall2(SYS_SETREGID, gid); err != nil {
 			return pkgErrors.Wrap(err, "SYS_SETREGID")
 		}
