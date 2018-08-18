@@ -28,7 +28,7 @@ func https(ctx *fasthttp.RequestCtx) {
 		log.Fatalln(err)
 	}
 	path := string(ctx.Path())
-	if match, tail := str.CaseHasPrefix(path, "/api"); match {
+	if match, tail := str.CaseHasPrefix(path, "/api"); match && (len(tail) < 1 || tail[0] == '/') {
 		API(ctx, tail)
 		return
 	}
