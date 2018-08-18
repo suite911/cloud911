@@ -251,7 +251,7 @@ else window.onload = onPageLoaded;
 </html>
 `
 	var err error
-	if Amy, err = template.New("Amy").Parse(text); err != nil {
+	if Amy, err = template.New("Amy").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Amy").Parse(text)`))
 	}
 }
