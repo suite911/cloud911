@@ -32,33 +32,33 @@ func init() {
 :root {
 	background-color: #000;
 
-	--padding-widget-horz:	16px;
-	--padding-widget-vert:	12px;
-	--footer:               64px;
-	--a-fg:			#03A9F4;
-	--a-hover:		#40C4FF;
-	--bg-day:		#fff;
-	--bg-night:		#2c2f33;/**/
-	--bg-topnav:		#0000;/**/
-	--bg-header:		#9993;/**/
-	--bg-footer:		#9993;/**/
-	--fg-day:		#000;/**/
-	--fg-night:		#FAFAFA;/**/
-	--topnav-bg:		#B0BEC5;
-	--topnav-hover:		#E0E0E0;
-	--topnav-fg:		#fff;
-	--entry-border:		#000;/**/
-	--entry-bg:		#FAFAFA;/**/
-	--entry-fg:		#000;/**/
-	--focus-border:		#7cf;/**/
-	--focus-bg:		#fff;/**/
-	--focus-fg:		#000;/**/
-	--button-cancel-bg:	#c00;/**/
-	--button-cancel-hover:	#f00;/**/
-	--button-cancel-fg:	#fff;/**/
-	--button-submit-bg:	#03A9F4;/**/
-	--button-submit-hover:	#40C4FF;/**/
-	--button-submit-fg:	#fff;/**/
+	--padding-widget-horz:	{{.Vars.PaddingWidgetHorz}};
+	--padding-widget-vert:	{{.Vars.PaddingWidgetVert}};
+	--footer:               {{.Vars.FooterHeight}};
+	--a-fg:			{{.Vars.LinkFg}};
+	--a-hover:		{{.Vars.LinkHover}};
+	--bg-day:		{{.Vars.BgDay}};
+	--bg-night:		{{.Vars.BgNight}};
+	--bg-topnav:		{{.Vars.TopNavBg1}};
+	--bg-header:		{{.Vars.HeaderBg}};
+	--bg-footer:		{{.Vars.FooterBg}};
+	--fg-day:		{{.Vars.FgDay}};
+	--fg-night:		{{.Vars.FgNight}};
+	--topnav-bg:		{{.Vars.TopNavBg}};
+	--topnav-hover:		{{.Vars.TopNavHover}};
+	--topnav-fg:		{{.Vars.TopNavFg}};
+	--entry-border:		{{.Vars.EntryBorder}};
+	--entry-bg:		{{.Vars.EntryBg}};
+	--entry-fg:		{{.Vars.EntryFg}};
+	--focus-border:		{{.Vars.FocusBorder}};
+	--focus-bg:		{{.Vars.FocusBg}};
+	--focus-fg:		{{.Vars.FocusFg}};
+	--button-cancel-bg:	{{.Vars.ButtonCancelBg}};
+	--button-cancel-hover:	{{.Vars.ButtonCancelHover}};
+	--button-cancel-fg:	{{.Vars.ButtonCancelFg}};
+	--button-submit-bg:	{{.Vars.ButtonSubmitBg}};
+	--button-submit-hover:	{{.Vars.ButtonSubmitHover}};
+	--button-submit-fg:	{{.Vars.ButtonSubmitFg}};
 }
 
 :root, html, body {
