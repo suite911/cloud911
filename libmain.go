@@ -1,7 +1,6 @@
 package cloud911
 
 import (
-	"errors"
 	"io/ioutil"
 	"log" // TODO
 	"net"
@@ -14,7 +13,7 @@ import (
 	"github.com/suite911/env911/config"
 	"github.com/suite911/term911/vt"
 
-	pkgErrors "github.com/pkg/errors"
+	"github.com/pkg/errors"
 	"golang.org/x/sys/unix"
 )
 
@@ -74,13 +73,13 @@ func Main(fns ...func() error) error {
 	chroot := *pchroot
 	if len(chroot) > 0 {
 		if err := os.Chdir(chroot); err != nil {
-			return pkgErrors.Wrap(err, "os.Chdir(chroot)")
+			return errors.Wrap(err, "os.Chdir(chroot)")
 		}
 		if err := unix.Chroot(chroot); err != nil {
-			return pkgErrors.Wrap(err, "os.Chroot(chroot)")
+			return errors.Wrap(err, "os.Chroot(chroot)")
 		}
 		if err := os.Chdir("/"); err != nil {
-			return pkgErrors.Wrap(err, "os.Chdir(\"/\")")
+			return errors.Wrap(err, "os.Chdir(\"/\")")
 		}
 	}
 	http, err := net.Listen("tcp4", vars.HTTP)
@@ -111,10 +110,10 @@ func loadTLSCert() error {
 	var err error
 	certPath, keyPath := vars.CertPath, vars.KeyPath
 	if vars.Pass.TLSCertData, err = ioutil.ReadFile(certPath); err != nil {
-		return tlsReadFileError(certPath, keyPath, pkgErrors.Wrap(err, "ioutil.ReadFile(certPath)"))
+		return tlsReadFileError(certPath, keyPath, errors.Wrap(err, "ioutil.ReadFile(certPath)"))
 	}
 	if vars.Pass.TLSKeyData, err = ioutil.ReadFile(keyPath); err != nil {
-		return tlsReadFileError(certPath, keyPath, pkgErrors.Wrap(err, "ioutil.ReadFile(keyPath)"))
+		return tlsReadFileError(certPath, keyPath, errors.Wrap(err, "ioutil.ReadFile(keyPath)"))
 	}
 	return nil
 }
