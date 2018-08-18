@@ -23,7 +23,7 @@ func main() {
 	topNav["/register"] = "Register"
 
 	var favIcon string
-	if raw, ok := www["favicon.ico"]; ok {
+	if raw, ok := www["/favicon.ico"]; ok {
 		pages.Pages["/favicon.ico"] = &pages.Page{
 			Raw: raw,
 		}
@@ -32,61 +32,61 @@ func main() {
 
 	pages.Pages[""] = &pages.Page{
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App",
 		TopNav: topNav,
 	}
 
 	pages.Pages["404"] = &pages.Page{
-		Body: string(www["404.htm"]),
-		CSS: string(www["404.css"]),
+		Body: string(www["/404.htm"]),
+		CSS: string(www["/404.css"]),
 		FavIcon: favIcon,
 		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/about"] = &pages.Page{
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - About",
 		TopNav: topNav,
 	}
 
 	pages.Pages["/cookies"] = &pages.Page{
-		Content: string(www["cookies.htm"]),
-		CSS: string(www["cookies.css"]),
+		Content: string(www["/cookies.htm"]),
+		CSS: string(www["/cookies.css"]),
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - Cookie Policy",
 		TopNav: topNav,
 	}
 
 	pages.Pages["/eula"] = &pages.Page{
-		Content: string(www["eula.htm"]),
-		CSS: string(www["eula.css"]),
+		Content: string(www["/eula.htm"]),
+		CSS: string(www["/eula.css"]),
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - End User License Agreement (EULA)",
 		TopNav: topNav,
 	}
 
 	pages.Pages["/privacy"] = &pages.Page{
-		Content: string(www["privacy.htm"]),
-		CSS: string(www["privacy.css"]),
+		Content: string(www["/privacy.htm"]),
+		CSS: string(www["/privacy.css"]),
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - Privacy Policy",
 		TopNav: topNav,
 	}
 
 	pages.Pages["/register"] = &pages.Page{
-		Content: string(www["register.htm"]),
+		Content: string(www["/register.htm"]),
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - Register",
 		TopNav: topNav,
@@ -94,14 +94,14 @@ func main() {
 
 	pages.Pages["/robots.txt"] = &pages.Page{
 		ContentType: "text/plain; charset=utf8",
-		Raw: www["robots.txt"],
+		Raw: www["/robots.txt"],
 	}
 
 	pages.Pages["/terms"] = &pages.Page{
-		Content: string(www["terms.htm"]),
-		CSS: string(www["terms.css"]),
+		Content: string(www["/terms.htm"]),
+		CSS: string(www["/terms.css"]),
 		FavIcon: favIcon,
-		Footer: string(www["footer.htm"]),
+		Footer: string(www["/footer.htm"]),
 		Shell: shells.Amy,
 		Title: "My App - Terms of Use",
 		TopNav: topNav,
