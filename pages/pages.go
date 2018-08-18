@@ -10,7 +10,7 @@ import (
 )
 
 // Pages is a map of all of the pages before they are compiled.
-var Pages = make(map[string]Page)
+var Pages = make(map[string]*Page)
 
 // Page is a type representing a page before it is compiled.
 type Page struct {
