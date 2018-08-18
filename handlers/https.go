@@ -32,7 +32,7 @@ func https(ctx *fasthttp.RequestCtx) {
 		API(ctx, tail)
 		return
 	}
-	for var head string;; path = head {
+	for head := "";; path = head {
 		var match bool
 		if match, head = str.CaseHasSuffix(path, "/"); match {
 			continue
