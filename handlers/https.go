@@ -32,6 +32,29 @@ func https(ctx *fasthttp.RequestCtx) {
 		API(ctx, tail)
 		return
 	}
+	for var head string;; path = head {
+		var match bool
+		if match, head = str.CaseHasSuffix(path, ".html"); match {
+			continue
+		}
+		if match, head = str.CaseHasSuffix(path, ".htm"); match {
+			continue
+		}
+		if match, head = str.CaseHasSuffix(path, ".php"); match {
+			continue
+		}
+		if match, head = str.CaseHasSuffix(path, "/index"); match {
+			continue
+		}
+		goto noRedirect
+	}
+	var uri fasthttp.URI
+	ctx.URI().CopyTo(&uri)
+	uri.SetPath(path)
+	ctx.RedirectBytes(uri.FullURI(), 301)
+	return
+
+noRedirect:
 	if c, ok := pages.CompiledPages[path]; ok && c != nil {
 		c.Serve(ctx)
 		return
