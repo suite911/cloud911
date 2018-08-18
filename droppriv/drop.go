@@ -16,8 +16,8 @@ func Drop() error {
 		if uid < 1 {
 			return pkgErrors.WithStack(errors.New("Bad UID!"))
 		}
-		if err := syscall2(SYS_SETREUID, uid); err != nil {
-			return pkgErrors.Wrap(err, "SYS_SETREUID")
+		if err := syscall2(unix.SYS_SETREUID, uid); err != nil {
+			return pkgErrors.Wrap(err, "unix.SYS_SETREUID")
 		}
 		if os.Getuid() == 0 {
 			return pkgErrors.WithStack(errors.New("Unable to drop uid 0!"))
@@ -28,8 +28,8 @@ func Drop() error {
 		if gid < 1 {
 			return pkgErrors.WithStack(errors.New("Bad GID!"))
 		}
-		if err := syscall2(SYS_SETREGID, gid); err != nil {
-			return pkgErrors.Wrap(err, "SYS_SETREGID")
+		if err := syscall2(unix.SYS_SETREGID, gid); err != nil {
+			return pkgErrors.Wrap(err, "unix.SYS_SETREGID")
 		}
 		if os.Getgid() == 0 {
 			return pkgErrors.WithStack(errors.New("Unable to drop gid 0!"))
