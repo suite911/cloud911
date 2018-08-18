@@ -78,7 +78,7 @@ function cookieGet(name) {
 function cookieSet(name, value, hours) {
 	var nv = name + "=" + value;
 	var p = ";path=/";
-	if hours === undefined {
+	if(hours === undefined) {
 		document.cookie = nv + p;
 	} else {
 		var d = new Date();
