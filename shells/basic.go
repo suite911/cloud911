@@ -56,7 +56,7 @@ else window.onload = onPageLoaded;
 </html>
 `
 	var err error
-	if Basic, err = template.New("Basic").Parse(text); err != nil {
+	if Basic, err = template.New("Basic").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Basic").Parse(text)`))
 	}
 }
