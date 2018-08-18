@@ -93,14 +93,17 @@ func Main(fns ...func() error) error {
 		return err
 	}
 
+	if len(args) >= 2 {
+		if vars.UID, err = strconv.Atoi(args[0]); err != nil {
+			return err
+		}
+		if vars.GID, err = strconv.Atoi(args[1]); err != nil {
+			return err
+		}
+	}
+
 	// Drop privileges
 
-	if vars.UID, err = strconv.Atoi(args[0]); err != nil {
-		return err
-	}
-	if vars.GID, err = strconv.Atoi(args[1]); err != nil {
-		return err
-	}
 	if err := droppriv.Drop(); err != nil {
 		return err
 	}
