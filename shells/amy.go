@@ -32,12 +32,6 @@ func init() {
 :root {
 	background-color: #000;
 
-	--entry-border:		{{.Vars.EntryBorder}};
-	--entry-bg:		{{.Vars.EntryBg}};
-	--entry-fg:		{{.Vars.EntryFg}};
-	--focus-border:		{{.Vars.FocusBorder}};
-	--focus-bg:		{{.Vars.FocusBg}};
-	--focus-fg:		{{.Vars.FocusFg}};
 	--button-cancel-bg:	{{.Vars.ButtonCancelBg}};
 	--button-cancel-hover:	{{.Vars.ButtonCancelHover}};
 	--button-cancel-fg:	{{.Vars.ButtonCancelFg}};
@@ -165,10 +159,10 @@ hr {
 }
 
 input[type=text], input[type=password] {
-	background-color: var(--entry-bg);
-	border: 2px solid var(--entry-border);
+	background-color: {{.Vars.EntryBg}};
+	border: 2px solid {{.Vars.EntryBorder}};
 	border-radius: 4px;
-	color: var(--entry-fg);
+	color: {{.Vars.EntryFg}};
 	display: inline-block;
 	margin: 0 0 24px 0;
 	outline: none;
@@ -177,9 +171,9 @@ input[type=text], input[type=password] {
 }
 
 input[type=text]:focus, input[type=password]:focus {
-	background-color: var(--focus-bg);
-	border: 2px solid var(--focus-border);
-	color: var(--focus-fg);
+	background-color: {{.Vars.FocusBg}};
+	border: 2px solid {{.Vars.FocusBorder}};
+	color: {{.Vars.FocusFg}};
 }
 
 button.register {
