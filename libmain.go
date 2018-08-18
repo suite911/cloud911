@@ -110,7 +110,7 @@ func Main(fns ...func() error) error {
 			return err
 		}
 	}
-	return run.Listen()
+	return run.Listen(http, https)
 }
 
 func loadTLSCert() error {
