@@ -24,7 +24,7 @@ func init() {
 {{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}">
 {{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon">
 {{end}}{{if .GoogleWebFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleWebFonts}}" type="text/css">
-{{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
+{{end}}<style type="text/css"><!-- /*<![CDATA[*/
 * {
 	box-sizing: border-box;
 }
@@ -212,9 +212,7 @@ button.register:hover {
 	background-color: var(--bg-footer);
 	text-align: center;
 }
-
-{{.CSS}}
-/*]]>*/ --></style>{{end}}{{.Head}}
+{{.CSS}}/*]]>*/ --></style>{{.Head}}
 </head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="night" id="night" checked />
