@@ -26,13 +26,13 @@ func main() {
 
 	var favIcon string
 	if raw, ok := www["favicon.ico"]; ok {
-		pages.Pages["/favicon.ico"] = pages.Page{
+		pages.Pages["/favicon.ico"] = &pages.Page{
 			Raw: raw,
 		}
 		favIcon = "favicon.ico"
 	}
 
-	pages.Pages[""] = pages.Page{
+	pages.Pages[""] = &pages.Page{
 		Body: string(www["index.htm"]),
 		CSS: string(www["index.css"]),
 		FavIcon: favIcon,
@@ -40,7 +40,7 @@ func main() {
 		Title: "My App",
 	}
 
-	pages.Pages["404"] = pages.Page{
+	pages.Pages["404"] = &pages.Page{
 		Body: string(www["404.htm"]),
 		CSS: string(www["404.css"]),
 		FavIcon: favIcon,
@@ -48,7 +48,7 @@ func main() {
 		Title: "My App - Not Found",
 	}
 
-	pages.Pages["/robots.txt"] = pages.Page{
+	pages.Pages["/robots.txt"] = &pages.Page{
 		ContentType: "text/plain; charset=utf8",
 		Raw: www["robots.txt"],
 	}
