@@ -86,8 +86,7 @@ function cookieSet(name, value, hours) {
 		var x = ";expires=" + d.toUTCString();
 		document.cookie = nv + x + p;
 	}
-}
-		`
+}`
 	}
 	var b bytes.Buffer
 	if err := page.Shell.Execute(&b, page); err != nil {
