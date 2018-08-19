@@ -288,13 +288,13 @@ div.copyright {
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){ {{.OnPageLoaded}}
 	cookieAgree();
 }
-{{end}}{{if .OnDOMReady}}if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
+{{end}}if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
 else if (document.attachEvent) document.attachEvent("onreadystatechange", onDOMReady);
 else window.onload = onDOMReady;
-{{end}}{{if .OnPageLoaded}}if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
+if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
-{{end}}//]]> --></script>
+//]]> --></script>
 </body>
 </html>
 `
