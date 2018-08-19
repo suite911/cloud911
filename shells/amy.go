@@ -245,17 +245,17 @@ async function prove() {
 	document.getElementById("submit").innerHTML = "Submit";
 	// document.getElementById("submit").disabled = false;
 }
-func provedWork() {
-	alert("Success!");
-}
+var provedWork = function(token) {
+	alert("Success! token=\""+token+"\"");
+};
 //async function proveWork() {
 var proveWork = function() {
 	alert("proveWork()");
 	grecaptcha.render("submit", {
-		"callback": provedWork,
-		"sitekey": "{{.ReCaptchaV2}}"
+		"sitekey": "{{.ReCaptchaV2}}",
+		"callback": provedWork
 	});
-}
+};
 //]]> --></script>{{else}}
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
