@@ -248,15 +248,15 @@ async function prove() {
 func provedWork() {
 	alert("Success!");
 }
-async function proveWork() {
+//async function proveWork() {
+var proveWork = function() {
 	alert("proveWork()");
 	grecaptcha.render("submit", {
 		"callback": provedWork,
 		"sitekey": "{{.ReCaptchaV2}}"
 	});
 }
-//]]> --></script>
-<script src='https://www.google.com/recaptcha/api.js?onload=proveWork&render=explicit' async defer></script>{{else}}
+//]]> --></script>{{else}}
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
@@ -295,7 +295,8 @@ async function proveWork() {
 <script type="text/javascript"><!-- //<![CDATA[
 /*{{.DefaultSHA1Implementation}}*/
 {{.DefaultCookieStuff}}
-/*{{if .ProofOfWork}}function work(i) {
+{{if .ProofOfWork}}<script src='https://www.google.com/recaptcha/api.js?onload=proveWork&render=explicit' async defer></script>
+/*function work(i) {
 	i = i + "";
 	for(j = 0; j < {{.ProofOfWork}}; j++) {
 		i = sha1(i);
@@ -311,8 +312,8 @@ async function prove() {
 	document.getElementById("submit").innerHTML = "Submit";
 	// document.getElementById("submit").disabled = false;
 }
-{{end}}*/{{if .JavaScript}}{{.JavaScript}}
-{{end}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
+*/{{end}}{{.JavaScript}}
+function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
 	// prove();
 {{end}}
 }
