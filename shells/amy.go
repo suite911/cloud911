@@ -86,6 +86,7 @@ footer {
 	color: {{.Vars.Light_Footer_Fg}};
 	display: block;
 	height: {{.Vars.FooterHeight}};
+	line-height: 24.1667px;
 	margin: -{{.Vars.FooterHeight}} 0 0 0;
 	overflow: hidden;
 	text-align: center;
