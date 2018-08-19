@@ -213,6 +213,11 @@ button.submit:hover, button.g-recaptcha:hover {
 	background-color: {{.Vars.ButtonSubmitHover}};
 }
 
+button.submit:disabled, button.g-recaptcha:disabled {
+	background-color: {{.Vars.ButtonDisabledBg}};
+	color: {{.Vars.ButtonDisabledFg}};
+}
+
 div.copyright {
 	font-size: 16pt;
 	height: 16pt;
@@ -247,6 +252,7 @@ div.copyright {
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
+		<pre><code>__CHALLENGE__</code></pre>
 		<input type="text" id="debug" name="pow" value="<no value>" />
 		{{end}}{{if .ReCaptchaV2}}<button id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			data-callback='onSubmit'{{if .ProofOfWork}} disabled{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
