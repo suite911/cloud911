@@ -197,7 +197,7 @@ input[type=text]:focus, input[type=password]:focus {
 	color: {{.Vars.FocusFg}};
 }
 
-button.submit, button.g-recaptcha {
+input[type=submit] {
 	background-color: {{.Vars.ButtonSubmitBg}};
 	border: none;
 	border-radius: 4px;
@@ -209,11 +209,11 @@ button.submit, button.g-recaptcha {
 	width: 100%;
 }
 
-button.submit:hover, button.g-recaptcha:hover {
+input[type=submit]:hover {
 	background-color: {{.Vars.ButtonSubmitHover}};
 }
 
-button.submit:disabled, button.g-recaptcha:disabled {
+input[type=submit]:disabled {
 	background-color: {{.Vars.ButtonDisabledBg}};
 	color: {{.Vars.ButtonDisabledFg}};
 }
@@ -288,7 +288,7 @@ function proveWork() {
 		i++;
 	}
 	document.getElementById("pow").value = i;
-	document.getElementById("submit").innerHTML = "Submit";
+	document.getElementById("submit").value = "Submit";
 	grecaptcha.render("submit", {
 		"callback": onSubmit,
 		"sitekey": "{{.ReCaptchaV2}}"
