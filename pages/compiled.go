@@ -38,7 +38,7 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 	if len(c.ContentType) > 0 {
 		ctx.SetContentType(c.ContentType)
 	}
-	if proofOfWork := c.ProofOfWork > 0 {
+	if proofOfWork := c.ProofOfWork; proofOfWork > 0 {
 		actual := rand.Uint32() & 0xffff
 		challenge := []byte(strconv.Itoa(actual))
 		for j := 0; j < proofOfWork; j++ {
