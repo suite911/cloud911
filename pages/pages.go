@@ -117,8 +117,8 @@ function cookieSet(name, value, hours) {
 		[2]string{"Light_Fg", "#000"},
 		[2]string{"Light_Header_Bg", "4FC3F7"},//TODO:
 		[2]string{"Light_Header_Fg", "#000"},
-		[2]string{"Light_TopNav_Bg", "#B0BEC5"},//TODO:
-		[2]string{"Light_TopNav_Bg_Hover", "#E0E0E0"},//TODO:
+		[2]string{"Light_TopNav_Bg", "#4FC3F7"},//TODO:
+		[2]string{"Light_TopNav_Bg_Hover", "#80D8FF"},//TODO:
 		[2]string{"Light_TopNav_Fg", "#fff"},//TODO:
 		[2]string{"Light_TopNav_Fg_Hover", "#fff"},//TODO:
 		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
