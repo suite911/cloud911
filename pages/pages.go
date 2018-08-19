@@ -40,6 +40,8 @@ type Page struct {
 	Raw []byte
 
 	Shell *template.Template
+
+	ProofOfWork bool
 }
 
 // Compile compiles a page.
