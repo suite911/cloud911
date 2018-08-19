@@ -52,8 +52,8 @@ a:hover {
 /* Day Mode */
 
 .page-outer {
-	background-color: {{.Vars.Light-Bg}};
-	color: {{.Vars.Light-Fg}};
+	background-color: {{.Vars.Light_Bg}};
+	color: {{.Vars.Light_Fg}};
 	min-height: 100%;
 	padding: 0;
 }
@@ -64,16 +64,16 @@ a:hover {
 }
 
 header {
-	background-color: {{.Vars.Light-Header-Bg}};
-	color: {{.Vors.Light-Header-Fg}};
+	background-color: {{.Vars.Light_Header_Bg}};
+	color: {{.Vors.Light_Header_Fg}};
 	display: block;
 	margin: 0;
 	padding: 0;
 }
 
 footer {
-	background-color: {{.Vars.Light-Footer-Bg}};
-	color: {{.Vars.Light-Footer-Fg}};
+	background-color: {{.Vars.Light_Footer_Bg}};
+	color: {{.Vars.Light_Footer_Fg}};
 	display: block;
 	margin: -{{.Vars.FooterHeight}} 0 0 0;
 	min-height: {{.Vars.FooterHeight}};
@@ -83,18 +83,18 @@ footer {
 /* Night Mode */
 
 input[type=checkbox].night:checked ~ header {
-	background-color: {{.Vars.Dark-Header-Bg}};
-	color: {{.Vars.Dark-Header-Fg}};
+	background-color: {{.Vars.Dark_Header_Bg}};
+	color: {{.Vars.Dark_Header_Fg}};
 }
 
 input[type=checkbox].night:checked ~ div {
-	background-color: {{.Vars.Dark-Bg}};
-	color: {{.Vars.Dark-Fg}};
+	background-color: {{.Vars.Dark_Bg}};
+	color: {{.Vars.Dark_Fg}};
 }
 
 input[type=checkbox].night:checked ~ footer {
-	background-color: {{.Vars.Dark-Footer-Bg}};
-	color: {{.Vars.Dark-Footer-Fg}};
+	background-color: {{.Vars.Dark_Footer_Bg}};
+	color: {{.Vars.Dark_Footer_Fg}};
 }
 
 /* Inner elements */
