@@ -219,8 +219,9 @@ button.submit:hover, button.g-recaptcha:hover {
 
 div.copyright {
 	font-size: 16pt;
+	height: 16pt;
 	margin: -16pt 0 0 0;
-	padding: 0;
+	padding: 0 0 0 2px;
 	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
@@ -255,9 +256,7 @@ div.copyright {
 	</div>
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
-	<div></div>
 	<div class="copyright">{{.Copyright}}</div>
-	<div></div>
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
