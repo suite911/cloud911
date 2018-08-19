@@ -116,8 +116,8 @@ div.topnav {
 	background-color: {{.Vars.TopNavBg1}};
 	display: block;
 	font-size: {{.Vars.TopNavHeight}};
-	height: {{.Vars.TopNavHeight}};/*calc(2px + 10px + 15pt + 10px + 2px);*/
-	line-height: {{.Vars.TopNavHeight}};/*24.1667px;*/
+	height: calc({{.Vars.TopNavHeight}} + 20px);
+	line-height: {{.Vars.TopNavHeight}};
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
@@ -171,9 +171,9 @@ label.night {
 	border: 2px solid #999;
 	border-radius: 4px;
 	display: inline;
-	font-size: calc({{.Vars.TopNavHeight}} - 10px);
-	height: calc({{.Vars.TopNavHeight}} - 10px);
-	line-height: calc({{.Vars.TopNavHeight}} - 10px);
+	font-size: {{.Vars.TopNavHeight}};
+	height: calc({{.Vars.TopNavHeight}} + 20px);
+	line-height: {{.Vars.TopNavHeight}};
 	margin: 0;
 	padding: 8px;
 }
