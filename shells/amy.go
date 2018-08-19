@@ -163,18 +163,18 @@ span.topnav {
 }
 
 span.topnav:hover {
-	background-color: {{.Vars.Light_TopNav_Hover_Bg}};
-	color: {{.Vars.Light_TopNav_Hover_Fg}};
+	background-color: {{.Vars.Light_TopNav_Bg_Hover}};
+	color: {{.Vars.Light_TopNav_Fg_Hover}};
 }
 
-input[type=checkbox].night:checked span.topnav {
+input[type=checkbox].night:checked + div header span.topnav {
 	background-color: {{.Vars.Dark_TopNav_Bg}};
 	color: {{.Vars.Dark_TopNav_Fg}};
 }
 
-input[type=checkbox].night:checked span.topnav:hover {
-	background-color: {{.Vars.Dark_TopNav_Hover_Bg}};
-	color: {{.Vars.Dark_TopNav_Hover_Fg}};
+input[type=checkbox].night:checked + div header span.topnav:hover {
+	background-color: {{.Vars.Dark_TopNav_Bg_Hover}};
+	color: {{.Vars.Dark_TopNav_Fg_Hover}};
 }
 
 /* The "Night Mode" toggle */
