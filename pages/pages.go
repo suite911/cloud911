@@ -41,7 +41,7 @@ type Page struct {
 
 	Shell *template.Template
 
-	ProofOfWork bool
+	ProofOfWork int
 }
 
 // Compile compiles a page.
@@ -51,6 +51,7 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	}
 	c := new(CompiledPage)
 	c.ContentType = page.ContentType
+	c.ProofOfWork = page.ProofOfWork
 	if len(page.Raw) > 0 {
 		c.Bytes = page.Raw
 		return c, nil
