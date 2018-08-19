@@ -58,7 +58,7 @@ func main() {
 
 	pages.Pages["/register"] = &pages.Page{
 		Content: string(www["/register.htm"]),
-		CSS: string(www["/register.css"]),
+		//CSS: string(www["/register.css"]),
 		Form: "form",
 		FormAction: "/download",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
@@ -87,7 +87,7 @@ func main() {
 	topNav := make(map[string]string)
 	topNav["/"] = "Top Page"
 	topNav["/about"] = "About"
-	topNav["/download"] = "Download"
+	//topNav["/download"] = "Download"
 	topNav["/register"] = "Register"
 
 	for _, k := range []string{
@@ -110,6 +110,7 @@ func main() {
 			if len(p.Footer) < 1 {
 				p.Footer = string(www["/footer.htm"])
 			}
+			/*
 			if len(p.GoogleFonts) < 1 {
 				p.GoogleFonts = "Noto+Sans|Source+Code+Pro"
 			}
@@ -119,6 +120,7 @@ func main() {
 			if len(p.Sans) < 1 {
 				p.Sans = "Noto Sans"
 			}
+			*/
 			if p.Shell == nil {
 				p.Shell = shells.Amy
 			}
