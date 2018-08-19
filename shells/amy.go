@@ -268,7 +268,7 @@ div.copyright {
 {{end}}{{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
 	var i = 0;
-	while(work(i) != powChallenge) {
+	while(work(i) != "__CHALLENGE__") {
 		i++;
 	}
 	document.getElementById("pow").value = i;
