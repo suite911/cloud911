@@ -23,7 +23,7 @@ func init() {
 {{end}}{{if .Description}}<meta name="description" content="{{.Description}}">
 {{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}">
 {{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon">
-{{end}}{{if .GoogleWebFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleWebFonts}}" type="text/css">
+{{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
 {{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
 {{.CSS}}/*]]>*/ --></style>{{end}}{{.Head}}
 </head>
