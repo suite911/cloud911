@@ -318,13 +318,14 @@ div.copyright {
 		<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 		</div>
 	</header>
-	<div class="content">{{.ContentHead}}{{if .Form}}
+	<div class="content"{{if .NoScript}} style="display:none"{{end}}>{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
 		<input type="submit" id="bsubmit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			value="Submit" data-callback='onSubmit' />
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
-	</div>
+	</div>{{if .NoScript}}
+	<noscript>{{.NoScript}}</noscript>{{end}}
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
 	<div class="copyright">{{.Copyright}}</div>
@@ -338,7 +339,9 @@ div.copyright {
 {{.JavaScript}}
 {{end}}
 function onDOMReady(){
-{{.OnDOMReady}}
+{{if .NoScript}}
+	document.getElementById("content").display = "block";
+{{end}}{{.OnDOMReady}}
 }
 function onPageLoaded(){
 {{.OnPageLoaded}}
