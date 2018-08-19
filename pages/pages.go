@@ -103,9 +103,9 @@ function cookieSet(name, value, hours) {
 	for _, pair := range [][2]string{
 		[2]string{"Dark_Bg", "#2c2f33"},//TODO:
 		[2]string{"Dark_Fg", "#fafafa"},//TODO:
-		[2]string{"Dark_Header_Bg", "#777"},//TODO:
+		[2]string{"Dark_Header_Bg", "#444"},//TODO:
 		[2]string{"Dark_Header_Fg", "#fff"},//TODO:
-		[2]string{"Dark_Footer_Bg", "#777"},//TODO:
+		[2]string{"Dark_Footer_Bg", "#444"},//TODO:
 		[2]string{"Dark_Footer_Fg", "#fff"},//TODO:
 		[2]string{"Light_Bg", "#fff"},
 		[2]string{"Light_Fg", "#000"},
