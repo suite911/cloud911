@@ -154,7 +154,7 @@ div.topnav {
 span.topnav {
 	background-color: {{.Vars.TopNavBg}};
 	border: none;
-	border-radius: 0 0 8px 8px;
+	border-radius: 0 0 5px 5px;
 	color: {{.Vars.TopNavFg}};
 	display: inline-block;
 	height: 100%;
@@ -171,11 +171,11 @@ label.night {
 	border: 2px solid #999;
 	border-radius: 4px;
 	display: inline;
-	font-size: {{.Vars.TopNavHeight}};
-	height: calc({{.Vars.TopNavHeight}} + 20px);
-	line-height: {{.Vars.TopNavHeight}};
+	font-size: calc(100% - 2px);
+	height: 100%;
+	line-height: 100%;
 	margin: 0;
-	padding: 8px;
+	padding: 5px;
 }
 
 /* Put the associated checkbox over the "Night Mode" text and make it invisible. */
