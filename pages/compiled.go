@@ -2,6 +2,8 @@ package pages
 
 import (
 	"bytes"
+	"crypto/sha1"
+	"math/rand" // yes, for this use case it is secure enough
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
@@ -36,9 +38,14 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 	if len(c.ContentType) > 0 {
 		ctx.SetContentType(c.ContentType)
 	}
-	if c.ProofOfWork == 0 {
-		ctx.Write(c.Bytes)
+	if proofOfWork := c.ProofOfWork > 0 {
+		actual := rand.Uint32() & 0xffff
+		challenge := []byte(strconv.Itoa(actual))
+		for j := 0; j < proofOfWork; j++ {
+			challenge = sha1.Sum(challenge)[:]
+		}
+		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), challenge, -1))
 	} else {
-		ctx.Write(bytes.Replace(c.Bytes, []byte{"__CHALLENGE__"}, []byte{"TODO"}, -1))
+		ctx.Write(c.Bytes)
 	}
 }
