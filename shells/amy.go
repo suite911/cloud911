@@ -178,14 +178,34 @@ input[type=checkbox].night:checked + div header span.topnav:hover {
 
 /* The "Night Mode" toggle */
 label.night {
-	border: 2px solid #999;
+	background-color: {{.Vars.Light_Night_Bg}};
+	border: 2px solid {{.Vars.Light_Night_Border}};
 	border-radius: 4px;
+	color: {{.Vars.Light_Night_Fg}};
 	display: inline;
 	font-size: calc(100% - 2px);
 	height: 100%;
 	line-height: 100%;
 	margin: 0;
 	padding: 5px;
+}
+
+label.night:hover {
+	background-color: {{.Vars.Light_Night_Bg_Hover}};
+	border-color: {{.Vars.Light_Night_Border_Hover}};
+	color: {{.Vars.Light_Night_Fg_Hover}};
+}
+
+input[type=checkbox].night:checked + div header label.night {
+	background-color: {{.Vars.Dark_Night_Bg}};
+	border-color: {{.Vars.Dark_Night_Border}};
+	color: {{.Vars.Dark_Night_Fg}};
+}
+
+input[type=checkbox].night:checked + div header label.night:hover {
+	background-color: {{.Vars.Dark_Night_Bg_Hover}};
+	border-color: {{.Vars.Dark_Night_Border_Hover}};
+	color: {{.Vars.Dark_Night_Fg_Hover}};
 }
 
 /* Put the associated checkbox over the "Night Mode" text and make it invisible. */
