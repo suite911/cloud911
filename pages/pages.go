@@ -2,7 +2,9 @@ package pages
 
 import (
 	"bytes"
+	"strconv"
 	"text/template"
+	"time"
 
 	"github.com/suite911/error911/onfail"
 
@@ -18,7 +20,7 @@ type Page struct {
 	
 	ContentType string
 
-	Author, Description, FavIcon, Keywords, Title string
+	Author, Copyright, Description, FavIcon, Keywords, Title string
 
 	CSS, GoogleWebFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
 
@@ -53,6 +55,9 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	}
 	if page.Shell == nil {
 		page.Shell = defaultShell
+	}
+	if len(page.Copyright) < 1 {
+		page.Copyright = "&copy; " + strconv.Itoa(time.Now().Year())
 	}
 	if len(page.DefaultCookieStuff) < 1 {
 		page.DefaultCookieStuff = `
