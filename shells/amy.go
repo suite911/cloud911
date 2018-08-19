@@ -183,7 +183,7 @@ input[type=checkbox].night {
 	position: absolute;
 	top: 10px;
 	right: 10px;
-	opacity: 0;
+	opacity: .5;
 }
 
 div.form {
