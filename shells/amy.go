@@ -75,8 +75,9 @@ footer {
 	background-color: {{.Vars.Light_Footer_Bg}};
 	color: {{.Vars.Light_Footer_Fg}};
 	display: block;
+	height: {{.Vars.FooterHeight}};
 	margin: -{{.Vars.FooterHeight}} 0 0 0;
-	min-height: {{.Vars.FooterHeight}};
+	overflow: hidden;
 	text-align: center;
 }
 
