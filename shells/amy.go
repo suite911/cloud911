@@ -154,7 +154,7 @@ div.topnav {
 span.topnav {
 	background-color: {{.Vars.TopNavBg}};
 	border: none;
-	border-radius: 0 0 5px 5px;
+	border-radius: 0 0 4px 4px;
 	color: {{.Vars.TopNavFg}};
 	display: inline-block;
 	height: 100%;
