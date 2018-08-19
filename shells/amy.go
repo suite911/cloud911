@@ -214,7 +214,7 @@ footer.footer {
 	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 	</div>
 	<div class="content">{{.ContentHead}}{{if .Form}}
-		<div class="form"><form id="{{.Form}}" action="?" method="POST">{{end}}{{.Content}}{{if .Form}}
+		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<button class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			data-callback='onSubmit'>Submit</button>
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
