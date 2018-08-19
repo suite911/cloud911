@@ -25,9 +25,9 @@ func init() {
 {{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon">
 {{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
 {{end}}<style type="text/css"><!-- /*<![CDATA[*/
-{{.CSSHead}}
+{{if .CSSHead}}{{.CSSHead}}
 
-*, *:before, *:after {
+{{end}}*, *:before, *:after {
 	-webkit-box-sizing: inherit;
 	-moz-box-sizing: inherit;
 	box-sizing: inherit;
@@ -227,7 +227,11 @@ div.copyright {
 	padding: 0 0 0 2px;
 	text-align: left;
 }
-{{.CSS}}{{.CSSTail}}/*]]>*/ --></style>{{.Head}}
+{{if .CSS}}
+{{.CSS}}
+{{end}}{{if .CSSTail}}{{.CSSTail}}
+{{end}}/*]]>*/ --></style>{{if .Head}}
+{{.Head}}{{end}}
 {{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
