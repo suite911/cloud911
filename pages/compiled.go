@@ -3,8 +3,8 @@ package pages
 import (
 	"bytes"
 	"crypto/sha1"
+	"encoding/hex"
 	"math/rand" // yes, for this use case it is secure enough
-	"net/url"
 	"strconv"
 	"text/template"
 
@@ -43,12 +43,11 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 	if proofOfWork := c.ProofOfWork; proofOfWork > 0 {
 		proofOfWork = 1 // TODO: FIXME: DEBUGGING
 		actual := rand.Uint32() & 0xffff
-		challenge := []byte(strconv.Itoa(int(actual)))
+		challenge := strconv.Itoa(int(actual))
 		for j := 0; j < proofOfWork; j++ {
-			s := sha1.Sum(challenge)
-			challenge = s[:]
+			challenge = hex.Dump(sha1.Sum(challenge))
 		}
-		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), []byte(url.QueryEscape(string(challenge))), -1))
+		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), []byte(challenge), -1))
 	} else {
 		ctx.Write(c.Bytes)
 	}
