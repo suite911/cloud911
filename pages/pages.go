@@ -26,6 +26,7 @@ type Page struct {
 	CSS, CSSHead, CSSTail                      string
 	Body, BodyHead, BodyTail                   string
 	Header, HeaderHead, HeaderTail             string
+	ContentTitle, ContentSubTitle              string
 	Content, ContentHead, ContentTail          string
 	Footer, FooterHead, FooterTail             string
 	JavaScript, JavaScriptHead, JavaScriptTail string
