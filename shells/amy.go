@@ -266,7 +266,7 @@ div.copyright {
 {{.DefaultCookieStuff}}
 {{if .ProofOfWork}}function work(i) {
 	i = i + "";
-	for(j = 0; j < 1; j++) {//{{.ProofOfWork}}; j++) {
+	for(j = 0; j < {{.ProofOfWork}}; j++) {
 		i = sha1(i);
 	}
 	return i;
