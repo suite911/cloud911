@@ -93,13 +93,13 @@ func main() {
 	for _, k := range []string{
 		"",
 		"404",
-		"about",
-		"cookies",
-		"download",
-		"eula",
-		"privacy",
-		"register",
-		"terms",
+		"/about",
+		"/cookies",
+		"/download",
+		"/eula",
+		"/privacy",
+		"/register",
+		"/terms",
 	} {
 		if p, ok := pages.Pages[k]; ok {
 			if len(favIcon) > 0 {
