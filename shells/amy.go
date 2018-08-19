@@ -267,6 +267,7 @@ div.copyright {
 {{.DefaultSHA1Implementation}}
 {{.DefaultCookieStuff}}
 {{if .ProofOfWork}}function work(i) {
+	i = i + "";
 	for(j = 0; j < 1; j++) {//{{.ProofOfWork}}; j++) {
 		i = sha1(i);
 	}
@@ -281,7 +282,7 @@ div.copyright {
 	}
 	*/
 	document.getElementById("debug").value = work(i);
-	document.getElementById("pow").value = i;
+	document.getElementById("pow").value = sha1('hi');//i;
 	document.getElementById("submit").innerHTML = "Submit";
 	document.getElementById("submit").disabled = false;
 {{end}}
