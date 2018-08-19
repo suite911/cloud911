@@ -58,7 +58,7 @@ func main() {
 
 	pages.Pages["/register"] = &pages.Page{
 		Content: string(www["/register.htm"]),
-		//CSS: string(www["/register.css"]),
+		CSS: string(www["/register.css"]),
 		Form: "form",
 		FormAction: "/download",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
