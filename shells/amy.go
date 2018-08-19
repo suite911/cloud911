@@ -264,7 +264,7 @@ div.copyright {
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
-		{{end}}{{if .ReCaptchaV2}}<input type="submit" id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
+		{{end}}{{if .ReCaptchaV2}}<input type="submit" id="bsubmit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			value="{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}"
 			{{if .ProofOfWork}}disabled{{else}}data-callback='onSubmit'{{end}} />
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
@@ -289,12 +289,12 @@ function proveWork() {
 		i++;
 	}
 	document.getElementById("pow").value = i;
-	document.getElementById("submit").value = "Submit";
+	document.getElementById("bsubmit").value = "Submit";
 	grecaptcha.render("submit", {
 		"callback": onSubmit,
 		"sitekey": "{{.ReCaptchaV2}}"
 	});
-	document.getElementById("submit").disabled = false; // grecaptcha.render does it too
+	document.getElementById("bsubmit").disabled = false; // grecaptcha.render does it too
 }
 {{end}}{{.JavaScript}}
 function onDOMReady(){
