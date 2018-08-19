@@ -231,16 +231,7 @@ div.copyright {
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
 {{.OnWillSubmit}}
-		alert("DEBUG - Submitting...");
 		document.getElementById("{{.Form}}").submit();
-		alert("DEBUG - Submitted!");
-		/*
-		window.location.replace(
-			window.location.protocol + "//" +
-			window.location.hostname + window.location.port +
-			window.location.pathname + "/submit"
-		);
-		*/
 {{.OnSubmitted}}
 	}
 //]]> --></script>
