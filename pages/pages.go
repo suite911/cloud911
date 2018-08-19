@@ -103,12 +103,12 @@ function cookieSet(name, value, hours) {
 		page.Vars = make(map[string]string)
 	}
 	for _, pair := range [][2]string{
-		[2]string{"Dark_Bg", "#2c2f33"},//TODO:
-		[2]string{"Dark_Fg", "#fafafa"},//TODO:
-		[2]string{"Dark_Header_Bg", "#444"},//TODO:
+		[2]string{"Dark_Bg", "#424242"},
+		[2]string{"Dark_Fg", "#FAFAFA"},
+		[2]string{"Dark_Header_Bg", "#0000"},//TODO:
 		[2]string{"Dark_Header_Fg", "#fff"},//TODO:
-		[2]string{"Dark_TopNav_Bg", "#B0BEC5"},//TODO:
-		[2]string{"Dark_TopNav_Bg_Hover", "#E0E0E0"},//TODO:
+		[2]string{"Dark_TopNav_Bg", "#b71c1c"},
+		[2]string{"Dark_TopNav_Bg_Hover", "#ff1744"},
 		[2]string{"Dark_TopNav_Fg", "#fff"},//TODO:
 		[2]string{"Dark_TopNav_Fg_Hover", "#fff"},//TODO:
 		[2]string{"Dark_Footer_Bg", "#444"},//TODO:
