@@ -43,7 +43,7 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 		actual := rand.Uint32() & 0xffff
 		challenge := []byte(strconv.Itoa(actual))
 		for j := 0; j < proofOfWork; j++ {
-			challenge = sha1.Sum(challenge)[:]
+			challenge = sha1.Sum(challenge)
 		}
 		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), challenge, -1))
 	} else {
