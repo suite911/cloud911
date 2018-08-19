@@ -114,10 +114,10 @@ func main() {
 				p.GoogleFonts = "Noto+Sans|Source+Code+Pro"
 			}
 			if len(p.Mono) < 1 {
-				p.Mono = "monospace"//Source Code Pro"
+				p.Mono = "Source Code Pro"
 			}
 			if len(p.Sans) < 1 {
-				p.Sans = "serif"//Noto Sans"
+				p.Sans = "Noto Sans"
 			}
 			if p.Shell == nil {
 				p.Shell = shells.Amy
