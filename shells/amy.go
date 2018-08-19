@@ -290,7 +290,7 @@ function proveWork() {
 	}
 	document.getElementById("pow").value = i;
 	document.getElementById("bsubmit").value = "Submit";
-	grecaptcha.render("submit", {
+	grecaptcha.render("bsubmit", {
 		"callback": onSubmit,
 		"sitekey": "{{.ReCaptchaV2}}"
 	});
