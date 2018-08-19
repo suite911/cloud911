@@ -226,8 +226,7 @@ div.copyright {
 	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
-{{if .Form}}{{if .ReCaptchaV2}}{{if .ProofOfWork}}{{else}}
-<script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
+{{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
 {{.OnWillSubmit}}
@@ -254,10 +253,9 @@ div.copyright {
 	</header>
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
-		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
-		{{end}}{{if .ReCaptchaV2}}<input type="submit" id="bsubmit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
-			value="{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}"
-			{{if .ProofOfWork}}disabled{{else}}data-callback='onSubmit'{{end}} />
+		{{if .ReCaptchaV2}}<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
+		<input type="submit" id="bsubmit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
+			value="Submit" data-callback='onSubmit' />
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
 	</div>
 </div></div>
@@ -268,26 +266,7 @@ div.copyright {
 <script type="text/javascript"><!-- //<![CDATA[
 /*{{.DefaultSHA1Implementation}}*/
 {{.DefaultCookieStuff}}
-{{.DefaultSHA1Implementation}}
-{{if .ProofOfWork}}function work(i) {
-	i = i + "";
-	i = sha1(i);
-	return i;
-}
-function proveWork() {
-	var i = 0;
-	while(work(i) != "__CHALLENGE__") {
-		i++;
-	}
-	document.getElementById("pow").value = i;
-	document.getElementById("bsubmit").value = "Submit";
-	grecaptcha.render("bsubmit", {
-		"callback": onSubmit,
-		"sitekey": "{{.ReCaptchaV2}}"
-	});
-	document.getElementById("bsubmit").disabled = false; // grecaptcha.render does it too
-}
-{{end}}{{.JavaScript}}
+{{.JavaScript}}
 function onDOMReady(){
 {{.OnDOMReady}}
 }
@@ -301,8 +280,7 @@ else window.onload = onDOMReady;
 if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
-//]]> --></script>{{if .ProofOfWork}}
-<script src='https://www.google.com/recaptcha/api.js?onload=proveWork&render=explicit' async defer></script>{{end}}
+//]]> --></script>
 </body>
 </html>
 `
