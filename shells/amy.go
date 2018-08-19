@@ -253,7 +253,7 @@ div.copyright {
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
 		<pre><code>__CHALLENGE__</code></pre>
-		<input type="text" id="debug" name="pow" value="<no value>" />
+		<input type="text" id="debug" name="debug" value="<no value>" />
 		{{end}}{{if .ReCaptchaV2}}<button id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			data-callback='onSubmit'{{if .ProofOfWork}} disabled{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
