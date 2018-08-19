@@ -251,6 +251,7 @@ var provedWork = function(token) {
 //async function proveWork() {
 var proveWork = function() {
 	alert("proveWork()");
+	prove();
 	grecaptcha.render("submit", {
 		"sitekey": "{{.ReCaptchaV2}}",
 		"callback": provedWork
