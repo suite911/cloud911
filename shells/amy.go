@@ -271,15 +271,18 @@ div.copyright {
 	}
 	return i;
 }
-{{end}}{{if .JavaScript}}{{.JavaScript}}
-{{end}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
+async function prove() {
 	var i = 0;
 	while(work(i) != "__CHALLENGE__") {
 		i++;
 	}
 	document.getElementById("pow").value = i;
 	document.getElementById("submit").innerHTML = "Submit";
-	document.getElementById("submit").disabled = false;
+	// document.getElementById("submit").disabled = false;
+}
+{{end}}{{if .JavaScript}}{{.JavaScript}}
+{{end}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
+	prove();
 {{end}}
 }
 function onPageLoaded(){ {{.OnPageLoaded}}
