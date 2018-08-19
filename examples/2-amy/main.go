@@ -119,7 +119,7 @@ func main() {
 			if len(p.Sans) < 1 {
 				p.Sans = "Noto Sans"
 			}
-			if len(p.Shell) < 1 {
+			if p.Shell == nil {
 				p.Shell = shells.Amy
 			}
 			if len(p.TopNav) < 1 {
