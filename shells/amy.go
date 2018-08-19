@@ -181,9 +181,9 @@ label.night {
 /* Put the associated checkbox over the "Night Mode" text and make it invisible. */
 input[type=checkbox].night {
 	position: absolute;
-	top: 10px;
-	right: 10px;
-	opacity: .5;
+	top: 9pt;
+	right: 7pt;
+	opacity: 0;
 }
 
 div.form {
