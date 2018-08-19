@@ -43,6 +43,14 @@ func init() {
 	padding: 0;
 }
 
+body, .sans {
+	font-family: {{if .Sans}}"{{.Sans}}", {{end}}sans-serif;
+}
+
+code, .mono {
+	font-family: {{if .Mono}}"{{.Mono}}", {{end}}monospace;
+}
+
 a {
 	color: {{.Vars.LinkFg}};
 }
