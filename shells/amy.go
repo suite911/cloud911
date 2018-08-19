@@ -236,19 +236,6 @@ function work(i) {
 function provedWork(token) {
 	alert("Success! token=\""+token+"\"");
 }
-function proveWork() {
-	var i = 0;
-	while(work(i) != "__CHALLENGE__") {
-		i++;
-	}
-	document.getElementById("pow").value = i;
-	document.getElementById("submit").innerHTML = "Submit";
-	grecaptcha.render("submit", {
-		"sitekey": "{{.ReCaptchaV2}}",
-		"callback": provedWork
-	});
-	document.getElementById("submit").disabled = false; // grecaptcha.render does it too
-}
 //]]> --></script>{{else}}
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
@@ -288,7 +275,22 @@ function proveWork() {
 <script type="text/javascript"><!-- //<![CDATA[
 /*{{.DefaultSHA1Implementation}}*/
 {{.DefaultCookieStuff}}
-{{if .ProofOfWork}}/*function work(i) {
+{{if .ProofOfWork}}/**/
+
+function proveWork() {
+	var i = 0;
+	while(work(i) != "__CHALLENGE__") {
+		i++;
+	}
+	document.getElementById("pow").value = i;
+	document.getElementById("submit").innerHTML = "Submit";
+	grecaptcha.render("submit", {
+		"callback": provedWork,
+		"sitekey": "{{.ReCaptchaV2}}"
+	});
+	document.getElementById("submit").disabled = false; // grecaptcha.render does it too
+}
+/*function work(i) {
 	i = i + "";
 	for(j = 0; j < {{.ProofOfWork}}; j++) {
 		i = sha1(i);
