@@ -246,8 +246,9 @@ div.copyright {
 	</header>
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
-		{{if .ReCaptchaV2}}<button class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
-			data-callback='onSubmit'>Submit</button>
+		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
+		{{end}}{{if .ReCaptchaV2}}<button id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
+			data-callback='onSubmit'{{if .ProofOfWork}} disabled{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
 	</div>
 </div></div>
@@ -256,8 +257,23 @@ div.copyright {
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
-{{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}
+{{.DefaultSHA1Implementation}}
+{{.DefaultCookieStuff}}
+{{if .ProofOfWork}}function work(i) {
+	for(j = 0; j < {{.ProofOfWork}}; j++) {
+		i = sha1(i);
+	}
+	return i;
+}
+{{end}}{{if .JavaScript}}{{.JavaScript}}
+{{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
+	var i = 0;
+	while(work(i) != powChallenge) {
+		i++;
+	}
+	document.getElementById("pow").value = i;
+	document.getElementById("submit").innerHTML = "Submit";
+{{end}}
 }
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){ {{.OnPageLoaded}}
 	cookieAgree();
