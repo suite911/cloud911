@@ -41,9 +41,8 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 		ctx.SetContentType(c.ContentType)
 	}
 	if proofOfWork := c.ProofOfWork; proofOfWork > 0 {
-		proofOfWork = 1 // TODO: FIXME: DEBUGGING
 		actual := rand.Uint32() & 0xffff
-		actual = 0 // TODO: FIXME: DEBUGGING
+		actual = 255 // TODO: FIXME: DEBUGGING
 		challenge := strconv.Itoa(int(actual))
 		for j := 0; j < proofOfWork; j++ {
 			b20 := sha1.Sum([]byte(challenge))
