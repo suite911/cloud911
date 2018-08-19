@@ -232,11 +232,14 @@ div.copyright {
 	function onSubmit(token) {
 {{.OnWillSubmit}}
 		document.getElementById("{{.Form}}").submit();
+		alert("DEBUG - Submitted!");
+		/*
 		window.location.replace(
 			window.location.protocol + "//" +
 			window.location.hostname + window.location.port +
 			window.location.pathname + "/submit"
-		)
+		);
+		*/
 {{.OnSubmitted}}
 	}
 //]]> --></script>
