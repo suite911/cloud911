@@ -226,7 +226,7 @@ div.copyright {
 	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
-{{if .Form}}{{if .ReCaptchaV2}}{{if .ProveWork}}<script type="text/javascript"><!-- //<![CDATA[
+{{if .Form}}{{if .ReCaptchaV2}}{{if .ProofOfWork}}<script type="text/javascript"><!-- //<![CDATA[
 {{.DefaultSHA1Implementation}}
 function work(i) {
 	i = i + "";
