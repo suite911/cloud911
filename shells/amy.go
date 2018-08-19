@@ -82,7 +82,7 @@ footer {
 
 /* Night Mode */
 
-input[type=checkbox].night:checked ~ header {
+input[type=checkbox].night:checked + div header {
 	background-color: {{.Vars.Dark_Header_Bg}};
 	color: {{.Vars.Dark_Header_Fg}};
 }
@@ -232,20 +232,20 @@ div.copyright {
 {{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="night" id="night" checked />
-<header class="topnav">
-	<div class="topnav">{{.TopNavHead}}
-		<div class="topnavleft"{{range $k, $v := .TopNav}}
-			><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
-		></div>
-		<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
-		<div class="topnavhack"></div>{{.TopNavTail}}
-	</div>
-</header>
-<header class="header">
-	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
-	</div>
-</header>
 <div class="page-outer"><div class="page-inner">
+	<header class="topnav">
+		<div class="topnav">{{.TopNavHead}}
+			<div class="topnavleft"{{range $k, $v := .TopNav}}
+				><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
+			></div>
+			<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
+			<div class="topnavhack"></div>{{.TopNavTail}}
+		</div>
+	</header>
+	<header class="header">
+		<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
+		</div>
+	</header>
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<button class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
