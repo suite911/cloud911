@@ -101,18 +101,31 @@ function cookieSet(name, value, hours) {
 		page.Vars = make(map[string]string)
 	}
 	for _, pair := range [][2]string{
+		[2]string{"Dark.Bg", "#2c2f33"},//TODO:
+		[2]string{"Dark.Fg", "#fafafa"},//TODO:
+		[2]string{"Dark.Header.Bg", "#777"},//TODO:
+		[2]string{"Dark.Header.Fg", "#fff"},//TODO:
+		[2]string{"Dark.Footer.Bg", "#777"},//TODO:
+		[2]string{"Dark.Footer.Fg", "#fff"},//TODO:
+		[2]string{"Light.Bg", "#fff"},
+		[2]string{"Light.Fg", "#000"},
+		[2]string{"Light.Header.Bg", "#ccc"},//TODO:
+		[2]string{"Light.Header.Fg", "#000"},
+		[2]string{"Light.Footer.Bg", "#ccc"},//TODO:
+		[2]string{"Light.Footer.Fg", "#000"},
+
 		[2]string{"PaddingWidgetHorz", "16px"},
 		[2]string{"PaddingWidgetVert", "12px"},
 		[2]string{"FooterHeight", "16pt"},
 		[2]string{"LinkFg", "#03A9F4"},
 		[2]string{"LinkHover", "#40C4FF"},
-		[2]string{"BgDay", "#fff"},
-		[2]string{"BgNight", "#2c2f33"},//TODO:
-		[2]string{"TopNavBg1", "#0000"},//TODO:
-		[2]string{"HeaderBg", "#9993"},//TODO:
-		[2]string{"FooterBg", "#9993"},//TODO:
-		[2]string{"FgDay", "#000"},//TODO:
-		[2]string{"FgNight", "#fafafa"},//TODO:
+				[2]string{"BgDay", "#fff"},
+				[2]string{"BgNight", "#2c2f33"},//TODO:
+				[2]string{"TopNavBg1", "#0000"},//TODO:
+				[2]string{"HeaderBg", "#9993"},//TODO:
+				[2]string{"FooterBg", "#9993"},//TODO:
+				[2]string{"FgDay", "#000"},//TODO:
+				[2]string{"FgNight", "#fafafa"},//TODO:
 		[2]string{"TopNavBg", "#B0BEC5"},
 		[2]string{"TopNavHover", "#E0E0E0"},
 		[2]string{"TopNavFg", "#fff"},
