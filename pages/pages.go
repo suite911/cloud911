@@ -41,7 +41,7 @@ type Page struct {
 
 	Shell *template.Template
 
-	ProofOfWork int
+	ProofOfWork uint32
 }
 
 // Compile compiles a page.
