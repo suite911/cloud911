@@ -113,7 +113,6 @@ input[type=checkbox].night:checked ~ footer {
 /* Inner elements */
 
 div.topnav {
-	background-color: {{.Vars.TopNavBg1}};
 	display: block;
 	font-size: {{.Vars.TopNavHeight}};
 	height: calc({{.Vars.TopNavHeight}} + 20px);
