@@ -1,11 +1,6 @@
 package pages
 
 import (
-	"bytes"
-	"crypto/sha1"
-	"encoding/hex"
-	"math/rand" // yes, for this use case it is secure enough
-	"strconv"
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
@@ -32,7 +27,6 @@ func Compile(defaultShell *template.Template, onFail ...onfail.OnFail) error {
 type CompiledPage struct {
 	Bytes       []byte
 	ContentType string
-	ProofOfWork uint32
 }
 
 // Serve serves the CompiledPage over the network.
@@ -40,13 +34,5 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 	if len(c.ContentType) > 0 {
 		ctx.SetContentType(c.ContentType)
 	}
-	if proofOfWork := c.ProofOfWork; proofOfWork > 0 {
-		actual := rand.Uint32() & proofOfWork
-		challenge := strconv.Itoa(int(actual))
-		b20 := sha1.Sum([]byte(challenge))
-		challenge = hex.EncodeToString(b20[:])
-		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), []byte(challenge), -1))
-	} else {
-		ctx.Write(c.Bytes)
-	}
+	ctx.Write(c.Bytes)
 }
