@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha1"
 	"math/rand" // yes, for this use case it is secure enough
+	"net/url"
 	"strconv"
 	"text/template"
 
@@ -47,7 +48,7 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 			s := sha1.Sum(challenge)
 			challenge = s[:]
 		}
-		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), challenge, -1))
+		ctx.Write(bytes.Replace(c.Bytes, []byte("__CHALLENGE__"), []byte(url.QueryEscape(string(challenge))), -1))
 	} else {
 		ctx.Write(c.Bytes)
 	}
