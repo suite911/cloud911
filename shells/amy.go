@@ -236,6 +236,7 @@ function work(i) {
 	return i;
 }
 async function prove() {
+	alert("prove()");
 	var i = 0;
 	while(work(i) != "__CHALLENGE__") {
 		i++;
@@ -248,14 +249,15 @@ func provedWork() {
 	alert("Success!");
 }
 async function proveWork() {
+	alert("proveWork()");
 	grecaptcha.render("submit", {
 		"callback": provedWork,
 		"sitekey": "{{.ReCaptchaV2}}"
 	});
 }
 //]]> --></script>
-{{end}}
-<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' async defer></script>
+<script src='https://www.google.com/recaptcha/api.js?onload=proveWork&render=explicit' async defer></script>{{else}}
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
 		document.getElementById("{{.Form}}").submit();
