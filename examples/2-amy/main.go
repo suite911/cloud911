@@ -17,12 +17,6 @@ func init() {
 var verbose = false
 
 func main() {
-	topNav := make(map[string]string)
-	topNav["/"] = "Top Page"
-	topNav["/about"] = "About"
-	topNav["/download"] = "Download"
-	topNav["/register"] = "Register"
-
 	pages.Pages[""] = &pages.Page{
 		Title: "My App",
 	}
@@ -90,6 +84,12 @@ func main() {
 		favIcon = "favicon.ico"
 	}
 
+	topNav := make(map[string]string)
+	topNav["/"] = "Top Page"
+	topNav["/about"] = "About"
+	topNav["/download"] = "Download"
+	topNav["/register"] = "Register"
+
 	for _, k := range []string{
 		"",
 		"404",
@@ -123,7 +123,7 @@ func main() {
 				p.Shell = shells.Amy
 			}
 			if len(p.TopNav) < 1 {
-				p.TopNav = shells.topNav
+				p.TopNav = topNav
 			}
 		}
 	}
