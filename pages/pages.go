@@ -22,7 +22,7 @@ type Page struct {
 
 	Author, Copyright, Description, FavIcon, Keywords, Title string
 
-	CSS, GoogleWebFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
+	CSS, GoogleFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
 
 	Body, BodyHead, BodyTail          string
 	Content, ContentHead, ContentTail string
