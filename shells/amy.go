@@ -226,7 +226,7 @@ div.copyright {
 	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
-{{if .Form}}{{if .ReCaptchaV2}}{{if !.ProofOfWork}}
+{{if .Form}}{{if .ReCaptchaV2}}{{if .ProofOfWork}}{{else}}
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
