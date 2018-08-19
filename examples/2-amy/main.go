@@ -22,6 +22,8 @@ func main() {
 	topNav["/about"] = "About"
 	topNav["/register"] = "Register"
 
+	cssHead := string(www["/head.css"])
+
 	var favIcon string
 	if raw, ok := www["/favicon.ico"]; ok {
 		pages.Pages["/favicon.ico"] = &pages.Page{
@@ -30,9 +32,14 @@ func main() {
 		favIcon = "favicon.ico"
 	}
 
+	footer := string(www["/footer.htm"])
+	googleFonts := "Noto+Sans|Source+Code+Pro"
+
 	pages.Pages[""] = &pages.Page{
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Shell: shells.Amy,
 		Title: "My App",
 		TopNav: topNav,
@@ -41,13 +48,18 @@ func main() {
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
 		CSS: string(www["/404.css"]),
+		CSSHead: cssHead,
 		FavIcon: favIcon,
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/about"] = &pages.Page{
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Shell: shells.Amy,
 		Title: "My App - About",
 		TopNav: topNav,
@@ -56,18 +68,34 @@ func main() {
 	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["/cookies.htm"]),
 		CSS: string(www["/cookies.css"]),
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Shell: shells.Amy,
 		Title: "My App - Cookie Policy",
+		TopNav: topNav,
+	}
+
+	pages.Pages["/download"] = &pages.Page{
+		Content: string(www["/download.htm"]),
+		CSS: string(www["/download.css"]),
+		CSSHead: cssHead,
+		FavIcon: favIcon,
+		Footer: footer,
+		GoogleFonts: googleFonts,
+		Shell: shells.Amy,
+		Title: "My App - Download",
 		TopNav: topNav,
 	}
 
 	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["/eula.htm"]),
 		CSS: string(www["/eula.css"]),
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Shell: shells.Amy,
 		Title: "My App - End User License Agreement (EULA)",
 		TopNav: topNav,
@@ -76,8 +104,10 @@ func main() {
 	pages.Pages["/privacy"] = &pages.Page{
 		Content: string(www["/privacy.htm"]),
 		CSS: string(www["/privacy.css"]),
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Shell: shells.Amy,
 		Title: "My App - Privacy Policy",
 		TopNav: topNav,
@@ -85,10 +115,12 @@ func main() {
 
 	pages.Pages["/register"] = &pages.Page{
 		Content: string(www["/register.htm"]),
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
 		Form: "form",
-		FormAction: "/register/submit",
+		FormAction: "/download",
+		GoogleFonts: googleFonts,
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
 		Shell: shells.Amy,
 		Title: "My App - Register",
@@ -103,8 +135,10 @@ func main() {
 	pages.Pages["/terms"] = &pages.Page{
 		Content: string(www["/terms.htm"]),
 		CSS: string(www["/terms.css"]),
+		CSSHead: cssHead,
 		FavIcon: favIcon,
-		Footer: string(www["/footer.htm"]),
+		Footer: footer,
+		GoogleFonts: googleFonts,
 		Shell: shells.Amy,
 		Title: "My App - Terms of Use",
 		TopNav: topNav,
