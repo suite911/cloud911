@@ -226,7 +226,35 @@ div.copyright {
 	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
-{{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+{{if .Form}}{{if .ReCaptchaV2}}{{if .ProveWork}}<script type="text/javascript"><!-- //<![CDATA[
+{{.DefaultSHA1Implementation}}
+function work(i) {
+	i = i + "";
+	for(j = 0; j < {{.ProofOfWork}}; j++) {
+		i = sha1(i);
+	}
+	return i;
+}
+async function prove() {
+	var i = 0;
+	while(work(i) != "__CHALLENGE__") {
+		i++;
+	}
+	document.getElementById("pow").value = i;
+	document.getElementById("submit").innerHTML = "Submit";
+	// document.getElementById("submit").disabled = false;
+}
+func provedWork() {
+	alert("Success!");
+}
+async function proveWork() {
+	grecaptcha.render("submit", {
+		"callback": provedWork,
+		"sitekey": "{{.ReCaptchaV2}}"
+	});
+}
+//]]> --></script>
+{{else}}<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
 		document.getElementById("{{.Form}}").submit();
@@ -262,9 +290,9 @@ div.copyright {
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultSHA1Implementation}}
+/*{{.DefaultSHA1Implementation}}*/
 {{.DefaultCookieStuff}}
-{{if .ProofOfWork}}function work(i) {
+/*{{if .ProofOfWork}}function work(i) {
 	i = i + "";
 	for(j = 0; j < {{.ProofOfWork}}; j++) {
 		i = sha1(i);
@@ -280,9 +308,9 @@ async function prove() {
 	document.getElementById("submit").innerHTML = "Submit";
 	// document.getElementById("submit").disabled = false;
 }
-{{end}}{{if .JavaScript}}{{.JavaScript}}
+{{end}}*/{{if .JavaScript}}{{.JavaScript}}
 {{end}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
-	prove();
+	// prove();
 {{end}}
 }
 function onPageLoaded(){ {{.OnPageLoaded}}
