@@ -317,12 +317,12 @@ div.copyright {
 	<header class="header">
 		<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 		</div>
-	</header>
+	</header>{{if .ContentTitle}}
 	<div class="title">
 		<h1>{{.ContentTitle}}</h1>{{if .ContentSubTitle}}
 		<p>{{.ContentSubTitle}}</p>{{end}}
 		<hr />
-	</div>
+	</div>{{end}}
 	<div class="content"{{if .NoScript}} style="display:none"{{end}}>{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
