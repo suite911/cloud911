@@ -26,8 +26,18 @@ func init() {
 {{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
 {{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
 {{if .CSSHead}}{{.CSSHead}}
-{{end}}{{if .CSS}}{{.CSS}}
-{{end}}{{if .CSSTail}}{{.CSSTail}}
+
+{{end}}body, .sans {
+	font-family: {{if .Sans}}"{{.Sans}}", {{end}}sans-serif;
+}
+
+code, .mono {
+	font-family: {{if .Mono}}"{{.Mono}}", {{end}}monospace;
+}
+{{if .CSS}}
+{{.CSS}}
+{{end}}{{if .CSSTail}}
+{{.CSSTail}}
 {{end}}/*]]>*/ --></style>{{end}}{{if .Head}}
 {{.Head}}{{end}}
 </head>
