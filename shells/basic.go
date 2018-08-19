@@ -52,9 +52,12 @@ code, .mono {
 <div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
 </div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultCookieStuff}}{{if .JavaScriptHead}}{{.JavaScriptHead}}
-{{end}}{{if .JavaScript}}{{.JavaScript}}
-{{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}
+{{.DefaultCookieStuff}}{{if .JavaScriptHead}}
+{{.JavaScriptHead}}
+{{end}}{{if .JavaScript}}
+{{.JavaScript}}
+{{end}}
+{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}
 }
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){ {{.OnPageLoaded}}
 	cookieAgree();
