@@ -65,7 +65,7 @@ a:hover {
 
 header {
 	background-color: {{.Vars.Light_Header_Bg}};
-	color: {{.Vors.Light_Header_Fg}};
+	color: {{.Vars.Light_Header_Fg}};
 	display: block;
 	margin: 0;
 	padding: 0;
