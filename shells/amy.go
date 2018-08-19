@@ -323,7 +323,7 @@ div.copyright {
 		<p>{{.ContentSubTitle}}</p>{{end}}
 		<hr />
 	</div>{{end}}
-	<div class="content"{{if .NoScript}} style="display:none"{{end}}>{{.ContentHead}}{{if .Form}}
+	<div id="content" class="content"{{if .NoScript}} style="display:none"{{end}}>{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
 		<input type="submit" id="bsubmit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
@@ -345,7 +345,7 @@ div.copyright {
 {{end}}
 function onDOMReady(){
 {{if .NoScript}}
-	document.getElementById("content").display = "block";
+	document.getElementById("content").style.display = "block";
 {{end}}{{.OnDOMReady}}
 }
 function onPageLoaded(){
