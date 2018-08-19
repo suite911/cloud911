@@ -113,8 +113,8 @@ function cookieSet(name, value, hours) {
 		[2]string{"Dark_TopNav_Fg_Hover", "#fff"},//TODO:
 		[2]string{"Dark_Footer_Bg", "#616161"},
 		[2]string{"Dark_Footer_Fg", "#fff"},//TODO:
-		[2]string{"Dark_Night_Border", "#0000"},
-		[2]string{"Dark_Night_Border_Hover", "#0000"},
+		[2]string{"Dark_Night_Border", "#616161"},
+		[2]string{"Dark_Night_Border_Hover", "#3D5AFE"},
 		[2]string{"Dark_Night_Bg", "#616161"},
 		[2]string{"Dark_Night_Bg_Hover", "#3D5AFE"},
 		[2]string{"Dark_Night_Fg", "#F4FF81"},
@@ -130,8 +130,8 @@ function cookieSet(name, value, hours) {
 		[2]string{"Light_TopNav_Fg_Hover", "#fff"},//TODO:
 		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
 		[2]string{"Light_Footer_Fg", "#000"},
-		[2]string{"Light_Night_Border", "#000"},
-		[2]string{"Light_Night_Border_Hover", "#000"},
+		[2]string{"Light_Night_Border", "#3F51B5"},
+		[2]string{"Light_Night_Border_Hover", "#3D5AFE"},
 		[2]string{"Light_Night_Bg", "#3F51B5"},
 		[2]string{"Light_Night_Bg_Hover", "#3D5AFE"},
 		[2]string{"Light_Night_Fg", "#fff"},
