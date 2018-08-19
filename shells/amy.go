@@ -295,8 +295,7 @@ var proveWork = function() {
 <script type="text/javascript"><!-- //<![CDATA[
 /*{{.DefaultSHA1Implementation}}*/
 {{.DefaultCookieStuff}}
-{{if .ProofOfWork}}<script src='https://www.google.com/recaptcha/api.js?onload=proveWork&render=explicit' async defer></script>
-/*function work(i) {
+{{if .ProofOfWork}}/*function work(i) {
 	i = i + "";
 	for(j = 0; j < {{.ProofOfWork}}; j++) {
 		i = sha1(i);
@@ -326,7 +325,8 @@ else window.onload = onDOMReady;
 if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
-//]]> --></script>
+//]]> --></script>{{if .ProofOfWork}}
+<script src='https://www.google.com/recaptcha/api.js?onload=proveWork&render=explicit' async defer></script>{{end}}
 </body>
 </html>
 `
