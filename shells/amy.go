@@ -193,6 +193,12 @@ footer.footer {
 	min-height: {{.Vars.FooterHeight}};
 	text-align: center;
 }
+
+span.copyright {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
 {{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
@@ -221,6 +227,7 @@ footer.footer {
 	</div>
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
+	<span class="copyright">{{.Copyright}}</span>
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
