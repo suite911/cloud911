@@ -266,7 +266,7 @@ div.copyright {
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
 		{{end}}{{if .ReCaptchaV2}}<input type="submit" id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			value="{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}"
-			{{if .ProofOfWork}}data-callback='onSubmit' disabled{{else}}data-callback='onSubmit'{{end}} />
+			{{if .ProofOfWork}}disabled{{else}}data-callback='onSubmit'{{end}} />
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
 	</div>
 </div></div>
