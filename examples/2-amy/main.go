@@ -61,6 +61,10 @@ func main() {
 		CSS: string(www["/register.css"]),
 		Form: "form",
 		FormAction: "/download",
+		NoScript: "Hello, fellow NoScript user!  This is awkward but could you pretty please whitelist " +
+			"my registration page?  You see, the Captcha gods are picky and like to use JavaScript " +
+			"to do ...well whatever Captcha gods do with JavaScript.  So anyway it would just make " +
+			"things a whole lot easier if you could just whitelist my registration page, kthx.",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
 		Title: "My App - Register",
 	}
