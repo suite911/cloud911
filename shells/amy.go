@@ -200,10 +200,10 @@ footer.footer {
 }
 
 div.copyright {
-	display: block;
 	font-size: 16pt;
 	margin: -16pt 0 0 0;
 	padding: 0;
+	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
 {{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
@@ -233,7 +233,9 @@ div.copyright {
 	</div>
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
+	<div></div>
 	<div class="copyright">{{.Copyright}}</div>
+	<div></div>
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
