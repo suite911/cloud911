@@ -30,6 +30,7 @@ type Page struct {
 	Header, HeaderHead, HeaderTail    string
 
 	Form, FormAction, ReCaptchaV2 string
+	OnWillSubmit, OnSubmitted     string
 
 	TopNavHead, TopNavTail string
 
