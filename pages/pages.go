@@ -119,13 +119,7 @@ function cookieSet(name, value, hours) {
 		[2]string{"FooterHeight", "16pt"},
 		[2]string{"LinkFg", "#03A9F4"},
 		[2]string{"LinkHover", "#40C4FF"},
-				[2]string{"BgDay", "#fff"},
-				[2]string{"BgNight", "#2c2f33"},//TODO:
 				[2]string{"TopNavBg1", "#0000"},//TODO:
-				[2]string{"HeaderBg", "#9993"},//TODO:
-				[2]string{"FooterBg", "#9993"},//TODO:
-				[2]string{"FgDay", "#000"},//TODO:
-				[2]string{"FgNight", "#fafafa"},//TODO:
 		[2]string{"TopNavBg", "#B0BEC5"},
 		[2]string{"TopNavHover", "#E0E0E0"},
 		[2]string{"TopNavFg", "#fff"},
