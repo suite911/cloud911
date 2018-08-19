@@ -20,7 +20,7 @@ type Page struct {
 	
 	ContentType string
 
-	Author, Copyright, Description, FavIcon, Keywords, Title string
+	Author, Copyright, Description, FavIcon, Keywords, PageTitle string
 
 	Head, GoogleFonts, Mono, Sans              string
 	CSS, CSSHead, CSSTail                      string
