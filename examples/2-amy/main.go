@@ -20,18 +20,8 @@ func main() {
 	topNav := make(map[string]string)
 	topNav["/"] = "Top Page"
 	topNav["/about"] = "About"
+	topNav["/download"] = "Download"
 	topNav["/register"] = "Register"
-
-	var favIcon string
-	if raw, ok := www["/favicon.ico"]; ok {
-		pages.Pages["/favicon.ico"] = &pages.Page{
-			Raw: raw,
-		}
-		favIcon = "favicon.ico"
-	}
-
-	footer := string(www["/footer.htm"])
-	googleFonts := "Noto+Sans|Source+Code+Pro"
 
 	pages.Pages[""] = &pages.Page{
 		Title: "My App",
@@ -91,6 +81,14 @@ func main() {
 		Title: "My App - Terms of Use",
 	}
 
+	var favIcon string
+	if raw, ok := www["/favicon.ico"]; ok {
+		pages.Pages["/favicon.ico"] = &pages.Page{
+			Raw: raw,
+		}
+		favIcon = "favicon.ico"
+	}
+
 	for _, k := range []string{
 		"",
 		"404",
@@ -103,14 +101,16 @@ func main() {
 		"terms",
 	} {
 		if p, ok := pages.Pages[k]; ok {
-			if len(p.FavIcon) < 1 {
-				p.FavIcon = favIcon
+			if len(favIcon) > 0 {
+				if len(p.FavIcon) < 1 {
+					p.FavIcon = favIcon
+				}
 			}
 			if len(p.Footer) < 1 {
-				p.Footer = footer
+				p.Footer = string(www["/footer.htm"])
 			}
 			if len(p.GoogleFonts) < 1 {
-				p.GoogleFonts = googleFonts
+				p.GoogleFonts = "Noto+Sans|Source+Code+Pro"
 			}
 			if len(p.Mono) < 1 {
 				p.Mono = "Source Code Pro"
