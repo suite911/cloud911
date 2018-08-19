@@ -34,6 +34,8 @@ type Page struct {
 	Form, FormAction, ReCaptchaV2 string
 	OnWillSubmit, OnSubmitted     string
 
+	NoScript string
+
 	TopNavHead, TopNavTail string
 
 	TopNav map[string]string
