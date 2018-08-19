@@ -70,6 +70,11 @@ input[type=checkbox].night:checked ~ div {
 	color: {{.Vars.FgNight}};
 }
 
+input[type=checkbox].night:checked ~ footer {
+	background-color: {{.Vars.BgNight}};
+	color: {{.Vars.FgNight}};
+}
+
 div.topnav {
 	background-color: {{.Vars.TopNavBg1}};
 	display: block;
@@ -194,10 +199,11 @@ footer.footer {
 	text-align: center;
 }
 
-span.copyright {
-	position: absolute;
-	bottom: 0;
-	right: 0;
+div.copyright {
+	display: block;
+	font-size: 16pt;
+	margin: -16pt 0 0 0;
+	padding: 0;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
 {{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
@@ -227,7 +233,7 @@ span.copyright {
 	</div>
 </div></div>
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
-	<span class="copyright">{{.Copyright}}</span>
+	<div class="copyright">{{.Copyright}}</div>
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
