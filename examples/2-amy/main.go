@@ -34,103 +34,50 @@ func main() {
 	googleFonts := "Noto+Sans|Source+Code+Pro"
 
 	pages.Pages[""] = &pages.Page{
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App",
-		TopNav: topNav,
 	}
 
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
 		CSS: string(www["/404.css"]),
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
+		Shell: shells.Basic,
 		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/about"] = &pages.Page{
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - About",
-		TopNav: topNav,
 	}
 
 	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["/cookies.htm"]),
 		CSS: string(www["/cookies.css"]),
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - Cookie Policy",
-		TopNav: topNav,
 	}
 
 	pages.Pages["/download"] = &pages.Page{
 		Content: string(www["/download.htm"]),
 		CSS: string(www["/download.css"]),
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - Download",
-		TopNav: topNav,
 	}
 
 	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["/eula.htm"]),
 		CSS: string(www["/eula.css"]),
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - End User License Agreement (EULA)",
-		TopNav: topNav,
 	}
 
 	pages.Pages["/privacy"] = &pages.Page{
 		Content: string(www["/privacy.htm"]),
 		CSS: string(www["/privacy.css"]),
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - Privacy Policy",
-		TopNav: topNav,
 	}
 
 	pages.Pages["/register"] = &pages.Page{
 		Content: string(www["/register.htm"]),
-		FavIcon: favIcon,
-		Footer: footer,
 		Form: "form",
 		FormAction: "/download",
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - Register",
-		TopNav: topNav,
 	}
 
 	pages.Pages["/robots.txt"] = &pages.Page{
@@ -141,14 +88,43 @@ func main() {
 	pages.Pages["/terms"] = &pages.Page{
 		Content: string(www["/terms.htm"]),
 		CSS: string(www["/terms.css"]),
-		FavIcon: favIcon,
-		Footer: footer,
-		GoogleFonts: googleFonts,
-		Mono: "Source Code Pro",
-		Sans: "Noto Sans",
-		Shell: shells.Amy,
 		Title: "My App - Terms of Use",
-		TopNav: topNav,
+	}
+
+	for _, k := range []string{
+		"",
+		"404",
+		"about",
+		"cookies",
+		"download",
+		"eula",
+		"privacy",
+		"register",
+		"terms",
+	} {
+		if p, ok := pages.Pages[k]; ok {
+			if len(p.FavIcon) < 1 {
+				p.FavIcon = favIcon
+			}
+			if len(p.Footer) < 1 {
+				p.Footer = footer
+			}
+			if len(p.GoogleFonts) < 1 {
+				p.GoogleFonts = googleFonts
+			}
+			if len(p.Mono) < 1 {
+				p.Mono = "Source Code Pro"
+			}
+			if len(p.Sans) < 1 {
+				p.Sans = "Noto Sans"
+			}
+			if len(p.Shell) < 1 {
+				p.Shell = shells.Amy
+			}
+			if len(p.TopNav) < 1 {
+				p.TopNav = shells.topNav
+			}
+		}
 	}
 
 	if err := cloud911.Main(); err != nil {
