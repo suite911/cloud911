@@ -110,9 +110,11 @@ func main() {
 			if len(p.Footer) < 1 {
 				p.Footer = string(www["/footer.htm"])
 			}
+			/*
 			if len(p.GoogleFonts) < 1 {
 				p.GoogleFonts = "Noto+Sans|Source+Code+Pro"
 			}
+			*/
 			if len(p.Mono) < 1 {
 				p.Mono = "Source Code Pro"
 			}
