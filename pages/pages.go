@@ -160,6 +160,8 @@ function cookieSet(name, value, hours) {
 		[2]string{"ButtonSubmitBg", "#03A9F4"},//TODO:
 		[2]string{"ButtonSubmitHover", "#40C4FF"},//TODO:
 		[2]string{"ButtonSubmitFg", "#fff"},//TODO:
+		[2]string{"ButtonDisabledBg", "#777"},//TODO:
+		[2]string{"ButtonDisabledFg", "#eee"},//TODO:
 	} {
 		if _, ok := page.Vars[pair[0]]; !ok {
 			page.Vars[pair[0]] = pair[1]
