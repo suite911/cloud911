@@ -171,9 +171,9 @@ label.night {
 	border: 2px solid #999;
 	border-radius: 4px;
 	display: inline;
-	font-size: calc({{.Vars.TopNavHeight}} - 20px);
-	height: calc({{.Vars.TopNavHeight}} - 20px);
-	line-height: calc({{.Vars.TopNavHeight}} - 20px);
+	font-size: calc({{.Vars.TopNavHeight}} - 10px);
+	height: calc({{.Vars.TopNavHeight}} - 10px);
+	line-height: calc({{.Vars.TopNavHeight}} - 10px);
 	margin: 0;
 	padding: 8px;
 }
@@ -235,9 +235,10 @@ input[type=submit]:disabled {
 }
 
 div.copyright {
-	font-size: 16pt;
-	height: 16pt;
-	margin: -16pt 0 0 0;
+	font-size: {{.Vars.FooterHeight}};
+	height: {{.Vars.FooterHeight}};
+	line-height: {{.Vars.FooterHeight}};
+	margin: -{{.Vars.FooterHeight}} 0 0 0;
 	padding: 0 0 0 2px;
 	text-align: left;
 }
