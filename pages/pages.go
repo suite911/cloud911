@@ -111,11 +111,11 @@ function cookieSet(name, value, hours) {
 		[2]string{"Dark_TopNav_Bg_Hover", "#ff1744"},
 		[2]string{"Dark_TopNav_Fg", "#fff"},//TODO:
 		[2]string{"Dark_TopNav_Fg_Hover", "#fff"},//TODO:
-		[2]string{"Dark_Footer_Bg", "#444"},//TODO:
+		[2]string{"Dark_Footer_Bg", "#616161"},
 		[2]string{"Dark_Footer_Fg", "#fff"},//TODO:
-		[2]string{"Dark_Night_Border", "#000"},
-		[2]string{"Dark_Night_Border_Hover", "#000"},
-		[2]string{"Dark_Night_Bg", "#333"},//TODO:
+		[2]string{"Dark_Night_Border", "#0000"},
+		[2]string{"Dark_Night_Border_Hover", "#0000"},
+		[2]string{"Dark_Night_Bg", "#616161"},
 		[2]string{"Dark_Night_Bg_Hover", "#3D5AFE"},
 		[2]string{"Dark_Night_Fg", "#F4FF81"},
 		[2]string{"Dark_Night_Fg_Hover", "#fff"},
