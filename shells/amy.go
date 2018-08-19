@@ -85,8 +85,9 @@ footer {
 	background-color: {{.Vars.Light_Footer_Bg}};
 	color: {{.Vars.Light_Footer_Fg}};
 	display: block;
+	font-size: {{.Vars.FooterHeight}};
 	height: {{.Vars.FooterHeight}};
-	line-height: 24.1667px;
+	line-height: {{.Vars.FooterHeight}};
 	margin: -{{.Vars.FooterHeight}} 0 0 0;
 	overflow: hidden;
 	text-align: center;
@@ -114,8 +115,9 @@ input[type=checkbox].night:checked ~ footer {
 div.topnav {
 	background-color: {{.Vars.TopNavBg1}};
 	display: block;
-	height: calc(2px + 10px + 15pt + 10px + 2px);
-	line-height: 24.1667px;
+	font-size: {{.Vars.TopNavHeight}};
+	height: {{.Vars.TopNavHeight}};/*calc(2px + 10px + 15pt + 10px + 2px);*/
+	line-height: {{.Vars.TopNavHeight}};/*24.1667px;*/
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
@@ -169,7 +171,9 @@ label.night {
 	border: 2px solid #999;
 	border-radius: 4px;
 	display: inline;
-	font-size: 15pt;
+	font-size: calc({{.Vars.TopNavHeight}} - 20px);
+	height: calc({{.Vars.TopNavHeight}} - 20px);
+	line-height: calc({{.Vars.TopNavHeight}} - 20px);
 	margin: 0;
 	padding: 8px;
 }
