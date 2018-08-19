@@ -32,7 +32,7 @@ func Compile(defaultShell *template.Template, onFail ...onfail.OnFail) error {
 type CompiledPage struct {
 	Bytes       []byte
 	ContentType string
-	ProofOfWork int
+	ProofOfWork uint32
 }
 
 // Serve serves the CompiledPage over the network.
@@ -41,7 +41,7 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 		ctx.SetContentType(c.ContentType)
 	}
 	if proofOfWork := c.ProofOfWork; proofOfWork > 0 {
-		actual := rand.Uint32() & 0xffff
+		actual := rand.Uint32() % proofOfWork
 		challenge := strconv.Itoa(int(actual))
 		b20 := sha1.Sum([]byte(challenge))
 		challenge = hex.EncodeToString(b20[:])
