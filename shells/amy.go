@@ -254,7 +254,8 @@ async function proveWork() {
 	});
 }
 //]]> --></script>
-{{else}}<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' async defer></script>{{end}}
+{{end}}
+<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' async defer></script>
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
 		document.getElementById("{{.Form}}").submit();
