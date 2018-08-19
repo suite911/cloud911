@@ -89,6 +89,7 @@ func main() {
 		Footer: string(www["/footer.htm"]),
 		Form: "form",
 		FormAction: "/register/submit",
+		ProofOfWork: 256,
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
 		Shell: shells.Amy,
 		Title: "My App - Register",
