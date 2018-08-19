@@ -114,6 +114,7 @@ div.topnav {
 	background-color: {{.Vars.TopNavBg1}};
 	display: block;
 	height: calc(2px + 10px + 15pt + 10px + 2px);
+	line-height: 24.1667px;
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
@@ -168,7 +169,6 @@ label.night {
 	border-radius: 4px;
 	display: inline;
 	font-size: 15pt;
-	line-height: 24.1667px;
 	margin: 0;
 	padding: 8px;
 }
