@@ -1,6 +1,7 @@
 package pages
 
 import (
+	"bytes"
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
@@ -25,8 +26,9 @@ func Compile(defaultShell *template.Template, onFail ...onfail.OnFail) error {
 
 // CompiledPage is a type representing a compiled page.
 type CompiledPage struct {
-	ContentType string
 	Bytes       []byte
+	ContentType string
+	ProofOfWork int
 }
 
 // Serve serves the CompiledPage over the network.
@@ -34,5 +36,9 @@ func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
 	if len(c.ContentType) > 0 {
 		ctx.SetContentType(c.ContentType)
 	}
-	ctx.Write(c.Bytes)
+	if c.ProofOfWork == 0 {
+		ctx.Write(c.Bytes)
+	} else {
+		ctx.Write(bytes.Replace(c.Bytes, []byte{"__CHALLENGE__"}, []byte{"TODO"}, -1))
+	}
 }
