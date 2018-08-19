@@ -273,7 +273,7 @@ div.copyright {
 	return i;
 }
 {{end}}{{if .JavaScript}}{{.JavaScript}}
-{{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
+{{end}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
 	var i = 0;
 	/*
 	while(work(i) != "__CHALLENGE__") {
@@ -283,12 +283,13 @@ div.copyright {
 	document.getElementById("debug").value = work(i);
 	document.getElementById("pow").value = i;
 	document.getElementById("submit").innerHTML = "Submit";
+	document.getElementById("submit").disabled = false;
 {{end}}
 }
-{{end}}{{if .OnPageLoaded}}function onPageLoaded(){ {{.OnPageLoaded}}
+function onPageLoaded(){ {{.OnPageLoaded}}
 	cookieAgree();
 }
-{{end}}if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
+if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
 else if (document.attachEvent) document.attachEvent("onreadystatechange", onDOMReady);
 else window.onload = onDOMReady;
 if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
