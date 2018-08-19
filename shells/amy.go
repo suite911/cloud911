@@ -52,8 +52,8 @@ a:hover {
 /* Day Mode */
 
 .page-outer {
-	background-color: {{.Vars.BgDay}};
-	color: {{.Vars.FgDay}};
+	background-color: {{.Vars.Light-Bg}};
+	color: {{.Vars.Light-Fg}};
 	min-height: 100%;
 	padding: 0;
 }
@@ -63,24 +63,41 @@ a:hover {
 	padding: 0 0 {{.Vars.FooterHeight}} 0;
 }
 
-/* Night Mode */
-
-input[type=checkbox].night:checked ~ div {
-	background-color: {{.Vars.BgNight}};
-	color: {{.Vars.FgNight}};
+header {
+	background-color: {{.Vars.Light-Header-Bg}};
+	color: {{.Vors.Light-Header-Fg}};
+	display: block;
+	margin: 0;
+	padding: 0;
 }
 
-footer.footer {
-	background-color: {{.Vars.FooterBg}};
+footer {
+	background-color: {{.Vars.Light-Footer-Bg}};
+	color: {{.Vars.Light-Footer-Fg}};
+	display: block;
 	margin: -{{.Vars.FooterHeight}} 0 0 0;
 	min-height: {{.Vars.FooterHeight}};
 	text-align: center;
 }
 
-input[type=checkbox].night:checked ~ footer {
-	background-color: {{.Vars.BgNight}};
-	color: {{.Vars.FgNight}};
+/* Night Mode */
+
+input[type=checkbox].night:checked ~ header {
+	background-color: {{.Vars.Dark-Header-Bg}};
+	color: {{.Vars.Dark-Header-Fg}};
 }
+
+input[type=checkbox].night:checked ~ div {
+	background-color: {{.Vars.Dark-Bg}};
+	color: {{.Vars.Dark-Fg}};
+}
+
+input[type=checkbox].night:checked ~ footer {
+	background-color: {{.Vars.Dark-Footer-Bg}};
+	color: {{.Vars.Dark-Footer-Fg}};
+}
+
+/* Inner elements */
 
 div.topnav {
 	background-color: {{.Vars.TopNavBg1}};
@@ -215,7 +232,7 @@ div.copyright {
 {{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="night" id="night" checked />
-<div class="page-outer"><div class="page-inner">
+<header class="topnav">
 	<div class="topnav">{{.TopNavHead}}
 		<div class="topnavleft"{{range $k, $v := .TopNav}}
 			><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
@@ -223,8 +240,12 @@ div.copyright {
 		<div class="topnavright"><label for="night" class="night">Night Mode &#x263d;</label></div>
 		<div class="topnavhack"></div>{{.TopNavTail}}
 	</div>
+</header>
+<header class="header">
 	<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 	</div>
+</header>
+<div class="page-outer"><div class="page-inner">
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<button class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
