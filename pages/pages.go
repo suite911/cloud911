@@ -116,9 +116,11 @@ function cookieSet(name, value, hours) {
 		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
 		[2]string{"Light_Footer_Fg", "#000"},
 
+		[2]string{"TopNavHeight", "16pt"},
+		[2]string{"FooterHeight", "14pt"},
+
 		[2]string{"PaddingWidgetHorz", "16px"},
 		[2]string{"PaddingWidgetVert", "12px"},
-		[2]string{"FooterHeight", "16pt"},
 		[2]string{"LinkFg", "#03A9F4"},
 		[2]string{"LinkHover", "#40C4FF"},
 				[2]string{"TopNavBg1", "#0000"},//TODO:
