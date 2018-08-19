@@ -236,7 +236,6 @@ function work(i) {
 	return i;
 }
 async function prove() {
-	alert("prove()");
 	var i = 0;
 	while(work(i) != "__CHALLENGE__") {
 		i++;
@@ -250,7 +249,6 @@ var provedWork = function(token) {
 };
 //async function proveWork() {
 var proveWork = function() {
-	alert("proveWork()");
 	prove();
 	grecaptcha.render("submit", {
 		"sitekey": "{{.ReCaptchaV2}}",
