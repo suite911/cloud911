@@ -52,7 +52,8 @@ code, .mono {
 <div class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
 </div>{{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultCookieStuff}}{{if .JavaScript}}{{.JavaScript}}
+{{.DefaultCookieStuff}}{{if .JavaScriptHead}}{{.JavaScriptHead}}
+{{end}}{{if .JavaScript}}{{.JavaScript}}
 {{end}}{{if .OnDOMReady}}function onDOMReady(){ {{.OnDOMReady}}
 }
 {{end}}{{if .OnPageLoaded}}function onPageLoaded(){ {{.OnPageLoaded}}
@@ -64,6 +65,7 @@ else window.onload = onDOMReady;
 {{end}}{{if .OnPageLoaded}}if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
+{{end}}{{if .JavaScriptTail}}{{.JavaScriptTail}}
 {{end}}//]]> --></script>
 </body>
 </html>
