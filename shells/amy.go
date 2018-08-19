@@ -168,6 +168,7 @@ label.night {
 	border-radius: 4px;
 	display: inline;
 	font-size: 15pt;
+	line-height: 24.1667px;
 	margin: 0;
 	padding: 8px;
 }
