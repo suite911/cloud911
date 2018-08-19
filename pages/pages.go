@@ -107,12 +107,20 @@ function cookieSet(name, value, hours) {
 		[2]string{"Dark_Fg", "#fafafa"},//TODO:
 		[2]string{"Dark_Header_Bg", "#444"},//TODO:
 		[2]string{"Dark_Header_Fg", "#fff"},//TODO:
+		[2]string{"Dark_TopNav_Bg", "#B0BEC5"},//TODO:
+		[2]string{"Dark_TopNav_Bg_Hover", "#E0E0E0"},//TODO:
+		[2]string{"Dark_TopNav_Fg", "#fff"},//TODO:
+		[2]string{"Dark_TopNav_Fg_Hover", "#fff"},//TODO:
 		[2]string{"Dark_Footer_Bg", "#444"},//TODO:
 		[2]string{"Dark_Footer_Fg", "#fff"},//TODO:
 		[2]string{"Light_Bg", "#fff"},
 		[2]string{"Light_Fg", "#000"},
-		[2]string{"Light_Header_Bg", "#ccc"},//TODO:
+		[2]string{"Light_Header_Bg", "4FC3F7"},//TODO:
 		[2]string{"Light_Header_Fg", "#000"},
+		[2]string{"Light_TopNav_Bg", "#B0BEC5"},//TODO:
+		[2]string{"Light_TopNav_Bg_Hover", "#E0E0E0"},//TODO:
+		[2]string{"Light_TopNav_Fg", "#fff"},//TODO:
+		[2]string{"Light_TopNav_Fg_Hover", "#fff"},//TODO:
 		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
 		[2]string{"Light_Footer_Fg", "#000"},
 
@@ -124,9 +132,6 @@ function cookieSet(name, value, hours) {
 		[2]string{"LinkFg", "#03A9F4"},
 		[2]string{"LinkHover", "#40C4FF"},
 				[2]string{"TopNavBg1", "#0000"},//TODO:
-		[2]string{"TopNavBg", "#B0BEC5"},
-		[2]string{"TopNavHover", "#E0E0E0"},
-		[2]string{"TopNavFg", "#fff"},
 		[2]string{"EntryBorder", "#000"},//TODO:
 		[2]string{"EntryBg", "#FAFAFA"},//TODO:
 		[2]string{"EntryFg", "#000"},//TODO:
