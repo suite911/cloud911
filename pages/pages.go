@@ -22,13 +22,14 @@ type Page struct {
 
 	Author, Copyright, Description, FavIcon, Keywords, Title string
 
-	GoogleFonts, Head, JavaScript, OnDOMReady, OnPageLoaded string
-
-	CSS, CSSHead, CSSTail             string
-	Body, BodyHead, BodyTail          string
-	Content, ContentHead, ContentTail string
-	Footer, FooterHead, FooterTail    string
-	Header, HeaderHead, HeaderTail    string
+	Head, GoogleFonts, Mono, Sans              string
+	CSS, CSSHead, CSSTail                      string
+	Body, BodyHead, BodyTail                   string
+	Header, HeaderHead, HeaderTail             string
+	Content, ContentHead, ContentTail          string
+	Footer, FooterHead, FooterTail             string
+	JavaScript, JavaScriptHead, JavaScriptTail string
+	OnDOMReady, OnPageLoaded                   string
 
 	Form, FormAction, ReCaptchaV2 string
 	OnWillSubmit, OnSubmitted     string
