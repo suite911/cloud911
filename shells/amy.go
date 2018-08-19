@@ -173,7 +173,7 @@ span.topnav {
 	color: {{.Vars.Light_TopNav_Fg}};
 	display: inline-block;
 	height: 100%;
-	margin: 0 1px 0 0;
+	margin: 0 0px 0 0;
 	padding: 10px 4px;
 }
 
