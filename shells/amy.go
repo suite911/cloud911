@@ -283,7 +283,8 @@ div.copyright {
 {{.JavaScriptHead}}
 {{end}}{{if .JavaScript}}
 {{.JavaScript}}
-{{end}}function onDOMReady(){
+{{end}}
+function onDOMReady(){
 {{.OnDOMReady}}
 }
 function onPageLoaded(){
