@@ -252,8 +252,6 @@ div.copyright {
 	<div class="content">{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
-		<pre><code>__CHALLENGE__</code></pre>
-		<input type="text" id="debug" name="debug" value="<no value>" />
 		{{end}}{{if .ReCaptchaV2}}<button id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			data-callback='onSubmit'{{if .ProofOfWork}} disabled{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
@@ -276,13 +274,10 @@ div.copyright {
 {{end}}{{if .JavaScript}}{{.JavaScript}}
 {{end}}function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
 	var i = 0;
-	/*
 	while(work(i) != "__CHALLENGE__") {
 		i++;
 	}
-	*/
-	document.getElementById("debug").value = work(i);
-	document.getElementById("pow").value = sha1('hi');//i;
+	document.getElementById("pow").value = i;
 	document.getElementById("submit").innerHTML = "Submit";
 	document.getElementById("submit").disabled = false;
 {{end}}
