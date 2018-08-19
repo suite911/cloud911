@@ -34,18 +34,20 @@ func main() {
 
 	pages.Pages[""] = &pages.Page{
 		Body: string(www["/index.htm"]),
+		ContentTitle: "My App",
 		CSS: string(www["/index.css"]),
 		FavIcon: favIcon,
+		PageTitle: "My App",
 		Shell: shells.Basic,
-		Title: "My App",
 	}
 
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
+		ContentTitle: "Not Found",
 		CSS: string(www["/404.css"]),
 		FavIcon: favIcon,
+		PageTitle: "My App - Not Found",
 		Shell: shells.Basic,
-		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/robots.txt"] = &pages.Page{
