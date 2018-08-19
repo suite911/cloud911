@@ -170,10 +170,6 @@ input[type=checkbox].night {
 	opacity: 0;
 }
 
-.header {
-	background-color: {{.Vars.HeaderBg}};
-}
-
 div.form {
 	padding: 16px;
 }
