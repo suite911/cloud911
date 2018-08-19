@@ -70,6 +70,13 @@ input[type=checkbox].night:checked ~ div {
 	color: {{.Vars.FgNight}};
 }
 
+footer.footer {
+	background-color: {{.Vars.FooterBg}};
+	margin: -{{.Vars.FooterHeight}} 0 0 0;
+	min-height: {{.Vars.FooterHeight}};
+	text-align: center;
+}
+
 input[type=checkbox].night:checked ~ footer {
 	background-color: {{.Vars.BgNight}};
 	color: {{.Vars.FgNight}};
@@ -190,13 +197,6 @@ button.submit, button.g-recaptcha {
 
 button.submit:hover, button.g-recaptcha:hover {
 	background-color: {{.Vars.ButtonSubmitHover}};
-}
-
-footer.footer {
-	background-color: {{.Vars.FooterBg}};
-	margin: -{{.Vars.FooterHeight}} 0 0 0;
-	min-height: {{.Vars.FooterHeight}};
-	text-align: center;
 }
 
 div.copyright {
