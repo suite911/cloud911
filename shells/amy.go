@@ -232,6 +232,11 @@ div.copyright {
 	function onSubmit(token) {
 {{.OnWillSubmit}}
 		document.getElementById("{{.Form}}").submit();
+		window.location.replace(
+			window.location.protocol + "//" +
+			window.location.hostname + window.location.port +
+			window.location.pathname + "/submit"
+		)
 {{.OnSubmitted}}
 	}
 //]]> --></script>
@@ -253,7 +258,7 @@ div.copyright {
 		</div>
 	</header>
 	<div class="content">{{.ContentHead}}{{if .Form}}
-		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
+		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
 		{{end}}{{if .ReCaptchaV2}}<button id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
 			{{if .ProofOfWork}}disabled{{else}}data-callback='onSubmit'{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
