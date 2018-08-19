@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/sha1"
 	"math/rand" // yes, for this use case it is secure enough
+	"strconv"
 	"text/template"
 
 	"github.com/suite911/error911/onfail"
