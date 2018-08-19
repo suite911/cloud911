@@ -279,9 +279,11 @@ div.copyright {
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
 /*{{.DefaultSHA1Implementation}}*/
-{{.DefaultCookieStuff}}
+{{.DefaultCookieStuff}}{{if .JavaScriptHead}}
+{{.JavaScriptHead}}
+{{end}}{{if .JavaScript}}
 {{.JavaScript}}
-function onDOMReady(){
+{{end}}function onDOMReady(){
 {{.OnDOMReady}}
 }
 function onPageLoaded(){
@@ -294,7 +296,8 @@ else window.onload = onDOMReady;
 if (window.addEventListener) window.addEventListener("load", onPageLoaded, false);
 else if (window.attachEvent) window.attachEvent("onload", onPageLoaded);
 else window.onload = onPageLoaded;
-//]]> --></script>
+{{if .JavaScriptTail}}{{.JavaScriptTail}}
+{{end}}//]]> --></script>
 </body>
 </html>
 `
