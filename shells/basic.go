@@ -25,7 +25,7 @@ func init() {
 {{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon">
 {{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css">
 {{end}}{{if .CSS}}<style type="text/css"><!-- /*<![CDATA[*/
-{{.CSS}}/*]]>*/ --></style>{{end}}{{.Head}}
+{{.CSSHead}}{{.CSS}}{{.CSSTail}}/*]]>*/ --></style>{{end}}{{.Head}}
 </head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <div class="topnav">{{.TopNavHead}}{{range $k, $v := .TopNav}}
