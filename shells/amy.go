@@ -230,31 +230,25 @@ div.copyright {
 {{.DefaultSHA1Implementation}}
 function work(i) {
 	i = i + "";
-	for(j = 0; j < {{.ProofOfWork}}; j++) {
-		i = sha1(i);
-	}
+	i = sha1(i);
 	return i;
 }
-async function prove() {
+function provedWork(token) {
+	alert("Success! token=\""+token+"\"");
+}
+function proveWork() {
 	var i = 0;
 	while(work(i) != "__CHALLENGE__") {
 		i++;
 	}
 	document.getElementById("pow").value = i;
 	document.getElementById("submit").innerHTML = "Submit";
-	// document.getElementById("submit").disabled = false;
-}
-var provedWork = function(token) {
-	alert("Success! token=\""+token+"\"");
-};
-//async function proveWork() {
-var proveWork = function() {
-	prove();
 	grecaptcha.render("submit", {
 		"sitekey": "{{.ReCaptchaV2}}",
 		"callback": provedWork
 	});
-};
+	document.getElementById("submit").disabled = false; // grecaptcha.render does it too
+}
 //]]> --></script>{{else}}
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
