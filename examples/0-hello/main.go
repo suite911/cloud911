@@ -15,7 +15,7 @@ var verbose = false
 
 func main() {
 	pages.Pages["/index.html"] = &pages.Page{
-		Title: "Hello",
+		PageTitle: "Hello",
 		Body: `Hello, world`,
 	}
 
