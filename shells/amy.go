@@ -18,7 +18,7 @@ func init() {
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-{{if .Title}}<title>{{.Title}}</title>
+{{if .PageTitle}}<title>{{.PageTitle}}</title>
 {{end}}{{if .Author}}<meta name="author" content="{{.Author}}">
 {{end}}{{if .Description}}<meta name="description" content="{{.Description}}">
 {{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}">
