@@ -19,48 +19,48 @@ var verbose = false
 func main() {
 	pages.Pages[""] = &pages.Page{
 		ContentTitle: "My App",
-		Title: "My App",
+		PageTitle: "My App",
 	}
 
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
 		ContentTitle: "Not Found",
 		CSS: string(www["/404.css"]),
+		PageTitle: "My App - Not Found",
 		Shell: shells.Basic,
-		Title: "My App - Not Found",
 	}
 
 	pages.Pages["/about"] = &pages.Page{
 		ContentTitle: "About",
-		Title: "My App - About",
+		PageTitle: "My App - About",
 	}
 
 	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["/cookies.htm"]),
 		ContentTitle: "Cookie Policy",
 		CSS: string(www["/cookies.css"]),
-		Title: "My App - Cookie Policy",
+		PageTitle: "My App - Cookie Policy",
 	}
 
 	pages.Pages["/download"] = &pages.Page{
 		Content: string(www["/download.htm"]),
 		ContentTitle: "Downloads",
 		CSS: string(www["/download.css"]),
-		Title: "My App - Download",
+		PageTitle: "My App - Download",
 	}
 
 	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["/eula.htm"]),
 		ContentTitle: "End User License Agreement (EULA)",
 		CSS: string(www["/eula.css"]),
-		Title: "My App - End User License Agreement (EULA)",
+		PageTitle: "My App - End User License Agreement (EULA)",
 	}
 
 	pages.Pages["/privacy"] = &pages.Page{
 		Content: string(www["/privacy.htm"]),
 		ContentTitle: "Privacy Policy",
 		CSS: string(www["/privacy.css"]),
-		Title: "My App - Privacy Policy",
+		PageTitle: "My App - Privacy Policy",
 	}
 
 	pages.Pages["/register"] = &pages.Page{
@@ -74,8 +74,8 @@ func main() {
 			"my registration page?  You see, the Captcha gods are picky and like to use JavaScript " +
 			"to do ...well whatever Captcha gods do with JavaScript.  So anyway it would just make " +
 			"things a whole lot easier if you could just whitelist my registration page, kthx.",
+		PageTitle: "My App - Register",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
-		Title: "My App - Register",
 	}
 
 	pages.Pages["/robots.txt"] = &pages.Page{
@@ -87,7 +87,7 @@ func main() {
 		Content: string(www["/terms.htm"]),
 		ContentTitle: "Terms of Use",
 		CSS: string(www["/terms.css"]),
-		Title: "My App - Terms of Use",
+		PageTitle: "My App - Terms of Use",
 	}
 
 	var favIcon string
