@@ -226,21 +226,13 @@ div.copyright {
 	text-align: left;
 }
 {{.CSS}}/*]]>*/ --></style>{{.Head}}
-{{if .Form}}{{if .ReCaptchaV2}}{{if .ProofOfWork}}<script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultSHA1Implementation}}
-function work(i) {
-	i = i + "";
-	i = sha1(i);
-	return i;
-}
-function provedWork(token) {
-	alert("Success! token=\""+token+"\"");
-}
-//]]> --></script>{{else}}
+{{if .Form}}{{if .ReCaptchaV2}}{{if !.ProofOfWork}}
 <script src='https://www.google.com/recaptcha/api.js' async defer></script>{{end}}
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
+{{.OnWillSubmit}}
 		document.getElementById("{{.Form}}").submit();
+{{.OnSubmitted}}
 	}
 //]]> --></script>
 {{end}}</head>
@@ -264,7 +256,7 @@ function provedWork(token) {
 		<div class="form"><form id="{{.Form}}" action="{{.FormAction}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ProofOfWork}}<input type="hidden" id="pow" name="pow" value="" />
 		{{end}}{{if .ReCaptchaV2}}<button id="submit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
-			data-callback='onSubmit'{{if .ProofOfWork}} disabled{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
+			{{if .ProofOfWork}}disabled{{else}}data-callback='onSubmit'{{end}}>{{if .ProofOfWork}}Please wait...{{else}}Submit{{end}}</button>
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
 	</div>
 </div></div>
@@ -275,8 +267,12 @@ function provedWork(token) {
 <script type="text/javascript"><!-- //<![CDATA[
 /*{{.DefaultSHA1Implementation}}*/
 {{.DefaultCookieStuff}}
-{{if .ProofOfWork}}/**/
-
+{{.DefaultSHA1Implementation}}
+{{if .ProofOfWork}}function work(i) {
+	i = i + "";
+	i = sha1(i);
+	return i;
+}
 function proveWork() {
 	var i = 0;
 	while(work(i) != "__CHALLENGE__") {
@@ -285,33 +281,17 @@ function proveWork() {
 	document.getElementById("pow").value = i;
 	document.getElementById("submit").innerHTML = "Submit";
 	grecaptcha.render("submit", {
-		"callback": provedWork,
+		"callback": onSubmit,
 		"sitekey": "{{.ReCaptchaV2}}"
 	});
 	document.getElementById("submit").disabled = false; // grecaptcha.render does it too
 }
-/*function work(i) {
-	i = i + "";
-	for(j = 0; j < {{.ProofOfWork}}; j++) {
-		i = sha1(i);
-	}
-	return i;
+{{end}}{{.JavaScript}}
+function onDOMReady(){
+{{.OnDOMReady}}
 }
-async function prove() {
-	var i = 0;
-	while(work(i) != "__CHALLENGE__") {
-		i++;
-	}
-	document.getElementById("pow").value = i;
-	document.getElementById("submit").innerHTML = "Submit";
-	// document.getElementById("submit").disabled = false;
-}
-*/{{end}}{{.JavaScript}}
-function onDOMReady(){ {{.OnDOMReady}}{{if .ProofOfWork}}
-	// prove();
-{{end}}
-}
-function onPageLoaded(){ {{.OnPageLoaded}}
+function onPageLoaded(){
+{{.OnPageLoaded}}
 	cookieAgree();
 }
 if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
