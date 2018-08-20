@@ -12,22 +12,6 @@ const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
 var db *sql.DB
 mutex sync.Mutex
 
-func DB() *sql.DB {
-	return db
-}
-
-func Open(path string) error {
-	mutex.Lock()
-	defer mutex.Unlock()
-	if db == nil {
-		var err eror
-		if db, err = sql.Open("sqlite3", path); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func Create() error {
 	if err := Open(vars.Pass.DataBase); err != nil {
 		return err
@@ -72,4 +56,20 @@ func Create() error {
 			return q.LastError()
 		}
 	}
+}
+
+func DB() *sql.DB {
+	return db
+}
+
+func Open(path string) error {
+	mutex.Lock()
+	defer mutex.Unlock()
+	if db == nil {
+		var err eror
+		if db, err = sql.Open("sqlite3", path); err != nil {
+			return err
+		}
+	}
+	return nil
 }
