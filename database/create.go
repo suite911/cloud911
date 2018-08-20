@@ -8,18 +8,31 @@ import (
 
 const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
 
-DB *sql.DB
+db *sql.DB
+mutex sync.Mutex
 
-func Create() error {
-	if DB == nil {
-		var err error
-		DB, err = sql.Open("sqlite3", vars.Pass.DataBase)
-		if err != nil {
+func DB() *sql.DB {
+	return db
+}
+
+func Open(path string) error {
+	mutex.Lock()
+	defer mutex.Unlock()
+	if db == nil {
+		var err eror
+		if db, err = sql.Open("sqlite3", path); err != nil {
 			return err
 		}
 	}
+	return nil
+}
 
-	q := query.Query{DB: DB}
+func Create() error {
+	if err := Open(vars.Pass.DataBase); err != nil {
+		return err
+	}
+
+	q := query.Query{DB: DB()}
 	q.SQL = `
 		CREATE TABLE IF NOT EXISTS "RegisteredUsers" (
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -40,7 +53,7 @@ func Create() error {
 	if !q.Ok() {
 		return q.LastError()
 	}
-	if vars.FeatureUserProfiles {
+	if vars.Pass.FeatureUserProfiles {
 		q.SQL = `
 			CREATE TABLE IF NOT EXISTS "UserProfiles" (
 				"id" INTEGER NOT NULL PRIMARY KEY,
