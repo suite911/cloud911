@@ -136,6 +136,18 @@ input[type=checkbox].night:checked ~ footer {
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
+input[type=checkbox].night:checked ~ footer a,
+input[type=checkbox].night:checked ~ footer a:active,
+input[type=checkbox].night:checked ~ footer a:focus,
+input[type=checkbox].night:checked ~ footer a:link,
+input[type=checkbox].night:checked ~ footer a:visited {
+	color: {{.Vars.Dark_Footer_Fg}};
+}
+
+input[type=checkbox].night:checked ~ footer a:hover {
+	color: {{.Vars.Dark_Footer_Fg}};
+}
+
 /* Inner elements */
 
 div.topnav {
