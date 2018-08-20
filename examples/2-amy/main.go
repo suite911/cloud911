@@ -99,7 +99,7 @@ func main() {
 	}
 
 	topNav := make(map[string]string)
-	topNav["/"] = "Top Page"
+	topNav["/"] = "&#x1f3e0;"
 	topNav["/about"] = "About"
 	topNav["/download"] = "Download"
 	topNav["/register"] = "Register"
