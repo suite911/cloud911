@@ -27,14 +27,14 @@ func Create() error {
 		);
 	`
 	q.Exec()
-	if !q.Ok() {
+	if !q.OK() {
 		return q.LastError()
 	}
 	q.SQL = `
 		CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");
 	`
 	q.Exec()
-	if !q.Ok() {
+	if !q.OK() {
 		return q.LastError()
 	}
 	if vars.Pass.FeatureUserProfiles {
@@ -51,7 +51,7 @@ func Create() error {
 			);
 		`
 		q.Exec()
-		if !q.Ok() {
+		if !q.OK() {
 			return q.LastError()
 		}
 	}
