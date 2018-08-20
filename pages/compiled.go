@@ -27,10 +27,18 @@ func Compile(defaultShell *template.Template, onFail ...onfail.OnFail) error {
 type CompiledPage struct {
 	Bytes       []byte
 	ContentType string
+	Redirect301 []byte
 }
 
 // Serve serves the CompiledPage over the network.
 func (c *CompiledPage) Serve(ctx *fasthttp.RequestCtx) {
+	if redir := c.Redirect301; len(redir) > 0 {
+		var uri fasthttp.URI
+		ctx.URI().CopyTo(&uri)
+		uri.UpdateBytes(redir)
+		ctx.RedirectBytes(uri.FullURI(), 301)
+		return
+	}
 	if len(c.ContentType) > 0 {
 		ctx.SetContentType(c.ContentType)
 	}
