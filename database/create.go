@@ -63,7 +63,7 @@ func Open(path string) error {
 	mutex.Lock()
 	defer mutex.Unlock()
 	if db == nil {
-		var err eror
+		var err error
 		if db, err = sql.Open("sqlite3", path); err != nil {
 			return err
 		}
