@@ -93,6 +93,16 @@ footer {
 	text-align: center;
 }
 
+footer a, footer a:active, footer a:focus, footer a:link, footer a:visited {
+	color: {{.Vars.Light_Footer_Fg}};
+	text-decoration: none;
+}
+
+footer a:hover {
+	color: {{.Vars.Light_Footer_Fg}};
+	text-decoration: underline;
+}
+
 .only-day {
 	display: inline;
 }
