@@ -31,6 +31,7 @@ func Main(fns ...func() error) error {
 	pchroot := flagSet.String("chroot", "", "Path to which to chroot(2)")
 	flagSet.StringVar(&vars.CertPath, "cert", "cert.pem", "Path of TLS certificate file")
 	flagSet.StringVar(&vars.KeyPath, "key", "key.pem", "Path of TLS key file")
+	flagSet.StringVar(&vars.CaptchaSecretPath, "captcha", "captcha.txt", "Path to .txt file containing the reCAPTCHA secret")
 	config.LoadAndParse()
 
 	flagSet.SetUsageHeader(
@@ -70,6 +71,10 @@ func Main(fns ...func() error) error {
 	if err := loadTLSCert(); err != nil {
 		return err
 	}
+	if err := register.LoadCaptchaSecret(); err != nil {
+		return err
+	}
+
 	if pchroot == nil {
 		// This can happen if the user's custom FlagSet instance is broken
 		panic("Something is wrong with the custom github.com/suite911/flag911/flag.FlagSet you used with github.com/suite911/env911[/config]")
