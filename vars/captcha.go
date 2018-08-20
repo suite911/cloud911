@@ -1,3 +1,3 @@
 package vars
 
-var ReCaptchaSecretPath string
+var CaptchaSecretPath string
