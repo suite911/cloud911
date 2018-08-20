@@ -4,6 +4,7 @@
 all:
 	make -C 0-hello -f ../travis.mk example
 	make -C 1-basic -f ../travis.mk example
+	make -C 2-amy -f ../travis.mk example
 
 example:
 	go get github.com/suite911/tools911/tools/cmd/slurp911
