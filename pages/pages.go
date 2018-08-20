@@ -44,6 +44,7 @@ type Page struct {
 	Vars map[string]string
 
 	Raw []byte
+	Redirect301 []byte
 
 	Shell *template.Template
 }
@@ -55,6 +56,7 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	}
 	c := new(CompiledPage)
 	c.ContentType = page.ContentType
+	c.Redirect301 = page.Redirect301
 	if len(page.Raw) > 0 {
 		c.Bytes = page.Raw
 		return c, nil
