@@ -8,7 +8,7 @@ import (
 
 const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
 
-func Create(db *sql.DB) {
+func Create(db *sql.DB) error {
 	q := query.Query{DB: db}
 	q.SQL = `
 		CREATE TABLE IF NOT EXISTS "RegisteredUsers" (
@@ -18,6 +18,34 @@ func Create(db *sql.DB) {
 			"credits" INTEGER NOT NULL DEFAULT(0),
 			"ts" INTEGER NOT NULL ` + defaultNow + `
 		);
+	`
+	q.Exec()
+	if !q.Ok() {
+		return q.LastError()
+	}
+	q.SQL = `
 		CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");
 	`
+	q.Exec()
+	if !q.Ok() {
+		return q.LastError()
+	}
+	if vars.FeatureUserProfiles {
+		q.SQL = `
+			CREATE TABLE IF NOT EXISTS "UserProfiles" (
+				"id" INTEGER NOT NULL PRIMARY KEY,
+				"lname" TEXT NOT NULL DEFAULT(''),
+				"lkana" TEXT NOT NULL DEFAULT(''),
+				"gname" TEXT NOT NULL DEFAULT(''),
+				"gkana" TEXT NOT NULL DEFAULT(''),
+				"names" TEXT NOT NULL DEFAULT(''),
+				"gender" TEXT NOT NULL DEFAULT('')
+				-- much more to come, but I don't want to work on this right now
+			);
+		`
+		q.Exec()
+		if !q.Ok() {
+			return q.LastError()
+		}
+	}
 }
