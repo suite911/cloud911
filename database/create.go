@@ -15,6 +15,7 @@ func Create(db *sql.DB) {
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 			"email" TEXT NOT NULL UNIQUE,
 			"pw" BLOB, -- specifically can be NULL
+			"credits" INTEGER NOT NULL DEFAULT(0),
 			"ts" INTEGER NOT NULL ` + defaultNow + `
 		);
 		CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");
