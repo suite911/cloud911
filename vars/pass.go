@@ -11,4 +11,6 @@ type PassType struct {
 	HTTPS       string `json:"https"` // Address on which to listen to HTTPS traffic
 	TLSCertData []byte `json:"cert"`  // TLS certificate and key file data
 	TLSKeyData  []byte `json:"key"`   // TLS certificate and key file data
+
+	FeatureUserProfiles bool `json:"ft_user_profiles"` // Feature toggle for User Profiles
 }
