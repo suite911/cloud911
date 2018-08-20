@@ -7,6 +7,8 @@ import (
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/suite911/query911/query"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func Create() error {
