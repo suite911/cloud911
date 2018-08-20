@@ -55,6 +55,7 @@ func Create() error {
 			return q.LastError()
 		}
 	}
+	return nil
 }
 
 func DB() *sql.DB {
