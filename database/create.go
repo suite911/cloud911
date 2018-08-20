@@ -7,11 +7,6 @@ import (
 	"github.com/suite911/query911/query"
 )
 
-const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
-
-var db *sql.DB
-var mutex sync.Mutex
-
 func Create() error {
 	if err := Open(vars.Pass.DataBase); err != nil {
 		return err
@@ -73,3 +68,8 @@ func Open(path string) error {
 	}
 	return nil
 }
+
+const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
+
+var db *sql.DB
+var mutex sync.Mutex
