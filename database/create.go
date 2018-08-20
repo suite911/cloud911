@@ -17,6 +17,6 @@ func Create(db *sql.DB) {
 			"pw" BLOB, -- specifically can be NULL
 			"ts" INTEGER NOT NULL ` + defaultNow + `
 		);
-		CREATE UNIQUE INDEX IF NOT EXISTS "i_RegisteredUsers_email" ON "RegisteredUsers"("email");
+		CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");
 	`
 }
