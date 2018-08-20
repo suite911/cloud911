@@ -6,6 +6,7 @@ import (
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/pkg/errors"
+	"github.com/valyala/fasthttp"
 )
 
 func LoadCaptchaSecret() error {
