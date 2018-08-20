@@ -49,11 +49,22 @@ func main() {
 		PageTitle: "My App - Download",
 	}
 
+	pages.Pages["/downloads"] = &pages.Page{
+		Redirect301: []byte("/download"),
+	}
+
 	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["/eula.htm"]),
 		ContentTitle: "End User License Agreement (EULA)",
 		CSS: string(www["/eula.css"]),
 		PageTitle: "My App - End User License Agreement (EULA)",
+	}
+
+	pages.Pages["/gallery"] = &pages.Page{
+		Content: string(www["/gallery.htm"]),
+		ContentTitle: "Gallery",
+		CSS: string(www["/gallery.css"]),
+		PageTitle: "My App - Gallery",
 	}
 
 	pages.Pages["/privacy"] = &pages.Page{
@@ -102,6 +113,7 @@ func main() {
 	topNav["/"] = "&#x1f3e0;"
 	topNav["/about"] = "About"
 	topNav["/download"] = "Download"
+	topNav["/gallery"] = "Gallery"
 	topNav["/register"] = "Register"
 
 	for _, k := range []string{
@@ -111,6 +123,7 @@ func main() {
 		"/cookies",
 		"/download",
 		"/eula",
+		"/gallery",
 		"/privacy",
 		"/register",
 		"/terms",
