@@ -10,7 +10,7 @@ import (
 const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
 
 var db *sql.DB
-mutex sync.Mutex
+var mutex sync.Mutex
 
 func Create() error {
 	if err := Open(vars.Pass.DataBase); err != nil {
