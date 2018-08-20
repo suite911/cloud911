@@ -254,7 +254,7 @@ input[type=checkbox].night {
 	opacity: 0;
 }
 
-div.form {
+div.title, div.content {
 	padding: 16px;
 }
 
