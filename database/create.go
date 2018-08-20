@@ -4,6 +4,8 @@ import (
 	"database/sql"
 	"sync"
 
+	"github.com/suite911/cloud911/vars"
+
 	"github.com/suite911/query911/query"
 )
 
