@@ -2,13 +2,14 @@ package database
 
 import (
 	"database/sql"
+	"sync"
 
 	"github.com/suite911/query911/query"
 )
 
 const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
 
-db *sql.DB
+var db *sql.DB
 mutex sync.Mutex
 
 func DB() *sql.DB {
