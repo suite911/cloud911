@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
+	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/vars"
 
 	pkgErrors "github.com/pkg/errors"
@@ -44,9 +45,12 @@ func Maybe(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 		return
 	}
 	if success {
-		ctx.Redirect("/success", 302)
+		if err = database.Register(email); err != nil {
+			return
+		}
+		ctx.Redirect(vars.Pass.URLRegistered, 302)
 	} else {
-		ctx.Redirect("/failure", 302)
+		ctx.Redirect(vars.Pass.URLBotRegistered, 302)
 	}
 	return
 }
