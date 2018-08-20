@@ -8,8 +8,18 @@ import (
 
 const defaultNow = `DEFAULT(CAST(strftime('%s', 'now') AS INTEGER))`
 
-func Create(db *sql.DB) error {
-	q := query.Query{DB: db}
+DB *sql.DB
+
+func Create() error {
+	if DB == nil {
+		var err error
+		DB, err = sql.Open("sqlite3", vars.DataBase)
+		if err != nil {
+			return err
+		}
+	}
+
+	q := query.Query{DB: DB}
 	q.SQL = `
 		CREATE TABLE IF NOT EXISTS "RegisteredUsers" (
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
