@@ -401,7 +401,7 @@ function onDOMReady(){
 		console.log("href:\""+href+"\"");
 		if(href.slice(-1) == '#') {
 			if(typeof history.replaceState === "function") {
-				history.replaceState("", nil, href.slice(0, -1));
+				history.replaceState(null, null, href.slice(0, -1));
 				console.log(">>>>:\""+location.href+"\"");
 			} else {
 				console.log("!!!!:\""+typeof history.replaceState+"\"");
