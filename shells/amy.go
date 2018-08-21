@@ -310,6 +310,28 @@ div.copyright {
 	padding: 0 0 0 2px;
 	text-align: left;
 }
+
+/* Fragments */
+
+#registered {
+	.display: none;
+}
+
+#captcha-failed {
+	.display: none;
+}
+
+#captcha-missing {
+	.display: none;
+}
+
+#email-missing {
+	.display: none;
+}
+
+*:target {
+	.display: block;
+}
 {{if .CSS}}
 {{.CSS}}
 {{end}}{{if .CSSTail}}{{.CSSTail}}
@@ -369,6 +391,11 @@ function onDOMReady(){
 {{if .NoScript}}
 	document.getElementById("content").style.display = "block";
 {{end}}{{.OnDOMReady}}
+	if(location.hash.length > 0) {
+		console.log("#:\""+location.hash+"\"")
+		location.hash = ''
+		console.log(">>\""+location.hash+"\"")
+	}
 }
 function onPageLoaded(){
 {{.OnPageLoaded}}
