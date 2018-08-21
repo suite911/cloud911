@@ -19,7 +19,7 @@ type GoogleCaptchaResponse struct {
 	ErrorCodes     interface{} `json:"error-codes"`
 }
 
-func Maybe(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
+func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 	attempt = ctx.IsPost()
 	if !attempt {
 		return
@@ -48,9 +48,13 @@ func Maybe(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 		if err = database.Register(email); err != nil {
 			return
 		}
-		ctx.Redirect(vars.Pass.URLRegistered, 302)
+		if url := vars.Pass.URLRegistered; len(url) > 0 {
+			ctx.Redirect(url, 302)
+		}
 	} else {
-		ctx.Redirect(vars.Pass.URLBotRegistered, 302)
+		if url := vars.Pass.URLBotRegistered; len(url) > 0 {
+			ctx.Redirect(url, 302)
+		}
 	}
 	return
 }
