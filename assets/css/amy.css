@@ -243,9 +243,14 @@ input[type=submit] sup, .ebtn sup, .bbtn sup {
 
 .btn-logo, .btn-text {
 	border: none;
+	display: inline-block;
 	height: 30pt;
 	overflow: hidden;
 	text-align: center; /* so you can justify the parent */
+}
+
+.logo-windows, .logo-apple, .logo-linux, .logo-freebsd, .logo-android {
+	display: inline-block;
 }
 
 .logo-windows {
