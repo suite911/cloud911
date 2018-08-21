@@ -22,8 +22,9 @@ func Create() error {
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 			"email" TEXT NOT NULL UNIQUE,
 			"pw" BLOB DEFAULT(NULL),
-			"credits" INTEGER NOT NULL DEFAULT(0),
-			"ts" INTEGER NOT NULL ` + defaultNow + `
+			"regd" INTEGER NOT NULL ` + defaultNow + `,
+			"verd" INTEGER NOT NULL DEFAULT(0),
+			"bal" INTEGER NOT NULL DEFAULT(0)
 		);
 	`
 	q.Exec()
