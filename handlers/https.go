@@ -32,11 +32,12 @@ func https(ctx *fasthttp.RequestCtx) {
 		API(ctx, tail)
 		return
 	}
+	if ctx.IsPost() {
+		Post(ctx)
+		return
+	}
 	for head := "";; path = head {
 		var match bool
-		if match, head = str.CaseHasSuffix(path, "/"); match {
-			continue
-		}
 		if match, head = str.CaseHasSuffix(path, "/index"); match {
 			continue
 		}
@@ -60,6 +61,13 @@ func https(ctx *fasthttp.RequestCtx) {
 	return
 
 noRedirect:
+	for head := "";; path = head {
+		var match bool
+		if match, head = str.CaseHasSuffix(path, "/"); match {
+			continue
+		}
+		break
+	}
 	if c, ok := pages.CompiledPages[path]; ok && c != nil {
 		c.Serve(ctx)
 		return
