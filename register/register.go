@@ -3,6 +3,8 @@ package register
 import (
 	"encoding/json"
 	"errors"
+	"log"
+	"strconv"
 
 	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/vars"
@@ -36,23 +38,24 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 		return
 	}
 	var args fasthttp.Args
-	args.Set("secret", vars.Pass.CaptchaSecret)
+	args.SetBytesV("secret", vars.Pass.CaptchaSecret)
 	args.SetBytesV("response", captcha)
 	args.SetBytesV("remoteip", ctx.RequestURI())
 	var statusCode int
 	var body []byte
-	if statusCode, body, err = fasthttp.Post(nil, "https://www.google.com/recaptcha/api/siteverify", args); err != nil {
+	if statusCode, body, err = fasthttp.Post(nil, "https://www.google.com/recaptcha/api/siteverify", &args); err != nil {
 		return
 	}
 	if statusCode != 200 {
 		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, string(body))
-		return true, pkgErrors.Wrap(errors.New("non-200 status code"), "fasthttp.Post")
+		return attempt, pkgErrors.Wrap(errors.New(strconv.Itoa(statusCode)), "fasthttp.Post")
 	}
 	var resp GoogleCaptchaResponse
 	if err = json.Unmarshal(body, &resp); err != nil {
-		return
+		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, resp)
+		return attempt, pkgErrors.Wrap(err, "json.Unmarshal(body, &resp)")
 	}
-	if !success {
+	if !resp.Success {
 		ctx.Redirect("?captcha=failed", 302)
 		return
 	}
