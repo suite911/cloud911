@@ -392,9 +392,17 @@ function onDOMReady(){
 	document.getElementById("content").style.display = "block";
 {{end}}{{.OnDOMReady}}
 	if(location.hash.length > 0) {
-		console.log("#:\""+location.hash+"\"")
-		location.hash = ''
-		console.log(">>\""+location.hash+"\"")
+		console.log("#:\""+location.hash+"\"");
+		location.hash = '';
+		console.log(">>\""+location.hash+"\"");
+	}
+	if(location.hash.length < 1) {
+		var href = location.href;
+		if(href.slice(-1) == '#') {
+			if(typeof history.replaceState === "function") {
+				history.replaceState("", nil, href.slice(0, -1))
+			}
+		}
 	}
 }
 function onPageLoaded(){
