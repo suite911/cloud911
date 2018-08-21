@@ -20,7 +20,7 @@ func Post(ctx *fasthttp.RequestCtx) {
 func post(ctx *fasthttp.RequestCtx) {
 	args := ctx.PostArgs()
 	switch action := args.Peek("action"); action {
-	case "register":
-		_/*attempt*/, _/*err*/ := register.Try(ctx)
+	case []byte("register"):
+		_/*attempt*/, _/*err*/ = register.Try(ctx)
 	}
 }
