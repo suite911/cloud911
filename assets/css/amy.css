@@ -112,9 +112,6 @@ span.topnav {
 /* The "Night Mode" toggle */
 label.night {
 	border-radius: 3px;
-	box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
-	-moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
-	-webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
 	display: inline;
 	font-size: calc(100% - 2px);
 	height: 100%;
