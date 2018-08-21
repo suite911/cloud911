@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"unicode/utf8"
+
 	"github.com/suite911/cloud911/register"
 
 	"github.com/valyala/fasthttp"
@@ -20,7 +22,7 @@ func Post(ctx *fasthttp.RequestCtx) {
 func post(ctx *fasthttp.RequestCtx) {
 	args := ctx.PostArgs()
 	actionBytes := args.Peek("action")
-	if !utf.Valid(actionBytes) {
+	if !utf8.Valid(actionBytes) {
 		return
 	}
 	switch action := string(actionBytes); action {
