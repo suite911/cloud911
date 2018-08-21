@@ -180,16 +180,18 @@ div.copyright {
 /*input[type=submit],*/ .btn {
 	background-color: #03A9F4;
 	border: none;
+	color: #fff;
 	cursor: pointer;
 	display: block;
-	font-size: calc(30pt - 24px);
+	font-size: calc(30pt - 12px);
 	height: 30pt;
-	line-height: 30pt;
+	line-height: calc(30pt - 12px);
 	margin: 0 0 16px 0;
 	min-width: 120pt;
 	overflow: hidden;
 	padding: 12px 16px;
 	text-align: center;
+	text-decoration: none;
 }
 
 input[type=submit]:hover, .btn:hover {
@@ -218,21 +220,21 @@ input[type=submit]:hover, .btn:hover {
 }
 
 .logo-windows {
-	background-image: "https://rawgit.com/suite911/assets/master/logos/windows.svg";
+	background-image: url(//rawgit.com/suite911/assets/master/logos/windows.svg);
 }
 
 .logo-apple {
-	background-image: "https://rawgit.com/suite911/assets/master/logos/apple.svg";
+	background-image: url(//rawgit.com/suite911/assets/master/logos/apple.svg);
 }
 
 .logo-linux {
-	background-image: "https://rawgit.com/suite911/assets/master/logos/linux.svg";
+	background-image: url(//rawgit.com/suite911/assets/master/logos/linux.svg);
 }
 
 .logo-freebsd {
-	background-image: "https://rawgit.com/suite911/assets/master/logos/freebsd.svg";
+	background-image: url(//rawgit.com/suite911/assets/master/logos/freebsd.svg);
 }
 
 .logo-android {
-	background-image: "https://rawgit.com/suite911/assets/master/logos/android.svg";
+	background-image: url(//rawgit.com/suite911/assets/master/logos/android.svg);
 }
