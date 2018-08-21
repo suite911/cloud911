@@ -59,7 +59,11 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 		ctx.Redirect("?captcha=failed", 302)
 		return
 	}
-	if err = database.Register(email); err != nil {
+	var url string
+	if url, err = database.Register(email); err != nil {
+		if len(url) > 0 {
+			ctx.Redirect(url, 302)
+		}
 		return
 	}
 	if url := vars.Pass.Registered; len(url) > 0 {
