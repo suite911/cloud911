@@ -192,3 +192,23 @@ div.copyright {
 	-moz-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	-webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
+.logo-windows {
+	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/windows.svg";
+}
+
+.logo-apple {
+	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/apple.svg";
+}
+
+.logo-linux {
+	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/linux.svg";
+}
+
+.logo-freebsd {
+	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/freebsd.svg";
+}
+
+.logo-android {
+	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/android.svg";
+}
