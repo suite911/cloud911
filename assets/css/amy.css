@@ -232,21 +232,21 @@ input[type=submit] sup, .btn sup, .bbtn sup {
 }
 
 .logo-windows {
-	background-image: url(//rawgit.com/suite911/assets/master/logos/windows.svg);
+	background-image: url("//rawgit.com/suite911/assets/master/logos/windows.svg");
 }
 
 .logo-apple {
-	background-image: url(//rawgit.com/suite911/assets/master/logos/apple.svg);
+	background-image: url("//rawgit.com/suite911/assets/master/logos/apple.svg");
 }
 
 .logo-linux {
-	background-image: url(//rawgit.com/suite911/assets/master/logos/linux.svg);
+	background-image: url("//rawgit.com/suite911/assets/master/logos/linux.svg");
 }
 
 .logo-freebsd {
-	background-image: url(//rawgit.com/suite911/assets/master/logos/freebsd.svg);
+	background-image: url("//rawgit.com/suite911/assets/master/logos/freebsd.svg");
 }
 
 .logo-android {
-	background-image: url(//rawgit.com/suite911/assets/master/logos/android.svg);
+	background-image: url("//rawgit.com/suite911/assets/master/logos/android.svg");
 }
