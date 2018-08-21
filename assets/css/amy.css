@@ -227,7 +227,8 @@ input[type=submit]:hover, .btn:hover, .bbtn:hover, .card:hover {
 }
 
 input[type=submit] sup, .btn sup, .bbtn sup {
-	display: none; /*TODO*/
+	vertical-align: super;
+	font-size: 50%;
 }
 
 .logo-windows {
