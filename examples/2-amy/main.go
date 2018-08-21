@@ -89,8 +89,7 @@ func main() {
 		PageTitle: "My App - Register",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
 	}
-	vars.Pass.URLRegistered = "/download?just_registered=true"
-	vars.Pass.URLBotRegistered = "/register?captcha=failed"
+	vars.Pass.Registered = "/download?just_registered=true"
 
 	pages.Pages["/robots.txt"] = &pages.Page{
 		ContentType: "text/plain; charset=utf8",
