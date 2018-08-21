@@ -226,8 +226,8 @@ input[type=submit]:hover, .btn:hover, .bbtn:hover, .card:hover {
 	-webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+input[type=submit] sub, .btn sub, .bbtn sub,
 input[type=submit] sup, .btn sup, .bbtn sup {
-	vertical-align: super;
 	font-size: 50%;
 }
 
