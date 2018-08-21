@@ -381,7 +381,16 @@ div.copyright {
 </footer>
 {{end}}{{.BodyTail}}
 <script type="text/javascript"><!-- //<![CDATA[
-/*{{.DefaultSHA1Implementation}}*/
+function hasClass(elem, className) {
+	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
+}
+function replaceState(url) {
+	if(typeof history.replaceState === "function") {
+		history.replaceState(null, null, url);
+		return true
+	}
+	return false
+}
 {{.DefaultCookieStuff}}{{if .JavaScriptHead}}
 {{.JavaScriptHead}}
 {{end}}{{if .JavaScript}}
@@ -391,22 +400,20 @@ function onDOMReady(){
 {{if .NoScript}}
 	document.getElementById("content").style.display = "block";
 {{end}}{{.OnDOMReady}}
-	if(location.hash.length > 0) {
-		console.log("#:\""+location.hash+"\"");
-		location.hash = '';
-		console.log(">>\""+location.hash+"\"");
-	}
-	if(location.hash.length < 1) {
-		var href = location.href;
-		console.log("href:\""+href+"\"");
-		if(href.slice(-1) == '#') {
-			if(typeof history.replaceState === "function") {
-				history.replaceState(null, null, href.slice(0, -1));
-				console.log(">>>>:\""+location.href+"\"");
-			} else {
-				console.log("!!!!:\""+typeof history.replaceState+"\"");
-			}
+	if(location.hash.length >= 2) {
+		var elem = document.getElementById(location.hash.slice(1))
+		if(hasClass(elem, "fragment-block")) {
+			elem.style.display = "block";
+		} else if(hasClass(elem, "fragment-inline")) {
+			elem.style.display = "inline";
+		} else if(hasClass(elem, "fragment-inline-block")) {
+			elem.style.display = "inline-block";
 		}
+		if(true || !replaceState(location.href.split('#')[0])) {
+			location.hash = '';
+		}
+	} else if(location.href.slice(-1) == '#') {
+		replaceState(location.href.slice(0, -1))
 	}
 }
 function onPageLoaded(){
