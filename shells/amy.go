@@ -49,7 +49,7 @@ func init() {
 			<div class="topnavleft"{{range $k, $v := .TopNav}}
 				><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
 			></div>
-			<div class="topnavright"><label for="night" class="night"><span class="only-day">Lights off &#x263d;</span><span class="only-night">Lights on &#x263c;</span></label></div>
+			<div class="topnavright"><label for="night" class="card night"><span class="only-day">Lights off &#x263d;</span><span class="only-night">Lights on &#x263c;</span></label></div>
 			<div class="topnavhack"></div>{{.TopNavTail}}
 		</div>
 	</header>
