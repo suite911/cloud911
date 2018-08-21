@@ -36,18 +36,21 @@ func https(ctx *fasthttp.RequestCtx) {
 		Post(ctx)
 		return
 	}
-	for head := "";; path = head {
-		var match bool
-		if match, head = str.CaseHasSuffix(path, "/index"); match {
+	for {
+		if match, head := str.CaseHasSuffix(path, "/index"); match {
+			path = head
 			continue
 		}
-		if match, head = str.CaseHasSuffix(path, ".html"); match {
+		if match, head := str.CaseHasSuffix(path, ".html"); match {
+			path = head
 			continue
 		}
-		if match, head = str.CaseHasSuffix(path, ".htm"); match {
+		if match, head := str.CaseHasSuffix(path, ".htm"); match {
+			path = head
 			continue
 		}
-		if match, head = str.CaseHasSuffix(path, ".php"); match {
+		if match, head := str.CaseHasSuffix(path, ".php"); match {
+			path = head
 			continue
 		}
 		goto noRedirect
@@ -61,9 +64,9 @@ func https(ctx *fasthttp.RequestCtx) {
 	return
 
 noRedirect:
-	for head := "";; path = head {
-		var match bool
-		if match, head = str.CaseHasSuffix(path, "/"); match {
+	for {
+		if match, head := str.CaseHasSuffix(path, "/"); match {
+			path = head
 			continue
 		}
 		break
