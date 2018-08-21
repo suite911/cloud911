@@ -1,12 +1,6 @@
 package database
 
-import (
-	"database/sql"
-
-	"github.com/suite911/cloud911/vars"
-
-	"github.com/suite911/query911/query"
-)
+import "github.com/suite911/query911/query"
 
 func Register(email string) error {
 	q := query.Query{ DB: DB() }
