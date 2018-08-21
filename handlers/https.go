@@ -28,7 +28,7 @@ func https(ctx *fasthttp.RequestCtx) {
 		log.Fatalln(err)
 	}
 	path := string(ctx.Path())
-	if match, tail := str.CaseHasPrefix(path, "/api"); match && (len(tail) < 1 || tail[0] == '/') {
+	if match, tail := str.CaseTrimPrefix(path, "/api"); match && (len(tail) < 1 || tail[0] == '/') {
 		API(ctx, tail)
 		return
 	}
@@ -37,20 +37,15 @@ func https(ctx *fasthttp.RequestCtx) {
 		return
 	}
 	for {
-		if match, head := str.CaseHasSuffix(path, "/index"); match {
-			path = head
-			continue
-		}
-		if match, head := str.CaseHasSuffix(path, ".html"); match {
-			path = head
-			continue
-		}
-		if match, head := str.CaseHasSuffix(path, ".htm"); match {
-			path = head
-			continue
-		}
-		if match, head := str.CaseHasSuffix(path, ".php"); match {
-			path = head
+		log.Printf("path: %q", path)
+		switch {
+		case str.CaseTrimSuffixInPlace(&path, "/index"):
+			fallthrough
+		case str.CaseTrimSuffixInPlace(&path, ".html"):
+			fallthrough
+		case str.CaseTrimSuffixInPlace(&path, ".htm"):
+			fallthrough
+		case str.CaseTrimSuffixInPlace(&path, ".php"):
 			continue
 		}
 		goto noRedirect
@@ -64,12 +59,8 @@ func https(ctx *fasthttp.RequestCtx) {
 	return
 
 noRedirect:
-	for {
-		if match, head := str.CaseHasSuffix(path, "/"); match {
-			path = head
-			continue
-		}
-		break
+	for len(path) > 0 && path[len(path) - 1] == '/' {
+		path = path[:len(path) - 1]
 	}
 	if c, ok := pages.CompiledPages[path]; ok && c != nil {
 		c.Serve(ctx)
