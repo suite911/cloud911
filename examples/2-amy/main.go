@@ -106,11 +106,18 @@ func main() {
 		Raw: www["/robots.txt"],
 	}
 
+	pages.Pages["/store"] = &pages.Page{
+		Content: string(www["/store.htm"]),
+		ContentTitle: "Store",
+		CSS: string(www["/store.css"]),
+		PageTitle: "My App - Store",
+	}
+
 	pages.Pages["/terms"] = &pages.Page{
 		Content: string(www["/terms.htm"]),
-		ContentTitle: "Terms of Use",
+		ContentTitle: "Terms of Service",
 		CSS: string(www["/terms.css"]),
-		PageTitle: "My App - Terms of Use",
+		PageTitle: "My App - Terms of Service",
 	}
 
 	var favIcon string
