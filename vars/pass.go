@@ -6,7 +6,7 @@ var Pass = PassType{
 }
 
 type PassType struct {
-	CaptchaSecret    string `json:"captcha"`     // Google reCAPTCHA secret data
+	CaptchaSecret    []byte `json:"captcha"`     // Google reCAPTCHA secret data
 	DataBase         string `json:"db"`          // Path to the main sqlite3 database
 	HTTP             string `json:"http"`        // Address on which to listen to HTTP traffic
 	HTTPS            string `json:"https"`       // Address on which to listen to HTTPS traffic
