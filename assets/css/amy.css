@@ -194,21 +194,21 @@ div.copyright {
 }
 
 .logo-windows {
-	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/windows.svg";
+	background-image: "https://rawgit.com/suite911/assets/master/logos/windows.svg";
 }
 
 .logo-apple {
-	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/apple.svg";
+	background-image: "https://rawgit.com/suite911/assets/master/logos/apple.svg";
 }
 
 .logo-linux {
-	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/linux.svg";
+	background-image: "https://rawgit.com/suite911/assets/master/logos/linux.svg";
 }
 
 .logo-freebsd {
-	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/freebsd.svg";
+	background-image: "https://rawgit.com/suite911/assets/master/logos/freebsd.svg";
 }
 
 .logo-android {
-	background-image: "https://raw.githubusercontent.com/suite911/assets/master/logos/android.svg";
+	background-image: "https://rawgit.com/suite911/assets/master/logos/android.svg";
 }
