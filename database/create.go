@@ -21,7 +21,7 @@ func Create() error {
 		CREATE TABLE IF NOT EXISTS "RegisteredUsers" (
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 			"email" TEXT NOT NULL UNIQUE,
-			"pw" BLOB, -- specifically can be NULL
+			"pw" BLOB DEFAULT(NULL),
 			"credits" INTEGER NOT NULL DEFAULT(0),
 			"ts" INTEGER NOT NULL ` + defaultNow + `
 		);
