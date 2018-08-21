@@ -19,8 +19,12 @@ func Post(ctx *fasthttp.RequestCtx) {
 
 func post(ctx *fasthttp.RequestCtx) {
 	args := ctx.PostArgs()
-	switch action := args.Peek("action"); action {
-	case []byte("register"):
+	actionBytes := args.Peek("action")
+	if !utf.Valid(actionBytes) {
+		return
+	}
+	switch action := string(actionBytes); action {
+	case "register":
 		_/*attempt*/, _/*err*/ = register.Try(ctx)
 	}
 }
