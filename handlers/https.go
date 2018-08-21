@@ -36,9 +36,12 @@ func https(ctx *fasthttp.RequestCtx) {
 		Post(ctx)
 		return
 	}
+	redir := false
 	for {
 		log.Printf("path: %q", path)
 		switch {
+		case str.CaseTrimSuffixInPlace(&path, "/"):
+			continue
 		case str.CaseTrimSuffixInPlace(&path, "/index"):
 			fallthrough
 		case str.CaseTrimSuffixInPlace(&path, ".html"):
@@ -46,21 +49,17 @@ func https(ctx *fasthttp.RequestCtx) {
 		case str.CaseTrimSuffixInPlace(&path, ".htm"):
 			fallthrough
 		case str.CaseTrimSuffixInPlace(&path, ".php"):
+			redir = true
 			continue
 		}
-		goto noRedirect
+		break
 	}
-	{ // Scope required for goto
+	if redir {
 		var uri fasthttp.URI
 		ctx.URI().CopyTo(&uri)
 		uri.SetPath(path)
 		ctx.RedirectBytes(uri.FullURI(), 301)
-	}
-	return
-
-noRedirect:
-	for len(path) > 0 && path[len(path) - 1] == '/' {
-		path = path[:len(path) - 1]
+		return
 	}
 	if c, ok := pages.CompiledPages[path]; ok && c != nil {
 		c.Serve(ctx)
