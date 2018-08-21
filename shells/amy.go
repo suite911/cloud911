@@ -406,7 +406,7 @@ function onDOMReady(){
 			} else if(hasClass(elem, "fragment-inline-block")) {
 				elem.style.display = "inline-block";
 			}
-			/*if(!replaceState(location.href.split('#')[0])) */{
+			if(!replaceState(location.href.split('#')[0])) {
 				location.hash = '';
 			}
 		}
