@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"log"
+	"path"
 
 	"github.com/suite911/cloud911/droppriv"
 	"github.com/suite911/cloud911/pages"
@@ -27,8 +28,8 @@ func https(ctx *fasthttp.RequestCtx) {
 	if err := droppriv.Drop(); err != nil {
 		log.Fatalln(err)
 	}
-	path := string(ctx.Path())
-	if match, tail := str.CaseTrimPrefix(path, "/api"); match && (len(tail) < 1 || tail[0] == '/') {
+	p := string(ctx.Path())
+	if match, tail := str.CaseTrimPrefix(p, "/api"); match && (len(tail) < 1 || tail[0] == '/') {
 		API(ctx, tail)
 		return
 	}
@@ -36,19 +37,17 @@ func https(ctx *fasthttp.RequestCtx) {
 		Post(ctx)
 		return
 	}
+	p = path.Clean(p)
 	redir := false
 	for {
-		log.Printf("path: %q", path)
 		switch {
-		case str.CaseTrimSuffixInPlace(&path, "/"):
-			continue
-		case str.CaseTrimSuffixInPlace(&path, "/index"):
+		case str.CaseTrimSuffixInPlace(&p, "/index"):
 			fallthrough
-		case str.CaseTrimSuffixInPlace(&path, ".html"):
+		case str.CaseTrimSuffixInPlace(&p, ".html"):
 			fallthrough
-		case str.CaseTrimSuffixInPlace(&path, ".htm"):
+		case str.CaseTrimSuffixInPlace(&p, ".htm"):
 			fallthrough
-		case str.CaseTrimSuffixInPlace(&path, ".php"):
+		case str.CaseTrimSuffixInPlace(&p, ".php"):
 			redir = true
 			continue
 		}
@@ -57,11 +56,11 @@ func https(ctx *fasthttp.RequestCtx) {
 	if redir {
 		var uri fasthttp.URI
 		ctx.URI().CopyTo(&uri)
-		uri.SetPath(path)
+		uri.SetPath(p)
 		ctx.RedirectBytes(uri.FullURI(), 301)
 		return
 	}
-	if c, ok := pages.CompiledPages[path]; ok && c != nil {
+	if c, ok := pages.CompiledPages[p]; ok && c != nil {
 		c.Serve(ctx)
 		return
 	}
