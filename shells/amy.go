@@ -317,15 +317,15 @@ div.copyright {
 	display: none;
 }
 
-.fragment-block {
+.fragment-block:target {
 	display: block;
 }
 
-.fragment-inline {
+.fragment-inline:target {
 	display: inline;
 }
 
-.fragment-inline-block {
+.fragment-inline-block:target {
 	display: inline-block;
 }
 {{if .CSS}}
