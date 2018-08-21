@@ -30,11 +30,11 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 	email := argsRecv.Peek("email")
 	captcha := argsRecv.Peek("g-recaptcha-response")
 	if len(email) < 0 {
-		ctx.Redirect("?email=missing", 302)
+		ctx.Redirect("#email-missing", 302)
 		return
 	}
 	if len(captcha) < 0 {
-		ctx.Redirect("?captcha=missing", 302)
+		ctx.Redirect("#captcha-missing", 302)
 		return
 	}
 	var args fasthttp.Args
@@ -56,7 +56,7 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 		return attempt, pkgErrors.Wrap(err, "json.Unmarshal(body, &resp)")
 	}
 	if !resp.Success {
-		ctx.Redirect("?captcha=failed", 302)
+		ctx.Redirect("#captcha-failed", 302)
 		return
 	}
 	var url string
@@ -70,6 +70,6 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 		ctx.Redirect(url, 302)
 		return
 	}
-	ctx.Redirect("?registered=true", 302)
+	ctx.Redirect("#registered", 302)
 	return
 }
