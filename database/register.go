@@ -9,7 +9,7 @@ import (
 	"github.com/badoux/checkmail"
 )
 
-func Register(email []byte) (string redir, err error) {
+func Register(email []byte) (redir string, err error) {
 	if len(email) < 1 {
 		return "?email=missing", errors.New("Empty string")
 	}
