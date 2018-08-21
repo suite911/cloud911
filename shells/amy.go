@@ -228,7 +228,7 @@ div.copyright {
 	<div id="content" class="content"{{if .NoScript}} style="display:none"{{end}}>{{.ContentHead}}{{if .Form}}
 		<div class="form"><form id="{{.Form}}" action="{{if .FormAction}}{{.FormAction}}{{else}}./submit{{end}}" method="POST">{{end}}{{.Content}}{{if .Form}}
 		{{if .ReCaptchaV2}}<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
-		<input type="submit" id="bsubmit" class="g-recaptcha" data-sitekey="{{.ReCaptchaV2}}"
+		<input type="submit" id="bsubmit" class="g-recaptcha card" data-sitekey="{{.ReCaptchaV2}}"
 			value="Submit" data-callback='onSubmit' />
 		{{end}}<br /></form></div>{{end}}{{.ContentTail}}
 	</div>{{if .NoScript}}
