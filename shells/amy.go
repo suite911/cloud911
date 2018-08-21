@@ -397,6 +397,8 @@ function onDOMReady(){
 	document.getElementById("content").style.display = "block";
 {{end}}{{.OnDOMReady}}
 	if(location.hash.length >= 2) {
+		console.log("*:\""+location.hash+"\"")
+		console.log("1:\""+location.hash.slice(1)+"\"")
 		var elem = document.getElementById(location.hash.slice(1))
 		if(hasClass(elem, "fragment-block")) {
 			elem.style.display = "block";
