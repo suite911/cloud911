@@ -313,24 +313,20 @@ div.copyright {
 
 /* Fragments */
 
-#registered {
-	.display: none;
+.fragment-block, .fragment-inline, .fragment-inline-block {
+	display: none;
 }
 
-#captcha-failed {
-	.display: none;
+.fragment-block {
+	display: block;
 }
 
-#captcha-missing {
-	.display: none;
+.fragment-inline {
+	display: inline;
 }
 
-#email-missing {
-	.display: none;
-}
-
-*:target {
-	.display: block;
+.fragment-inline-block {
+	display: inline-block;
 }
 {{if .CSS}}
 {{.CSS}}
