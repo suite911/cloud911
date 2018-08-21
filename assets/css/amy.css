@@ -177,7 +177,7 @@ div.copyright {
 	display: inline-block;
 }
 
-input[type=submit], .btn {
+/*input[type=submit],*/ .btn {
 	background-color: #03A9F4;
 	border: none;
 	cursor: pointer;
@@ -187,7 +187,9 @@ input[type=submit], .btn {
 	line-height: 30pt;
 	margin: 0 0 16px 0;
 	min-width: 120pt;
+	overflow: hidden;
 	padding: 12px 16px;
+	text-align: center;
 }
 
 input[type=submit]:hover, .btn:hover {
