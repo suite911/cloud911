@@ -191,7 +191,7 @@ div.topnav {
 span.topnav {
 	background-color: {{.Vars.Light_TopNav_Bg}};
 	border: none;
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 0 3px 3px;
 	color: {{.Vars.Light_TopNav_Fg}};
 	display: inline-block;
 	height: 100%;
@@ -218,7 +218,10 @@ input[type=checkbox].night:checked + div header span.topnav:hover {
 label.night {
 	background-color: {{.Vars.Light_Night_Bg}};
 	border: 2px solid {{.Vars.Light_Night_Border}};
-	border-radius: 4px;
+	border-radius: 3px;
+	box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
+	-moz-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
+	-webkit-box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.08);
 	color: {{.Vars.Light_Night_Fg}};
 	display: inline;
 	font-size: calc(100% - 2px);
@@ -266,7 +269,7 @@ hr {
 input[type=text], input[type=password] {
 	background-color: {{.Vars.EntryBg}};
 	border: 2px solid {{.Vars.EntryBorder}};
-	border-radius: 4px;
+	border-radius: 3px;
 	color: {{.Vars.EntryFg}};
 	display: inline-block;
 	margin: 0 0 24px 0;
@@ -284,7 +287,7 @@ input[type=text]:focus, input[type=password]:focus {
 input[type=submit] {
 	background-color: {{.Vars.ButtonSubmitBg}};
 	border: none;
-	border-radius: 4px;
+	border-radius: 3px;
 	color: {{.Vars.ButtonSubmitFg}};
 	cursor: pointer;
 	padding: {{.Vars.PaddingWidgetVert}} {{.Vars.PaddingWidgetHorz}};
