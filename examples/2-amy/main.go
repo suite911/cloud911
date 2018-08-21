@@ -18,6 +18,14 @@ func init() {
 var verbose = false
 
 func main() {
+	topNav := map[string]string{
+		"/": "&#x1f3e0;",
+		"/download": "Download",
+		"/gallery": "Gallery",
+		"/register": "Register",
+		"/store": "Store",
+	}
+
 	pages.Pages[""] = &pages.Page{
 		ContentTitle: "My App",
 		PageTitle: "My App",
@@ -112,13 +120,6 @@ func main() {
 		}
 		favIcon = "favicon.ico"
 	}
-
-	topNav := make(map[string]string)
-	topNav["/"] = "&#x1f3e0;"
-	topNav["/about"] = "About"
-	topNav["/download"] = "Download"
-	topNav["/gallery"] = "Gallery"
-	topNav["/register"] = "Register"
 
 	for _, k := range []string{
 		"",
