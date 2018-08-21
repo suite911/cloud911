@@ -177,15 +177,13 @@ div.copyright {
 	display: inline-block;
 }
 
-/*input[type=submit],*/ .btn {
-	background-color: #03A9F4;
+input[type=submit], .btn, .bbtn {
 	border: none;
-	color: #fff;
 	cursor: pointer;
 	display: block;
-	font-size: calc(30pt - 12px);
+	font-size: calc(30pt - 24px);
 	height: 30pt;
-	line-height: calc(30pt - 12px);
+	line-height: calc(30pt - 24px);
 	margin: 0 0 16px 0;
 	min-width: 120pt;
 	overflow: hidden;
@@ -194,16 +192,25 @@ div.copyright {
 	text-decoration: none;
 }
 
-input[type=submit]:hover, .btn:hover {
-	background-color: #40C4FF;
+.btn, .btn:hover {
+	background-color: #fff;
+	color: #03A9F4;
 }
 
-.btn {
-	border-radius: 3px;
+input[type=submit], .bbtn {
+	background-color: #03A9F4;
+	color: #fff;
+}
+input[type=submit]:hover, .bbtn:hover {
+	background-color: #40C4FF;
 	color: #fff;
 }
 
-.btn, .card {
+input[type=submit], .btn, .bbtn {
+	border-radius: 3px;
+}
+
+input[type=submit], .btn, .bbtn, .card {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -213,10 +220,14 @@ input[type=submit]:hover, .btn:hover {
 	-webkit-transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 
-.btn:hover, .card:hover {
+input[type=submit]:hover, .btn:hover, .bbtn:hover, .card:hover {
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	-moz-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	-webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+input[type=submit] sup, .btn sup, .bbtn sup {
+	display: none; /*TODO*/
 }
 
 .logo-windows {
