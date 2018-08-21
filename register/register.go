@@ -27,9 +27,17 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 	argsRecv := ctx.PostArgs()
 	email := argsRecv.Peek("email")
 	captcha := argsRecv.Peek("g-recaptcha-response")
+	if len(email) < 0 {
+		ctx.Redirect("?email=missing", 302)
+		return
+	}
+	if len(captcha) < 0 {
+		ctx.Redirect("?captcha=missing", 302)
+		return
+	}
 	var args fasthttp.Args
 	args.Set("secret", vars.Pass.CaptchaSecret)
-	args.SetBytesV("response", response)
+	args.SetBytesV("response", captcha)
 	args.SetBytesV("remoteip", ctx.RequestURI())
 	var statusCode int
 	var body []byte
@@ -44,17 +52,17 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 	if err = json.Unmarshal(body, &resp); err != nil {
 		return
 	}
-	if success {
-		if err = database.Register(email); err != nil {
-			return
-		}
-		if url := vars.Pass.URLRegistered; len(url) > 0 {
-			ctx.Redirect(url, 302)
-		}
-	} else {
-		if url := vars.Pass.URLBotRegistered; len(url) > 0 {
-			ctx.Redirect(url, 302)
-		}
+	if !success {
+		ctx.Redirect("?captcha=failed", 302)
+		return
 	}
+	if err = database.Register(email); err != nil {
+		return
+	}
+	if url := vars.Pass.Registered; len(url) > 0 {
+		ctx.Redirect(url, 302)
+		return
+	}
+	ctx.Redirect("?registered=true", 302)
 	return
 }
