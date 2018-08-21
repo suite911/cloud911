@@ -32,7 +32,9 @@ func main() {
 	}
 
 	pages.Pages["/about"] = &pages.Page{
+		Content: string(www["/about.htm"]),
 		ContentTitle: "About",
+		CSS: string(www["/about.css"]),
 		PageTitle: "My App - About",
 	}
 
