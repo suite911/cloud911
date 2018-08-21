@@ -178,6 +178,7 @@ div.copyright {
 }
 
 input[type=submit], .ebtn, .bbtn {
+	background-repeat: no-repeat;
 	background-size: auto 100%;
 	border: none;
 	cursor: pointer;
