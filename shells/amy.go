@@ -397,18 +397,18 @@ function onDOMReady(){
 	document.getElementById("content").style.display = "block";
 {{end}}{{.OnDOMReady}}
 	if(location.hash.length >= 2) {
-		console.log("*:\""+location.hash+"\"")
-		console.log("1:\""+location.hash.slice(1)+"\"")
 		var elem = document.getElementById(location.hash.slice(1))
-		if(hasClass(elem, "fragment-block")) {
-			elem.style.display = "block";
-		} else if(hasClass(elem, "fragment-inline")) {
-			elem.style.display = "inline";
-		} else if(hasClass(elem, "fragment-inline-block")) {
-			elem.style.display = "inline-block";
-		}
-		if(!replaceState(location.href.split('#')[0])) {
-			location.hash = '';
+		if(elem) {
+			if(hasClass(elem, "fragment-block")) {
+				elem.style.display = "block";
+			} else if(hasClass(elem, "fragment-inline")) {
+				elem.style.display = "inline";
+			} else if(hasClass(elem, "fragment-inline-block")) {
+				elem.style.display = "inline-block";
+			}
+			if(true||!replaceState(location.href.split('#')[0])) {
+				location.hash = '';
+			}
 		}
 	} else if(location.href.slice(-1) == '#') {
 		replaceState(location.href.slice(0, -1))
