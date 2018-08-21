@@ -200,10 +200,12 @@ input[type=submit], .ebtn, .bbtn {
 input[type=submit], .bbtn {
 	background-color: #03A9F4;
 	color: #fff;
+	font-weight: bold;
 }
 input[type=submit]:hover, .bbtn:hover {
 	background-color: #40C4FF;
 	color: #fff;
+	font-weight: bold;
 }
 
 input[type=submit], .ebtn, .bbtn {
