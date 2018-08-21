@@ -398,9 +398,13 @@ function onDOMReady(){
 	}
 	if(location.hash.length < 1) {
 		var href = location.href;
+		console.log("href:\""+location.hash+"\"");
 		if(href.slice(-1) == '#') {
 			if(typeof history.replaceState === "function") {
 				history.replaceState("", nil, href.slice(0, -1))
+				console.log(">>>>:\""+location.hash+"\"");
+			} else {
+				console.log("!!!!:\""+typeof history.replaceState+"\"");
 			}
 		}
 	}
