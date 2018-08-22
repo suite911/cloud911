@@ -8,13 +8,16 @@ function addEventListener(elem, on, cb, useCapture) {
 		return false;
 	}
 	if(typeof elem.addEventListener === "function") {
+		console.log("DEBUG: elem.addEventListener");
 		if(useCapture === "undefined") {
 			useCapture = false;
 		}
 		elem.addEventListener(on, cb, useCapture);
 	} else if(typeof elem.attachEvent === "function") {
+		console.log("DEBUG: elem.attachEvent");
 		elem.attachEvent("on" + on, cb);
 	} else {
+		console.log("DEBUG: elem[]");
 		elem["on" + on] = cb;
 	}
 	return true;
