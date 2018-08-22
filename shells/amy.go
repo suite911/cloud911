@@ -245,13 +245,13 @@ div.copyright {
 {{.JavaScript}}
 {{end}}
 function onDOMReady(){
-	onDOMReadyHead()
+	amy_onDOMReadyHead()
 {{.OnDOMReady}}
-	onDOMReadyTail()
+	amy_onDOMReadyTail()
 }
 function onPageLoaded(){
 {{.OnPageLoaded}}
-	cookieAgree();
+	amy_cookieAgree();
 }
 if (document.addEventListener) document.addEventListener("DOMContentLoaded", onDOMReady, false);
 else if (document.attachEvent) document.attachEvent("onreadystatechange", onDOMReady);
