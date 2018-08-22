@@ -12,7 +12,7 @@ function addEventListener(elem, on, cb, useCapture) {
 	} else if(typeof elem.attachEvent === "function") {
 		elem.attachEvent("on" + on, cb);
 	} else {
-		elem["on" + on] = cb;
+		//elem["on" + on] = cb;
 	}
 	return true;
 }
@@ -98,7 +98,7 @@ function removeEventListener(elem, on, cb, useCapture) {
 	} else if(typeof elem.detachEvent === "function") {
 		elem.detachEvent("on" + on, cb);
 	} else {
-		elem["on" + on] = null;
+		//elem["on" + on] = null;
 	}
 	return true;
 }
