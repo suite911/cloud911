@@ -3,6 +3,26 @@ function hasClass(elem, className) {
 	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
+function addEventListener(elem, on, cb) {
+	if(typeof elem.addEventListener === "function") {
+		elem.addEventListener(on, cb, false);
+	} else if(typeof elem.attachEvent === "function") {
+		elem.attachEvent("on" + on, cb);
+	} else {
+		elem["on" + on] = cb;
+	}
+}
+
+function removeEventListener(elem, on, cb) {
+	if(typeof elem.removeEventListener === "function") {
+		elem.removeEventListener(on, cb, false);
+	} else if(typeof elem.detachEvent === "function") {
+		elem.detachEvent("on" + on, cb);
+	} else {
+		elem["on" + on] = null;
+	}
+}
+
 function replaceState(url) {
 	if(typeof history.replaceState === "function") {
 		history.replaceState(null, null, url);
@@ -32,14 +52,10 @@ function onDOMReadyHead() {
 			console.log("DEBUG: found nothing");
 			break;
 		}
-		console.log("DEBUG: setting lights.onchange in onDOMReadyHead");
 		console.log("DEBUG: lights.onchange was: "+lights.onchange);
-		lights.onchange = onLightsChanged;
-		console.log("DEBUG: set lights.onchange in onDOMReadyHead");
+		addEventListener(lights, "change", onLightsChanged);
 		console.log("DEBUG: lights.onchange is now: "+lights.onchange);
 		console.log("DEBUG: document.getElementById('lights-off').onchange is now: "+document.getElementById("lights-off").onchange);
-	} else {
-		console.log("DEBUG: no lightSwitch from onDOMReadyHead");
 	}
 }
 
@@ -73,7 +89,5 @@ function onLightsChanged() {
 			cookieSet("lights", "off");
 			console.log("DEBUG: set lights to off");
 		}
-	} else {
-		console.log("DEBUG: no lightSwitch from onLightsChanged");
 	}
 }
