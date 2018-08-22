@@ -34,7 +34,7 @@ function onDOMReadyHead() {
 		}
 		console.log("DEBUG: setting lights.onchange in onDOMReadyHead");
 		console.log("DEBUG: lights.onchange was: "+lights.onchange);
-		lights.onchange = "onLightsChanged();";
+		lights.onchange = onLightsChanged;
 		console.log("DEBUG: set lights.onchange in onDOMReadyHead");
 		console.log("DEBUG: lights.onchange is now: "+lights.onchange);
 		console.log("DEBUG: document.getElementById('lights-off').onchange is now: "+document.getElementById("lights-off").onchange);
