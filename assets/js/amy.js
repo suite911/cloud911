@@ -24,7 +24,7 @@ function amy_cookieAlert() {
 
 function amy_cookieAgree() {
 	if (amy_getCookie("agreed") == "") {
-		amy_setCookie("agreed", cookieAlert(), 1);
+		amy_setCookie("agreed", amy_cookieAlert(), 1);
 	}
 }
 
