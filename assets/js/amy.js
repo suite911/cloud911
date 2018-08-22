@@ -6,9 +6,9 @@ function hasClass(elem, className) {
 function replaceState(url) {
 	if(typeof history.replaceState === "function") {
 		history.replaceState(null, null, url);
-		return true
+		return true;
 	}
-	return false
+	return false;
 }
 
 function onDOMReadyHead() {
@@ -18,16 +18,23 @@ function onDOMReadyHead() {
 	}
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
-		var lights = cookieGet("lights")
+		var lights = cookieGet("lights");
 		switch(lights) {
 		case "off":
 			lightSwitch.checked = false;
+			console.log("DEBUG: found lights on");
 			break;
 		case "on":
 			lightSwitch.checked = true;
+			console.log("DEBUG: found lights off");
+			break;
+		default:
+			console.log("DEBUG: found nothing");
 			break;
 		}
 		lights.onchange = "onLightsChanged();";
+	} else {
+		console.log("DEBUG: no lightSwitch from onDOMReadyHead");
 	}
 }
 
@@ -47,7 +54,7 @@ function onDOMReadyTail() {
 			}
 		}
 	} else if(location.href.slice(-1) == '#') {
-		replaceState(location.href.slice(0, -1))
+		replaceState(location.href.slice(0, -1));
 	}
 }
 
@@ -55,9 +62,13 @@ function onLightsChanged() {
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		if(lightSwitch.checked) {
-			cookieSet("lights", "on")
+			cookieSet("lights", "on");
+			console.log("DEBUG: set lights to on");
 		} else {
-			cookieSet("lights", "off")
+			cookieSet("lights", "off");
+			console.log("DEBUG: set lights to off");
 		}
+	} else {
+		console.log("DEBUG: no lightSwitch from onLightsChanged");
 	}
 }
