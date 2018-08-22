@@ -274,8 +274,10 @@ function onDOMReady(){
 		switch(lights) {
 		case "off":
 			lightSwitch.checked = false;
+			break;
 		case "on":
 			lightSwitch.checked = true;
+			break;
 		}
 	}
 {{.OnDOMReady}}
