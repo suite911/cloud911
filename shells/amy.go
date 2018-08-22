@@ -205,7 +205,7 @@ div.copyright {
 //]]> --></script>
 {{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
-<input type="checkbox" class="night" id="night" checked />
+<input type="checkbox" class="night" id="night" onclick="lightsChanged" checked />
 <div class="page-outer"><div class="page-inner">
 	<header class="topnav">
 		<div class="topnav">{{.TopNavHead}}
@@ -249,7 +249,18 @@ function replaceState(url) {
 	}
 	return false
 }
-{{.DefaultCookieStuff}}{{if .JavaScriptHead}}
+{{.DefaultCookieStuff}}
+function lightsChanged() {
+	var lightSwitch = document.getElementById("night");
+	if(lightSwitch) {
+		if(lightSwitch.checked) {
+			cookieSet("lights", "on")
+		} else {
+			cookieSet("lights", "off")
+		}
+	}
+}
+{{if .JavaScriptHead}}
 {{.JavaScriptHead}}
 {{end}}{{if .JavaScript}}
 {{.JavaScript}}
@@ -257,7 +268,17 @@ function replaceState(url) {
 function onDOMReady(){
 {{if .NoScript}}
 	document.getElementById("content").style.display = "block";
-{{end}}{{.OnDOMReady}}
+{{end}}	var lightSwitch = document.getElementById("night");
+	if(lightSwitch) {
+		var lights = cookieGet("lights")
+		switch(lights) {
+		case "off":
+			lightSwitch.checked = false;
+		case "on":
+			lightSwitch.checked = true;
+		}
+	}
+{{.OnDOMReady}}
 	if(location.hash.length >= 2) {
 		var elem = document.getElementById(location.hash.slice(1))
 		if(elem) {
