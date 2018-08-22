@@ -289,3 +289,13 @@ input[type=submit] sup, button[type=submit] sup, .ebtn sup, .bbtn sup {
 .logo-android {
 	background-image: url("//rawgit.com/suite911/assets/master/logos/android.svg");
 }
+
+/* Checkbox hacks */
+
+.children {
+	display: none;
+}
+
+input[type=checkbox].child:checked ~ .children {
+	display: block;
+}
