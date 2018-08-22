@@ -16,7 +16,7 @@ function onDOMReadyHead() {
 	if(content) {
 		content.style.display = "block";
 	}
-	var lightSwitch = document.getElementById("lights");
+	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		var lights = cookieGet("lights")
 		switch(lights) {
@@ -51,7 +51,7 @@ function onDOMReadyTail() {
 }
 
 function onLightsChanged() {
-	var lightSwitch = document.getElementById("lights");
+	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		if(lightSwitch.checked) {
 			cookieSet("lights", "on")
