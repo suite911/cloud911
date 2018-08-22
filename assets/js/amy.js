@@ -40,17 +40,22 @@ function amy_defer(obj, mthd) {
 }
 
 function amy_getCookie(name) {
+	console.log("DEBUG: >> getCookie(\""+name+"\")");
 	var n = name + "=";
 	var a = document.cookie.split(';');
 	for(var i = 0; i < a.length; i++) {
 		var c = a[i];
+		console.log("DEBUG: >>>> \""+c+"\"");
 		while(c.charAt[0] == ' ') {
 			c = c.substring(1);
 		}
+		console.log("DEBUG: =>>> \""+c+"\"");
 		if (c.indexOf(n) == 0) {
+			console.log("DEBUG: ==>> \""+c.substring(n.length, c.length)+"\"");
 			return c.substring(n.length, c.length);
 		}
 	}
+	console.log("DEBUG: XXXX");
 	return "";
 }
 
