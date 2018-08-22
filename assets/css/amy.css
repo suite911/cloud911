@@ -45,21 +45,21 @@ footer a:hover {
 	text-decoration: underline;
 }
 
-.only-day {
+.only-lights-on {
 	display: inline;
 }
 
-.only-night {
+.only-lights-off {
 	display: none;
 }
 
 /* Night Mode */
 
-input[type=checkbox].night:checked + div .only-day {
+input[type=checkbox].lights:checked + div .only-lights-on {
 	display: none;
 }
 
-input[type=checkbox].night:checked + div .only-night {
+input[type=checkbox].lights:checked + div .only-lights-off {
 	display: inline;
 }
 
@@ -109,8 +109,8 @@ span.topnav {
 	padding: 10px 4px;
 }
 
-/* The "Night Mode" toggle */
-label.night {
+/* The "Lights Off" toggle */
+label.lights {
 	border-radius: 3px;
 	display: inline;
 	font-size: calc(100% - 2px);
@@ -120,8 +120,8 @@ label.night {
 	padding: 5px;
 }
 
-/* Put the associated checkbox over the "Night Mode" text and make it invisible. */
-input[type=checkbox].night {
+/* Put the associated checkbox over the "Lights Off" text and make it invisible. */
+input[type=checkbox].lights {
 	position: absolute;
 	top: 9pt;
 	right: 7pt;
