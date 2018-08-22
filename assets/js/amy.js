@@ -8,16 +8,13 @@ function addEventListener(elem, on, cb, useCapture) {
 		return false;
 	}
 	if(typeof elem.addEventListener === "function") {
-		console.log("DEBUG: elem.addEventListener");
 		if(useCapture === "undefined") {
 			useCapture = false;
 		}
 		elem.addEventListener(on, cb, useCapture);
 	} else if(typeof elem.attachEvent === "function") {
-		console.log("DEBUG: elem.attachEvent");
 		elem.attachEvent("on" + on, cb);
 	} else {
-		console.log("DEBUG: elem[]");
 		elem["on" + on] = cb;
 	}
 	return true;
@@ -66,13 +63,10 @@ function onDOMReadyHead() {
 			console.log("DEBUG: found lights off");
 			break;
 		default:
-			console.log("DEBUG: found nothing");
+			console.log("DEBUG: found nothing: \""+lights+"\"");
 			break;
 		}
-		console.log("DEBUG: lights.onchange was: "+lights.onchange);
-		addEventListener(lights, "change", onLightsChanged);
-		console.log("DEBUG: lights.onchange is now: "+lights.onchange);
-		console.log("DEBUG: document.getElementById('lights-off').onchange is now: "+document.getElementById("lights-off").onchange);
+		addEventListener(lightSwitch, "change", onLightsChanged);
 	}
 }
 
@@ -100,11 +94,9 @@ function onLightsChanged(event) {
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		if(lightSwitch.checked) {
-			cookieSet("lights", "on");
-			console.log("DEBUG: set lights to on");
-		} else {
 			cookieSet("lights", "off");
-			console.log("DEBUG: set lights to off");
+		} else {
+			cookieSet("lights", "on");
 		}
 	}
 }
