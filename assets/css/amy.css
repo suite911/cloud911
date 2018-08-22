@@ -332,7 +332,7 @@ input[type=radio]:checked + label + span.hack {
 	display: inline;
 }
 
-/* Convenience */
+/* Colors */
 
 .red {
 	color: #f44336;
@@ -408,4 +408,13 @@ input[type=radio]:checked + label + span.hack {
 
 .bluegrey {
 	color: #607d8b;
+}
+
+/* Convenience */
+
+.required-star {
+	color: #f44336;
+	font-size: 50%;
+	line-height: 50%;
+	vertical-align: super;
 }
