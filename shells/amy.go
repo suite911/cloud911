@@ -205,7 +205,7 @@ div.copyright {
 //]]> --></script>
 {{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
-<input type="checkbox" class="lights-off" id="lights-off" onclick="onLightsChanged" checked />
+<input type="checkbox" class="lights-off" id="lights-off" checked />
 <div class="page-outer"><div class="page-inner">
 	<header class="topnav">
 		<div class="topnav">{{.TopNavHead}}
