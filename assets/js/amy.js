@@ -23,8 +23,8 @@ function amy_cookieAlert() {
 }
 
 function amy_cookieAgree() {
-	if (getCookie("agreed") == "") {
-		setCookie("agreed", cookieAlert(), 1);
+	if (amy_getCookie("agreed") == "") {
+		amy_setCookie("agreed", cookieAlert(), 1);
 	}
 }
 
@@ -98,7 +98,7 @@ function amy_removeEventListener(elem, on, cb, useCapture) {
 	} else if(typeof elem.detachEvent === "function") {
 		elem.detachEvent("on" + on, cb);
 	} else {
-		//elem["on" + on] = null;
+		elem["on" + on] = null;
 	}
 	return true;
 }
@@ -121,18 +121,18 @@ function amy_onDOMReadyHead() {
 		var lights = amy_getCookie("lights");
 		switch(lights) {
 		case "off":
-			lightSwitch.checked = false;
-			console.log("DEBUG: found lights on");
-			break;
-		case "on":
 			lightSwitch.checked = true;
 			console.log("DEBUG: found lights off");
+			break;
+		case "on":
+			lightSwitch.checked = false;
+			console.log("DEBUG: found lights on");
 			break;
 		default:
 			console.log("DEBUG: found nothing: \""+lights+"\"");
 			break;
 		}
-		amy_addEventListener(lightSwitch, "change", onLightsChanged);
+		amy_addEventListener(lightSwitch, "change", amy_onLightsChanged);
 	}
 }
 
