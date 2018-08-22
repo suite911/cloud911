@@ -305,26 +305,25 @@ input[type=submit] sup, button[type=submit] sup, .ebtn sup, .bbtn sup {
 
 input[type=checkbox] + div.hack,
 input[type=checkbox] + label + div.hack,
+input[type=radio] + div.hack,
+input[type=radio] + label + div.hack,
 input[type=checkbox] + span.hack,
-input[type=checkbox] + label + span.hack {
+input[type=checkbox] + label + span.hack,
+input[type=radio] + span.hack,
+input[type=radio] + label + span.hack {
 	display: none;
 }
 
 input[type=checkbox]:checked + div.hack,
-input[type=checkbox]:checked + label + div.hack {
+input[type=checkbox]:checked + label + div.hack,
+input[type=radio]:checked + div.hack,
+input[type=radio]:checked + label + div.hack {
 	display: block;
 }
 
 input[type=checkbox]:checked + span.hack,
-input[type=checkbox]:checked + label + span.hack {
+input[type=checkbox]:checked + label + span.hack,
+input[type=radio]:checked + span.hack,
+input[type=radio]:checked + label + span.hack {
 	display: inline;
-}
-
-.child-safety-permission-form {
-	display: none;
-}
-
-input[type=checkbox]#child-account:checked ~ .child-safety-permission-form,
-input[type=checkbox]#child-account:checked ~ div .child-safety-permission-form {
-	display: block;
 }
