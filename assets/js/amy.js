@@ -1,3 +1,5 @@
+'use strict';
+
 function addEventListener(elem, on, cb, useCapture) {
 	if(!elem) {
 		return false;
