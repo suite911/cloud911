@@ -307,6 +307,7 @@ input[type=submit] sup, button[type=submit] sup, .ebtn sup, .bbtn sup {
 	display: none;
 }
 
-input[type=checkbox].child:checked ~ .child-safety-permission-form {
+input[type=checkbox]#child-account:checked ~ .child-safety-permission-form,
+input[type=checkbox]#child-account:checked ~ div .child-safety-permission-form {
 	display: block;
 }
