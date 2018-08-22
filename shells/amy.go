@@ -240,9 +240,7 @@ div.copyright {
 {{end}}{{.BodyTail}}
 <script type="text/javascript" src="//rawgit.com/suite911/cloud911/master/assets/js/amy.js"></script>
 <script type="text/javascript"><!-- //<![CDATA[
-{{.DefaultCookieStuff}}
-{{if .JavaScriptHead}}
-{{.JavaScriptHead}}
+{{if .JavaScriptHead}}{{.JavaScriptHead}}
 {{end}}{{if .JavaScript}}
 {{.JavaScript}}
 {{end}}
