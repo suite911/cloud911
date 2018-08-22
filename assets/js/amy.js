@@ -1,6 +1,6 @@
 'use strict';
 
-function addEventListener(elem, on, cb, useCapture) {
+function amy_addEventListener(elem, on, cb, useCapture) {
 	if(!elem) {
 		return false;
 	}
@@ -12,23 +12,23 @@ function addEventListener(elem, on, cb, useCapture) {
 	} else if(typeof elem.attachEvent === "function") {
 		elem.attachEvent("on" + on, cb);
 	} else {
-		//elem["on" + on] = cb;
+		elem["on" + on] = cb;
 	}
 	return true;
 }
 
-function cookieAlert() {
+function amy_cookieAlert() {
 	alert("This site uses cookies to enhance the user experience.");
 	return "1"
 }
 
-function cookieAgree() {
+function amy_cookieAgree() {
 	if (getCookie("agreed") == "") {
 		setCookie("agreed", cookieAlert(), 1);
 	}
 }
 
-function defer(obj, mthd) {
+function amy_defer(obj, mthd) {
 	if(typeof obj[mthd] === "function") {
 		obj[mthd].apply(obj, [].slice.call(arguments).slice(2));
 		return true;
@@ -36,7 +36,7 @@ function defer(obj, mthd) {
 	return false;
 }
 
-function getCookie(name) {
+function amy_getCookie(name) {
 	var n = name + "=";
 	var a = document.cookie.split(';');
 	for(var i = 0; i < a.length; i++) {
@@ -51,11 +51,11 @@ function getCookie(name) {
 	return "";
 }
 
-function hasClass(elem, className) {
+function amy_hasClass(elem, className) {
 	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
-function onDOMReadyTail() {
+function amy_onDOMReadyTail() {
 	if(location.hash.length >= 2) {
 		var elem = document.getElementById(location.hash.slice(1))
 		if(elem) {
@@ -75,18 +75,18 @@ function onDOMReadyTail() {
 	}
 }
 
-function onLightsChanged(event) {
+function amy_onLightsChanged(event) {
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		if(lightSwitch.checked) {
-			setCookie("lights", "off");
+			amy_setCookie("lights", "off");
 		} else {
-			setCookie("lights", "on");
+			amy_setCookie("lights", "on");
 		}
 	}
 }
 
-function removeEventListener(elem, on, cb, useCapture) {
+function amy_removeEventListener(elem, on, cb, useCapture) {
 	if(!elem) {
 		return false;
 	}
@@ -103,7 +103,7 @@ function removeEventListener(elem, on, cb, useCapture) {
 	return true;
 }
 
-function replaceState(url) {
+function amy_replaceState(url) {
 	if(typeof history.replaceState === "function") {
 		history.replaceState(null, null, url);
 		return true;
@@ -111,14 +111,14 @@ function replaceState(url) {
 	return false;
 }
 
-function onDOMReadyHead() {
+function amy_onDOMReadyHead() {
 	var content = document.getElementById("content");
 	if(content) {
 		content.style.display = "block";
 	}
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
-		var lights = getCookie("lights");
+		var lights = amy_getCookie("lights");
 		switch(lights) {
 		case "off":
 			lightSwitch.checked = false;
@@ -132,11 +132,11 @@ function onDOMReadyHead() {
 			console.log("DEBUG: found nothing: \""+lights+"\"");
 			break;
 		}
-		addEventListener(lightSwitch, "change", onLightsChanged);
+		amy_addEventListener(lightSwitch, "change", onLightsChanged);
 	}
 }
 
-function setCookie(name, value, hours) {
+function amy_setCookie(name, value, hours) {
 	var nv = name + "=" + value;
 	var p = ";path=/";
 	if(hours === undefined) {
