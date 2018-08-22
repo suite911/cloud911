@@ -5,16 +5,13 @@ function amy_addEventListener(elem, on, cb, useCapture) {
 		return false;
 	}
 	if(typeof elem.addEventListener === "function") {
-		console.log("DEBUG: elem.addEventListener");
 		if(useCapture === "undefined") {
 			useCapture = false;
 		}
 		elem.addEventListener(on, cb, useCapture);
 	} else if(typeof elem.attachEvent === "function") {
-		console.log("DEBUG: elem.attachEvent");
 		elem.attachEvent("on" + on, cb);
 	} else {
-		console.log("DEBUG: elem[]");
 		elem["on" + on] = cb;
 	}
 	return true;
@@ -40,22 +37,17 @@ function amy_defer(obj, mthd) {
 }
 
 function amy_getCookie(name) {
-	console.log("DEBUG: >> getCookie(\""+name+"\")");
 	var n = name + "=";
 	var a = document.cookie.split(';');
 	for(var i = 0; i < a.length; i++) {
 		var c = a[i];
-		console.log("DEBUG: >>>> \""+c+"\"");
 		while(c.charAt(0) == ' ') {
 			c = c.substring(1);
 		}
-		console.log("DEBUG: =>>> \""+c+"\"");
 		if (c.indexOf(n) == 0) {
-			console.log("DEBUG: ==>> \""+c.substring(n.length, c.length)+"\"");
 			return c.substring(n.length, c.length);
 		}
 	}
-	console.log("DEBUG: XXXX");
 	return "";
 }
 
@@ -84,14 +76,11 @@ function amy_onDOMReadyTail() {
 }
 
 function amy_onLightsChanged(event) {
-	console.log("DEBUG: amy_onLightsChanged");
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		if(lightSwitch.checked) {
-			console.log("DEBUG: ->off");
 			amy_setCookie("lights", "off");
 		} else {
-			console.log("DEBUG: ->on");
 			amy_setCookie("lights", "on");
 		}
 	}
@@ -133,14 +122,13 @@ function amy_onDOMReadyHead() {
 		switch(lights) {
 		case "off":
 			lightSwitch.checked = true;
-			console.log("DEBUG: found lights off");
 			break;
 		case "on":
 			lightSwitch.checked = false;
-			console.log("DEBUG: found lights on");
 			break;
 		default:
-			console.log("DEBUG: found nothing: \""+lights+"\"");
+			lightSwitch.checked = false;
+			amy_setCookie("lights", "on");
 			break;
 		}
 		amy_addEventListener(lightSwitch, "change", amy_onLightsChanged);
