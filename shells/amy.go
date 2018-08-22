@@ -75,30 +75,30 @@ footer a:hover {
 	color: {{.Vars.Light_Footer_Fg}};
 }
 
-input[type=checkbox].night:checked + div header {
+input[type=checkbox].lights:checked + div header {
 	background-color: {{.Vars.Dark_Header_Bg}};
 	color: {{.Vars.Dark_Header_Fg}};
 }
 
-input[type=checkbox].night:checked ~ div {
+input[type=checkbox].lights:checked ~ div {
 	background-color: {{.Vars.Dark_Bg}};
 	color: {{.Vars.Dark_Fg}};
 }
 
-input[type=checkbox].night:checked ~ footer {
+input[type=checkbox].lights:checked ~ footer {
 	background-color: {{.Vars.Dark_Footer_Bg}};
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
-input[type=checkbox].night:checked ~ footer a,
-input[type=checkbox].night:checked ~ footer a:active,
-input[type=checkbox].night:checked ~ footer a:focus,
-input[type=checkbox].night:checked ~ footer a:link,
-input[type=checkbox].night:checked ~ footer a:visited {
+input[type=checkbox].lights:checked ~ footer a,
+input[type=checkbox].lights:checked ~ footer a:active,
+input[type=checkbox].lights:checked ~ footer a:focus,
+input[type=checkbox].lights:checked ~ footer a:link,
+input[type=checkbox].lights:checked ~ footer a:visited {
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
-input[type=checkbox].night:checked ~ footer a:hover {
+input[type=checkbox].lights:checked ~ footer a:hover {
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
@@ -120,36 +120,36 @@ span.topnav:hover {
 	color: {{.Vars.Light_TopNav_Fg_Hover}};
 }
 
-input[type=checkbox].night:checked + div header span.topnav {
+input[type=checkbox].lights:checked + div header span.topnav {
 	background-color: {{.Vars.Dark_TopNav_Bg}};
 	color: {{.Vars.Dark_TopNav_Fg}};
 }
 
-input[type=checkbox].night:checked + div header span.topnav:hover {
+input[type=checkbox].lights:checked + div header span.topnav:hover {
 	background-color: {{.Vars.Dark_TopNav_Bg_Hover}};
 	color: {{.Vars.Dark_TopNav_Fg_Hover}};
 }
 
-/* The "Night Mode" toggle */
-label.night {
+/* The "Lights Off" toggle */
+label.lights {
 	background-color: {{.Vars.Light_Night_Bg}};
 	border: 2px solid {{.Vars.Light_Night_Border}};
 	color: {{.Vars.Light_Night_Fg}};
 }
 
-label.night:hover {
+label.lights:hover {
 	background-color: {{.Vars.Light_Night_Bg_Hover}};
 	border-color: {{.Vars.Light_Night_Border_Hover}};
 	color: {{.Vars.Light_Night_Fg_Hover}};
 }
 
-input[type=checkbox].night:checked + div header label.night {
+input[type=checkbox].lights:checked + div header label.lights {
 	background-color: {{.Vars.Dark_Night_Bg}};
 	border-color: {{.Vars.Dark_Night_Border}};
 	color: {{.Vars.Dark_Night_Fg}};
 }
 
-input[type=checkbox].night:checked + div header label.night:hover {
+input[type=checkbox].lights:checked + div header label.lights:hover {
 	background-color: {{.Vars.Dark_Night_Bg_Hover}};
 	border-color: {{.Vars.Dark_Night_Border_Hover}};
 	color: {{.Vars.Dark_Night_Fg_Hover}};
@@ -205,14 +205,14 @@ div.copyright {
 //]]> --></script>
 {{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
-<input type="checkbox" class="night" id="night" onclick="lightsChanged" checked />
+<input type="checkbox" class="lights" id="lights" onclick="lightsChanged" checked />
 <div class="page-outer"><div class="page-inner">
 	<header class="topnav">
 		<div class="topnav">{{.TopNavHead}}
 			<div class="topnavleft"{{range $k, $v := .TopNav}}
 				><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
 			></div>
-			<div class="topnavright card"><label for="night" class="night"><span class="only-day">Lights off &#x263d;</span><span class="only-night">Lights on &#x263c;</span></label></div>
+			<div class="topnavright card"><label for="lights" class="lights"><span class="only-lights-on">Lights off &#x263d;</span><span class="only-lights-off">Lights on &#x263c;</span></label></div>
 			<div class="topnavhack"></div>{{.TopNavTail}}
 		</div>
 	</header>
@@ -238,66 +238,18 @@ div.copyright {
 	<div class="copyright">{{.Copyright}}</div>
 </footer>
 {{end}}{{.BodyTail}}
+<script type="text/javascript" src="//rawgit.com/suite911/cloud911/master/assets/js/amy.js"></script>
 <script type="text/javascript"><!-- //<![CDATA[
-function hasClass(elem, className) {
-	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
-}
-function replaceState(url) {
-	if(typeof history.replaceState === "function") {
-		history.replaceState(null, null, url);
-		return true
-	}
-	return false
-}
 {{.DefaultCookieStuff}}
-function lightsChanged() {
-	var lightSwitch = document.getElementById("night");
-	if(lightSwitch) {
-		if(lightSwitch.checked) {
-			cookieSet("lights", "on")
-		} else {
-			cookieSet("lights", "off")
-		}
-	}
-}
 {{if .JavaScriptHead}}
 {{.JavaScriptHead}}
 {{end}}{{if .JavaScript}}
 {{.JavaScript}}
 {{end}}
 function onDOMReady(){
-{{if .NoScript}}
-	document.getElementById("content").style.display = "block";
-{{end}}	var lightSwitch = document.getElementById("night");
-	if(lightSwitch) {
-		var lights = cookieGet("lights")
-		switch(lights) {
-		case "off":
-			lightSwitch.checked = false;
-			break;
-		case "on":
-			lightSwitch.checked = true;
-			break;
-		}
-	}
+	onDOMReadyHead()
 {{.OnDOMReady}}
-	if(location.hash.length >= 2) {
-		var elem = document.getElementById(location.hash.slice(1))
-		if(elem) {
-			if(hasClass(elem, "fragment-block")) {
-				elem.style.display = "block";
-			} else if(hasClass(elem, "fragment-inline")) {
-				elem.style.display = "inline";
-			} else if(hasClass(elem, "fragment-inline-block")) {
-				elem.style.display = "inline-block";
-			}
-			if(!replaceState(location.href.split('#')[0])) {
-				location.hash = '';
-			}
-		}
-	} else if(location.href.slice(-1) == '#') {
-		replaceState(location.href.slice(0, -1))
-	}
+	onDOMReadyTail()
 }
 function onPageLoaded(){
 {{.OnPageLoaded}}
