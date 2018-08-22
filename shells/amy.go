@@ -75,30 +75,30 @@ footer a:hover {
 	color: {{.Vars.Light_Footer_Fg}};
 }
 
-input[type=checkbox].lights:checked + div header {
+input[type=checkbox].lights-off:checked + div header {
 	background-color: {{.Vars.Dark_Header_Bg}};
 	color: {{.Vars.Dark_Header_Fg}};
 }
 
-input[type=checkbox].lights:checked ~ div {
+input[type=checkbox].lights-off:checked ~ div {
 	background-color: {{.Vars.Dark_Bg}};
 	color: {{.Vars.Dark_Fg}};
 }
 
-input[type=checkbox].lights:checked ~ footer {
+input[type=checkbox].lights-off:checked ~ footer {
 	background-color: {{.Vars.Dark_Footer_Bg}};
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
-input[type=checkbox].lights:checked ~ footer a,
-input[type=checkbox].lights:checked ~ footer a:active,
-input[type=checkbox].lights:checked ~ footer a:focus,
-input[type=checkbox].lights:checked ~ footer a:link,
-input[type=checkbox].lights:checked ~ footer a:visited {
+input[type=checkbox].lights-off:checked ~ footer a,
+input[type=checkbox].lights-off:checked ~ footer a:active,
+input[type=checkbox].lights-off:checked ~ footer a:focus,
+input[type=checkbox].lights-off:checked ~ footer a:link,
+input[type=checkbox].lights-off:checked ~ footer a:visited {
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
-input[type=checkbox].lights:checked ~ footer a:hover {
+input[type=checkbox].lights-off:checked ~ footer a:hover {
 	color: {{.Vars.Dark_Footer_Fg}};
 }
 
@@ -120,36 +120,36 @@ span.topnav:hover {
 	color: {{.Vars.Light_TopNav_Fg_Hover}};
 }
 
-input[type=checkbox].lights:checked + div header span.topnav {
+input[type=checkbox].lights-off:checked + div header span.topnav {
 	background-color: {{.Vars.Dark_TopNav_Bg}};
 	color: {{.Vars.Dark_TopNav_Fg}};
 }
 
-input[type=checkbox].lights:checked + div header span.topnav:hover {
+input[type=checkbox].lights-off:checked + div header span.topnav:hover {
 	background-color: {{.Vars.Dark_TopNav_Bg_Hover}};
 	color: {{.Vars.Dark_TopNav_Fg_Hover}};
 }
 
 /* The "Lights Off" toggle */
-label.lights {
+label.lights-off {
 	background-color: {{.Vars.Light_Night_Bg}};
 	border: 2px solid {{.Vars.Light_Night_Border}};
 	color: {{.Vars.Light_Night_Fg}};
 }
 
-label.lights:hover {
+label.lights-off:hover {
 	background-color: {{.Vars.Light_Night_Bg_Hover}};
 	border-color: {{.Vars.Light_Night_Border_Hover}};
 	color: {{.Vars.Light_Night_Fg_Hover}};
 }
 
-input[type=checkbox].lights:checked + div header label.lights {
+input[type=checkbox].lights-off:checked + div header label.lights-off {
 	background-color: {{.Vars.Dark_Night_Bg}};
 	border-color: {{.Vars.Dark_Night_Border}};
 	color: {{.Vars.Dark_Night_Fg}};
 }
 
-input[type=checkbox].lights:checked + div header label.lights:hover {
+input[type=checkbox].lights-off:checked + div header label.lights-off:hover {
 	background-color: {{.Vars.Dark_Night_Bg_Hover}};
 	border-color: {{.Vars.Dark_Night_Border_Hover}};
 	color: {{.Vars.Dark_Night_Fg_Hover}};
@@ -205,14 +205,14 @@ div.copyright {
 //]]> --></script>
 {{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
-<input type="checkbox" class="lights" id="lights" onclick="lightsChanged" checked />
+<input type="checkbox" class="lights-off" id="lights-off" onclick="onLightsChanged" checked />
 <div class="page-outer"><div class="page-inner">
 	<header class="topnav">
 		<div class="topnav">{{.TopNavHead}}
 			<div class="topnavleft"{{range $k, $v := .TopNav}}
 				><a href="{{$k}}"><span class="topnav">{{$v}}</span></a{{end}}
 			></div>
-			<div class="topnavright card"><label for="lights" class="lights"><span class="only-lights-on">Lights off &#x263d;</span><span class="only-lights-off">Lights on &#x263c;</span></label></div>
+			<div class="topnavright card"><label for="lights-off" class="lights-off"><span class="only-lights-on">Lights off &#x263d;</span><span class="only-lights-off">Lights on &#x263c;</span></label></div>
 			<div class="topnavhack"></div>{{.TopNavTail}}
 		</div>
 	</header>
