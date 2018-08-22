@@ -32,7 +32,9 @@ function onDOMReadyHead() {
 			console.log("DEBUG: found nothing");
 			break;
 		}
+		console.log("DEBUG: setting lights.onchange in onDOMReadyHead");
 		lights.onchange = "onLightsChanged();";
+		console.log("DEBUG: set lights.onchange in onDOMReadyHead");
 	} else {
 		console.log("DEBUG: no lightSwitch from onDOMReadyHead");
 	}
