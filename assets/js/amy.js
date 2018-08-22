@@ -3,24 +3,38 @@ function hasClass(elem, className) {
 	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
-function addEventListener(elem, on, cb) {
+function addEventListener(elem, on, cb, useCapture) {
+	if(!elem) {
+		return false;
+	}
 	if(typeof elem.addEventListener === "function") {
-		elem.addEventListener(on, cb, false);
+		if(useCapture === "undefined") {
+			useCapture = false;
+		}
+		elem.addEventListener(on, cb, useCapture);
 	} else if(typeof elem.attachEvent === "function") {
 		elem.attachEvent("on" + on, cb);
 	} else {
 		elem["on" + on] = cb;
 	}
+	return true;
 }
 
-function removeEventListener(elem, on, cb) {
+function removeEventListener(elem, on, cb, useCapture) {
+	if(!elem) {
+		return false;
+	}
 	if(typeof elem.removeEventListener === "function") {
-		elem.removeEventListener(on, cb, false);
+		if(useCapture === "undefined") {
+			useCapture = false;
+		}
+		elem.removeEventListener(on, cb, useCapture);
 	} else if(typeof elem.detachEvent === "function") {
 		elem.detachEvent("on" + on, cb);
 	} else {
 		elem["on" + on] = null;
 	}
+	return true;
 }
 
 function replaceState(url) {
