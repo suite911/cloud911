@@ -55,11 +55,11 @@ footer a:hover {
 
 /* Night Mode */
 
-input[type=checkbox].lights:checked + div .only-lights-on {
+input[type=checkbox].lights-off:checked + div .only-lights-on {
 	display: none;
 }
 
-input[type=checkbox].lights:checked + div .only-lights-off {
+input[type=checkbox].lights-off:checked + div .only-lights-off {
 	display: inline;
 }
 
@@ -110,7 +110,7 @@ span.topnav {
 }
 
 /* The "Lights Off" toggle */
-label.lights {
+label.lights-off {
 	border-radius: 3px;
 	display: inline;
 	font-size: calc(100% - 2px);
@@ -121,7 +121,7 @@ label.lights {
 }
 
 /* Put the associated checkbox over the "Lights Off" text and make it invisible. */
-input[type=checkbox].lights {
+input[type=checkbox].lights-off {
 	position: absolute;
 	top: 9pt;
 	right: 7pt;
