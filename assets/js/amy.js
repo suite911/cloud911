@@ -59,11 +59,11 @@ function amy_onDOMReadyTail() {
 	if(location.hash.length >= 2) {
 		var elem = document.getElementById(location.hash.slice(1))
 		if(elem) {
-			if(hasClass(elem, "fragment-block")) {
+			if(amy_hasClass(elem, "fragment-block")) {
 				elem.style.display = "block";
-			} else if(hasClass(elem, "fragment-inline")) {
+			} else if(amy_hasClass(elem, "fragment-inline")) {
 				elem.style.display = "inline";
-			} else if(hasClass(elem, "fragment-inline-block")) {
+			} else if(amy_hasClass(elem, "fragment-inline-block")) {
 				elem.style.display = "inline-block";
 			}
 			if(!replaceState(location.href.split('#')[0])) {
