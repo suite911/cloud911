@@ -79,7 +79,7 @@ function onDOMReadyTail() {
 	}
 }
 
-function onLightsChanged() {
+function onLightsChanged(event) {
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		if(lightSwitch.checked) {
