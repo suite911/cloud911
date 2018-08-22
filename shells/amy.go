@@ -195,7 +195,7 @@ div.copyright {
 {{.CSSTail}}
 {{end}}/*]]>*/ --></style>{{if .Head}}
 {{.Head}}{{end}}
-{{if .Form}}{{if .ReCaptchaV2}}<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+{{if .Form}}{{if .ReCaptchaV2}}<script src='//www.google.com/recaptcha/api.js' async defer></script>
 {{end}}<script type="text/javascript"><!-- //<![CDATA[
 	function onSubmit(token) {
 {{.OnWillSubmit}}
