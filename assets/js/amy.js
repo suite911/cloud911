@@ -27,7 +27,7 @@ function onDOMReadyHead() {
 			lightSwitch.checked = true;
 			break;
 		}
-		lights.onclick = onLightsChanged;
+		lights.onchange = onLightsChanged();
 	}
 }
 
