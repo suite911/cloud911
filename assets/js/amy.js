@@ -26,6 +26,14 @@ function cookieAgree() {
 	}
 }
 
+function defer(obj, mthd) {
+	if(typeof obj[mthd] === "function") {
+		obj[mthd].apply(obj, [].slice.call(arguments).slice(2));
+		return true;
+	}
+	return false;
+}
+
 function getCookie(name) {
 	var n = name + "=";
 	var a = document.cookie.split(';');
