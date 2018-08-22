@@ -150,6 +150,17 @@ div.copyright {
 	text-align: left;
 }
 
+/* Containers */
+
+.box {
+	border: 2px solid #000;
+	border-radius: 3px;
+	margin: 0;
+	max-height: 75vh;
+	overflow: auto;
+	padding: 16px;
+}
+
 /* Fragments */
 
 .fragment-block, .fragment-inline, .fragment-inline-block {
@@ -292,10 +303,10 @@ input[type=submit] sup, button[type=submit] sup, .ebtn sup, .bbtn sup {
 
 /* Checkbox hacks */
 
-.children {
+.child-safety-permission-form {
 	display: none;
 }
 
-input[type=checkbox].child:checked ~ .children {
+input[type=checkbox].child:checked ~ .child-safety-permission-form {
 	display: block;
 }
