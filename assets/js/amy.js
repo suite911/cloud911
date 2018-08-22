@@ -46,7 +46,7 @@ function amy_getCookie(name) {
 	for(var i = 0; i < a.length; i++) {
 		var c = a[i];
 		console.log("DEBUG: >>>> \""+c+"\"");
-		while(c.charAt[0] == ' ') {
+		while(c.charAt(0) == ' ') {
 			c = c.substring(1);
 		}
 		console.log("DEBUG: =>>> \""+c+"\"");
