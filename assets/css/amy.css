@@ -303,6 +303,10 @@ input[type=submit] sup, button[type=submit] sup, .ebtn sup, .bbtn sup {
 
 /* Checkbox hacks */
 
+input[type=radio].radio-hidden {
+	display: none;
+}
+
 input[type=checkbox] + div.hack,
 input[type=checkbox] + label + div.hack,
 input[type=radio] + div.hack,
