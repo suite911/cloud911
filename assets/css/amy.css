@@ -152,13 +152,16 @@ div.copyright {
 
 /* Containers */
 
-.box {
+.box-big, .box {
 	border: 2px solid #000;
 	border-radius: 3px;
 	margin: 0;
-	max-height: 75vh;
 	overflow: auto;
 	padding: 16px;
+}
+
+.box {
+	max-height: 75vh;
 }
 
 /* Fragments */
