@@ -5,6 +5,7 @@ Please enter a valid e-mail address.  If you are under 18 years old, this <b>mus
 address of your parent or legal guardian.  I will use this address for the following purposes only:
 <ul>
 	<li>to prove your identity should you ever need to change account settings such as your password</li>
+	<li>to prove your identity should we have reason to believe you are not who you say you are</li>
 	<li>to alert you to suspicious behavior on your account</li>
 	<li>if you are a minor, to contact your parent or legal guardian as required by law</li>
 </ul>
@@ -26,6 +27,10 @@ won't be displayed anywhere.  It has the following requirements:
 Is this account for an adult or a minor?
 <br /><input type="radio" id="age-class-adult" name="age-class" value="adult" />
 <label for="age-class-adult">The new account owner is <strong>at least 18 years old</strong>.</label>
+<div class="hack">
+	If we have reason to believe you are not actually 18 then we may lock your account until
+	you prove your age.  Please see <a href="/verification">Verification</a> for details.
+</div>
 <br /><input type="radio" id="age-class-minor" name="age-class" value="minor" />
 <label for="age-class-minor">The new account owner is <strong>under 18 years old</strong>.</label>
 <div class="hack">
@@ -50,6 +55,12 @@ Is this account for an adult or a minor?
 		<br /><input type="checkbox" id="parent-notify" name="parent-notify" value="on" />
 		<label for="parent-notify">You consent to receive notifications about your child at the
 			e-mail address you provided above.<sup class="required-star">*</sup></label>
+
+		<div>
+			If we have reason to believe you are not actually the parent or legal guardian
+			of the new account owner, then we may lock their account until you prove that
+			you are.  Please see <a href="/verification">Verification</a> for details.
+		</div>
 
 		<p><sup class="required-star">*</sup>Required.</p>
 
