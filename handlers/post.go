@@ -71,7 +71,7 @@ func post(ctx *fasthttp.RequestCtx) {
 		log.Printf("child-account: <%T>: \"%v\"", childAccount, childAccount)
 	}
 
-	switch action := string(actionBytes); action {
+	switch action {
 	case "register":
 		if len(email) < 1 {
 			ctx.Redirect("#email-missing", 302)
