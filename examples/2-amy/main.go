@@ -98,6 +98,7 @@ func main() {
 		PageTitle: "My App - Register",
 		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
 	}
+	vars.Pass.AlreadyRegistered = "/download#already-registered"
 	vars.Pass.Registered = "/download#registered"
 
 	pages.Pages["/robots.txt"] = &pages.Page{
