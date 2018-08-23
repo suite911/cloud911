@@ -1,13 +1,9 @@
 package database
 
 import (
-	"errors"
 	"log"
-	"unicode/utf8"
 
 	"github.com/suite911/query911/query"
-
-	"github.com/badoux/checkmail"
 )
 
 func Register(email string) (redir string, err error) {
