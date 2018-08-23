@@ -105,19 +105,7 @@ func post(ctx *fasthttp.RequestCtx) {
 			return
 		}
 
-		if url, err := database.Register(email); err != nil {
-			if len(url) > 0 {
-				ctx.Redirect(url, 302)
-				return
-			}
-			ctx.Redirect("#something-went-wrong", 302)
-			return
-		}
-		if url := vars.Pass.Registered; len(url) > 0 {
-			ctx.Redirect(url, 302)
-			return
-		}
-		ctx.Redirect("#registered", 302)
+		ctx.Redirect(database.Register(email), 302)
 		return
 	}
 }
