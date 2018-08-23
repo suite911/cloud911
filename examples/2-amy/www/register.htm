@@ -1,88 +1,110 @@
 <input type="hidden" id="action" name="action" value="register" />
 
 <h2>Email address:<sup class="required-star">*</sup></h2>
-Please enter a valid e-mail address.  If you are under 18 years old, this <b>must</b> be the e-mail
-address of your parent or legal guardian.  I will use this address for the following purposes only:
-<ul>
-	<li>to prove your identity should you ever need to change account settings such as your password</li>
-	<li>to prove your identity should we have reason to believe you are not who you say you are</li>
-	<li>to alert you to suspicious behavior on your account</li>
-	<li>if you are a minor, to contact your parent or legal guardian as needed and as required by law</li>
-</ul>
+<p>
+	Please enter a valid e-mail address.  If you are under 18 years old, this <b>must</b> be the e-mail
+	address of your parent or legal guardian.  I will use this address for the following purposes only:
+	<br />
+	<ul>
+		<li>to prove your identity should you ever need to change account settings such as your password</li>
+		<li>to prove your identity should we have reason to believe you are not who you say you are</li>
+		<li>to alert you to suspicious behavior on your account</li>
+		<li>if you are a minor, to contact your parent or legal guardian as needed and as required by law</li>
+	</ul>
+</p>
 <input type="text" placeholder="amy@example.com" name="email" required />
 
 <h2>Account ID:<sup class="required-star">*</sup></h2>
-Please enter an ID (like a username) you will use to log in.  This will only used to log you in and
-won't be displayed anywhere.  It has the following requirements:
-<ul>
-	<li>It must be valid UTF-8 text.</li>
-	<li>Whitespace is ignored.</li>
-	<li>It must be non-blank.</li>
-	<li>It must not include the commercial at sign (@).</li>
-	<li>It must not be entirely ASCII digits (0-9).</li>
-</ul>
+<p>
+	Please enter an ID (like a username) you will use to log in.  This will only used to log you in and
+	won't be displayed anywhere.  It has the following requirements:
+	<br />
+	<ul>
+		<li>It must be valid UTF-8 text.</li>
+		<li>Whitespace is ignored.</li>
+		<li>It must be non-blank.</li>
+		<li>It must not include the commercial at sign (@).</li>
+		<li>It must not be entirely ASCII digits (0-9).</li>
+	</ul>
+</p>
 <input type="text" placeholder="amy" name="username" required />
 
 <h2>Account type:<sup class="required-star">*</sup></h2>
-Is this account for an adult or a minor?
-<br /><input type="radio" id="age-class-adult" name="age-class" value="adult" />
+<p>Is this account for an adult or a minor?</p>
+<input type="radio" id="age-class-adult" name="age-class" value="adult" />
 <label for="age-class-adult">The new account owner is <strong>at least 18 years old</strong>.</label>
-<div class="hack">
+<p class="hack">
 	If we have reason to believe you are not actually 18 then we may lock your account until
 	you prove your age.  Please see <a href="/verification">Verification</a> for details.
-</div>
-<br /><input type="radio" id="age-class-minor" name="age-class" value="minor" />
+</p>
+<input type="radio" id="age-class-minor" name="age-class" value="minor" />
 <label for="age-class-minor">The new account owner is <strong>under 18 years old</strong>.</label>
 <div class="hack">
 	<div class="box-big">
 		<h2>Child account permission form<sup class="required-star">*</sup></h2>
-		<span class="side-comment">I'm required by law to do this.</span>
-		<p class="red">
+		<p>
+			<span class="side-comment">I'm required by law to do this.</span>
+		</p>
+		<p>
 			This form is to be completed by the parent or legal guardian of the
 			new account owner.
 		</p>
 		<hr />
 
-		<br /><input type="checkbox" id="parent-email-yours" name="parent-email-yours" value="on" />
-		<label for="parent-email-yours">The e-mail address entered at the top of the page
-			belongs to you, not your child.<sup class="required-star">*</sup></label>
+		<p>
+			<input type="checkbox" id="parent-email-yours" name="parent-email-yours" value="on" />
+			<label for="parent-email-yours">The e-mail address entered at the top of the page
+				belongs to you, not your child.<sup class="required-star">*</sup></label>
+		</p>
 
-		<br /><input type="checkbox" id="parent-read-terms" name="parent-read-terms" value="on" />
-		<label for="parent-read-terms">You have read and understand our
-			<a href="/terms">Terms of Service</a>, <a href="/privacy">Privacy Policy</a>, and
-			<a href="/childsafety">Child Safety Policy</a>.<sup class="required-star">*</sup></label>
+		<p>
+			<input type="checkbox" id="parent-read-terms" name="parent-read-terms" value="on" />
+			<label for="parent-read-terms">You have read and understand our
+				<a href="/terms">Terms of Service</a>, <a href="/privacy">Privacy Policy</a>, and
+				<a href="/childsafety">Child Safety Policy</a>.<sup class="required-star">*</sup></label>
+		</p>
 
-		<br /><input type="checkbox" id="parent-notify" name="parent-notify" value="on" />
-		<label for="parent-notify">You consent to receive notifications about your child at the
-			e-mail address you provided above.<sup class="required-star">*</sup></label>
+		<p>
+			<input type="checkbox" id="parent-notify" name="parent-notify" value="on" />
+			<label for="parent-notify">You consent to receive notifications about your child at the
+				e-mail address you provided above.<sup class="required-star">*</sup></label>
+		</p>
 
-		<div>
+		<p>
 			If we have reason to believe you are not actually the parent or legal guardian
 			of the new account owner, then we may lock their account until you prove that
 			you are.  Please see <a href="/verification">Verification</a> for details.
-		</div>
+		</p>
 
 		<p><sup class="required-star">*</sup>Required.</p>
 
 		<h2>Emergency contact (recommended)</h2>
-		This section is optional but recommended.  By filling out any of the following fields, you
-		consent to be contacted at the phone number or e-mail address provided below in case of an
-		emergency (at my own discretion), such as if we have reason to believe your child may be
-		contemplating suicide.  Filling out the following fields does not obligate me to contact
-		your child's emergency contact for any specific circumstance; emergencies are determined
-		at my own discretion.
-		<br />Name:
-		<br /><input type="text" name="emergency-name" />
-		<br />Contact (e-mail or full phone number):
-		<br /><input type="text" name="emergency-contact" />
-		<br />Relation to new account owner:
-		<br /><input type="text" name="emergency-relation" />
+		<p>
+			This section is optional but recommended.  By filling out any of the following fields, you
+			consent to be contacted at the phone number or e-mail address provided below in case of an
+			emergency (at my own discretion), such as if we have reason to believe your child may be
+			contemplating suicide.  Filling out the following fields does not obligate me to contact
+			your child's emergency contact for any specific circumstance; emergencies are determined
+			at my own discretion.
+		</p>
+		<p>
+			Name:
+			<br /><input type="text" name="emergency-name" />
+		</p>
+		<p>
+			Contact (e-mail or full phone number):
+			<br /><input type="text" name="emergency-contact" />
+		</p>
+		<p>
+			Relation to new account owner:
+			<br /><input type="text" name="emergency-relation" />
+		</p>
 	</div>
 </div>
-<br /><input type="radio" id="age-class-default" name="age-class" value="default" class="radio-hidden" checked />
-<div class="hack">
+<input type="radio" id="age-class-default" name="age-class" value="default" class="radio-hidden" checked />
+<p class="hack">
 	<span class="red">Please select one of the above options</span>
-</div>
+</p>
 
 <p><sup class="required-star">*</sup>Required.</p>
 
