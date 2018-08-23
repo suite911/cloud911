@@ -22,15 +22,17 @@
 <p>Enter a valid e-mail address the new account owner will use to log in.</p>
 <input type="text" placeholder="amy@example.com" name="email" required />
 <input type="checkbox" id="child-account" name="child-account" value="on" /><label for="child-account">This account is for a minor.</label>
-<span id="child-type-missing" class="fragment-inline">
-	<span class="red">Please complete the Child account permission form below:</span>
-</span>
-<span id="permission-under-13-us-missing" class="fragment-inline">
-	<span class="red">Please complete the Child account permission form below:</span>
-</span>
-<span id="permission-under-16-eu-missing" class="fragment-inline">
-	<span class="red">Please complete the Child account permission form below:</span>
-</span>
+<div class="hack-skip">
+	<span id="child-type-missing" class="fragment-inline">
+		<span class="red">Please complete the Child account permission form below:</span>
+	</span>
+	<span id="permission-under-13-us-missing" class="fragment-inline">
+		<span class="red">Please complete the Child account permission form below:</span>
+	</span>
+	<span id="permission-under-16-eu-missing" class="fragment-inline">
+		<span class="red">Please complete the Child account permission form below:</span>
+	</span>
+</div>
 <div id="child-safety-permission-form" class="hack"><div class="box">
 	<h2>Child account permission form</h2>
 	<p>By creating this account for a minor, you acknowledge that <strong>you are the parent or legal
