@@ -67,8 +67,31 @@ func post(ctx *fasthttp.RequestCtx) {
 		}
 	}
 
-	if childAccount := args.Peek("child-account"); true {
-		log.Printf("child-account: <%T>: \"%v\"", childAccount, childAccount)
+	if childAccount := args.Peek("child-account"); len(childAccount) > 0 {
+		childTypeBytes = args.Peek("child-type")
+		if !utf8.Valid(childTypeBytes) {
+			ctx.Redirect("#something-went-wrong", 302)
+			return
+		}
+		switch string(childTypeBytes) {
+		case "under-13-us":
+			if perm := args.Peek("child-perm-under-13-us"); len(perm) < 1 {
+				ctx.Redirect("#permission-under-13-us-missing", 302)
+				return
+			}
+		case "under-16-eu":
+			if perm := args.Peek("child-perm-under-16-eu"); len(perm) < 1 {
+				ctx.Redirect("#permission-under-16-eu-missing", 302)
+				return
+			}
+		case "under-18":
+		case "default":
+			ctx.Redirect("#child-type-missing", 302)
+			return
+		default:
+			ctx.Redirect("#something-went-wrong", 302)
+			return
+		}
 	}
 
 	switch action {
