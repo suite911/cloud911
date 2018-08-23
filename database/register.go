@@ -6,6 +6,7 @@ import (
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/suite911/query911/query"
+	"github.com/suite911/str911/str"
 )
 
 func Register(email string) string {
