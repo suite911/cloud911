@@ -430,6 +430,8 @@ input[type=radio]:checked    + .hack-skip + label + .hack-skip + .hack {
 .side-comment {
 	font-size: 75%;
 	line-height: 75%;
+	margin: 0;
 	opacity: 75%;
+	padding: 0;
 	text-decoration: line-through;
 }
