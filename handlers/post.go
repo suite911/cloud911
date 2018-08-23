@@ -68,7 +68,7 @@ func post(ctx *fasthttp.RequestCtx) {
 	}
 
 	if childAccount := args.Peek("child-account"); len(childAccount) > 0 {
-		childTypeBytes = args.Peek("child-type")
+		childTypeBytes := args.Peek("child-type")
 		if !utf8.Valid(childTypeBytes) {
 			ctx.Redirect("#something-went-wrong", 302)
 			return
