@@ -5,16 +5,16 @@
 	Please enter a valid e-mail address.  If you are under 18 years old, this <b>must</b> be the e-mail
 	address of your parent or legal guardian.  I will use this address for the following purposes only:
 	<br />
-	<ul>
+	<ul class="no-margin">
 		<li>to prove your identity should you ever need to change account settings such as your password</li>
 		<li>to prove your identity should we have reason to believe you are not who you say you are</li>
 		<li>to alert you to suspicious behavior on your account</li>
-		<li>if you are a minor, to contact your parent or legal guardian as needed and as required by law</li>
+		<li>if you are a minor, to contact your parent or legal guardian as needed or as required by law</li>
 	</ul>
 </p>
 <input type="text" placeholder="amy@example.com" name="email" required />
 
-<h2>Account ID:<sup class="required-star">*</sup></h2>
+<h2 class="required">Account ID:</h2>
 <p>
 	Please enter an ID (like a username) you will use to log in.  This will only used to log you in and
 	won't be displayed anywhere.  It has the following requirements:
@@ -29,7 +29,7 @@
 </p>
 <input type="text" placeholder="amy" name="username" required />
 
-<h2>Account type:<sup class="required-star">*</sup></h2>
+<h2 class="required">Account type:</h2>
 <p class="no-margin">Is this account for an adult or a minor?</p>
 <input type="radio" id="age-class-adult" name="age-class" value="adult" />
 <label for="age-class-adult">The new account owner is <strong>at least 18 years old</strong>.</label><div />
@@ -41,7 +41,7 @@
 <label for="age-class-minor">The new account owner is <strong>under 18 years old</strong>.</label><div />
 <div class="hack">
 	<div class="box-big">
-		<h2>Child account permission form<sup class="required-star">*</sup></h2>
+		<h2 class="required">Child account permission form</h2>
 		<p>
 			<span class="side-comment">I'm required by law to do this.</span>
 		</p>
@@ -53,21 +53,21 @@
 
 		<p>
 			<input type="checkbox" id="parent-email-yours" name="parent-email-yours" value="on" />
-			<label for="parent-email-yours">The e-mail address entered at the top of the page
-				belongs to you, not your child.<sup class="required-star">*</sup></label>
+			<label for="parent-email-yours" class="required">The e-mail address entered at the top
+				of the page belongs to you, not your child.</label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="parent-read-terms" name="parent-read-terms" value="on" />
-			<label for="parent-read-terms">You have read and understand our
-				<a href="/terms">Terms of Service</a>, <a href="/privacy">Privacy Policy</a>, and
-				<a href="/childsafety">Child Safety Policy</a>.<sup class="required-star">*</sup></label>
+			<label for="parent-read-terms" class="required">You have read and understand our
+				<a href="/terms">Terms of Service</a>, <a href="/privacy">Privacy Policy</a>,
+				and <a href="/childsafety">Child Safety Policy</a>.</label>
 		</p>
 
 		<p>
 			<input type="checkbox" id="parent-notify" name="parent-notify" value="on" />
-			<label for="parent-notify">You consent to receive notifications about your child at the
-				e-mail address you provided above.<sup class="required-star">*</sup></label>
+			<label for="parent-notify" class="required">You consent to receive notifications
+				about your child at the e-mail address you provided above.</label>
 		</p>
 
 		<p>
