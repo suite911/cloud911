@@ -447,6 +447,14 @@ input[type=radio]:checked    + .hack-skip + label + .hack-skip + .hack {
 
 /* Convenience */
 
+.required:after {
+	color: #f44336;
+	content: "*";
+	font-size: 50%;
+	line-height: 50%;
+	vertical-align: super;
+}
+
 .required-star {
 	color: #f44336;
 	font-size: 50%;
