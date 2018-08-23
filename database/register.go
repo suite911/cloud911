@@ -16,7 +16,7 @@ func Register(email string) string {
 	if !q.OK() {
 		err := q.LastError()
 		if str.CaseHasPrefix(err.Error(), "unique") {
-			if url := vars.AlreadyRegistered; len(url) > 0 {
+			if url := vars.Pass.AlreadyRegistered; len(url) > 0 {
 				return url
 			}
 			return "#already-registered"
@@ -24,7 +24,7 @@ func Register(email string) string {
 		log.Println(err)
 		return "#database-error"
 	}
-	if url := vars.Registered; len(url) > 0 {
+	if url := vars.Pass.Registered; len(url) > 0 {
 		return url
 	}
 	return "#registered"
