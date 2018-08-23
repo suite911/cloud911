@@ -1,10 +1,16 @@
 package handlers
 
 import (
+	"encoding/json"
+	"errors"
+	"log"
+	"strconv"
 	"unicode/utf8"
 
-	"github.com/suite911/cloud911/register"
+	"github.com/suite911/cloud911/database"
+	"github.com/suite911/cloud911/vars"
 
+	pkgErrors "github.com/pkg/errors"
 	"github.com/valyala/fasthttp"
 )
 
