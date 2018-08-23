@@ -422,5 +422,6 @@ input[type=radio]:checked + label + span.hack {
 .side-comment {
 	font-size: 75%;
 	line-height: 75%;
+	opacity: 75%;
 	text-decoration: line-through;
 }
