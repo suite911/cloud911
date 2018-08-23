@@ -1,6 +1,25 @@
+<div id="something-went-wrong" class="fragment-block">
+	<span class="red">Something went wrong.  Please try again later.  Sorry for the inconvenience.</span>
+</div>
+<div id="captcha-missing" class="fragment-block">
+	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
+</div>
+<div id="captcha-failed" class="fragment-block">
+	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
+</div>
+<div id="captcha-not-working" class="fragment-block">
+	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
+</div>
+
 <input type="hidden" id="action" name="action" value="register" />
 
 <h2 class="required">Email address:</h2>
+<span id="email-missing" class="fragment-inline">
+	<span class="red">This field is required.  Please enter a valid e-mail.</span>
+</span>
+<span id="email-invalid" class="fragment-inline">
+	<span class="red">Your e-mail does not appear to be valid.  Please enter a valid e-mail and try again.</span>
+</span>
 <p>
 	Please enter a valid e-mail address.  If you are under 18 years old, this <b>must</b> be the e-mail
 	address of your parent or legal guardian.  I will use this address for the following purposes only:
@@ -40,10 +59,23 @@
 		you prove your age.  Please see <a href="/verification">Verification</a> for details.
 	</p>
 </div>
-<div class="hack-skip"></div>
+<div></div>
 <input type="radio" id="age-class-minor" name="age-class" value="minor" />
 <label for="age-class-minor">The new account owner is <strong>under 18 years old</strong>.</label>
-<div class="hack-skip"></div>
+<div class="hack-skip">
+	<span id="child-type-missing" class="fragment-inline">
+		<span class="red">Please select the above radio button and complete the
+			Child account permission form below:</span>
+	</span>
+	<span id="permission-under-13-us-missing" class="fragment-inline">
+		<span class="red">Please select the above radio button and complete the
+			Child account permission form below:</span>
+	</span>
+	<span id="permission-under-16-eu-missing" class="fragment-inline">
+		<span class="red">Please select the above radio button and complete the
+			Child account permission form below:</span>
+	</span>
+</div>
 <div class="hack">
 	<div class="box-big">
 		<h2 class="required">Child account permission form</h2>
@@ -108,107 +140,11 @@
 	<span class="red">Please select one of the above options</span>
 </p>
 
-<p><sup class="required-star">*</sup>Required.</p>
+<p class="margin-before"><sup class="required-star">*</sup>Required.</p>
 
-
-<br />
-<br />
-<br />
-<br />
-<hr />
-<hr />
-
-<div id="something-went-wrong" class="fragment-block">
-	<span class="red">Something went wrong.  Please try again later.  Sorry for the inconvenience.</span>
-</div>
-<div id="captcha-missing" class="fragment-block">
-	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
-</div>
-<div id="captcha-failed" class="fragment-block">
-	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
-</div>
-<div id="captcha-not-working" class="fragment-block">
-	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
-</div>
-<label for="email"><b>E-mail address:</b><sup class="required-star">*</sup></label>
-<span id="email-missing" class="fragment-inline">
-	<span class="red">This field is required.  Please enter a valid e-mail.</span>
-</span>
-<span id="email-invalid" class="fragment-inline">
-	<span class="red">Your e-mail does not appear to be valid.  Please enter a valid e-mail and try again.</span>
-</span>
-<p>Enter a valid e-mail address the new account owner will use to log in.</p>
-<input type="text" placeholder="amy@example.com" name="email" required />
-<input type="checkbox" id="child-account" name="child-account" value="on" /><label for="child-account">This account is for a minor.</label>
-<div class="hack-skip">
-	<span id="child-type-missing" class="fragment-inline">
-		<span class="red">Please complete the Child account permission form below:</span>
-	</span>
-	<span id="permission-under-13-us-missing" class="fragment-inline">
-		<span class="red">Please complete the Child account permission form below:</span>
-	</span>
-	<span id="permission-under-16-eu-missing" class="fragment-inline">
-		<span class="red">Please complete the Child account permission form below:</span>
-	</span>
-</div>
-<div id="child-safety-permission-form" class="hack"><div class="box">
-	<h2>Child account permission form</h2>
-	<p>By creating this account for a minor, you acknowledge that <strong>you are the parent or legal
-		guardian</strong> of the new account owner; agree to the <a href="/terms">Terms of Service</a>,
-		<a href="/privacy">Privacy Policy</a>, and <a href="/childsafety">Child Safety Policy</a>;
-		and <strong>waive any and all rights you or your child may have for you to receive
-		notifications</strong> about your child's activity including the posting of their
-		personally-identifiable information.  <span class="side-comment">Frankly, I am an lowly indie dev
-		without the resources to send you an e-mail every time your child tries to post something.</span></p>
-		<p>The e-mail account requested above <strong>must</strong> be <em>your</em> e-mail account,
-			not the e-mail account of your child.  In the future, I may use it to contact you
-			about your child as required by law, even though you have waived your rights to receive
-			these notifications if applicable.</p>
-		Which of the following is true?<sup class="required-star">*</sup>
-		<br />
-		<input type="radio" id="child-type-under-13-us" name="child-type" value="under-13-us" />
-		<label for="child-type-under-13-us">The new account owner is under 13 years old
-			and lives in the United States.</label>
-		<div class="hack">
-			<div class="box">
-				<p>In the United States, I am required to get verifiable permission from their parent or
-					legal guardian before allowing a child under 13 to take certain actions that may
-					reveal their personally-identifiable information.</p>
-				<br /><input type="checkbox" id="child-perm-under-13-us" name="child-perm-under-13-us"
-					     value="on" />
-				<label for="child-perm-under-13-us">Permission granted.<sup class="required-star">*</sup></label>
-			</div>
-		</div>
-		<br />
-		<input type="radio" id="child-type-under-16-eu" name="child-type" value="under-16-eu" />
-		<label for="child-type-under-16-eu">The new account owner is under 16 years old
-			and lives in the European Union.</label>
-		<div class="hack">
-			<div class="box">
-				<p>In the European Union, I am required to get verifiable permission from their parent or
-					legal guardian before allowing a child under 16 to take certain actions that may
-					reveal their personally-identifiable information.</p>
-				<br /><input type="checkbox" id="child-perm-under-16-eu" name="child-perm-under-16-eu"
-					     value="on" />
-				<label for="child-perm-under-16-eu">Permission granted.<sup class="required-star">*</sup></label>
-			</div>
-		</div>
-		<br />
-		<input type="radio" id="child-type-under-18" name="child-type" value="under-18" />
-		<label for="child-type-under-18">Neither of the above options apply.</label>
-		<div class="hack">
-			<p class="box">That's a relief!  The laws are much simpler in your case, and I don't have to
-				restrict much.</p>
-		</div>
-		<input type="radio" id="child-type-default" name="child-type" value="default" class="radio-hidden" checked />
-		<div class="hack">
-			<p class="red">Please select one of the above options</p>
-		</div>
-</div></div>
-
-<p>By creating an account, you acknowledge that you are <strong>at least 18 years of age</strong> and
-	that you agree to our <a href="/terms">Terms of Service</a> and
-	<a href="/privacy">Privacy Policy</a>.</p>
+<p>By creating an account, you attest that the information above is true to the best
+	of your knowledge, and that you have read and understand to our
+	<a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.</p>
 
 <p>If you are under 18, please ask a parent or legal guardian to create an account for you,
 	making sure they check "This account is for a minor" and fill out the permission form
