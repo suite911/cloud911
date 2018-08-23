@@ -45,11 +45,11 @@ func post(ctx *fasthttp.RequestCtx) {
 			return
 		}
 		email = string(emailBytes)
-		if err = checkmail.ValidateFormat(email); err != nil {
+		if err := checkmail.ValidateFormat(email); err != nil {
 			ctx.Redirect("#email-invalid", 302)
 			return
 		}
-		if err = checkmail.ValidateHost(email); err != nil {
+		if err := checkmail.ValidateHost(email); err != nil {
 			ctx.Redirect("#email-invalid", 302)
 			return
 		}
@@ -82,8 +82,7 @@ func post(ctx *fasthttp.RequestCtx) {
 			return
 		}
 
-		var url string
-		if url, err = database.Register(email); err != nil {
+		if url, err := database.Register(email); err != nil {
 			if len(url) > 0 {
 				ctx.Redirect(url, 302)
 			}
@@ -111,9 +110,12 @@ func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte) (bool, err
 	args.SetBytesV("secret", vars.Pass.CaptchaSecret)
 	args.SetBytesV("response", solution)
 	args.SetBytesV("remoteip", ctx.RequestURI())
+	/*
 	var statusCode int
 	var body []byte
-	if statusCode, body, err = fasthttp.Post(nil, "https://www.google.com/recaptcha/api/siteverify", &args); err != nil {
+	*/
+	statusCode, body, err := fasthttp.Post(nil, "https://www.google.com/recaptcha/api/siteverify", &args)
+	if err != nil {
 		return false, pkgErrors.Wrap(err, "fasthttp.Post")
 	}
 	if statusCode != 200 {
@@ -121,7 +123,7 @@ func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte) (bool, err
 		return false, pkgErrors.Wrap(errors.New(strconv.Itoa(statusCode)), "fasthttp.Post")
 	}
 	var resp GoogleCaptchaResponse
-	if err = json.Unmarshal(body, &resp); err != nil {
+	if err := json.Unmarshal(body, &resp); err != nil {
 		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, resp)
 		return false, pkgErrors.Wrap(err, "json.Unmarshal(body, &resp)")
 	}
