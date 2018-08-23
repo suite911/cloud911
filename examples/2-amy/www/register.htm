@@ -51,18 +51,34 @@ Is this account for an adult or a minor?
 		<label for="parent-notify">You consent to receive notifications about your child at the
 			e-mail address you provided above.<sup class="required-star">*</sup></label>
 
-		<h2>Emergency contact</h2>
+		<p><sup class="required-star">*</sup>Required.</p>
 
+		<h2>Emergency contact (recommended)</h2>
+		This section is optional but recommended.  By filling out any of the following fields, you
+		consent to be contacted at the phone number or e-mail address provided below in case of an
+		emergency, such as if we have reason to believe your child may be contemplating suicide.
+		<br />Name:
+		<br /><input type="text" name="emergency-name" />
+		<br />Contact (e-mail or full phone number):
+		<br /><input type="text" name="emergency-contact" />
+		<br />Relation to new account owner:
+		<br /><input type="text" name="emergency-relation" />
 	</div>
 </div>
-<br /><input type="radio" id="age-class-default" name="age-class" value="default" class="radio-hiddon" checked />
+<br /><input type="radio" id="age-class-default" name="age-class" value="default" class="radio-hidden" checked />
 <div class="hack">
 	<span class="red">Please select one of the above options</span>
 </div>
 
+<p><sup class="required-star">*</sup>Required.</p>
 
 
-
+<br />
+<br />
+<br />
+<br />
+<hr />
+<hr />
 
 <div id="something-went-wrong" class="fragment-block">
 	<span class="red">Something went wrong.  Please try again later.  Sorry for the inconvenience.</span>
