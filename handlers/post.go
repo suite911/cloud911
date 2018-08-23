@@ -28,14 +28,16 @@ func Post(ctx *fasthttp.RequestCtx) {
 
 func post(ctx *fasthttp.RequestCtx) {
 	args := ctx.PostArgs()
-	actionBytes := args.Peek("action")
-	if !utf8.Valid(actionBytes) {
-		return
-	}
-
-	args := ctx.PostArgs()
+	var action, email string
 	captcha := args.Peek("g-recaptcha-response")
-	var email string
+
+	{
+		actionBytes := args.Peek("action")
+		if !utf8.Valid(actionBytes) {
+			actionBytes = actionBytes[:0]
+		}
+		action = string(actionBytes)
+	}
 
 	if emailBytes := args.Peek("email"); len(emailBytes) > 0 {
 		if !utf8.Valid(emailBytes) {
