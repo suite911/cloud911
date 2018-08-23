@@ -179,12 +179,16 @@ div.copyright {
 
 /* Containers */
 
-.box-big, .box {
+.box-important, .box-big, .box {
 	border: 2px solid #000;
 	border-radius: 3px;
 	margin: 0;
 	overflow: auto;
 	padding: 16px;
+}
+
+.box-important {
+	background-color: #ffeb3b;
 }
 
 .box {
