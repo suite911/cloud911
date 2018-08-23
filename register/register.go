@@ -29,11 +29,11 @@ func Try(ctx *fasthttp.RequestCtx) (attempt bool, err error) {
 	argsRecv := ctx.PostArgs()
 	email := argsRecv.Peek("email")
 	captcha := argsRecv.Peek("g-recaptcha-response")
-	if len(email) < 0 {
+	if len(email) < 1 {
 		ctx.Redirect("#email-missing", 302)
 		return
 	}
-	if len(captcha) < 0 {
+	if len(captcha) < 1 {
 		ctx.Redirect("#captcha-missing", 302)
 		return
 	}
