@@ -1,6 +1,12 @@
 <input type="hidden" id="action" name="action" value="register" />
 
 <label for="email"><b>E-mail address:</b><sup class="required-star">*</sup></label>
+<span id="email-missing" class="fragment-inline">
+	<span class="red">This field is required.  Please enter a valid e-mail.</span>
+</span>
+<span id="email-invalid" class="fragment-inline">
+	<span class="red">Your e-mail does not appear to be valid.  Please enter a valid e-mail and try again.</span>
+</span>
 <p>Enter a valid e-mail address the new account owner will use to log in.</p>
 <input type="text" placeholder="amy@example.com" name="email" required />
 <input type="checkbox" id="child-account" name="child-account" value="on" /><label for="child-account">This account is for a minor.</label>
