@@ -307,29 +307,34 @@ input[type=radio].radio-hidden {
 	display: none;
 }
 
-input[type=checkbox] + div.hack,
-input[type=checkbox] + label + div.hack,
-input[type=radio] + div.hack,
-input[type=radio] + label + div.hack,
-input[type=checkbox] + span.hack,
-input[type=checkbox] + label + span.hack,
-input[type=radio] + span.hack,
-input[type=radio] + label + span.hack {
+input[type=checkbox]                                   + .hack,
+input[type=checkbox] + .hack-skip                      + .hack,
+input[type=checkbox]              + label              + .hack,
+input[type=checkbox] + .hack-skip + label              + .hack,
+input[type=checkbox]              + label + .hack-skip + .hack,
+input[type=checkbox] + .hack-skip + label + .hack-skip + .hack,
+input[type=radio]                                      + .hack,
+input[type=radio]    + .hack-skip                      + .hack,
+input[type=radio]                 + label              + .hack,
+input[type=radio]    + .hack-skip + label              + .hack,
+input[type=radio]                 + label + .hack-skip + .hack,
+input[type=radio]    + .hack-skip + label + .hack-skip + .hack {
 	display: none;
 }
 
-input[type=checkbox]:checked + div.hack,
-input[type=checkbox]:checked + label + div.hack,
-input[type=radio]:checked + div.hack,
-input[type=radio]:checked + label + div.hack {
-	display: block;
-}
-
-input[type=checkbox]:checked + span.hack,
-input[type=checkbox]:checked + label + span.hack,
-input[type=radio]:checked + span.hack,
-input[type=radio]:checked + label + span.hack {
-	display: inline;
+input[type=checkbox]:checked                                   + .hack,
+input[type=checkbox]:checked + .hack-skip                      + .hack,
+input[type=checkbox]:checked              + label              + .hack,
+input[type=checkbox]:checked + .hack-skip + label              + .hack,
+input[type=checkbox]:checked              + label + .hack-skip + .hack,
+input[type=checkbox]:checked + .hack-skip + label + .hack-skip + .hack,
+input[type=radio]:checked                                      + .hack,
+input[type=radio]:checked    + .hack-skip                      + .hack,
+input[type=radio]:checked                 + label              + .hack,
+input[type=radio]:checked    + .hack-skip + label              + .hack,
+input[type=radio]:checked                 + label + .hack-skip + .hack,
+input[type=radio]:checked    + .hack-skip + label + .hack-skip + .hack {
+	display: initial;
 }
 
 /* Colors */
