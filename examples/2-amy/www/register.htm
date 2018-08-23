@@ -34,10 +34,12 @@
 <input type="radio" id="age-class-adult" name="age-class" value="adult" />
 <label for="age-class-adult">The new account owner is <strong>at least 18 years old</strong>.</label>
 <div class="hack-skip"></div>
-<p class="hack">
-	If we have reason to believe you are not actually 18 then we may lock your account until
-	you prove your age.  Please see <a href="/verification">Verification</a> for details.
-</p>
+<div class="hack">
+	<p class="red">
+		If we have reason to believe you are not actually 18 then we may lock your account until
+		you prove your age.  Please see <a href="/verification">Verification</a> for details.
+	</p>
+</div>
 <div class="hack-skip"></div>
 <input type="radio" id="age-class-minor" name="age-class" value="minor" />
 <label for="age-class-minor">The new account owner is <strong>under 18 years old</strong>.</label>
@@ -48,7 +50,7 @@
 		<p>
 			<span class="side-comment">I'm required by law to do this.</span>
 		</p>
-		<p>
+		<p class="red">
 			This form is to be completed by the parent or legal guardian of the
 			new account owner.
 		</p>
@@ -58,22 +60,17 @@
 			<input type="checkbox" id="parent-email-yours" name="parent-email-yours" value="on" />
 			<label for="parent-email-yours" class="required">The e-mail address entered at the top
 				of the page belongs to you, not your child.</label>
-		</p>
-
-		<p>
+		<br />
 			<input type="checkbox" id="parent-read-terms" name="parent-read-terms" value="on" />
 			<label for="parent-read-terms" class="required">You have read and understand our
 				<a href="/terms">Terms of Service</a>, <a href="/privacy">Privacy Policy</a>,
 				and <a href="/childsafety">Child Safety Policy</a>.</label>
-		</p>
-
-		<p>
+		<br />
 			<input type="checkbox" id="parent-notify" name="parent-notify" value="on" />
 			<label for="parent-notify" class="required">You consent to receive notifications
 				about your child at the e-mail address you provided above.</label>
 		</p>
-
-		<p>
+		<p class="red">
 			If we have reason to believe you are not actually the parent or legal guardian
 			of the new account owner, then we may lock their account until you prove that
 			you are.  Please see <a href="/verification">Verification</a> for details.
