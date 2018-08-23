@@ -10,6 +10,7 @@ import (
 	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/vars"
 
+	"github.com/badoux/checkmail"
 	pkgErrors "github.com/pkg/errors"
 	"github.com/valyala/fasthttp"
 )
