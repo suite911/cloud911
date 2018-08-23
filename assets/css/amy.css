@@ -418,3 +418,9 @@ input[type=radio]:checked + label + span.hack {
 	line-height: 50%;
 	vertical-align: super;
 }
+
+.side-comment {
+	font-size: 75%;
+	line-height: 75%;
+	text-decoration: line-through;
+}
