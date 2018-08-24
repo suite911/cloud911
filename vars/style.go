@@ -1,6 +1,7 @@
 package vars
 
 import (
+	"bytes"
 	"text/template"
 
 	"github.com/pkg/errors"
@@ -231,7 +232,9 @@ div.copyright {
 	if Template, err = template.New("Style").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Amy").Parse(text)`))
 	}
-	Style1, err = Template.execute(Style{
+
+	var b bytes.Buffer
+	if err := Template.Execute(&b, Style{
 		ButtonDisabledBg:         "",
 		ButtonDisabledFg:         "",
 		ButtonSubmitBg:           "",
@@ -283,5 +286,8 @@ div.copyright {
 		PaddingWidgetVert:        "",
 		Sans:                     "",
 		TopNavHeight:             "",
-	})
+	}); err != nil {
+		panic(err)
+	}
+	Style1 = string(b.Bytes())
 }
