@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"path"
+	"strings"
 
 	"github.com/suite911/cloud911/droppriv"
 	"github.com/suite911/cloud911/pages"
@@ -67,7 +68,7 @@ func https(ctx *fasthttp.RequestCtx) {
 
 	// Not found in user's custom pages.  Look in predefined pages next.
 
-	switch str.ToLower(p) {
+	switch strings.ToLower(p) {
 	case "1.css":
 		ctx.SetContentType("text/css; charset=utf8")
 		io.WriteString(ctx, vars.Style1)
