@@ -9,7 +9,7 @@ import (
 	"github.com/suite911/str911/str"
 )
 
-func Register(username, email string, scores [3]float64, minor bool, emwho, emhow, emrel string) string {
+func Register(email, username string, scores [3]float64, minor bool, emwho, emhow, emrel string) string {
 	if len(scores) != 3 {
 		log.Println("len(scores):", len(scores), ":", scores)
 		return "#something-went-wrong"
@@ -31,9 +31,9 @@ func Register(username, email string, scores [3]float64, minor bool, emwho, emho
 		net = 0xffff
 	}
 	q := query.Query{ DB: DB() }
-	q.SQL = `INSERT INTO "RegisteredUsers"("un", "email", "conload", "conchange", "consubmit", ` +
+	q.SQL = `INSERT INTO "RegisteredUsers"("email", "un", "conload", "conchange", "consubmit", ` +
 		`"captcha", "minor", "emwho", "emhow", "emrel") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
-	q.Exec(username, email, sc0, sc1, sc2, net, minor, emwho, emhow, emrel)
+	q.Exec(email, username, sc0, sc1, sc2, net, minor, emwho, emhow, emrel)
 	if !q.OK() {
 		err := q.LastError()
 		if str.CaseHasPrefix(err.Error(), "unique") {
