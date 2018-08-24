@@ -9,10 +9,10 @@ import (
 	"github.com/suite911/str911/str"
 )
 
-func Register(email string) string {
+func Register(username, email string, captcha float32) string {
 	q := query.Query{ DB: DB() }
-	q.SQL = `INSERT INTO "RegisteredUsers"("email") VALUES(?);`
-	q.Exec(email)
+	q.SQL = `INSERT INTO "RegisteredUsers"("username", "email", "captcha") VALUES(?, ?);`
+	q.Exec(username, email, captcha)
 	if !q.OK() {
 		err := q.LastError()
 		if str.CaseHasPrefix(err.Error(), "unique") {
