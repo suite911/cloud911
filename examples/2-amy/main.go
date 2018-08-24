@@ -87,7 +87,7 @@ func main() {
 			"to do ...well whatever Captcha gods do with JavaScript.  So anyway it would just make " +
 			"things a whole lot easier if you could just whitelist my registration page, kthx.",
 		PageTitle: "My App - Register",
-		ReCaptchaV2: "6LfgpmoUAAAAAFhnHWF9XHsceqVSFYKH8RDTY-ai",
+		ReCaptchaV3: "6LeB-WsUAAAAANf-vw8q2NtTybrb85G3HyEBXyxO",
 	}
 	vars.Pass.AlreadyRegistered = "/download#already-registered"
 	vars.Pass.Registered = "/download#registered"
