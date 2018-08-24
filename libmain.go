@@ -29,6 +29,7 @@ func Main(fns ...func() error) error {
 	flagSet.StringVar(&vars.Pass.DataBase, "db", "database.db", "Path to the main sqlite3 database")
 	flagSet.StringVar(&vars.Pass.HTTP, "http", ":80", "Address on which to listen to incoming HTTP traffic")
 	flagSet.StringVar(&vars.Pass.HTTPS, "https", ":443", "Address on which to listen to incoming HTTPS traffic")
+	flagSet.Float64Var(&vars.Pass.CaptchaThresholdRegister, "human", 0.5, "Threshold for not being a robot")
 	pchroot := flagSet.String("chroot", "", "Path to which to chroot(2)")
 	flagSet.StringVar(&vars.CertPath, "cert", "cert.pem", "Path of TLS certificate file")
 	flagSet.StringVar(&vars.KeyPath, "key", "key.pem", "Path of TLS key file")
