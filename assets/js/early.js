@@ -64,7 +64,6 @@ var amy_onDOMReady = function() { }
 var amy_onPageLoaded = function() { }
 var amy_onSubmitted = function() { }
 var amy_onWillSubmit = function() { }
-var amy_reCAPTCHAv3SiteKey = ""
 
 function amy_removeEventListener(elem, on, cb, useCapture) {
 	if(!elem) {
