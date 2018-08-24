@@ -180,7 +180,7 @@ hr {
 	margin-bottom: 24px;
 }
 
-input[type=text], input[type=password] {
+input[type=email], input[type=password], input[type=text], input[type=url] {
 	border-radius: 3px;
 	display: inline-block;
 	margin: 0 0 24px 0;
