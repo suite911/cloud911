@@ -59,6 +59,7 @@ function amy_onDOMReadyHead() {
 	if(submit1) {
 		submit1.disabled = false;
 		submit1.value = "Submit";
+		amy_addEventListener(submit1, "submit", amy_onSubmitFull)
 	}
 	var ageClassAdult = document.getElementById("age-class-adult");
 	if(ageClassAdult) {
