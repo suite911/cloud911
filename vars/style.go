@@ -281,10 +281,10 @@ div.copyright {
 		Light_TopNav_Fg:          "",
 		LinkFg:                   "",
 		LinkHover:                "",
-		Mono:                     "",
+		Mono:                     "Source Code Pro",
 		PaddingWidgetHorz:        "",
 		PaddingWidgetVert:        "",
-		Sans:                     "",
+		Sans:                     "Noto Sans",
 		TopNavHeight:             "",
 	}); err != nil {
 		panic(err)
