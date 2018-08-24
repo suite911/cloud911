@@ -74,7 +74,7 @@ func post(ctx *fasthttp.RequestCtx) {
 		}
 		username := string(usernameBytes)
 		if len(username) > 64 {
-			ctx.Redirect("#something-went-wrong", 302)
+			ctx.Redirect("#something-went-wrong-with-username", 302)
 			return
 		}
 		username = strings.Map(func(r rune) rune {
@@ -147,16 +147,16 @@ func post(ctx *fasthttp.RequestCtx) {
 			for _, captchaAction := range []string{"load", "change", "submit"} {
 				captcha := args.Peek("captcha-on" + action)
 				if len(captcha) < 1 {
-					ctx.Redirect("#something-went-wrong", 302)
+					ctx.Redirect("#something-went-wrong-with-captcha-code-1", 302)
 					return
 				}
 				score, err := VerifyCaptchaSolution(ctx, captcha, captchaAction)
 				if err != nil {
-					ctx.Redirect("#something-went-wrong", 302)
+					ctx.Redirect("#something-went-wrong-with-captcha-code-2", 302)
 					return
 				}
 				if score < vars.Pass.CaptchaThresholdRegister {
-					ctx.Redirect("#something-went-wrong", 302)
+					ctx.Redirect("#something-went-wrong-with-captcha-code-3", 302)
 					return
 				}
 				score *= netScore
