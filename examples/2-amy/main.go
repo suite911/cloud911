@@ -141,12 +141,6 @@ func main() {
 			if len(p.GoogleFonts) < 1 {
 				p.GoogleFonts = "Noto+Sans|Source+Code+Pro"
 			}
-			if len(p.Mono) < 1 {
-				p.Mono = "Source Code Pro"
-			}
-			if len(p.Sans) < 1 {
-				p.Sans = "Noto Sans"
-			}
 			if p.Shell == nil {
 				p.Shell = shells.Amy
 			}
