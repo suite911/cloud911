@@ -9,7 +9,7 @@ import (
 	"github.com/suite911/str911/str"
 )
 
-func Register(username, email string, captcha float32, minor bool, emwho, emhow, emrel string) string {
+func Register(username, email string, captcha float64, minor bool, emwho, emhow, emrel string) string {
 	q := query.Query{ DB: DB() }
 	q.SQL = `INSERT INTO "RegisteredUsers"("username", "email", "captcha", "minor", "emwho", "emhow", "emrel") VALUES(?, ?);`
 	q.Exec(username, email, captcha, minor, emwho, emhow, emrel)
