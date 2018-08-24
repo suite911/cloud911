@@ -6,6 +6,8 @@ import (
 	"text/template"
 	"time"
 
+	"github.com/suite911/cloud911/vars"
+
 	"github.com/suite911/error911/onfail"
 
 	"github.com/pkg/errors"
