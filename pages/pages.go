@@ -20,26 +20,21 @@ type Page struct {
 
 	Author, Copyright, Description, FavIcon, Keywords, PageTitle string
 
-	Head, GoogleFonts, Mono, Sans              string
-	CSS, CSSHead, CSSTail                      string
+	Head, GoogleFonts                          string
+	InlineCSS, InlineJavaScript                string
 	Body, BodyHead, BodyTail                   string
 	Header, HeaderHead, HeaderTail             string
 	ContentTitle, ContentSubTitle              string
 	Content, ContentHead, ContentTail          string
 	Footer, FooterHead, FooterTail             string
-	JavaScript, JavaScriptHead, JavaScriptTail string
-	OnDOMReady, OnPageLoaded                   string
 
-	Form, FormAction, ReCaptchaV2 string
-	OnWillSubmit, OnSubmitted     string
+	FormAction, ReCaptchaV2 string
 
 	NoScript string
 
 	TopNavHead, TopNavTail string
 
 	TopNav map[string]string
-
-	Vars map[string]string
 
 	Raw []byte
 	Redirect301 []byte
@@ -64,71 +59,6 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 	}
 	if len(page.Copyright) < 1 {
 		page.Copyright = "&copy; " + strconv.Itoa(time.Now().Year())
-	}
-	if page.Vars == nil {
-		page.Vars = make(map[string]string)
-	}
-	for _, pair := range [][2]string{
-		[2]string{"Dark_Bg", "#424242"},
-		[2]string{"Dark_Fg", "#FAFAFA"},
-		[2]string{"Dark_Header_Bg", "#0000"},//TODO:
-		[2]string{"Dark_Header_Fg", "#fff"},//TODO:
-		[2]string{"Dark_TopNav_Bg", "#b71c1c"},
-		[2]string{"Dark_TopNav_Bg_Hover", "#ff1744"},
-		[2]string{"Dark_TopNav_Fg", "#fff"},//TODO:
-		[2]string{"Dark_TopNav_Fg_Hover", "#fff"},//TODO:
-		[2]string{"Dark_Footer_Bg", "#616161"},
-		[2]string{"Dark_Footer_Fg", "#fff"},//TODO:
-		[2]string{"Dark_Night_Border", "#616161"},
-		[2]string{"Dark_Night_Border_Hover", "#3D5AFE"},
-		[2]string{"Dark_Night_Bg", "#616161"},
-		[2]string{"Dark_Night_Bg_Hover", "#3D5AFE"},
-		[2]string{"Dark_Night_Fg", "#F4FF81"},
-		[2]string{"Dark_Night_Fg_Hover", "#fff"},
-
-		[2]string{"Light_Bg", "#fff"},
-		[2]string{"Light_Fg", "#000"},
-		[2]string{"Light_Header_Bg", "#4FC3F7"},//TODO:
-		[2]string{"Light_Header_Fg", "#000"},
-		[2]string{"Light_TopNav_Bg", "#4FC3F7"},//TODO:
-		[2]string{"Light_TopNav_Bg_Hover", "#80D8FF"},//TODO:
-		[2]string{"Light_TopNav_Fg", "#fff"},//TODO:
-		[2]string{"Light_TopNav_Fg_Hover", "#fff"},//TODO:
-		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
-		[2]string{"Light_Footer_Fg", "#000"},
-		[2]string{"Light_Night_Border", "#3F51B5"},
-		[2]string{"Light_Night_Border_Hover", "#3D5AFE"},
-		[2]string{"Light_Night_Bg", "#3F51B5"},
-		[2]string{"Light_Night_Bg_Hover", "#3D5AFE"},
-		[2]string{"Light_Night_Fg", "#fff"},
-		[2]string{"Light_Night_Fg_Hover", "#fff"},
-
-		[2]string{"TopNavHeight", "16pt"},
-		[2]string{"FooterHeight", "14pt"},
-
-		[2]string{"PaddingWidgetHorz", "16px"},
-		[2]string{"PaddingWidgetVert", "12px"},
-		[2]string{"LinkFg", "#03A9F4"},
-		[2]string{"LinkHover", "#40C4FF"},
-				[2]string{"TopNavBg1", "#0000"},//TODO:
-		[2]string{"EntryBorder", "#000"},//TODO:
-		[2]string{"EntryBg", "#FAFAFA"},//TODO:
-		[2]string{"EntryFg", "#000"},//TODO:
-		[2]string{"FocusBorder", "#7cf"},//TODO:
-		[2]string{"FocusBg", "#fff"},//TODO:
-		[2]string{"FocusFg", "#000"},//TODO:
-		[2]string{"ButtonCancelBg", "#c00"},//TODO:
-		[2]string{"ButtonCancelHover", "#f00"},//TODO:
-		[2]string{"ButtonCancelFg", "#fff"},//TODO:
-		[2]string{"ButtonSubmitBg", "#03A9F4"},//TODO:
-		[2]string{"ButtonSubmitHover", "#40C4FF"},//TODO:
-		[2]string{"ButtonSubmitFg", "#fff"},//TODO:
-		[2]string{"ButtonDisabledBg", "#777"},//TODO:
-		[2]string{"ButtonDisabledFg", "#eee"},//TODO:
-	} {
-		if _, ok := page.Vars[pair[0]]; !ok {
-			page.Vars[pair[0]] = pair[1]
-		}
 	}
 	var b bytes.Buffer
 	if err := page.Shell.Execute(&b, page); err != nil {
