@@ -1,6 +1,6 @@
 'use strict';
 
-function amy_onChangedFull() {
+function amy_onChangedFull(event) {
 	var captcha = document.getElementById("captcha-onchange");
 	if(captcha) {
 		grecaptcha.ready(function() {
@@ -51,6 +51,14 @@ function amy_onDOMReadyHead() {
 	if(submit1) {
 		submit1.disabled = false;
 		submit1.value = "Submit";
+	}
+	var ageClassAdult = document.getElementById("age-class-adult");
+	if(ageClassAdult) {
+		amy_addEventListener(ageClassAdult, "click", amy_onChangedFull)
+	}
+	var ageClassMinor = document.getElementById("age-class-minor");
+	if(ageClassMinor) {
+		amy_addEventListener(ageClassMinor, "click", amy_onChangedFull)
 	}
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
