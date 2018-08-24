@@ -1,27 +1,20 @@
 'use strict';
 
 function amy_onChangedFull(event) {
-	console.log("function amy_onChangedFull(event) {");
 	var captcha = document.getElementById("captcha-onchange");
 	if(captcha) {
-		console.log("  if(captcha)");
 		grecaptcha.ready(function() {
-			console.log("    amy_onChangedFull->grecaptcha.ready->anon");
 			grecaptcha.execute(amy_reCAPTCHAv3SiteKey, {action: "change"}).then(function(token) {
-				console.log("      amy_onChangedFull->grecaptcha.ready->anon->grecaptcha.execute.then");
 				captcha.value = token;
 				amy_onChangedFull2();
 			});
 		});
 	} else {
-		console.log("  if(!captcha)");
 		amy_onChangedFull2();
 	}
-	console.log("} // amy_onChangedFull");
 }
 
 function amy_onChangedFull2() {
-	console.log("  function amy_onChangedFull2() {");
 	amy_onChangedHead();
 	if(typeof amy_onChanged === "function") {
 		var ok = amy_onChanged();
@@ -30,7 +23,6 @@ function amy_onChangedFull2() {
 		}
 	}
 	amy_onChangedTail();
-	console.log("  } // amy_onChangedFull2");
 }
 
 function amy_onChangedHead() {
@@ -120,27 +112,20 @@ function amy_onLightsChanged(event) {
 }
 
 function amy_onPageLoadedFull(event) {
-	console.log("function amy_onPageLoadedFull(event) {");
 	var captcha = document.getElementById("captcha-onload");
 	if(captcha) {
-		console.log("  if(captcha)");
 		grecaptcha.ready(function() {
-			console.log("    amy_onPageLoadedFull->grecaptcha.ready->anon");
 			grecaptcha.execute(amy_reCAPTCHAv3SiteKey, {action: "load"}).then(function(token) {
-				console.log("      amy_onPageLoadedFull->grecaptcha.ready->anon->grecaptcha.execute.then");
 				captcha.value = token;
 				amy_onPageLoadedFull2();
 			});
 		});
 	} else {
-		console.log("  if(!captcha)");
 		amy_onPageLoadedFull2();
 	}
-	console.log("} // amy_onPageLoadedFull");
 }
 
 function amy_onPageLoadedFull2() {
-	console.log("  function amy_onPageLoadedFull2() {");
 	amy_onPageLoadedHead();
 	if(typeof amy_onPageLoaded === "function") {
 		var ok = amy_onPageLoaded();
@@ -149,7 +134,6 @@ function amy_onPageLoadedFull2() {
 		}
 	}
 	amy_onPageLoadedTail();
-	console.log("  } // amy_onPageLoadedFull2");
 }
 
 function amy_onPageLoadedHead() {
@@ -163,27 +147,20 @@ function amy_onPageLoadedTail() {
 
 function amy_onSubmitFull(event) {
 	event.preventDefault(); // don't submit the form
-	console.log("function amy_onSubmitFull(event) {");
 	var captcha = document.getElementById("captcha-onsubmit");
 	if(captcha) {
-		console.log("  if(captcha)");
 		grecaptcha.ready(function() {
-			console.log("    amy_onSubmitFull->grecaptcha.ready->anon");
 			grecaptcha.execute(amy_reCAPTCHAv3SiteKey, {action: "submit"}).then(function(token) {
-				console.log("      amy_onSubmitFull->grecaptcha.ready->anon->grecaptcha.execute.then");
 				captcha.value = token;
 				amy_onSubmitFull2();
 			});
 		});
 	} else {
-		console.log("  if(!captcha)");
 		amy_onSubmitFull2();
 	}
-	console.log("} // amy_onSubmitFull");
 }
 
 function amy_onSubmitFull2() {
-	console.log("  function amy_onSubmitFull2() {");
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		var lightAnalytics = document.getElementById("analytics-lights");
@@ -208,7 +185,6 @@ function amy_onSubmitFull2() {
 	if(amy_onSubmitted === "function") {
 		return amy_onSubmitted();
 	}
-	console.log("  } // amy_onSubmitFull2");
 }
 
 if (typeof document.addEventListener === "function") {
