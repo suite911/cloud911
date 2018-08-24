@@ -357,7 +357,7 @@ input[type=submit] sup, button[type=submit] sup, .ebtn sup, .bbtn sup {
 
 /* Checkbox hacks */
 
-input[type=radio].radio-hidden {
+.display-none {
 	display: none;
 }
 
