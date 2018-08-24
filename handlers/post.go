@@ -159,7 +159,7 @@ func post(ctx *fasthttp.RequestCtx) {
 					ctx.Redirect("#something-went-wrong-with-captcha-code-3"+strconv.Itoa(i), 302)
 					return
 				}
-				score *= netScore
+				netScore *= maths.ClampFloat64(score, 0, 1)
 			}
 		}
 		ctx.Redirect(database.Register(username, email, netScore, minor, emwho, emhow, emrel), 302)
