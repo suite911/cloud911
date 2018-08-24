@@ -64,11 +64,31 @@ func https(ctx *fasthttp.RequestCtx) {
 		c.Serve(ctx)
 		return
 	}
+
+	// Not found in user's custom pages.  Look in predefined pages next.
+
+	switch str.ToLower(p) {
+	case "1.css":
+		ctx.SetContentType("text/css; charset=utf8")
+		io.WriteString(ctx, vars.Style1)
+		return
+	case "1.js":
+		// TODO
+		ctx.SetContentType("application/javascript; charset=utf8")
+		// io.WriteString(ctx, vars.Script1)
+		return
+	}
+
+	// Not found in predefined pages either.  Look for custom 404 page.
+
 	ctx.SetStatusCode(404)
 	if c, ok := pages.CompiledPages["404"]; ok && c != nil {
 		c.Serve(ctx)
 		return
 	}
+
+	// No custom 404 page.  Send the ugly default.
+
 	ctx.SetContentType("text/plain; charset=utf8")
 	fmt.Fprintf(ctx, "Not Found\n\n")
 
