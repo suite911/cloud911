@@ -57,9 +57,9 @@ function amy_onDOMReadyHead() {
 	}
 	var submit1 = document.getElementById("submit1");
 	if(submit1) {
+		amy_addEventListener(window, "submit", amy_onSubmitFull)
 		submit1.disabled = false;
 		submit1.value = "Submit";
-		amy_addEventListener(submit1, "submit", amy_onSubmitFull)
 	}
 	var ageClassAdult = document.getElementById("age-class-adult");
 	if(ageClassAdult) {
