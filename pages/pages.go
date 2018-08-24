@@ -56,6 +56,9 @@ func (page *Page) Compile(defaultShell *template.Template, onFail ...onfail.OnFa
 		c.Bytes = page.Raw
 		return c, nil
 	}
+	if len(page.ReCaptchaV3) < 1 {
+		page.ReCaptchaV3 = vars.CaptchaSiteKey
+	}
 	if page.Shell == nil {
 		page.Shell = defaultShell
 	}
