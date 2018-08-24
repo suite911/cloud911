@@ -1,14 +1,10 @@
 <div id="something-went-wrong" class="fragment-block">
-	<span class="red">Something went wrong.  Please try again later.  Sorry for the inconvenience.</span>
+	<span class="red">Something went wrong, sorry for the inconvenience!  You can try again now or in
+		a little while;  most problems like this tend to resolve themselves on their own.</span>
 </div>
-<div id="captcha-missing" class="fragment-block">
-	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
-</div>
-<div id="captcha-failed" class="fragment-block">
-	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
-</div>
-<div id="captcha-not-working" class="fragment-block">
-	<span class="red">Please enable JavaScript and solve the captcha if one appears.</span>
+<div id="encoding" class="fragment-block">
+	<span class="red">Only UTF-8 encoding is accopted.  Please set your browser's text
+		encoding to UTF-8 and try again.  Sorry for the inconvenience!</span>
 </div>
 
 <input type="hidden" id="action" name="action" value="register" />
@@ -34,6 +30,13 @@
 <input type="email" id="email" name="email" placeholder="amy@example.com" maxlength="64" required />
 
 <h2 class="required">Username:</h2>
+<span id="username-missing" class="fragment-inline">
+	<span class="red">This field is required.  Please choose a username.</span>
+</span>
+<span id="username-invalid" class="fragment-inline">
+	<span class="red">Your username does not appear to be valid.  Please
+		re-read the username requirements and try again.</span>
+</span>
 <p>
 	Please enter a unique username you will use to log in.  This will only
 	be displayed in your dashboard.  It has the following requirements:
@@ -49,6 +52,9 @@
 	pattern="[^@]*[^0-9@\s][^@]*" required />
 
 <h2 class="required">Account type:</h2>
+<span id="age-class-missing" class="fragment-inline">
+	<span class="red">This field is required.  Please select an account type from the options below.</span>
+</span>
 <p class="no-margin">Is this account for an adult or a minor?</p>
 <input type="radio" id="age-class-adult" name="age-class" value="adult" />
 <label for="age-class-adult">The new account owner is <strong>at least 18 years old</strong>.</label>
@@ -63,15 +69,7 @@
 <input type="radio" id="age-class-minor" name="age-class" value="minor" />
 <label for="age-class-minor">The new account owner is <strong>under 18 years old</strong>.</label>
 <div class="hack-skip">
-	<span id="child-type-missing" class="fragment-inline">
-		<span class="red">Please select the above radio button and complete the
-			Child account permission form below:</span>
-	</span>
-	<span id="permission-under-13-us-missing" class="fragment-inline">
-		<span class="red">Please select the above radio button and complete the
-			Child account permission form below:</span>
-	</span>
-	<span id="permission-under-16-eu-missing" class="fragment-inline">
+	<span id="child-account-permission-form-incomplete" class="fragment-inline">
 		<span class="red">Please select the above radio button and complete the
 			Child account permission form below:</span>
 	</span>
