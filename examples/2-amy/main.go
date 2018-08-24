@@ -34,7 +34,6 @@ func main() {
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
 		ContentTitle: "Not Found",
-		CSS: string(www["/404.css"]),
 		PageTitle: "My App - Not Found",
 		Shell: shells.Basic,
 	}
@@ -42,21 +41,18 @@ func main() {
 	pages.Pages["/about"] = &pages.Page{
 		Content: string(www["/about.htm"]),
 		ContentTitle: "About",
-		CSS: string(www["/about.css"]),
 		PageTitle: "My App - About",
 	}
 
 	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["/cookies.htm"]),
 		ContentTitle: "Cookie Policy",
-		CSS: string(www["/cookies.css"]),
 		PageTitle: "My App - Cookie Policy",
 	}
 
 	pages.Pages["/download"] = &pages.Page{
 		Content: string(www["/download.htm"]),
 		ContentTitle: "Downloads",
-		CSS: string(www["/download.css"]),
 		PageTitle: "My App - Download",
 	}
 
@@ -67,21 +63,18 @@ func main() {
 	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["/eula.htm"]),
 		ContentTitle: "End User License Agreement (EULA)",
-		CSS: string(www["/eula.css"]),
 		PageTitle: "My App - End User License Agreement (EULA)",
 	}
 
 	pages.Pages["/gallery"] = &pages.Page{
 		Content: string(www["/gallery.htm"]),
 		ContentTitle: "Gallery",
-		CSS: string(www["/gallery.css"]),
 		PageTitle: "My App - Gallery",
 	}
 
 	pages.Pages["/privacy"] = &pages.Page{
 		Content: string(www["/privacy.htm"]),
 		ContentTitle: "Privacy Policy",
-		CSS: string(www["/privacy.css"]),
 		PageTitle: "My App - Privacy Policy",
 	}
 
@@ -89,7 +82,6 @@ func main() {
 		Content: string(www["/register.htm"]),
 		ContentTitle: "Register",
 		ContentSubTitle: "Create a new account.",
-		CSS: string(www["/register.css"]),
 		Form: "form",
 		NoScript: "Hello, fellow NoScript user!  This is awkward but could you pretty please whitelist " +
 			"my registration page?  You see, the Captcha gods are picky and like to use JavaScript " +
@@ -109,14 +101,12 @@ func main() {
 	pages.Pages["/store"] = &pages.Page{
 		Content: string(www["/store.htm"]),
 		ContentTitle: "Store",
-		CSS: string(www["/store.css"]),
 		PageTitle: "My App - Store",
 	}
 
 	pages.Pages["/terms"] = &pages.Page{
 		Content: string(www["/terms.htm"]),
 		ContentTitle: "Terms of Service",
-		CSS: string(www["/terms.css"]),
 		PageTitle: "My App - Terms of Service",
 	}
 
