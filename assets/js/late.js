@@ -119,7 +119,7 @@ function amy_onLightsChanged(event) {
 	}
 }
 
-function amy_onPageLoadedFull() {
+function amy_onPageLoadedFull(event) {
 	console.log("function amy_onPageLoadedFull(event) {");
 	var captcha = document.getElementById("captcha-onload");
 	if(captcha) {
@@ -161,7 +161,8 @@ function amy_onPageLoadedTail() {
 	}
 }
 
-function amy_onSubmitFull() {
+function amy_onSubmitFull(event) {
+	event.preventDefault(); // don't submit the form
 	console.log("function amy_onSubmitFull(event) {");
 	var captcha = document.getElementById("captcha-onsubmit");
 	if(captcha) {
