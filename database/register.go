@@ -10,7 +10,7 @@ import (
 	"github.com/suite911/str911/str"
 )
 
-func Register(username, email string, scores []float64, minor bool, emwho, emhow, emrel string) string {
+func Register(username, email string, scores [3]float64, minor bool, emwho, emhow, emrel string) string {
 	if len(scores) != 3 {
 		log.Println("len(scores):", len(scores), ":", scores)
 		return "#something-went-wrong"
