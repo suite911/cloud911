@@ -252,7 +252,7 @@ div.copyright {
 		ButtonSubmitBg:           "#03a9f4",
 		ButtonSubmitFg:           "#fff",
 		ButtonSubmitHover:        "#40c4ff",
-		Dark_Bg:                  "#424242",
+		Dark_Bg:                  "#06081f",
 		Dark_Fg:                  "#fafafa",
 		Dark_Footer_Bg:           "#616161",
 		Dark_Footer_Fg:           "#fff",
