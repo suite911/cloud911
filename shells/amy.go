@@ -59,7 +59,7 @@ func init() {
 		<div class="header">{{.HeaderHead}}{{.Header}}{{.HeaderTail}}
 		</div>
 	</header>{{if .ContentTitle}}
-	<div class="title">
+	<div id="title">
 		<h1>{{.ContentTitle}}</h1>{{if .ContentSubTitle}}
 		<p>{{.ContentSubTitle}}</p>{{end}}
 		<hr />
