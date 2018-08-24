@@ -67,15 +67,23 @@ function amy_onLightsChanged(event) {
 }
 
 function amy_onPageLoadedFull() {
-	// amy_onPageLoadedHead();
+	amy_onPageLoadedHead();
 	if(typeof amy_onPageLoaded === "function") {
 		var ok = amy_onPageLoaded();
 		if(typeof ok !== "undefined" && !ok) {
 			return false;
 		}
 	}
-	// amy_onPageLoadedTail();
-	amy_cookieAgree();
+	amy_onPageLoadedTail();
+}
+
+function amy_onPageLoadedHead() {
+}
+
+function amy_onPageLoadedTail() {
+	if(typeof amy_cookieAgree === "function") {
+		amy_cookieAgree();
+	}
 }
 
 if (typeof document.addEventListener === "function") {
