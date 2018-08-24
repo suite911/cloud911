@@ -9,7 +9,57 @@ import (
 var Style1 string
 
 type Style struct {
-	var Mono, Sans string
+	ButtonDisabledBg         string
+	ButtonDisabledFg         string
+	ButtonSubmitBg           string
+	ButtonSubmitFg           string
+	ButtonSubmitHover        string
+	Dark_Bg                  string
+	Dark_Fg                  string
+	Dark_Footer_Bg           string
+	Dark_Footer_Fg           string
+	Dark_Header_Bg           string
+	Dark_Header_Fg           string
+	Dark_Night_Bg_Hover      string
+	Dark_Night_Bg            string
+	Dark_Night_Border_Hover  string
+	Dark_Night_Border        string
+	Dark_Night_Fg_Hover      string
+	Dark_Night_Fg            string
+	Dark_TopNav_Bg_Hover     string
+	Dark_TopNav_Bg           string
+	Dark_TopNav_Fg_Hover     string
+	Dark_TopNav_Fg           string
+	EntryBg                  string
+	EntryBorder              string
+	EntryFg                  string
+	FocusBg                  string
+	FocusBorder              string
+	FocusFg                  string
+	FooterHeight             string
+	Light_Bg                 string
+	Light_Fg                 string
+	Light_Footer_Bg          string
+	Light_Footer_Fg          string
+	Light_Header_Bg          string
+	Light_Header_Fg          string
+	Light_Night_Bg_Hover     string
+	Light_Night_Bg           string
+	Light_Night_Border_Hover string
+	Light_Night_Border       string
+	Light_Night_Fg_Hover     string
+	Light_Night_Fg           string
+	Light_TopNav_Bg_Hover    string
+	Light_TopNav_Bg          string
+	Light_TopNav_Fg_Hover    string
+	Light_TopNav_Fg          string
+	LinkFg                   string
+	LinkHover                string
+	Mono                     string
+	PaddingWidgetHorz        string
+	PaddingWidgetVert        string
+	Sans                     string
+	TopNavHeight             string
 }
 var Template *template.Template
 
@@ -24,57 +74,57 @@ code, .mono {
 }
 
 a {
-	color: {{.Vars.LinkFg}};
+	color: {{.LinkFg}};
 }
 
 a:hover {
-	color: {{.Vars.LinkHover}};
+	color: {{.LinkHover}};
 }
 
 .page-outer {
-	background-color: {{.Vars.Light_Bg}};
-	color: {{.Vars.Light_Fg}};
+	background-color: {{.Light_Bg}};
+	color: {{.Light_Fg}};
 }
 
 .page-inner {
-	padding: 0 0 {{.Vars.FooterHeight}} 0;
+	padding: 0 0 {{.FooterHeight}} 0;
 }
 
 header {
-	background-color: {{.Vars.Light_Header_Bg}};
-	color: {{.Vars.Light_Header_Fg}};
+	background-color: {{.Light_Header_Bg}};
+	color: {{.Light_Header_Fg}};
 }
 
 footer {
-	background-color: {{.Vars.Light_Footer_Bg}};
-	color: {{.Vars.Light_Footer_Fg}};
-	font-size: {{.Vars.FooterHeight}};
-	height: {{.Vars.FooterHeight}};
-	line-height: {{.Vars.FooterHeight}};
-	margin: -{{.Vars.FooterHeight}} 0 0 0;
+	background-color: {{.Light_Footer_Bg}};
+	color: {{.Light_Footer_Fg}};
+	font-size: {{.FooterHeight}};
+	height: {{.FooterHeight}};
+	line-height: {{.FooterHeight}};
+	margin: -{{.FooterHeight}} 0 0 0;
 }
 
 footer a, footer a:active, footer a:focus, footer a:link, footer a:visited {
-	color: {{.Vars.Light_Footer_Fg}};
+	color: {{.Light_Footer_Fg}};
 }
 
 footer a:hover {
-	color: {{.Vars.Light_Footer_Fg}};
+	color: {{.Light_Footer_Fg}};
 }
 
 input[type=checkbox].lights-off:checked + div header {
-	background-color: {{.Vars.Dark_Header_Bg}};
-	color: {{.Vars.Dark_Header_Fg}};
+	background-color: {{.Dark_Header_Bg}};
+	color: {{.Dark_Header_Fg}};
 }
 
 input[type=checkbox].lights-off:checked ~ div {
-	background-color: {{.Vars.Dark_Bg}};
-	color: {{.Vars.Dark_Fg}};
+	background-color: {{.Dark_Bg}};
+	color: {{.Dark_Fg}};
 }
 
 input[type=checkbox].lights-off:checked ~ footer {
-	background-color: {{.Vars.Dark_Footer_Bg}};
-	color: {{.Vars.Dark_Footer_Fg}};
+	background-color: {{.Dark_Footer_Bg}};
+	color: {{.Dark_Footer_Fg}};
 }
 
 input[type=checkbox].lights-off:checked ~ footer a,
@@ -82,99 +132,99 @@ input[type=checkbox].lights-off:checked ~ footer a:active,
 input[type=checkbox].lights-off:checked ~ footer a:focus,
 input[type=checkbox].lights-off:checked ~ footer a:link,
 input[type=checkbox].lights-off:checked ~ footer a:visited {
-	color: {{.Vars.Dark_Footer_Fg}};
+	color: {{.Dark_Footer_Fg}};
 }
 
 input[type=checkbox].lights-off:checked ~ footer a:hover {
-	color: {{.Vars.Dark_Footer_Fg}};
+	color: {{.Dark_Footer_Fg}};
 }
 
 /* Inner elements */
 
 div.topnav {
-	font-size: {{.Vars.TopNavHeight}};
-	height: calc({{.Vars.TopNavHeight}} + 20px);
-	line-height: {{.Vars.TopNavHeight}};
+	font-size: {{.TopNavHeight}};
+	height: calc({{.TopNavHeight}} + 20px);
+	line-height: {{.TopNavHeight}};
 }
 
 span.topnav {
-	background-color: {{.Vars.Light_TopNav_Bg}};
-	color: {{.Vars.Light_TopNav_Fg}};
+	background-color: {{.Light_TopNav_Bg}};
+	color: {{.Light_TopNav_Fg}};
 }
 
 span.topnav:hover {
-	background-color: {{.Vars.Light_TopNav_Bg_Hover}};
-	color: {{.Vars.Light_TopNav_Fg_Hover}};
+	background-color: {{.Light_TopNav_Bg_Hover}};
+	color: {{.Light_TopNav_Fg_Hover}};
 }
 
 input[type=checkbox].lights-off:checked + div header span.topnav {
-	background-color: {{.Vars.Dark_TopNav_Bg}};
-	color: {{.Vars.Dark_TopNav_Fg}};
+	background-color: {{.Dark_TopNav_Bg}};
+	color: {{.Dark_TopNav_Fg}};
 }
 
 input[type=checkbox].lights-off:checked + div header span.topnav:hover {
-	background-color: {{.Vars.Dark_TopNav_Bg_Hover}};
-	color: {{.Vars.Dark_TopNav_Fg_Hover}};
+	background-color: {{.Dark_TopNav_Bg_Hover}};
+	color: {{.Dark_TopNav_Fg_Hover}};
 }
 
 /* The "Lights Off" toggle */
 label.lights-off {
-	background-color: {{.Vars.Light_Night_Bg}};
-	border: 2px solid {{.Vars.Light_Night_Border}};
-	color: {{.Vars.Light_Night_Fg}};
+	background-color: {{.Light_Night_Bg}};
+	border: 2px solid {{.Light_Night_Border}};
+	color: {{.Light_Night_Fg}};
 }
 
 label.lights-off:hover {
-	background-color: {{.Vars.Light_Night_Bg_Hover}};
-	border-color: {{.Vars.Light_Night_Border_Hover}};
-	color: {{.Vars.Light_Night_Fg_Hover}};
+	background-color: {{.Light_Night_Bg_Hover}};
+	border-color: {{.Light_Night_Border_Hover}};
+	color: {{.Light_Night_Fg_Hover}};
 }
 
 input[type=checkbox].lights-off:checked + div header label.lights-off {
-	background-color: {{.Vars.Dark_Night_Bg}};
-	border-color: {{.Vars.Dark_Night_Border}};
-	color: {{.Vars.Dark_Night_Fg}};
+	background-color: {{.Dark_Night_Bg}};
+	border-color: {{.Dark_Night_Border}};
+	color: {{.Dark_Night_Fg}};
 }
 
 input[type=checkbox].lights-off:checked + div header label.lights-off:hover {
-	background-color: {{.Vars.Dark_Night_Bg_Hover}};
-	border-color: {{.Vars.Dark_Night_Border_Hover}};
-	color: {{.Vars.Dark_Night_Fg_Hover}};
+	background-color: {{.Dark_Night_Bg_Hover}};
+	border-color: {{.Dark_Night_Border_Hover}};
+	color: {{.Dark_Night_Fg_Hover}};
 }
 
 input[type=text], input[type=password] {
-	background-color: {{.Vars.EntryBg}};
-	border: 2px solid {{.Vars.EntryBorder}};
-	color: {{.Vars.EntryFg}};
-	padding: {{.Vars.PaddingWidgetVert}} {{.Vars.PaddingWidgetHorz}};
+	background-color: {{.EntryBg}};
+	border: 2px solid {{.EntryBorder}};
+	color: {{.EntryFg}};
+	padding: {{.PaddingWidgetVert}} {{.PaddingWidgetHorz}};
 }
 
 input[type=text]:focus, input[type=password]:focus {
-	background-color: {{.Vars.FocusBg}};
-	border: 2px solid {{.Vars.FocusBorder}};
-	color: {{.Vars.FocusFg}};
+	background-color: {{.FocusBg}};
+	border: 2px solid {{.FocusBorder}};
+	color: {{.FocusFg}};
 }
 
 input[type=submit] {
-	background-color: {{.Vars.ButtonSubmitBg}};
-	color: {{.Vars.ButtonSubmitFg}};
-	padding: {{.Vars.PaddingWidgetVert}} {{.Vars.PaddingWidgetHorz}};
+	background-color: {{.ButtonSubmitBg}};
+	color: {{.ButtonSubmitFg}};
+	padding: {{.PaddingWidgetVert}} {{.PaddingWidgetHorz}};
 }
 
 input[type=submit]:hover {
-	background-color: {{.Vars.ButtonSubmitHover}};
+	background-color: {{.ButtonSubmitHover}};
 }
 
 input[type=submit]:disabled {
-	background-color: {{.Vars.ButtonDisabledBg}};
-	color: {{.Vars.ButtonDisabledFg}};
+	background-color: {{.ButtonDisabledBg}};
+	color: {{.ButtonDisabledFg}};
 }
 
 div.copyright {
-	font-size: {{.Vars.FooterHeight}};
-	height: {{.Vars.FooterHeight}};
-	line-height: {{.Vars.FooterHeight}};
-	margin: -{{.Vars.FooterHeight}} 0 0 0;
+	font-size: {{.FooterHeight}};
+	height: {{.FooterHeight}};
+	line-height: {{.FooterHeight}};
+	margin: -{{.FooterHeight}} 0 0 0;
 }
 `
 	var err error
@@ -182,7 +232,56 @@ div.copyright {
 		panic(errors.Wrap(err, `template.New("Amy").Parse(text)`))
 	}
 	Style1, err = Template.execute(Style{
-		Mono: "",
-		Sans: "",
+		ButtonDisabledBg:         "",
+		ButtonDisabledFg:         "",
+		ButtonSubmitBg:           "",
+		ButtonSubmitFg:           "",
+		ButtonSubmitHover:        "",
+		Dark_Bg:                  "",
+		Dark_Fg:                  "",
+		Dark_Footer_Bg:           "",
+		Dark_Footer_Fg:           "",
+		Dark_Header_Bg:           "",
+		Dark_Header_Fg:           "",
+		Dark_Night_Bg_Hover:      "",
+		Dark_Night_Bg:            "",
+		Dark_Night_Border_Hover:  "",
+		Dark_Night_Border:        "",
+		Dark_Night_Fg_Hover:      "",
+		Dark_Night_Fg:            "",
+		Dark_TopNav_Bg_Hover:     "",
+		Dark_TopNav_Bg:           "",
+		Dark_TopNav_Fg_Hover:     "",
+		Dark_TopNav_Fg:           "",
+		EntryBg:                  "",
+		EntryBorder:              "",
+		EntryFg:                  "",
+		FocusBg:                  "",
+		FocusBorder:              "",
+		FocusFg:                  "",
+		FooterHeight:             "",
+		Light_Bg:                 "",
+		Light_Fg:                 "",
+		Light_Footer_Bg:          "",
+		Light_Footer_Fg:          "",
+		Light_Header_Bg:          "",
+		Light_Header_Fg:          "",
+		Light_Night_Bg_Hover:     "",
+		Light_Night_Bg:           "",
+		Light_Night_Border_Hover: "",
+		Light_Night_Border:       "",
+		Light_Night_Fg_Hover:     "",
+		Light_Night_Fg:           "",
+		Light_TopNav_Bg_Hover:    "",
+		Light_TopNav_Bg:          "",
+		Light_TopNav_Fg_Hover:    "",
+		Light_TopNav_Fg:          "",
+		LinkFg:                   "",
+		LinkHover:                "",
+		Mono:                     "",
+		PaddingWidgetHorz:        "",
+		PaddingWidgetVert:        "",
+		Sans:                     "",
+		TopNavHeight:             "",
 	})
 }
