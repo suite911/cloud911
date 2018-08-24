@@ -2,12 +2,14 @@ package handlers
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"path"
 	"strings"
 
 	"github.com/suite911/cloud911/droppriv"
 	"github.com/suite911/cloud911/pages"
+	"github.com/suite911/cloud911/vars"
 
 	"github.com/suite911/str911/str"
 
