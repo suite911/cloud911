@@ -88,6 +88,16 @@ func post(ctx *fasthttp.RequestCtx) {
 			ctx.Redirect("#email-missing", 302)
 			return
 		}
+		usernameBytes := args.Peek("username")
+		if len(usernameBytes) < 1 {
+			ctx.Redirect("#username-missing", 302)
+			return
+		}
+		if !utf8.Valid(usernameBytes) {
+			ctx.Redirect("#username-invalid", 302)
+			return
+		}
+		username := string(usernameBytes) // TODO: remove whitespace, check for @, all digits, etc
 		netScore := 1.0
 		if len(vars.Pass.CaptchaSecret) > 0 {
 			captchaOnLoad := args.Peek("captcha-onload")
@@ -110,15 +120,14 @@ func post(ctx *fasthttp.RequestCtx) {
 				score *= netScore
 			}
 		}
-
-		ctx.Redirect(database.Register(email, netScore), 302)
+		ctx.Redirect(database.Register(username, email, netScore, minor, emwho, emhow, emrel), 302)
 		return
 	}
 }
 
 type GoogleCaptchaResponse struct {
 	Success        bool        `json:"success"`
-	Score          float32     `json:"score"`
+	Score          float64     `json:"score"`
 	Action         string      `json:"action"`
 	ChallengeTS    string      `json:"challenge_ts"`
 	HostName       string      `json:"hostname"`
@@ -126,7 +135,7 @@ type GoogleCaptchaResponse struct {
 	ErrorCodes     interface{} `json:"error-codes"`
 }
 
-func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte, action string) (float32, error) {
+func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte, action string) (float64, error) {
 	var args fasthttp.Args
 	args.SetBytesV("secret", vars.Pass.CaptchaSecret)
 	args.SetBytesV("response", solution)
@@ -151,5 +160,5 @@ func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte, action str
 	if !resp.Success || resp.Action != action {
 		return 0.0, nil
 	}
-	return maths.ClampFloat32(resp.Score, 0, 1), nil
+	return maths.Clamp(resp.Score, 0, 1), nil
 }
