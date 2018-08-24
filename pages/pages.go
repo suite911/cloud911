@@ -28,7 +28,7 @@ type Page struct {
 	Content, ContentHead, ContentTail          string
 	Footer, FooterHead, FooterTail             string
 
-	FormAction, ReCaptchaV2 string
+	FormAction, ReCaptchaV3 string
 
 	NoScript string
 
