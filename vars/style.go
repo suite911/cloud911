@@ -10,8 +10,14 @@ import (
 var Style1 string
 
 type Style struct {
+	ButtonCancelBg           string
+	ButtonCancelFg           string
+	ButtonCancelHover        string
 	ButtonDisabledBg         string
 	ButtonDisabledFg         string
+	ButtonResetBg            string
+	ButtonResetFg            string
+	ButtonResetHover         string
 	ButtonSubmitBg           string
 	ButtonSubmitFg           string
 	ButtonSubmitHover        string
@@ -235,14 +241,14 @@ div.copyright {
 
 	var b bytes.Buffer
 	if err := StyleTemplate.Execute(&b, Style{
-		// ButtonCancelBg:           "#c00",
-		// ButtonCancelHover:        "#f00",
-		// ButtonCancelFg:           "#fff",
+		ButtonCancelBg:           "#c00",
+		ButtonCancelFg:           "#fff",
+		ButtonCancelHover:        "#f00",
 		ButtonDisabledBg:         "#777",
 		ButtonDisabledFg:         "#eee",
-		// ButtonResetBg:           "#c00",
-		// ButtonResetHover:        "#f00",
-		// ButtonResetFg:           "#fff",
+		ButtonResetBg:           "#c00",
+		ButtonResetFg:           "#fff",
+		ButtonResetHover:        "#f00",
 		ButtonSubmitBg:           "#03a9f4",
 		ButtonSubmitFg:           "#fff",
 		ButtonSubmitHover:        "#40c4ff",
