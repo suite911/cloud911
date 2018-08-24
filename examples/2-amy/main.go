@@ -82,7 +82,6 @@ func main() {
 		Content: string(www["/register.htm"]),
 		ContentTitle: "Register",
 		ContentSubTitle: "Create a new account.",
-		Form: "form",
 		NoScript: "Hello, fellow NoScript user!  This is awkward but could you pretty please whitelist " +
 			"my registration page?  You see, the Captcha gods are picky and like to use JavaScript " +
 			"to do ...well whatever Captcha gods do with JavaScript.  So anyway it would just make " +
