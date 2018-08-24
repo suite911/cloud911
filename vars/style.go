@@ -199,14 +199,14 @@ input[type=checkbox].lights-off:checked + div header label.lights-off:hover {
 	color: {{.Dark_Night_Fg_Hover}};
 }
 
-input[type=text], input[type=password] {
+input[type=email], input[type=password], input[type=text], input[type=url] {
 	background-color: {{.EntryBg}};
 	border: 2px solid {{.EntryBorder}};
 	color: {{.EntryFg}};
 	padding: {{.PaddingWidgetVert}} {{.PaddingWidgetHorz}};
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=url]:focus {
 	background-color: {{.FocusBg}};
 	border: 2px solid {{.FocusBorder}};
 	color: {{.FocusFg}};
