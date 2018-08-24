@@ -240,22 +240,22 @@ div.copyright {
 		ButtonSubmitBg:           "",
 		ButtonSubmitFg:           "",
 		ButtonSubmitHover:        "",
-		Dark_Bg:                  "",
-		Dark_Fg:                  "",
-		Dark_Footer_Bg:           "",
-		Dark_Footer_Fg:           "",
-		Dark_Header_Bg:           "",
-		Dark_Header_Fg:           "",
+		Dark_Bg:                  "#424242",
+		Dark_Fg:                  "#fafafa",
+		Dark_Footer_Bg:           "#616161",
+		Dark_Footer_Fg:           "#fff",
+		Dark_Header_Bg:           "#0000",
+		Dark_Header_Fg:           "#fff",
 		Dark_Night_Bg_Hover:      "",
 		Dark_Night_Bg:            "",
 		Dark_Night_Border_Hover:  "",
 		Dark_Night_Border:        "",
 		Dark_Night_Fg_Hover:      "",
 		Dark_Night_Fg:            "",
-		Dark_TopNav_Bg_Hover:     "",
-		Dark_TopNav_Bg:           "",
-		Dark_TopNav_Fg_Hover:     "",
-		Dark_TopNav_Fg:           "",
+		Dark_TopNav_Bg_Hover:     "#ff1744",
+		Dark_TopNav_Bg:           "#b71c1c",
+		Dark_TopNav_Fg_Hover:     "#fff",
+		Dark_TopNav_Fg:           "#fff",
 		EntryBg:                  "",
 		EntryBorder:              "",
 		EntryFg:                  "",
@@ -291,3 +291,55 @@ div.copyright {
 	}
 	Style1 = string(b.Bytes())
 }
+
+/* TODO:
+
+		[2]string{"Dark_Night_Border", "#616161"},
+		[2]string{"Dark_Night_Border_Hover", "#3D5AFE"},
+		[2]string{"Dark_Night_Bg", "#616161"},
+		[2]string{"Dark_Night_Bg_Hover", "#3D5AFE"},
+		[2]string{"Dark_Night_Fg", "#F4FF81"},
+		[2]string{"Dark_Night_Fg_Hover", "#fff"},
+
+		[2]string{"Light_Bg", "#fff"},
+		[2]string{"Light_Fg", "#000"},
+		[2]string{"Light_Header_Bg", "#4FC3F7"},//TODO:
+		[2]string{"Light_Header_Fg", "#000"},
+		[2]string{"Light_TopNav_Bg", "#4FC3F7"},//TODO:
+		[2]string{"Light_TopNav_Bg_Hover", "#80D8FF"},//TODO:
+		[2]string{"Light_TopNav_Fg", "#fff"},//TODO:
+		[2]string{"Light_TopNav_Fg_Hover", "#fff"},//TODO:
+		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
+		[2]string{"Light_Footer_Fg", "#000"},
+		[2]string{"Light_Night_Border", "#3F51B5"},
+		[2]string{"Light_Night_Border_Hover", "#3D5AFE"},
+		[2]string{"Light_Night_Bg", "#3F51B5"},
+		[2]string{"Light_Night_Bg_Hover", "#3D5AFE"},
+		[2]string{"Light_Night_Fg", "#fff"},
+		[2]string{"Light_Night_Fg_Hover", "#fff"},
+
+		[2]string{"TopNavHeight", "16pt"},
+		[2]string{"FooterHeight", "14pt"},
+
+		[2]string{"PaddingWidgetHorz", "16px"},
+		[2]string{"PaddingWidgetVert", "12px"},
+		[2]string{"LinkFg", "#03A9F4"},
+		[2]string{"LinkHover", "#40C4FF"},
+				[2]string{"TopNavBg1", "#0000"},//TODO:
+		[2]string{"EntryBorder", "#000"},//TODO:
+		[2]string{"EntryBg", "#FAFAFA"},//TODO:
+		[2]string{"EntryFg", "#000"},//TODO:
+		[2]string{"FocusBorder", "#7cf"},//TODO:
+		[2]string{"FocusBg", "#fff"},//TODO:
+		[2]string{"FocusFg", "#000"},//TODO:
+		[2]string{"ButtonCancelBg", "#c00"},//TODO:
+		[2]string{"ButtonCancelHover", "#f00"},//TODO:
+		[2]string{"ButtonCancelFg", "#fff"},//TODO:
+		[2]string{"ButtonSubmitBg", "#03A9F4"},//TODO:
+		[2]string{"ButtonSubmitHover", "#40C4FF"},//TODO:
+		[2]string{"ButtonSubmitFg", "#fff"},//TODO:
+		[2]string{"ButtonDisabledBg", "#777"},//TODO:
+		[2]string{"ButtonDisabledFg", "#eee"},//TODO:
+
+
+*/
