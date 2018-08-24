@@ -151,6 +151,17 @@ function amy_onSubmitFull() {
 }
 
 function amy_onSubmitFull2() {
+	var lightSwitch = document.getElementById("lights-off");
+	if(lightSwitch) {
+		var lightAnalytics = document.getElementById("analytics-lights");
+		if(lightAnalytics) {
+			if(lightSwitch.checked) {
+				lightAnalytics.value = "off";
+			} else {
+				lightAnalytics.value = "on";
+			}
+		}
+	}
 	if(amy_onWillSubmit === "function") {
 		var ok = amy_onWillSubmit();
 		if(typeof ok !== "undefined" && !ok) {
