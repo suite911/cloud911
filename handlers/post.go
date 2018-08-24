@@ -5,6 +5,8 @@ import (
 	"errors"
 	"log"
 	"strconv"
+	"strings"
+	"unicode"
 	"unicode/utf8"
 
 	"github.com/suite911/cloud911/database"
@@ -82,6 +84,7 @@ func post(ctx *fasthttp.RequestCtx) {
 			if r == '@' {
 				return -1 // delete
 			}
+			return r
 		}, username)
 		if len(username) < 1 {
 			ctx.Redirect("#username-invalid", 302)
@@ -144,12 +147,13 @@ func post(ctx *fasthttp.RequestCtx) {
 			captchaOnLoad := args.Peek("captcha-onload")
 			captchaOnChange := args.Peek("captcha-onchange")
 			captchaOnSubmit := args.Peek("captcha-onsubmit")
-			for _, captcha := range [][]byte{captchaOnLoad, captchaOnChange, captchaOnSubmit} {
+			for _, captchaAction := range []string{"load", "change", "submit"} {
+				captcha := args.Peek("captcha-on" + action)
 				if len(captcha) < 1 {
 					ctx.Redirect("#something-went-wrong", 302)
 					return
 				}
-				score, err := VerifyCaptchaSolution(ctx, captcha)
+				score, err := VerifyCaptchaSolution(ctx, captcha, captchaAction)
 				if err != nil {
 					ctx.Redirect("#something-went-wrong", 302)
 					return
