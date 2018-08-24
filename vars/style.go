@@ -246,12 +246,12 @@ div.copyright {
 		Dark_Footer_Fg:           "#fff",
 		Dark_Header_Bg:           "#0000",
 		Dark_Header_Fg:           "#fff",
-		Dark_Night_Bg_Hover:      "",
-		Dark_Night_Bg:            "",
-		Dark_Night_Border_Hover:  "",
-		Dark_Night_Border:        "",
-		Dark_Night_Fg_Hover:      "",
-		Dark_Night_Fg:            "",
+		Dark_Night_Bg_Hover:      "#3d5afe",
+		Dark_Night_Bg:            "#616161",
+		Dark_Night_Border_Hover:  "#3d5afe",
+		Dark_Night_Border:        "#616161",
+		Dark_Night_Fg_Hover:      "#fff",
+		Dark_Night_Fg:            "#f4ff81",
 		Dark_TopNav_Bg_Hover:     "#ff1744",
 		Dark_TopNav_Bg:           "#b71c1c",
 		Dark_TopNav_Fg_Hover:     "#fff",
@@ -263,8 +263,8 @@ div.copyright {
 		FocusBorder:              "",
 		FocusFg:                  "",
 		FooterHeight:             "",
-		Light_Bg:                 "",
-		Light_Fg:                 "",
+		Light_Bg:                 "#fff",
+		Light_Fg:                 "#000",
 		Light_Footer_Bg:          "",
 		Light_Footer_Fg:          "",
 		Light_Header_Bg:          "",
@@ -294,15 +294,6 @@ div.copyright {
 
 /* TODO:
 
-		[2]string{"Dark_Night_Border", "#616161"},
-		[2]string{"Dark_Night_Border_Hover", "#3D5AFE"},
-		[2]string{"Dark_Night_Bg", "#616161"},
-		[2]string{"Dark_Night_Bg_Hover", "#3D5AFE"},
-		[2]string{"Dark_Night_Fg", "#F4FF81"},
-		[2]string{"Dark_Night_Fg_Hover", "#fff"},
-
-		[2]string{"Light_Bg", "#fff"},
-		[2]string{"Light_Fg", "#000"},
 		[2]string{"Light_Header_Bg", "#4FC3F7"},//TODO:
 		[2]string{"Light_Header_Fg", "#000"},
 		[2]string{"Light_TopNav_Bg", "#4FC3F7"},//TODO:
