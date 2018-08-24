@@ -26,7 +26,12 @@ func Create() error {
 			"regd" INTEGER NOT NULL ` + defaultNow + `,
 			"verd" INTEGER NOT NULL DEFAULT(0),
 			"bal" INTEGER NOT NULL DEFAULT(0),
-			"captcha" REAL NOT NULL
+			"captcha" REAL NOT NULL,
+			"minor" INTEGER NOT NULL,
+			-- Emergency Contact --
+			"emwho" TEXT NOT NULL,
+			"emhow" TEXT NOT NULL,
+			"emrel" TEXT NOT NULL
 		);
 	`
 	q.Exec()
