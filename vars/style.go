@@ -235,11 +235,17 @@ div.copyright {
 
 	var b bytes.Buffer
 	if err := StyleTemplate.Execute(&b, Style{
-		ButtonDisabledBg:         "",
-		ButtonDisabledFg:         "",
-		ButtonSubmitBg:           "",
-		ButtonSubmitFg:           "",
-		ButtonSubmitHover:        "",
+		// ButtonCancelBg:           "#c00",
+		// ButtonCancelHover:        "#f00",
+		// ButtonCancelFg:           "#fff",
+		ButtonDisabledBg:         "#777",
+		ButtonDisabledFg:         "#eee",
+		// ButtonResetBg:           "#c00",
+		// ButtonResetHover:        "#f00",
+		// ButtonResetFg:           "#fff",
+		ButtonSubmitBg:           "#03a9f4",
+		ButtonSubmitFg:           "#fff",
+		ButtonSubmitHover:        "#40c4ff",
 		Dark_Bg:                  "#424242",
 		Dark_Fg:                  "#fafafa",
 		Dark_Footer_Bg:           "#616161",
@@ -293,7 +299,6 @@ div.copyright {
 }
 
 /* TODO:
-
 		[2]string{"Light_Header_Bg", "#4FC3F7"},//TODO:
 		[2]string{"Light_Header_Fg", "#000"},
 		[2]string{"Light_TopNav_Bg", "#4FC3F7"},//TODO:
@@ -308,16 +313,4 @@ div.copyright {
 		[2]string{"Light_Night_Bg_Hover", "#3D5AFE"},
 		[2]string{"Light_Night_Fg", "#fff"},
 		[2]string{"Light_Night_Fg_Hover", "#fff"},
-
-
-		[2]string{"ButtonCancelBg", "#c00"},//TODO:
-		[2]string{"ButtonCancelHover", "#f00"},//TODO:
-		[2]string{"ButtonCancelFg", "#fff"},//TODO:
-		[2]string{"ButtonSubmitBg", "#03A9F4"},//TODO:
-		[2]string{"ButtonSubmitHover", "#40C4FF"},//TODO:
-		[2]string{"ButtonSubmitFg", "#fff"},//TODO:
-		[2]string{"ButtonDisabledBg", "#777"},//TODO:
-		[2]string{"ButtonDisabledFg", "#eee"},//TODO:
-
-
 */
