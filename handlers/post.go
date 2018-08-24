@@ -108,6 +108,19 @@ func post(ctx *fasthttp.RequestCtx) {
 			ctx.Redirect("#age-class-missing", 302)
 			return
 		}
+		if minor {
+			for _, checkbox := range []string{
+				"parent-email-yours",
+				"parent-read-terms",
+				"parent-notify",
+			} {
+				value := string(args.Peek(checkbox))
+				if value != "on" {
+					ctx.Redirect("#child-account-permission-form-incomplete", 302)
+					return
+				}
+			}
+		}
 		emwhoBytes := args.Peek("emergency-name")
 		if !utf8.Valid(emwhoBytes) {
 			ctx.Redirect("#encoding", 302)
