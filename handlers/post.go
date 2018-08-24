@@ -158,7 +158,7 @@ func post(ctx *fasthttp.RequestCtx) {
 					ctx.Redirect("#something-went-wrong", 302)
 					return
 				}
-				if score < vars.CaptchaThresholdRegister {
+				if score < vars.Pass.CaptchaThresholdRegister {
 					ctx.Redirect("#something-went-wrong", 302)
 					return
 				}
@@ -191,16 +191,16 @@ func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte, action str
 	*/
 	statusCode, body, err := fasthttp.Post(nil, "https://www.google.com/recaptcha/api/siteverify", &args)
 	if err != nil {
-		return false, pkgErrors.Wrap(err, "fasthttp.Post")
+		return 0.0, pkgErrors.Wrap(err, "fasthttp.Post")
 	}
 	if statusCode != 200 {
 		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, string(body))
-		return false, pkgErrors.Wrap(errors.New(strconv.Itoa(statusCode)), "fasthttp.Post")
+		return 0.0, pkgErrors.Wrap(errors.New(strconv.Itoa(statusCode)), "fasthttp.Post")
 	}
 	var resp = GoogleCaptchaResponse{Success: true, Score: 1.0}
 	if err := json.Unmarshal(body, &resp); err != nil {
 		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, resp)
-		return false, pkgErrors.Wrap(err, "json.Unmarshal(body, &resp)")
+		return 0.0, pkgErrors.Wrap(err, "json.Unmarshal(body, &resp)")
 	}
 	if !resp.Success || resp.Action != action {
 		return 0.0, nil
