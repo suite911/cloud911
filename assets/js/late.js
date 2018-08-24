@@ -16,6 +16,11 @@ function amy_onDOMReadyHead() {
 	if(content) {
 		content.style.display = "block";
 	}
+	var submit1 = document.getElementById("submit1");
+	if(submit1) {
+		content.disabled = false;
+		content.value = "Submit";
+	}
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
 		var lights = amy_getCookie("lights");
