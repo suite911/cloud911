@@ -144,19 +144,19 @@ func post(ctx *fasthttp.RequestCtx) {
 		emrel := string(emrelBytes)
 		netScore := 1.0
 		if len(vars.Pass.CaptchaSecret) > 0 {
-			for _, captchaAction := range []string{"load", "change", "submit"} {
+			for i, captchaAction := range []string{"load", "change", "submit"} {
 				captcha := args.Peek("captcha-on" + action)
 				if len(captcha) < 1 {
-					ctx.Redirect("#something-went-wrong-with-captcha-code-1", 302)
+					ctx.Redirect("#something-went-wrong-with-captcha-code-1"+strconv.Itoa(i), 302)
 					return
 				}
 				score, err := VerifyCaptchaSolution(ctx, captcha, captchaAction)
 				if err != nil {
-					ctx.Redirect("#something-went-wrong-with-captcha-code-2", 302)
+					ctx.Redirect("#something-went-wrong-with-captcha-code-2"+strconv.Itoa(i), 302)
 					return
 				}
 				if score < vars.Pass.CaptchaThresholdRegister {
-					ctx.Redirect("#something-went-wrong-with-captcha-code-3", 302)
+					ctx.Redirect("#something-went-wrong-with-captcha-code-3"+strconv.Itoa(i), 302)
 					return
 				}
 				score *= netScore
