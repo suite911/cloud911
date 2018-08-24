@@ -256,13 +256,13 @@ div.copyright {
 		Dark_TopNav_Bg:           "#b71c1c",
 		Dark_TopNav_Fg_Hover:     "#fff",
 		Dark_TopNav_Fg:           "#fff",
-		EntryBg:                  "",
-		EntryBorder:              "",
-		EntryFg:                  "",
-		FocusBg:                  "",
-		FocusBorder:              "",
-		FocusFg:                  "",
-		FooterHeight:             "",
+		EntryBg:                  "#fafafa",
+		EntryBorder:              "#000",
+		EntryFg:                  "#000",
+		FocusBg:                  "#fff",
+		FocusBorder:              "#7cf",
+		FocusFg:                  "#000",
+		FooterHeight:             "14pt",
 		Light_Bg:                 "#fff",
 		Light_Fg:                 "#000",
 		Light_Footer_Bg:          "",
@@ -279,13 +279,13 @@ div.copyright {
 		Light_TopNav_Bg:          "",
 		Light_TopNav_Fg_Hover:    "",
 		Light_TopNav_Fg:          "",
-		LinkFg:                   "",
-		LinkHover:                "",
+		LinkFg:                   "#03a9f4",
+		LinkHover:                "#40c4ff",
 		Mono:                     "Source Code Pro",
-		PaddingWidgetHorz:        "",
-		PaddingWidgetVert:        "",
+		PaddingWidgetHorz:        "16px",
+		PaddingWidgetVert:        "12px",
 		Sans:                     "Noto Sans",
-		TopNavHeight:             "",
+		TopNavHeight:             "16pt",
 	}); err != nil {
 		panic(err)
 	}
@@ -309,20 +309,7 @@ div.copyright {
 		[2]string{"Light_Night_Fg", "#fff"},
 		[2]string{"Light_Night_Fg_Hover", "#fff"},
 
-		[2]string{"TopNavHeight", "16pt"},
-		[2]string{"FooterHeight", "14pt"},
 
-		[2]string{"PaddingWidgetHorz", "16px"},
-		[2]string{"PaddingWidgetVert", "12px"},
-		[2]string{"LinkFg", "#03A9F4"},
-		[2]string{"LinkHover", "#40C4FF"},
-				[2]string{"TopNavBg1", "#0000"},//TODO:
-		[2]string{"EntryBorder", "#000"},//TODO:
-		[2]string{"EntryBg", "#FAFAFA"},//TODO:
-		[2]string{"EntryFg", "#000"},//TODO:
-		[2]string{"FocusBorder", "#7cf"},//TODO:
-		[2]string{"FocusBg", "#fff"},//TODO:
-		[2]string{"FocusFg", "#000"},//TODO:
 		[2]string{"ButtonCancelBg", "#c00"},//TODO:
 		[2]string{"ButtonCancelHover", "#f00"},//TODO:
 		[2]string{"ButtonCancelFg", "#fff"},//TODO:
