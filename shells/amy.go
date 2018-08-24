@@ -35,14 +35,8 @@ func init() {
 {{.Head}}
 {{end}}
 <script type="text/javascript" src="//rawgit.com/suite911/cloud911/master/assets/js/early.js"></script>
-<script type="text/javascript" src='/1.js'></script>
-{{if .ReCaptchaV2}}<script src='//www.google.com/recaptcha/api.js' async defer></script>{{end}}
-{{if .InlineJavaScript}}
-<script type="text/javascript"><!-- //<![CDATA[
-{{.InlineJavaScript}}
-//]]> --></script>
-{{end}}
-</head>
+{{if .ReCaptchaV3}}<script src='https://www.google.com/recaptcha/api.js?render={{.ReCaptchaV3}}'></script>
+{{end}}</head>
 <body>{{.BodyHead}}{{if .Body}}{{.Body}}{{else}}
 <input type="checkbox" class="lights-off" id="lights-off" checked />
 <div class="page-outer"><div class="page-inner">
@@ -72,15 +66,6 @@ func init() {
 {{end}}
 {{.Content}}
 {{if .Form}}
-{{if .ReCaptchaV2}}
-				<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
-				<input type="submit" id="bsubmit"
-					class="g-recaptcha card"
-					data-callback='onSubmit'
-					data-sitekey="{{.ReCaptchaV2}}"
-					value="Submit"
-					/>
-{{end}}
 			<br />
 			</form>
 		</div>
@@ -92,7 +77,12 @@ func init() {
 <footer class="footer">{{.FooterHead}}{{.Footer}}{{.FooterTail}}
 	<div class="copyright">{{.Copyright}}</div>
 </footer>
-{{end}}{{.BodyTail}}
+{{end}}
+{{.BodyTail}}
+{{if .InlineJavaScript}}<script type="text/javascript"><!-- //<![CDATA[
+{{.InlineJavaScript}}
+//]]> --></script>
+{{end}}<script type="text/javascript" src='/1.js'></script>
 <script type="text/javascript" src="//rawgit.com/suite911/cloud911/master/assets/js/late.js"></script>
 </body>
 </html>
