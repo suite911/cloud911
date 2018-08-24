@@ -55,6 +55,8 @@ function amy_hasClass(elem, className) {
 	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
+var amy_onDOMReady() = function() { }
+
 function amy_onDOMReadyTail() {
 	if(location.hash.length >= 2) {
 		var elem = document.getElementById(location.hash.slice(1))
@@ -85,6 +87,8 @@ function amy_onLightsChanged(event) {
 		}
 	}
 }
+
+var amy_onPageLoaded() = function() { }
 
 function amy_onSubmit {
 	if(amy_onWillSubmit === "function") {
