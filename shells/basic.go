@@ -72,8 +72,11 @@ else window.onload = onPageLoaded;
 </body>
 </html>
 `
+	/*
 	var err error
 	if Basic, err = template.New("Basic").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Basic").Parse(text)`))
 	}
+	*/
+	_ = text // TODO: FIXME:
 }
