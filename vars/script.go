@@ -11,18 +11,18 @@ var Script1 string
 
 type Script struct {
 }
-var Template *template.Template
+var ScriptTemplate *template.Template
 
 func init() {
 	text := `
 `
 	var err error
-	if Template, err = template.New("Script").Option("missingkey=zero").Parse(text); err != nil {
+	if ScriptTemplate, err = template.New("Script").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Amy").Parse(text)`))
 	}
 
 	var b bytes.Buffer
-	if err := Template.Execute(&b, Script{
+	if err := ScriptTemplate.Execute(&b, Script{
 	}); err != nil {
 		panic(err)
 	}
