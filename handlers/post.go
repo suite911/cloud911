@@ -29,7 +29,9 @@ func Post(ctx *fasthttp.RequestCtx) {
 func post(ctx *fasthttp.RequestCtx) {
 	args := ctx.PostArgs()
 	var action, email string
-	captcha := args.Peek("g-recaptcha-response")
+	captchaOnLoad := args.Peek("captcha-onload")
+	captchaOnChange := args.Peek("captcha-onchange")
+	captchaOnSubmit := args.Peek("captcha-onsubmit")
 
 	{
 		actionBytes := args.Peek("action")
@@ -51,18 +53,6 @@ func post(ctx *fasthttp.RequestCtx) {
 		}
 		if err := checkmail.ValidateHost(email); err != nil {
 			ctx.Redirect("#email-invalid", 302)
-			return
-		}
-	}
-
-	if len(captcha) > 0 {
-		pass, err := VerifyCaptchaSolution(ctx, captcha)
-		if err != nil {
-			ctx.Redirect("#captcha-not-working", 302)
-			return
-		}
-		if !pass {
-			ctx.Redirect("#captcha-failed", 302)
 			return
 		}
 	}
@@ -100,9 +90,22 @@ func post(ctx *fasthttp.RequestCtx) {
 			ctx.Redirect("#email-missing", 302)
 			return
 		}
-		if len(captcha) < 1 {
-			ctx.Redirect("#captcha-missing", 302)
-			return
+		if len(vars.Pass.CaptchaSecret) > 0 {
+			if len(captcha) < 1 {
+				ctx.Redirect("#captcha-missing", 302)
+				return
+			}
+			for _, captcha := range [][]byte{captchaOnLoad, captchaOnChange, captchaOnSubmit} {
+				pass, err := VerifyCaptchaSolution(ctx, captcha)
+				if err != nil {
+					ctx.Redirect("#captcha-not-working", 302)
+					return
+				}
+				if !pass {
+					ctx.Redirect("#captcha-failed", 302)
+					return
+				}
+			}
 		}
 
 		ctx.Redirect(database.Register(email), 302)
