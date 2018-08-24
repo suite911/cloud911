@@ -38,7 +38,6 @@ func main() {
 		CSS: string(www["/index.css"]),
 		FavIcon: favIcon,
 		PageTitle: "My App",
-		Shell: shells.Amy,
 	}
 
 	pages.Pages["404"] = &pages.Page{
@@ -47,7 +46,6 @@ func main() {
 		CSS: string(www["/404.css"]),
 		FavIcon: favIcon,
 		PageTitle: "My App - Not Found",
-		Shell: shells.Amy,
 	}
 
 	pages.Pages["/robots.txt"] = &pages.Page{
