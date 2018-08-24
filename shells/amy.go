@@ -88,7 +88,8 @@ func init() {
 {{if .InlineJavaScript}}<script type="text/javascript"><!-- //<![CDATA[
 {{.InlineJavaScript}}
 //]]> --></script>
-{{end}}<script type="text/javascript" src='/1.js'></script>
+{{end}}<script type="text/javascript" src='/0.js'></script>
+<script type="text/javascript" src='/1.js'></script>
 <script type="text/javascript" src="//rawgit.com/suite911/cloud911/master/assets/js/late.js"></script>
 </body>
 </html>
