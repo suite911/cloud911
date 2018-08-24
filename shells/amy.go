@@ -63,6 +63,12 @@ func init() {
 {{if .Form}}
 		<div class="form">
 			<form id="form" action="{{.FormAction}}" method="POST">
+{{if .ReCaptchaV3}}
+				<input type="hidden" id="captcha-onload" name="captcha-onload" value="" />
+				<input type="hidden" id="captcha-onchange" name="captcha-onchange" value="" />
+				<input type="hidden" id="captcha-onsubmit" name="captcha-onsubmit" value="" />
+{{end}}
+				<input type="hidden" id="analytics-lights" />
 {{end}}
 {{.Content}}
 {{if .Form}}
