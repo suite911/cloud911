@@ -63,6 +63,18 @@ func https(ctx *fasthttp.RequestCtx) {
 		ctx.RedirectBytes(uri.FullURI(), 301)
 		return
 	}
+
+	// Look in important (not overridable) pages first.
+
+	switch strings.ToLower(p) {
+	case "/0.js":
+		ctx.SetContentType("application/javascript; charset=utf8")
+		io.WriteString(ctx, "var amy_reCAPTCHAv3SiteKey = "+vars.CaptchaSiteKey+";")
+		return
+	}
+
+	// Not found in important pages.  Look in user's custom pages pages next.
+
 	if c, ok := pages.CompiledPages[p]; ok && c != nil {
 		c.Serve(ctx)
 		return
@@ -77,7 +89,7 @@ func https(ctx *fasthttp.RequestCtx) {
 		return
 	case "/1.js":
 		ctx.SetContentType("application/javascript; charset=utf8")
-		io.WriteString(ctx, vars.Script1 + "\nvar amy_reCAPTCHAv3SiteKey = "+vars.CaptchaSiteKey+";")
+		io.WriteString(ctx, vars.Script1)
 		return
 	}
 
