@@ -1,5 +1,36 @@
 'use strict';
 
+function amy_onChangedFull() {
+	var captcha = document.getElementById("captcha-onchange");
+	if(captcha) {
+		grecaptcha.ready(function() {
+			grecaptcha.execute(amy_reCAPTCHAv3SiteKey, {action: "change"}).then(function(token) {
+				captcha.value = token;
+				amy_onChangedFull2();
+			});
+		});
+	} else {
+		amy_onChangedFull2();
+	}
+}
+
+function amy_onChangedFull2() {
+	amy_onChangedHead();
+	if(typeof amy_onChanged === "function") {
+		var ok = amy_onChanged();
+		if(typeof ok !== "undefined" && !ok) {
+			return false;
+		}
+	}
+	amy_onChangedTail();
+}
+
+function amy_onChangedHead() {
+}
+
+function amy_onChangedTail() {
+}
+
 function amy_onDOMReadyFull() {
 	amy_onDOMReadyHead();
 	if(typeof amy_onDOMReady === "function") {
@@ -72,6 +103,20 @@ function amy_onLightsChanged(event) {
 }
 
 function amy_onPageLoadedFull() {
+	var captcha = document.getElementById("captcha-onload");
+	if(captcha) {
+		grecaptcha.ready(function() {
+			grecaptcha.execute(amy_reCAPTCHAv3SiteKey, {action: "load"}).then(function(token) {
+				captcha.value = token;
+				amy_onPageLoadedFull2();
+			});
+		});
+	} else {
+		amy_onPageLoadedFull2();
+	}
+}
+
+function amy_onPageLoadedFull2() {
 	amy_onPageLoadedHead();
 	if(typeof amy_onPageLoaded === "function") {
 		var ok = amy_onPageLoaded();
@@ -92,6 +137,20 @@ function amy_onPageLoadedTail() {
 }
 
 function amy_onSubmitFull() {
+	var captcha = document.getElementById("captcha-onsubmit");
+	if(captcha) {
+		grecaptcha.ready(function() {
+			grecaptcha.execute(amy_reCAPTCHAv3SiteKey, {action: "submit"}).then(function(token) {
+				captcha.value = token;
+				amy_onSubmitFull2();
+			});
+		});
+	} else {
+		amy_onSubmitFull2();
+	}
+}
+
+function amy_onSubmitFull2() {
 	if(amy_onWillSubmit === "function") {
 		var ok = amy_onWillSubmit();
 		if(typeof ok !== "undefined" && !ok) {
