@@ -1,6 +1,7 @@
 package vars
 
 import (
+	"bytes"
 	"text/template"
 
 	"github.com/pkg/errors"
@@ -19,6 +20,11 @@ func init() {
 	if Template, err = template.New("Script").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Amy").Parse(text)`))
 	}
-	Script1, err = Template.execute(Script{
-	})
+
+	var b bytes.Buffer
+	if err := Template.Execute(&b, Script{
+	}); err != nil {
+		panic(err)
+	}
+	Script1 = string(b.Bytes())
 }
