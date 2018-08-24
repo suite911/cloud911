@@ -10,6 +10,8 @@ import (
 	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/vars"
 
+	"github.com/suite911/maths911/maths"
+
 	"github.com/badoux/checkmail"
 	pkgErrors "github.com/pkg/errors"
 	"github.com/valyala/fasthttp"
@@ -116,13 +118,15 @@ func post(ctx *fasthttp.RequestCtx) {
 
 type GoogleCaptchaResponse struct {
 	Success        bool        `json:"success"`
+	Score          float32     `json:"score"`
+	Action         string      `json:"action"`
 	ChallengeTS    string      `json:"challenge_ts"`
 	HostName       string      `json:"hostname"`
 	APKPackageName string      `json:"apk_package_name"`
 	ErrorCodes     interface{} `json:"error-codes"`
 }
 
-func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte) (bool, error) {
+func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte, action string) (float32, error) {
 	var args fasthttp.Args
 	args.SetBytesV("secret", vars.Pass.CaptchaSecret)
 	args.SetBytesV("response", solution)
@@ -139,10 +143,13 @@ func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte) (bool, err
 		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, string(body))
 		return false, pkgErrors.Wrap(errors.New(strconv.Itoa(statusCode)), "fasthttp.Post")
 	}
-	var resp GoogleCaptchaResponse
+	var resp = GoogleCaptchaResponse{Success: true, Score: 1.0}
 	if err := json.Unmarshal(body, &resp); err != nil {
 		log.Printf("Google replied %d\n--- REPLY BODY ---\n%v\n--- END OF REPLY BODY ---", statusCode, resp)
 		return false, pkgErrors.Wrap(err, "json.Unmarshal(body, &resp)")
 	}
-	return resp.Success, nil
+	if !resp.Success || resp.Action != action {
+		return 0.0, nil
+	}
+	return maths.ClampFloat32(resp.Score, 0, 1), nil
 }
