@@ -62,7 +62,7 @@ type Style struct {
 	Sans                     string
 	TopNavHeight             string
 }
-var Template *template.Template
+var StyleTemplate *template.Template
 
 func init() {
 	text := `
@@ -229,12 +229,12 @@ div.copyright {
 }
 `
 	var err error
-	if Template, err = template.New("Style").Option("missingkey=zero").Parse(text); err != nil {
+	if StyleTemplate, err = template.New("Style").Option("missingkey=zero").Parse(text); err != nil {
 		panic(errors.Wrap(err, `template.New("Amy").Parse(text)`))
 	}
 
 	var b bytes.Buffer
-	if err := Template.Execute(&b, Style{
+	if err := StyleTemplate.Execute(&b, Style{
 		ButtonDisabledBg:         "",
 		ButtonDisabledFg:         "",
 		ButtonSubmitBg:           "",
