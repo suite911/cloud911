@@ -205,5 +205,5 @@ func VerifyCaptchaSolution(ctx *fasthttp.RequestCtx, solution []byte, action str
 	if !resp.Success || resp.Action != action {
 		return 0.0, nil
 	}
-	return maths.Clamp(resp.Score, 0, 1), nil
+	return maths.ClampFloat64(resp.Score, 0, 1), nil
 }
