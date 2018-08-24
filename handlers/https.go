@@ -69,7 +69,7 @@ func https(ctx *fasthttp.RequestCtx) {
 	switch strings.ToLower(p) {
 	case "/0.js":
 		ctx.SetContentType("application/javascript; charset=utf8")
-		io.WriteString(ctx, "var amy_reCAPTCHAv3SiteKey = "+vars.CaptchaSiteKey+";")
+		io.WriteString(ctx, "var amy_reCAPTCHAv3SiteKey = \""+vars.CaptchaSiteKey+"\";")
 		return
 	}
 
