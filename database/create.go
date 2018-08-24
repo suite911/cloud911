@@ -26,10 +26,10 @@ func Create() error {
 			"regd" INTEGER NOT NULL ` + defaultNow + `,
 			"verd" INTEGER NOT NULL DEFAULT(0),
 			"bal" INTEGER NOT NULL DEFAULT(0),
-			"captcha" INTEGER NOT NULL,
 			"conload" INTEGER NOT NULL,
 			"conchange" INTEGER NOT NULL,
 			"consubmit" INTEGER NOT NULL,
+			"captcha" INTEGER NOT NULL,
 			"minor" INTEGER NOT NULL,
 			-- Emergency Contact --
 			"emwho" TEXT NOT NULL,
