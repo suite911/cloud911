@@ -14,7 +14,7 @@ type Script struct {
 var ScriptTemplate *template.Template
 
 func init() {
-	text := `
+	text := `'use strict';
 `
 	var err error
 	if ScriptTemplate, err = template.New("Script").Option("missingkey=zero").Parse(text); err != nil {
