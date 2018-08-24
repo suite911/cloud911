@@ -71,16 +71,14 @@ func https(ctx *fasthttp.RequestCtx) {
 	// Not found in user's custom pages.  Look in predefined pages next.
 
 	switch strings.ToLower(p) {
-	case "1.css":
+	case "/1.css":
 		ctx.SetContentType("text/css; charset=utf8")
 		io.WriteString(ctx, vars.Style1)
 		return
-	case "1.js":
+	case "/1.js":
 		ctx.SetContentType("application/javascript; charset=utf8")
 		io.WriteString(ctx, vars.Script1)
 		return
-	default: // TODO: FIXME: DEBUG
-		log.Printf("404: %q", p)
 	}
 
 	// Not found in predefined pages either.  Look for custom 404 page.
