@@ -91,6 +91,22 @@ function amy_onPageLoadedTail() {
 	}
 }
 
+function amy_onSubmitFull() {
+	if(amy_onWillSubmit === "function") {
+		var ok = amy_onWillSubmit();
+		if(typeof ok !== "undefined" && !ok) {
+			return false;
+		}
+	}
+	var elem = document.getElementById("form");
+	if(typeof elem.submit === "function") {
+		elem.submit();
+	}
+	if(amy_onSubmitted === "function") {
+		return amy_onSubmitted();
+	}
+}
+
 if (typeof document.addEventListener === "function") {
 	document.addEventListener("DOMContentLoaded", amy_onDOMReadyFull, false);
 } else if (typeof document.attachEvent === "function") {
