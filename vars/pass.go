@@ -15,7 +15,7 @@ type PassType struct {
 	TLSCertData       []byte `json:"cert"`       // TLS certificate and key file data
 	TLSKeyData        []byte `json:"key"`        // TLS certificate and key file data
 
-	CaptchaThresholdRegister float32 `json:"captcha_t_register"` // Fail to register below this score
+	CaptchaThresholdRegister float64 `json:"captcha_t_register"` // Fail to register below this score
 
 	FeatureUserProfiles bool `json:"ft_user_profiles"` // Feature toggle for User Profiles
 }
