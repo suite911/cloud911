@@ -162,7 +162,7 @@ func post(ctx *fasthttp.RequestCtx) {
 				scores[i] = score
 			}
 		}
-		ctx.Redirect(database.Register(username, email, scores, minor, emwho, emhow, emrel), 302)
+		ctx.Redirect(database.Register(email, username, scores, minor, emwho, emhow, emrel), 302)
 		return
 	}
 }
