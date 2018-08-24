@@ -73,9 +73,8 @@ func https(ctx *fasthttp.RequestCtx) {
 		io.WriteString(ctx, vars.Style1)
 		return
 	case "1.js":
-		// TODO
 		ctx.SetContentType("application/javascript; charset=utf8")
-		// io.WriteString(ctx, vars.Script1)
+		io.WriteString(ctx, vars.Script1)
 		return
 	}
 
