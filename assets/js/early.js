@@ -61,24 +61,6 @@ function amy_hasClass(elem, className) {
 
 var amy_onDOMReady = function() { }
 var amy_onPageLoaded = function() { }
-
-// Google says this must be defined early for it to work with reCAPTCHA
-function amy_onSubmitFull() {
-	if(amy_onWillSubmit === "function") {
-		var ok = amy_onWillSubmit();
-		if(typeof ok !== "undefined" && !ok) {
-			return false;
-		}
-	}
-	var elem = document.getElementById("form");
-	if(typeof elem.submit === "function") {
-		elem.submit();
-	}
-	if(amy_onSubmitted === "function") {
-		return amy_onSubmitted();
-	}
-}
-
 var amy_onSubmitted = function() { }
 var amy_onWillSubmit = function() { }
 
