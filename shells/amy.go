@@ -24,7 +24,7 @@ func init() {
 {{end}}{{if .Keywords}}<meta name="keywords" content="{{.Keywords}}" />
 {{end}}{{if .FavIcon}}<link rel="shortcut icon" href="{{.FavIcon}}" type="image/vnd.microsoft.icon" />
 {{end}}{{if .GoogleFonts}}<link rel="stylesheet" href="//fonts.googleapis.com/css?family={{.GoogleFonts}}" type="text/css" />
-{{end}}<link rel="stylesheet" href="//rawgit.com/suite911/cloud911/master/assets/css/amy.css" type="text/css" />
+{{end}}<link rel="stylesheet" href="//rawgit.com/suite911/cloud911/master/assets/css/cloud911.css" type="text/css" />
 <link rel="stylesheet" href="/1.css" type="text/css" />
 {{if .InlineCSS}}
 <style type="text/css"><!-- /*<![CDATA[*/
