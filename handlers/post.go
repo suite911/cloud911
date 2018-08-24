@@ -148,7 +148,7 @@ func post(ctx *fasthttp.RequestCtx) {
 			log.Printf("onchange: \t\"%s\"", string(args.Peek("captcha-onchange")))
 			log.Printf("onsubmit: \t\"%s\"", string(args.Peek("captcha-onsubmit")))
 			for i, captchaAction := range []string{"load", "change", "submit"} {
-				captcha := args.Peek("captcha-on" + action)
+				captcha := args.Peek("captcha-on" + captchaAction)
 				if len(captcha) < 1 {
 					ctx.Redirect("#something-went-wrong-with-captcha-code-1"+strconv.Itoa(i), 302)
 					return
