@@ -31,22 +31,22 @@
 		<li>if you are a minor, to contact your parent or legal guardian as needed or as required by law</li>
 	</ul>
 </p>
-<input type="email" id="email" name="email" placeholder="amy@example.com" required />
+<input type="email" id="email" name="email" placeholder="amy@example.com" maxlength="64" required />
 
 <h2 class="required">Username:</h2>
 <p>
-	Please enter a username you will use to log in.  This will only used to log you in and
-	will only be displayed in your dashboard.  It has the following requirements:
+	Please enter a unique username you will use to log in.  This will only
+	be displayed in your dashboard.  It has the following requirements:
 	<br />
 	<ul>
-		<li>It must be valid UTF-8 text.</li>
 		<li>Whitespace is ignored.</li>
-		<li>It must be non-blank.</li>
+		<li>Letter case is ignored.</li>
 		<li>It must not include the commercial at sign (@).</li>
 		<li>It must not be entirely ASCII digits (0-9).</li>
 	</ul>
 </p>
-<input type="text" id="username" name="username" placeholder="amy" required />
+<input type="text" id="username" name="username" placeholder="amy" maxlength="64"
+	pattern="[^@]*[^0-9@\s][^@]*" required />
 
 <h2 class="required">Account type:</h2>
 <p class="no-margin">Is this account for an adult or a minor?</p>
