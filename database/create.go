@@ -20,8 +20,8 @@ func Create() error {
 	q.SQL = `
 		CREATE TABLE IF NOT EXISTS "RegisteredUsers" (
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-			"un" TEXT NOT NULL UNIQUE,
 			"email" TEXT NOT NULL,
+			"un" TEXT NOT NULL,
 			"pw" BLOB DEFAULT(NULL),
 			"regd" INTEGER NOT NULL ` + defaultNow + `,
 			"verd" INTEGER NOT NULL DEFAULT(0),
@@ -34,23 +34,21 @@ func Create() error {
 			-- Emergency Contact --
 			"emwho" TEXT NOT NULL,
 			"emhow" TEXT NOT NULL,
-			"emrel" TEXT NOT NULL
+			"emrel" TEXT NOT NULL,
+			UNIQUE("email", "un")
 		);
 	`
 	q.Exec()
 	if !q.OK() {
 		return q.LastError()
 	}
-	q.SQL = `
-		CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_un" ON "RegisteredUsers"("un");
-	`
+	q.SQL = `CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_email_un" ON ` +
+		`"RegisteredUsers"("email", "un");`
 	q.Exec()
 	if !q.OK() {
 		return q.LastError()
 	}
-	q.SQL = `
-		CREATE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");
-	`
+	q.SQL = `CREATE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");`
 	q.Exec()
 	if !q.OK() {
 		return q.LastError()
