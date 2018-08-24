@@ -18,8 +18,8 @@ function amy_onDOMReadyHead() {
 	}
 	var submit1 = document.getElementById("submit1");
 	if(submit1) {
-		content.disabled = false;
-		content.value = "Submit";
+		submit1.disabled = false;
+		submit1.value = "Submit";
 	}
 	var lightSwitch = document.getElementById("lights-off");
 	if(lightSwitch) {
