@@ -24,7 +24,11 @@ var amy_cookieAlert = function() {
 
 var amy_cookieAgree = function() {
 	if (amy_getCookie("agreed") == "") {
-		amy_setCookie("agreed", amy_cookieAlert(), 1);
+		var value = "1";
+		if(typeof amy_cookieAlert === "function") {
+			value = amy_cookieAlert();
+		}
+		amy_setCookie("agreed", value, 1);
 	}
 }
 
