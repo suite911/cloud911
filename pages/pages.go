@@ -40,6 +40,8 @@ type Page struct {
 	Redirect301 []byte
 
 	Shell *template.Template
+
+	Form bool
 }
 
 // Compile compiles a page.
