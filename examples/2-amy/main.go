@@ -35,7 +35,6 @@ func main() {
 		Body: string(www["/404.htm"]),
 		ContentTitle: "Not Found",
 		PageTitle: "My App - Not Found",
-		Shell: shells.Basic,
 	}
 
 	pages.Pages["/about"] = &pages.Page{
