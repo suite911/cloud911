@@ -59,6 +59,7 @@ function amy_hasClass(elem, className) {
 	return (' ' + elem.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
+var amy_onChanged = function() { }
 var amy_onDOMReady = function() { }
 var amy_onPageLoaded = function() { }
 var amy_onSubmitted = function() { }
