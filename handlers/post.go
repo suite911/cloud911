@@ -142,7 +142,7 @@ func post(ctx *fasthttp.RequestCtx) {
 			return
 		}
 		emrel := string(emrelBytes)
-		var scores[]float64
+		var scores = [3]float64{ 0, 0, 0 }
 		if len(vars.Pass.CaptchaSecret) > 0 {
 			for i, captchaAction := range []string{"load", "change", "submit"} {
 				captcha := args.Peek("captcha-on" + captchaAction)
@@ -159,7 +159,7 @@ func post(ctx *fasthttp.RequestCtx) {
 					ctx.Redirect("#something-went-wrong-with-captcha-code-3"+strconv.Itoa(i), 302)
 					return
 				}
-				scores = append(scores, maths.ClampFloat64(score, 0, 1))
+				scores[i] = score
 			}
 		}
 		ctx.Redirect(database.Register(username, email, scores, minor, emwho, emhow, emrel), 302)
