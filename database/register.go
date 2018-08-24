@@ -11,7 +11,7 @@ import (
 
 func Register(username, email string, captcha float64, minor bool, emwho, emhow, emrel string) string {
 	q := query.Query{ DB: DB() }
-	q.SQL = `INSERT INTO "RegisteredUsers"("username", "email", "captcha", "minor", "emwho", "emhow", "emrel") VALUES(?, ?);`
+	q.SQL = `INSERT INTO "RegisteredUsers"("un", "email", "captcha", "minor", "emwho", "emhow", "emrel") VALUES(?, ?);`
 	q.Exec(username, email, captcha, minor, emwho, emhow, emrel)
 	if !q.OK() {
 		err := q.LastError()
