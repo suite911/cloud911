@@ -144,9 +144,6 @@ func post(ctx *fasthttp.RequestCtx) {
 		emrel := string(emrelBytes)
 		netScore := 1.0
 		if len(vars.Pass.CaptchaSecret) > 0 {
-			captchaOnLoad := args.Peek("captcha-onload")
-			captchaOnChange := args.Peek("captcha-onchange")
-			captchaOnSubmit := args.Peek("captcha-onsubmit")
 			for _, captchaAction := range []string{"load", "change", "submit"} {
 				captcha := args.Peek("captcha-on" + action)
 				if len(captcha) < 1 {
