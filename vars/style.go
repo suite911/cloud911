@@ -277,20 +277,20 @@ div.copyright {
 		FooterHeight:             "14pt",
 		Light_Bg:                 "#fff",
 		Light_Fg:                 "#000",
-		Light_Footer_Bg:          "",
-		Light_Footer_Fg:          "",
-		Light_Header_Bg:          "",
-		Light_Header_Fg:          "",
-		Light_Night_Bg_Hover:     "",
-		Light_Night_Bg:           "",
-		Light_Night_Border_Hover: "",
-		Light_Night_Border:       "",
-		Light_Night_Fg_Hover:     "",
-		Light_Night_Fg:           "",
-		Light_TopNav_Bg_Hover:    "",
-		Light_TopNav_Bg:          "",
-		Light_TopNav_Fg_Hover:    "",
-		Light_TopNav_Fg:          "",
+		Light_Footer_Bg:          "#ccc",
+		Light_Footer_Fg:          "#000",
+		Light_Header_Bg:          "#4fc3f7",
+		Light_Header_Fg:          "#000",
+		Light_Night_Bg_Hover:     "#3d5afe",
+		Light_Night_Bg:           "#3f51b5",
+		Light_Night_Border_Hover: "#3d5afe",
+		Light_Night_Border:       "#3f51b5",
+		Light_Night_Fg_Hover:     "#fff",
+		Light_Night_Fg:           "#fff",
+		Light_TopNav_Bg_Hover:    "#80d8ff",
+		Light_TopNav_Bg:          "#4fc3f7",
+		Light_TopNav_Fg_Hover:    "#fff",
+		Light_TopNav_Fg:          "#fff",
 		LinkFg:                   "#03a9f4",
 		LinkHover:                "#40c4ff",
 		Mono:                     "Source Code Pro",
@@ -303,20 +303,3 @@ div.copyright {
 	}
 	Style1 = string(b.Bytes())
 }
-
-/* TODO:
-		[2]string{"Light_Header_Bg", "#4FC3F7"},//TODO:
-		[2]string{"Light_Header_Fg", "#000"},
-		[2]string{"Light_TopNav_Bg", "#4FC3F7"},//TODO:
-		[2]string{"Light_TopNav_Bg_Hover", "#80D8FF"},//TODO:
-		[2]string{"Light_TopNav_Fg", "#fff"},//TODO:
-		[2]string{"Light_TopNav_Fg_Hover", "#fff"},//TODO:
-		[2]string{"Light_Footer_Bg", "#ccc"},//TODO:
-		[2]string{"Light_Footer_Fg", "#000"},
-		[2]string{"Light_Night_Border", "#3F51B5"},
-		[2]string{"Light_Night_Border_Hover", "#3D5AFE"},
-		[2]string{"Light_Night_Bg", "#3F51B5"},
-		[2]string{"Light_Night_Bg_Hover", "#3D5AFE"},
-		[2]string{"Light_Night_Fg", "#fff"},
-		[2]string{"Light_Night_Fg_Hover", "#fff"},
-*/
