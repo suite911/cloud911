@@ -79,6 +79,8 @@ func https(ctx *fasthttp.RequestCtx) {
 		ctx.SetContentType("application/javascript; charset=utf8")
 		io.WriteString(ctx, vars.Script1)
 		return
+	default: // TODO: FIXME: DEBUG
+		log.Printf("404: %q", p)
 	}
 
 	// Not found in predefined pages either.  Look for custom 404 page.
