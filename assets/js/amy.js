@@ -86,6 +86,25 @@ function amy_onLightsChanged(event) {
 	}
 }
 
+function amy_onSubmit {
+	if(amy_onWillSubmit === "function") {
+		var ok = amy_onWillSubmit();
+		if(typeof ok !== "undefined" && !ok) {
+			return false;
+		}
+	}
+	var elem = document.getElementById("form");
+	if(typeof elem.submit === "function") {
+		elem.submit();
+	}
+	if(amy_onSubmitted === "function") {
+		return amy_onSubmitted();
+	}
+}
+
+var amy_onSubmitted = function() { }
+var amy_onWillSubmit = function() { }
+
 function amy_removeEventListener(elem, on, cb, useCapture) {
 	if(!elem) {
 		return false;
