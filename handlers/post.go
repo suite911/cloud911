@@ -41,7 +41,7 @@ func post(ctx *fasthttp.RequestCtx) {
 
 	if emailBytes := args.Peek("email"); len(emailBytes) > 0 {
 		if !utf8.Valid(emailBytes) {
-			ctx.Redirect("#email-invalid", 302)
+			ctx.Redirect("#encoding", 302)
 			return
 		}
 		email = string(emailBytes)
@@ -51,33 +51,6 @@ func post(ctx *fasthttp.RequestCtx) {
 		}
 		if err := checkmail.ValidateHost(email); err != nil {
 			ctx.Redirect("#email-invalid", 302)
-			return
-		}
-	}
-
-	if childAccount := args.Peek("child-account"); len(childAccount) > 0 {
-		childTypeBytes := args.Peek("child-type")
-		if !utf8.Valid(childTypeBytes) {
-			ctx.Redirect("#something-went-wrong", 302)
-			return
-		}
-		switch string(childTypeBytes) {
-		case "under-13-us":
-			if perm := args.Peek("child-perm-under-13-us"); len(perm) < 1 {
-				ctx.Redirect("#permission-under-13-us-missing", 302)
-				return
-			}
-		case "under-16-eu":
-			if perm := args.Peek("child-perm-under-16-eu"); len(perm) < 1 {
-				ctx.Redirect("#permission-under-16-eu-missing", 302)
-				return
-			}
-		case "under-18":
-		case "default":
-			ctx.Redirect("#child-type-missing", 302)
-			return
-		default:
-			ctx.Redirect("#something-went-wrong", 302)
 			return
 		}
 	}
@@ -94,10 +67,65 @@ func post(ctx *fasthttp.RequestCtx) {
 			return
 		}
 		if !utf8.Valid(usernameBytes) {
+			ctx.Redirect("#encoding", 302)
+			return
+		}
+		username := string(usernameBytes)
+		if len(username) > 64 {
+			ctx.Redirect("#something-went-wrong", 302)
+			return
+		}
+		username = strings.Map(func(r rune) rune {
+			if unicode.IsSpace(r) {
+				return -1 // delete
+			}
+			if r == '@' {
+				return -1 // delete
+			}
+		}, username)
+		if len(username) < 1 {
 			ctx.Redirect("#username-invalid", 302)
 			return
 		}
-		username := string(usernameBytes) // TODO: remove whitespace, check for @, all digits, etc
+		hasNonDigit := false
+		for i := 0; i < len(username); i++ {
+			if username[i] < '0' || username[i] > '9' {
+				hasNonDigit = true
+				break
+			}
+		}
+		if !hasNonDigit {
+			ctx.Redirect("#username-invalid", 302)
+			return
+		}
+		var minor bool
+		switch ageClass := string(args.Peek("age-class")); ageClass {
+		case "adult":
+			minor = false
+		case "minor":
+			minor = true
+		default:
+			ctx.Redirect("#age-class-missing", 302)
+			return
+		}
+		emwhoBytes := args.Peek("emergency-name")
+		if !utf8.Valid(emwhoBytes) {
+			ctx.Redirect("#encoding", 302)
+			return
+		}
+		emwho := string(emwhoBytes)
+		emhowBytes := args.Peek("emergency-contact")
+		if !utf8.Valid(emhowBytes) {
+			ctx.Redirect("#encoding", 302)
+			return
+		}
+		emhow := string(emhowBytes)
+		emrelBytes := args.Peek("emergency-relation")
+		if !utf8.Valid(emrelBytes) {
+			ctx.Redirect("#encoding", 302)
+			return
+		}
+		emrel := string(emrelBytes)
 		netScore := 1.0
 		if len(vars.Pass.CaptchaSecret) > 0 {
 			captchaOnLoad := args.Peek("captcha-onload")
@@ -105,16 +133,16 @@ func post(ctx *fasthttp.RequestCtx) {
 			captchaOnSubmit := args.Peek("captcha-onsubmit")
 			for _, captcha := range [][]byte{captchaOnLoad, captchaOnChange, captchaOnSubmit} {
 				if len(captcha) < 1 {
-					ctx.Redirect("#captcha-missing", 302)
+					ctx.Redirect("#something-went-wrong", 302)
 					return
 				}
 				score, err := VerifyCaptchaSolution(ctx, captcha)
 				if err != nil {
-					ctx.Redirect("#captcha-not-working", 302)
+					ctx.Redirect("#something-went-wrong", 302)
 					return
 				}
 				if score < vars.CaptchaThresholdRegister {
-					ctx.Redirect("#captcha-failed", 302)
+					ctx.Redirect("#something-went-wrong", 302)
 					return
 				}
 				score *= netScore
