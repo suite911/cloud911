@@ -66,12 +66,12 @@ func init() {
 	</div>{{end}}
 	<div id="content"{{if .NoScript}} class="display-none"{{end}}>
 {{.ContentHead}}
-{{if .Form}}
+{{if .FormAction || .ReCaptchaV2}}
 		<div class="form">
 			<form id="form" action="{{.FormAction}}" method="POST">
 {{end}}
 {{.Content}}
-{{if .Form}}
+{{if .FormAction || .ReCaptchaV2}}
 {{if .ReCaptchaV2}}
 				<input type="hidden" id="recaptcha-token" name="recaptcha-token" value="" />
 				<input type="submit" id="bsubmit"
