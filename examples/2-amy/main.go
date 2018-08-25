@@ -51,7 +51,7 @@ func main() {
 
 	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["/cookies.htm"]),
-		ContentSubTitle: "",
+		ContentSubTitle: "&#x1f36a;",
 		ContentTitle: "Cookie Policy",
 		PageTitle: "My App - Cookie Policy",
 	}
