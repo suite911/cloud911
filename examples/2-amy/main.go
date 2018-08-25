@@ -28,16 +28,16 @@ func main() {
 		"/store": "Store",
 	}
 
-	pages.Pages[""] = &pages.Page{
-		Content: string(www["/index.htm"]),
-		ContentTitle: "My App",
-		PageTitle: "My App",
-	}
-
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
 		ContentTitle: "Not Found",
 		PageTitle: "My App - Not Found",
+	}
+
+	pages.Pages["/"] = &pages.Page{
+		Content: string(www["/index.htm"]),
+		ContentTitle: "My App",
+		PageTitle: "My App",
 	}
 
 	pages.Pages["/about"] = &pages.Page{
