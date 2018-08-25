@@ -56,6 +56,9 @@ func https(ctx *fasthttp.RequestCtx) {
 		}
 		break
 	}
+	if len(p) < 1 {
+		p = "/"
+	}
 	if redir {
 		var uri fasthttp.URI
 		ctx.URI().CopyTo(&uri)
@@ -95,7 +98,7 @@ func https(ctx *fasthttp.RequestCtx) {
 
 	// Not found in predefined pages either.  Log the 404.
 
-	log.Printf("404 of %q by %q", p, ctx.RequestURI())
+	log.Printf("404 of %q by %q on %q", p, ctx.RemoteIP(), ctx.UserAgent())
 
 	// Now look for custom 404 page.
 
