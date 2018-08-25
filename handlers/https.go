@@ -93,7 +93,11 @@ func https(ctx *fasthttp.RequestCtx) {
 		return
 	}
 
-	// Not found in predefined pages either.  Look for custom 404 page.
+	// Not found in predefined pages either.  Log the 404.
+
+	log.Printf("404 of %q by %q", p, ctx.RequestURI())
+
+	// Now look for custom 404 page.
 
 	ctx.SetStatusCode(404)
 	if c, ok := pages.CompiledPages["404"]; ok && c != nil {
