@@ -37,24 +37,28 @@ func main() {
 
 	pages.Pages["/"] = &pages.Page{
 		Content: string(www["/index.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "My App",
 		PageTitle: "My App",
 	}
 
 	pages.Pages["/about"] = &pages.Page{
 		Content: string(www["/about.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "About",
 		PageTitle: "My App - About",
 	}
 
 	pages.Pages["/cookies"] = &pages.Page{
 		Content: string(www["/cookies.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "Cookie Policy",
 		PageTitle: "My App - Cookie Policy",
 	}
 
 	pages.Pages["/download"] = &pages.Page{
 		Content: string(www["/download.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "Downloads",
 		PageTitle: "My App - Download",
 	}
@@ -65,26 +69,29 @@ func main() {
 
 	pages.Pages["/eula"] = &pages.Page{
 		Content: string(www["/eula.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "End User License Agreement (EULA)",
 		PageTitle: "My App - End User License Agreement (EULA)",
 	}
 
 	pages.Pages["/gallery"] = &pages.Page{
 		Content: string(www["/gallery.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "Gallery",
 		PageTitle: "My App - Gallery",
 	}
 
 	pages.Pages["/privacy"] = &pages.Page{
 		Content: string(www["/privacy.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "Privacy Policy",
 		PageTitle: "My App - Privacy Policy",
 	}
 
 	pages.Pages["/register"] = &pages.Page{
 		Content: string(www["/register.htm"]),
-		ContentTitle: "Register",
 		ContentSubTitle: "Create a new account.",
+		ContentTitle: "Register",
 		Form: true,
 		NoScript: "Hello, fellow NoScript user!  This is awkward but could you pretty please whitelist " +
 			"my registration page?  You see, the Captcha gods are picky and like to use JavaScript " +
@@ -102,12 +109,14 @@ func main() {
 
 	pages.Pages["/store"] = &pages.Page{
 		Content: string(www["/store.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "Store",
 		PageTitle: "My App - Store",
 	}
 
 	pages.Pages["/terms"] = &pages.Page{
 		Content: string(www["/terms.htm"]),
+		ContentSubTitle: "",
 		ContentTitle: "Terms of Service",
 		PageTitle: "My App - Terms of Service",
 	}
