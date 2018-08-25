@@ -120,8 +120,8 @@ func main() {
 	}
 
 	for _, k := range []string{
-		"",
 		"404",
+		"/",
 		"/about",
 		"/cookies",
 		"/download",
