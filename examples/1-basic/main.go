@@ -32,10 +32,9 @@ func main() {
 		favIcon = "favicon.ico"
 	}
 
-	pages.Pages[""] = &pages.Page{
+	pages.Pages["/"] = &pages.Page{
 		Body: string(www["/index.htm"]),
 		ContentTitle: "My App",
-		CSS: string(www["/index.css"]),
 		FavIcon: favIcon,
 		PageTitle: "My App",
 	}
@@ -43,7 +42,6 @@ func main() {
 	pages.Pages["404"] = &pages.Page{
 		Body: string(www["/404.htm"]),
 		ContentTitle: "Not Found",
-		CSS: string(www["/404.css"]),
 		FavIcon: favIcon,
 		PageTitle: "My App - Not Found",
 	}
