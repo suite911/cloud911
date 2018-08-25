@@ -56,8 +56,8 @@ func https(ctx *fasthttp.RequestCtx) {
 		}
 		break
 	}
-	if len(p) < 1 {
-		p = "/"
+	if len(p) < 1 || p[0] != '/' {
+		p = "/" + p
 	}
 	if redir {
 		var uri fasthttp.URI
