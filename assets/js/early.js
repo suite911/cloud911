@@ -18,17 +18,16 @@ function amy_addEventListener(elem, on, cb, useCapture) {
 }
 
 var amy_cookieAlert = function() {
-	alert("This site uses cookies to enhance the user experience.");
-	return "1"
+	return "opt-in"
 }
 
 var amy_cookieAgree = function() {
-	if (amy_getCookie("agreed") == "") {
-		var value = "1";
+	if (amy_getCookie("cookies") == "") {
+		var value = "opt-in";
 		if(typeof amy_cookieAlert === "function") {
 			value = amy_cookieAlert();
 		}
-		amy_setCookie("agreed", value, 1);
+		amy_setCookie("cookies", value, 365*24);
 	}
 }
 
@@ -36,6 +35,20 @@ function amy_defer(obj, mthd) {
 	if(typeof obj[mthd] === "function") {
 		obj[mthd].apply(obj, [].slice.call(arguments).slice(2));
 		return true;
+	}
+	return false;
+}
+
+function amy_doNotTrack() {
+	if(window.doNotTrack || navigator.doNotTrack ||
+		navigator.msDoNotTrack || 'msTrackingProtectionEnabled' in window.external
+	) {
+		if (window.doNotTrack == "1" || navigator.doNotTrack == "yes" ||
+			navigator.doNotTrack == "1" || navigator.msDoNotTrack == "1" ||
+			window.external.msTrackingProtectionEnabled()
+		) {
+			return true;
+		}
 	}
 	return false;
 }
@@ -91,6 +104,13 @@ function amy_replaceState(url) {
 }
 
 function amy_setCookie(name, value, hours) {
+	var ok = amy_getCookie("cookies");
+	if(ok !== "opt-in" && name !== "cookies") {
+		return;
+	}
+	if(amy_doNotTrack()) {
+		hours = undefined;
+	}
 	var nv = name + "=" + value;
 	var p = ";path=/";
 	if(hours === undefined) {
