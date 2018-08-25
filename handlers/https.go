@@ -56,9 +56,7 @@ func https(ctx *fasthttp.RequestCtx) {
 		}
 		break
 	}
-	if len(p) < 1 || p[0] != '/' {
-		p = "/" + p
-	}
+	p = path.Clean(p)
 	if redir {
 		var uri fasthttp.URI
 		ctx.URI().CopyTo(&uri)
