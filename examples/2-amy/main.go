@@ -29,6 +29,7 @@ func main() {
 	}
 
 	pages.Pages[""] = &pages.Page{
+		Content: string(www["/index.htm"]),
 		ContentTitle: "My App",
 		PageTitle: "My App",
 	}
@@ -128,6 +129,7 @@ func main() {
 		"/gallery",
 		"/privacy",
 		"/register",
+		"/store",
 		"/terms",
 	} {
 		if p, ok := pages.Pages[k]; ok {
