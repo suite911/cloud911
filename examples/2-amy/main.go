@@ -29,7 +29,7 @@ func main() {
 	}
 
 	pages.Pages["404"] = &pages.Page{
-		Body: string(www["/404.htm"]),
+		Content: string(www["/404.htm"]),
 		ContentTitle: "Not Found",
 		PageTitle: "My App - Not Found",
 	}
