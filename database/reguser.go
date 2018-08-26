@@ -1,35 +1,67 @@
 package database
 
 import (
+	"errors"
+
 	"github.com/suite911/cloud911/types"
 
 	"github.com/suite911/query911/query"
 )
 
-func Me(id int64) (*QueryMe, error) {
+func QueryRegisteredUser(auth *types.Auth) (*types.RegisteredUser, error) {
+	priv := Auth(auth)
+	rid, id, dig, ent := auth.RowID, auth.ID, auth.Digest, auth.Entropy
 	q := query.Query{DB: DB()}
-	q.SQL = `SELECT "_ROWID_", ` +
-		`"email", "un", "pw", "regd", "verd", "bal", "minor", "emwho", "emhow", "emrel" ` +
-		`FROM "RegisteredUsers" WHERE "id" = ?;`
-	q.Query(id)
+	q.SQL = `SELECT ` +
+		`"_ROWID_", "email", "un", "pw", "regd", "verd", "bal", ` +
+		`"conload", "conchange", "consubmit", "captcha", ` +
+		`"flags", "emwho", "emhow", "emrel" ` +
+		`FROM "RegisteredUsers" WHERE `
+	if rid > 0 {
+		q.SQL += `"_ROWID_" = ? AND `
+	}
+	q.SQL += `"id" = ?;`
+	if rid > 0 {
+		q.Query(rid, id)
+	} else {
+		q.Query(id)
+	}
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
 	}
 	if !q.NextOrClose() {
 		return nil, q.ErrorLogNow() // probably nil, which is what we want: it means no result
 	}
-	resp := new(QueryMe)
+	ru := types.RegisteredUser
 	var pw []byte
-	var minor int64
-	resp.ID = id
 	q.ScanClose(
-		&resp.RowID, &resp.Email, &resp.Username, &pw, &resp.Registered, &resp.Verified,
-		&resp.Balance, &minor, &resp.EmergencyWho, &resp.EmergencyHow, &resp.EmergencyRel,
+		&ru.RowID, &ru.Email, &ru.Username, &pw, &ru.Registered, &ru.Verified, &ru.Balance,
+		&ru.Captcha1, &ru.Captcha2, &ru.Captcha3, &ru.Captchas,
+		&ru.Flags, &ru.EmergencyWho, &ru.EmergencyHow, &ru.EmergencyRel,
 	)
-	resp.HasPassword = len(pw) > 0
-	resp.Minor = minor != 0
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
 	}
-	return resp, nil
+	result := new(types.RegisteredUser)
+	result.RowID = ru.RowID
+	result.ID = id
+	result.HasPassword = len(pw) > 0
+	result.Registered = ru.Registered
+	result.Verified = ru.Verified
+	if perm.Any(types.Admin|types.Staff|types.Self) {
+		result.Email = ru.Email
+		result.Username = ru.Username
+		result.Balance = ru.Balance
+		result.EmergencyWho = ru.EmergencyWho
+		result.EmergencyHow = ru.EmergencyHow
+		result.EmergencyRel = ru.EmergencyRel
+		result.Flags = ru.Flags
+		if perm.Any(types.Admin|types.Staff) {
+			result.Captcha1 = ru.Captcha1
+			result.Captcha2 = ru.Captcha2
+			result.Captcha3 = ru.Captcha3
+			result.Captchas = ru.Captchas
+		}
+	}
+	return result, nil
 }
