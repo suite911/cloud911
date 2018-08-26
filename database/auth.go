@@ -1,6 +1,5 @@
 import (
 	"encoding/hex"
-	"errors"
 
 	"github.com/suite911/cloud911/types"
 
