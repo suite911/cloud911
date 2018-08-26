@@ -6,7 +6,7 @@ const (
 	Minor
 )
 
-type QueryMe struct {
+type RegisteredUser struct {
 	RowID        int64  `json:"rowid"`
 	ID           int64  `json:"id"`
 	Email        string `json:"email"`
@@ -15,6 +15,10 @@ type QueryMe struct {
 	Registered   int64  `json:"regd"`
 	Verified     int64  `json:"verd"`
 	Balance      int64  `json:"bal"`
+	Captcha1     int    `json:"captcha1"`
+	Captcha2     int    `json:"captcha2"`
+	Captcha3     int    `json:"captcha3"`
+	Captchas     int    `json:"captchas"`
 	Flags        uint64 `json:"flags"`
 	EmergencyWho string `json:"emwho"`
 	EmergencyHow string `json:"emhow"`
