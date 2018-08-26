@@ -8,17 +8,17 @@ import (
 	"github.com/suite911/query911/query"
 )
 
-func QueryRegisteredUser(auth *types.Auth, id int64) (*types.RegisteredUser, error) {
-	ru, err := implRegisteredUser(auth, id, "", "")
+func QueryUser(auth *types.Auth, id int64) (*types.User, error) {
+	ru, err := implUser(auth, id, "", "")
 	return ru, err
 }
 
-func SearchRegisteredUser(auth *types.Auth, email, username string) (*types.RegisteredUser, error) {
-	ru, err := implRegisteredUser(auth, -1, email, username)
+func SearchUser(auth *types.Auth, email, username string) (*types.User, error) {
+	ru, err := implUser(auth, -1, email, username)
 	return ru, err
 }
 
-func implRegisteredUser(auth *types.Auth, id int64, email, username string) (*types.RegisteredUser, error) {
+func implUser(auth *types.Auth, id int64, email, username string) (*types.User, error) {
 	aid := auth.ID
 	priv := Auth(auth)
 	q := query.Query{DB: DB()}
@@ -26,7 +26,7 @@ func implRegisteredUser(auth *types.Auth, id int64, email, username string) (*ty
 		`"_ROWID_", "email", "un", "pw", "regd", "verd", "bal", ` +
 		`"conload", "conchange", "consubmit", "captcha", ` +
 		`"flags", "emwho", "emhow", "emrel" ` +
-		`FROM "RegisteredUsers" WHERE `
+		`FROM "Users" WHERE `
 	switch {
 	case id > 0:
 		q.SQL += `"id" = ?;`
@@ -43,7 +43,7 @@ func implRegisteredUser(auth *types.Auth, id int64, email, username string) (*ty
 	if !q.NextOrClose() {
 		return nil, q.ErrorLogNow() // probably nil, which is what we want: it means no result
 	}
-	ru := types.RegisteredUser
+	ru := types.User
 	var pw []byte
 	q.ScanClose(
 		&ru.RowID, &ru.Email, &ru.Username, &pw, &ru.Registered, &ru.Verified, &ru.Balance,
@@ -53,7 +53,7 @@ func implRegisteredUser(auth *types.Auth, id int64, email, username string) (*ty
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
 	}
-	result := new(types.RegisteredUser)
+	result := new(types.User)
 	result.RowID = ru.RowID
 	result.ID = id
 	result.HasPassword = len(pw) > 0
