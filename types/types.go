@@ -7,10 +7,11 @@ import (
 )
 
 const (
-	Self uint64 = 1 << iota
-	Adult
-	Staff
-	Admin
+	Unlocked uint64 = 1 << iota // Account is not locked from logging in
+	Adult                       // Account owner is an adult
+	Verified                    // Account owner has verified
+	Staff                       // Accoupt owner is staff
+	Admin                       // Accoupt owner is admin
 )
 
 type Auth struct {
