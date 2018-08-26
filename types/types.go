@@ -17,17 +17,19 @@ type Auth struct {
 	ID      int64  `json:"id"`
 	Digest  string `json:"dig"`
 	Entropy string `json:"ent"`
+	Request uint64 `json:"req"`
 }
 
-func NewAuth(rowid, id int64, key [32]byte) (*Auth, error) {
-	a, err := new(Auth).Init(rowid, id, key)
+func NewAuth(rowid, id int64, key [32]byte, request uint64) (*Auth, error) {
+	a, err := new(Auth).Init(rowid, id, key, request)
 	return a, err
 }
 
-func (a *Auth) Init(rowid, id int64, key []byte) (*Auth, error) {
+func (a *Auth) Init(rowid, id int64, key []byte, request uint64) (*Auth, error) {
 	const lenEnt = 32
 	a.RowID = rowid
 	a.ID = id
+	a.Request = request
 	buf := make([]byte, lenEnt, lenEnt+len(key))
 	if _, err := rand.Read(buf); err != nil {
 		return nil, error
