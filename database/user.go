@@ -11,7 +11,7 @@ type QueryUser struct {
 
 func User(email, username string) (*QueryUser, error) {
 	q := query.Query{DB: DB()}
-	q.SQL = `SELECT "_ROWID_", "id", "regd", "verd" FROM "RegisteredUsers" WHERE "email" = ? AND "un" = ?;`
+	q.SQL = `SELECT "_ROWID_", "id", "regd", "verd" FROM "Users" WHERE "email" = ? AND "un" = ?;`
 	q.Query(email, username)
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
