@@ -46,7 +46,7 @@ func (a *Auth) Init(rowid, id int64, key []byte, request uint64) (*Auth, error) 
 	return a, nil
 }
 
-type RegisteredUser struct {
+type User struct {
 	RowID        int64  `json:"rowid"`
 	ID           int64  `json:"id"`
 	Email        string `json:"email"`
