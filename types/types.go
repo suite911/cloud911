@@ -9,7 +9,7 @@ import (
 const (
 	Admin uint64 = 1 << iota
 	Staff
-	Minor
+	Adult
 )
 
 type Auth struct {
