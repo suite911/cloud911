@@ -28,9 +28,26 @@ func api(ctx *fasthttp.RequestCtx, path string) {
 		return
 	}
 	if ctx.IsPost() {
+		args := ctx.PostArgs()
+		var resp fasthttp.Args
 		switch path {
 		case "/login":
+			rowid := args.Peek("rowid")
+			id := args.Peek("id")
+			key := args.Peek("key")
+			rand := args.Peek("rand")
+			dig := args.Peek("dig")
+			_ = rowid
+			_ = id
+			_ = key
+			_ = rand
+			_ = dig
 		case "/user":
+			email := args.Peek("email")
+			username := args.Peek("username")
+			_ = email
+			_ = username
+			// resp.Set()
 		}
 	} else {
 		switch path {
