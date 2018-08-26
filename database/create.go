@@ -22,7 +22,7 @@ func Create() error {
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 			"email" TEXT NOT NULL,
 			"un" TEXT NOT NULL,
-			"pw" BLOB DEFAULT(NULL),
+			"key" BLOB DEFAULT(NULL),
 			"regd" INTEGER NOT NULL ` + defaultNow + `,
 			"verd" INTEGER NOT NULL DEFAULT(0),
 			"bal" INTEGER NOT NULL DEFAULT(0),
@@ -30,7 +30,7 @@ func Create() error {
 			"conchange" INTEGER NOT NULL,
 			"consubmit" INTEGER NOT NULL,
 			"captcha" INTEGER NOT NULL,
-			"minor" INTEGER NOT NULL,
+			"flags" INTEGER NOT NULL,
 			-- Emergency Contact --
 			"emwho" TEXT NOT NULL,
 			"emhow" TEXT NOT NULL,
