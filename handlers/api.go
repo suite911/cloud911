@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"github.com/suite911/cloud911/database"
+
 	"github.com/valyala/fasthttp"
 )
 
@@ -45,9 +47,25 @@ func api(ctx *fasthttp.RequestCtx, path string) {
 		case "/user":
 			email := args.Peek("email")
 			username := args.Peek("username")
-			_ = email
-			_ = username
-			// resp.Set()
+			user, err := database.User(email, username)
+			if err != nil {
+				ctx.Error("Internal Server Error", 500)
+				return
+			}
+			if user == nil {
+				ctx.Error("Not Found", 404)
+				return
+			}
+			b, err := json.Marshal(user)
+			if err != nil {
+				ctx.Error("Internal Server Error", 500)
+				return
+			}
+			ctx.SetStatusCode(200)
+			if _, err := ctx.Write(b); err != nil {
+				ctx.SetStatusCode(500)
+			}
+			return
 		}
 	} else {
 		switch path {
