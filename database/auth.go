@@ -3,12 +3,13 @@ import (
 
 	"github.com/suite911/cloud911/types"
 
+	"github.com/suite911/maths911/bitfield"
 	"github.com/suite911/query911/query"
 
 	"golang.org/x/crypto/sha3"
 )
 
-func Auth(auth *types.Auth) uint64 {
+func Auth(auth *types.Auth) bitfield.Uint64 {
 	if auth == nil {
 		return 0
 	}
