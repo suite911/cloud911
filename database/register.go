@@ -36,7 +36,7 @@ func Register(email, username string, scores [3]float64, minor bool, emwho, emho
 		flags |= types.Adult
 	}
 	q := query.Query{ DB: DB() }
-	q.SQL = `INSERT INTO "RegisteredUsers"("email", "un", "conload", "conchange", "consubmit", ` +
+	q.SQL = `INSERT INTO "Users"("email", "un", "conload", "conchange", "consubmit", ` +
 		`"captcha", "flags", "emwho", "emhow", "emrel") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
 	q.Exec(email, username, sc0, sc1, sc2, net, flags, emwho, emhow, emrel)
 	if !q.OK() {
