@@ -21,18 +21,18 @@ func User(email, username string) (*QueryUser, error) {
 	q := query.Query{DB: DB()}
 	q.SQL = `SELECT "_ROWID_", "id", "regd", "verd", "minor" FROM "RegisteredUsers" WHERE "email" = ? AND "un" = ?;`
 	q.Query(email, username)
-	if !q.OK() {
-		return nil, q.LastError()
+	if err := q.ErrorLogNow(); err != nil {
+		return nil, err
 	}
 	if !q.NextOrClose() {
-		return nil, q.LastError() // probably nil, which is what we want: it means no result
+		return nil, q.ErrorLogNow() // probably nil, which is what we want: it means no result
 	}
 	resp := new(QueryUser)
 	var minor int64
 	q.ScanClose(&resp.rowID, &resp.id, &resp.regd, &resp.verd, &minor)
 	resp.minor = minor != 0
-	if !q.OK() {
-		return nil, q.LastError()
+	if err := q.ErrorLogNow(); err != nil {
+		return nil, err
 	}
 	return resp, nil
 }
