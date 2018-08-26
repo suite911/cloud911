@@ -16,6 +16,12 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 	}
 }
 
+type APILogInRequest struct {
+}
+
+type APIUserRequest struct {
+}
+
 func api(ctx *fasthttp.RequestCtx, path string) {
 	if cb, ok := APIOverrides[path]; ok {
 		cb(ctx)
