@@ -18,7 +18,7 @@ func Create() error {
 
 	q := query.Query{DB: DB()}
 	q.SQL = `
-		CREATE TABLE IF NOT EXISTS "RegisteredUsers" (
+		CREATE TABLE IF NOT EXISTS "Users" (
 			"id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 			"email" TEXT NOT NULL,
 			"un" TEXT NOT NULL,
@@ -42,13 +42,13 @@ func Create() error {
 	if err := q.ErrorLogNow(); err != nil {
 		return err
 	}
-	q.SQL = `CREATE UNIQUE INDEX IF NOT EXISTS "idx_RegisteredUsers_email_un" ON ` +
-		`"RegisteredUsers"("email", "un");`
+	q.SQL = `CREATE UNIQUE INDEX IF NOT EXISTS "idx_Users_email_un" ON ` +
+		`"Users"("email", "un");`
 	q.Exec()
 	if err := q.ErrorLogNow(); err != nil {
 		return err
 	}
-	q.SQL = `CREATE INDEX IF NOT EXISTS "idx_RegisteredUsers_email" ON "RegisteredUsers"("email");`
+	q.SQL = `CREATE INDEX IF NOT EXISTS "idx_Users_email" ON "Users"("email");`
 	q.Exec()
 	if err := q.ErrorLogNow(); err != nil {
 		return err
