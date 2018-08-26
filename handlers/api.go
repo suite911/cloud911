@@ -5,6 +5,7 @@ import (
 )
 
 var OverrideAPI func(*fasthttp.RequestCtx, string)
+var APIOverrides = make(map[string]func(*fasthttp.RequestCtx))
 
 func API(ctx *fasthttp.RequestCtx, path string) {
 	switch {
