@@ -9,6 +9,16 @@ import (
 )
 
 func QueryRegisteredUser(auth *types.Auth, id int64) (*types.RegisteredUser, error) {
+	ru, err := implRegisteredUser(auth, id, "", "")
+	return ru, err
+}
+
+func SearchRegisteredUser(auth *types.Auth, email, username string) (*types.RegisteredUser, error) {
+	ru, err := implRegisteredUser(auth, -1, email, username)
+	return ru, err
+}
+
+func implRegisteredUser(auth *types.Auth, id int64, email, username string) (*types.RegisteredUser, error) {
 	aid := auth.ID
 	priv := Auth(auth)
 	q := query.Query{DB: DB()}
@@ -17,14 +27,15 @@ func QueryRegisteredUser(auth *types.Auth, id int64) (*types.RegisteredUser, err
 		`"conload", "conchange", "consubmit", "captcha", ` +
 		`"flags", "emwho", "emhow", "emrel" ` +
 		`FROM "RegisteredUsers" WHERE `
-	if rid > 0 {
-		q.SQL += `"_ROWID_" = ? AND `
-	}
-	q.SQL += `"id" = ?;`
-	if rid > 0 {
-		q.Query(rid, id)
-	} else {
+	switch {
+	case id > 0:
+		q.SQL += `"id" = ?;`
 		q.Query(id)
+	case len(email) > 0 && len(username) > 0:
+		q.SQL += `"email" = ? AND "un" = ?;`
+		q.Query(email, username)
+	default:
+		return nil, errors.New("Not Found")
 	}
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
