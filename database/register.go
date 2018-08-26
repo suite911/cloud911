@@ -3,6 +3,7 @@ package database
 import (
 	"log"
 
+	"github.com/suite911/cloud911/types"
 	"github.com/suite911/cloud911/vars"
 
 	"github.com/suite911/query911/query"
@@ -30,10 +31,14 @@ func Register(email, username string, scores [3]float64, minor bool, emwho, emho
 	if net > 0xffff {
 		net = 0xffff
 	}
+	flags := types.Unlocked
+	if !minor {
+		flags |= types.Adult
+	}
 	q := query.Query{ DB: DB() }
 	q.SQL = `INSERT INTO "RegisteredUsers"("email", "un", "conload", "conchange", "consubmit", ` +
-		`"captcha", "minor", "emwho", "emhow", "emrel") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
-	q.Exec(email, username, sc0, sc1, sc2, net, minor, emwho, emhow, emrel)
+		`"captcha", "flags", "emwho", "emhow", "emrel") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
+	q.Exec(email, username, sc0, sc1, sc2, net, flags, emwho, emhow, emrel)
 	if !q.OK() {
 		err := q.Error
 		if str.CaseHasPrefix(err.Error(), "unique") {
