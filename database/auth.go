@@ -15,7 +15,7 @@ func Auth(auth *types.Auth) bitfield.Uint64 {
 	}
 	rid, id, dig, ent, req := auth.RowID, auth.ID, auth.Digest, auth.Entropy, auth.Request
 	q := query.Query{DB: DB()}
-	q.SQL = `SELECT "key", "flags" FROM "RegisteredUsers" WHERE `
+	q.SQL = `SELECT "key", "flags" FROM "Users" WHERE `
 	if rid > 0 {
 		q.SQL += `"_ROWID_" = ? AND `
 	}
