@@ -8,9 +8,9 @@ import (
 	"github.com/suite911/query911/query"
 )
 
-func QueryRegisteredUser(auth *types.Auth) (*types.RegisteredUser, error) {
+func QueryRegisteredUser(auth *types.Auth, id int64) (*types.RegisteredUser, error) {
+	aid := auth.ID
 	priv := Auth(auth)
-	rid, id, dig, ent := auth.RowID, auth.ID, auth.Digest, auth.Entropy
 	q := query.Query{DB: DB()}
 	q.SQL = `SELECT ` +
 		`"_ROWID_", "email", "un", "pw", "regd", "verd", "bal", ` +
@@ -48,7 +48,8 @@ func QueryRegisteredUser(auth *types.Auth) (*types.RegisteredUser, error) {
 	result.HasPassword = len(pw) > 0
 	result.Registered = ru.Registered
 	result.Verified = ru.Verified
-	if perm.Any(types.Admin|types.Staff|types.Self) {
+	authAsStaff := perm.Any(types.Admin|types.Staff)
+	if authAsStaff || id == aid {
 		result.Email = ru.Email
 		result.Username = ru.Username
 		result.Balance = ru.Balance
@@ -56,7 +57,7 @@ func QueryRegisteredUser(auth *types.Auth) (*types.RegisteredUser, error) {
 		result.EmergencyHow = ru.EmergencyHow
 		result.EmergencyRel = ru.EmergencyRel
 		result.Flags = ru.Flags
-		if perm.Any(types.Admin|types.Staff) {
+		if authAsStaff {
 			result.Captcha1 = ru.Captcha1
 			result.Captcha2 = ru.Captcha2
 			result.Captcha3 = ru.Captcha3
