@@ -35,7 +35,7 @@ func Register(email, username string, scores [3]float64, minor bool, emwho, emho
 		`"captcha", "minor", "emwho", "emhow", "emrel") VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`
 	q.Exec(email, username, sc0, sc1, sc2, net, minor, emwho, emhow, emrel)
 	if !q.OK() {
-		err := q.LastError()
+		err := q.Error
 		if str.CaseHasPrefix(err.Error(), "unique") {
 			if url := vars.Pass.AlreadyRegistered; len(url) > 0 {
 				return url
