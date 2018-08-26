@@ -3,27 +3,42 @@ package database
 import "github.com/suite911/query911/query"
 
 type QueryMe struct {
-	rowID int64 `json:"rowid"`
-	id    int64 `json:"id"`
-	regd  int64 `json:"regd"`
-	verd  int64 `json:"verd"`
-	minor bool  `json:"minor"`
+	RowID        int64  `json:"rowid"`
+	ID           int64  `json:"id"`
+	Email        string `json:"email"`
+	Username     string `json:"un"`
+	HasPassword  bool   `json:"pw"`
+	Registered   int64  `json:"regd"`
+	Verified     int64  `json:"verd"`
+	Balance      int64  `json:"bal"`
+	Minor        bool   `json:"minor"`
+	EmergencyWho string `json:"emwho"`
+	EmergencyHow string `json:"emhow"`
+	EmergencyRel string `json:"emrel"`
 }
 
-func Me(email, username string) (*QueryUser, error) {
+func Me(id int64) (*QueryMe, error) {
 	q := query.Query{DB: DB()}
-	q.SQL = `SELECT "_ROWID_", "id", "regd", "verd", "minor" FROM "RegisteredUsers" WHERE "email" = ? AND "un" = ?;`
-	q.Query(email, username)
+	q.SQL = `SELECT "_ROWID_", ` +
+		`"email", "un", "pw", "regd", "verd", "bal", "minor", "emwho", "emhow", "emrel" ` +
+		`FROM "RegisteredUsers" WHERE "id" = ?;`
+	q.Query(id)
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
 	}
 	if !q.NextOrClose() {
 		return nil, q.ErrorLogNow() // probably nil, which is what we want: it means no result
 	}
-	resp := new(QueryUser)
+	resp := new(QueryMe)
+	var pw []byte
 	var minor int64
-	q.ScanClose(&resp.rowID, &resp.id, &resp.regd, &resp.verd, &minor)
-	resp.minor = minor != 0
+	resp.ID = id
+	q.ScanClose(
+		&resp.RowID, &resp.Email, &resp.Username, &pw, &resp.Registered, &resp.Verified,
+		&resp.Balance, &minor, &resp.EmergencyWho, &resp.EmergencyHow, &resp.EmergencyRel,
+	)
+	resp.HasPassword = len(pw) > 0
+	resp.Minor = minor != 0
 	if err := q.ErrorLogNow(); err != nil {
 		return nil, err
 	}
