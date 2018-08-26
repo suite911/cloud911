@@ -16,5 +16,18 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 }
 
 func api(ctx *fasthttp.RequestCtx, path string) {
+	if cb, ok := APIOverrides[path]; ok {
+		cb(ctx)
+		return
+	}
+	if ctx.IsPost() {
+		switch path {
+		case "/login":
+		case "/user":
+		}
+	} else {
+		switch path {
+		}
+	}
 	ctx.Error("Not Implemented", 501)
 }
