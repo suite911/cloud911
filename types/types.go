@@ -16,6 +16,11 @@ const (
 	Admin                       // Accoupt owner is admin
 )
 
+type APIRequest struct {
+	API     string `json:"api"` // API
+	Payload []byte `json:"dat"` // Payload (specific to the named API)
+}
+
 type Register struct {
 	RowID int64  `json:"rowid"` // Row ID for faster retrieval
 	ID    int64  `json:"id"`    // Account ID
