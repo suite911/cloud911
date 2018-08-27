@@ -16,6 +16,20 @@ const (
 	Admin                       // Accoupt owner is admin
 )
 
+type Register struct {
+	RowID int64  `json:"rowid"` // Row ID for faster retrieval
+	ID    int64  `json:"id"`    // Account ID
+	Key   string `json:"key"`   // Hex-encoded argon2-hashed password
+}
+
+type Login struct {
+	RowID   int64  `json:"rowid"` // Row ID for faster retrieval
+	ID      int64  `json:"id"`    // Account ID
+	Session int64  `json:"ses"`   // Session timestamp
+	Request uint64 `json:"req"`   // Requested permissions
+	Digest  string `json:"dig"`   // Digest
+}
+
 type Auth struct {
 	RowID   int64  `json:"rowid"` // Row ID for faster retrieval
 	ID      int64  `json:"id"`    // Account ID
