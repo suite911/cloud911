@@ -57,6 +57,20 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		}
 		id = i
 	}
+	var email, username string
+	if i < 1 {
+		emailBytes := args.Peek("email")
+		if len(emailBytes) < 1 || !utf8.Valid(emailBytes) {
+			ctx.Error("Bad Request", 400)
+			return
+		}
+		usernameBytes := args.Peek("username")
+		if len(usernameBytes) < 1 || !utf8.Valid(usernameBytes) {
+			ctx.Error("Bad Request", 400)
+			return
+		}
+		email, username = string(emailBytes), string(usernameBytes)
+	}
 	switch p {
 	case "/":
 		if i < 1 {
@@ -65,14 +79,19 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		}
 		q := query.Query{DB: database.DB()}
 		q.SQL = `SELECT "key" FROM "Users" WHERE `
-		if rid > 0 {
-			q.SQL += `"_ROWID_" = ? && `
-		}
-		q.SQL += `"id" = ?;`
-		if rid > 0 {
-			q.Query(rid, id)
+		if id > 0 {
+			if rid > 0 {
+				q.SQL += `"_ROWID_" = ? && `
+			}
+			q.SQL += `"id" = ?;`
+			if rid > 0 {
+				q.Query(rid, id)
+			} else {
+				q.Query(id)
+			}
 		} else {
-			q.Query(id)
+			q.SQL += `"email" = ? AND "username" = ?;`
+			q.Query(email, username)
 		}
 		if err := q.Error; err != nil || !q.NextOrClose() {
 			ctx.Error("Unauthorized: user not found", 401)
@@ -104,20 +123,6 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		}
 		return
 	case "register": // set key
-		var email, username string
-		if i < 1 {
-			emailBytes := args.Peek("email")
-			if len(emailBytes) < 1 || !utf8.Valid(emailBytes) {
-				ctx.Error("Bad Request", 400)
-				return
-			}
-			usernameBytes := args.Peek("username")
-			if len(usernameBytes) < 1 || !utf8.Valid(usernameBytes) {
-				ctx.Error("Bad Request", 400)
-				return
-			}
-			email, username = string(emailBytes), string(usernameBytes)
-		}
 		key := args.Peek("key")
 		now := time.Now().UTC().Unix()
 		q := query.Query{DB: database.DB()}
@@ -127,16 +132,13 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 				q.SQL += `"_ROWID_" = ? && `
 			}
 			q.SQL += `"id" = ? AND "key" = NULL;`
-		} else {
-			q.SQL += `"email" = ? AND "username" = ? AND "key" = NULL;`
-		}
-		if id > 0 {
 			if rid > 0 {
 				q.Exec(key, now, rid, id)
 			} else {
 				q.Exec(key, now, id)
 			}
 		} else {
+			q.SQL += `"email" = ? AND "username" = ? AND "key" = NULL;`
 			q.Exec(key, now, email, username)
 		}
 		if err := q.Error; err != nil {
