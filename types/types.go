@@ -19,7 +19,7 @@ const (
 type Auth struct {
 	RowID   int64  `json:"rowid"` // Row ID for faster retrieval
 	ID      int64  `json:"id"`    // Account ID
-	Session int64  `json:"sess"`  // Session timestamp
+	Session int64  `json:"ses"`   // Session timestamp
 	Request uint64 `json:"req"`   // Requested permissions
 	Digest  string `json:"dig"`   // Digest
 }
@@ -57,7 +57,7 @@ type User struct {
 	Registered          int64  `json:"regd"`
 	HasVerifiedEmail    bool   `json:"vemd"`
 	HasVerifiedIdentity bool   `json:"vidd"`
-	Session             int64  `json:"sess"`
+	Session             int64  `json:"ses"`
 	Balance             int64  `json:"bal"`
 	Captcha1            int    `json:"captcha1"`
 	Captcha2            int    `json:"captcha2"`
