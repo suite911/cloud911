@@ -14,7 +14,7 @@ import (
 // APIs holds the encrypted APIs
 var APIs = make(map[string]func(*fasthttp.RequestCtx, []byte) []byte)
 
-// Endpoints holds the unencrypted endpoints
+// Endpoints holds the custom endpoints
 var Endpoints = make(map[string]func(*fasthttp.RequestCtx))
 
 // API handles API calls
