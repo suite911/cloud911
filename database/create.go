@@ -25,6 +25,8 @@ func Create() error {
 			"key" BLOB DEFAULT(NULL),
 			"regd" INTEGER NOT NULL ` + defaultNow + `,
 			"verd" INTEGER NOT NULL DEFAULT(0),
+			"pwat" INTEGER NOT NULL DEFAULT(0),
+			"sess" INTEGER NOT NULL DEFAULT(0),
 			"bal" INTEGER NOT NULL DEFAULT(0),
 			"conload" INTEGER NOT NULL,
 			"conchange" INTEGER NOT NULL,
