@@ -16,8 +16,8 @@ const (
 	Admin                       // Accoupt owner is admin
 )
 
-type APIRequest struct {
-	API     string `json:"api"` // API
+type APICall struct {
+	API     string `json:"api"` // API to call
 	Payload []byte `json:"dat"` // Payload (specific to the named API)
 }
 
