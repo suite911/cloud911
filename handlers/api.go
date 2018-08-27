@@ -12,7 +12,7 @@ import (
 )
 
 // APIs holds the encrypted APIs
-var APIs = make(map[string]func(*fasthttp.RequestCtx, []byte) []byte)
+var APIs = make(map[string]func(*fasthttp.RequestCtx, int64, int64, uint64, []byte) []byte)
 
 // Endpoints holds the custom endpoints
 var Endpoints = make(map[string]func(*fasthttp.RequestCtx))
@@ -29,33 +29,15 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		return
 	}
 	args := ctx.PostArgs()
-	ridBytes := args.Peek("rowid")
-	rid := int64(-1)
-	if len(ridBytes) > 0 {
-		if !utf8.Valid(ridBytes) {
-			ctx.Error("Bad Request", 400)
-			return
-		}
-		i, err := ParseInt(string(ridBytes), 10, 64)
-		if err != nil {
-			ctx.Error("Bad Request", 400)
-			return
-		}
-		rid = i
+	rid := peek(args, "rowid")
+	if rid == -400 {
+		ctx.Error("Bad Request", 400)
+		return
 	}
-	idBytes := args.Peek("id")
-	id := int64(-1)
-	if len(idBytes) > 0 {
-		if !utf8.Valid(idBytes) {
-			ctx.Error("Bad Request", 400)
-			return
-		}
-		i, err := ParseInt(string(idBytes), 10, 64)
-		if err != nil {
-			ctx.Error("Bad Request", 400)
-			return
-		}
-		id = i
+	id := peek(args, "id")
+	if id == -400 {
+		ctx.Error("Bad Request", 400)
+		return
 	}
 	var email, username string
 	if i < 1 {
@@ -71,6 +53,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		}
 		email, username = string(emailBytes), string(usernameBytes)
 	}
+	flags := peekUint(args, "flags")
 	switch p {
 	case "/":
 		if i < 1 {
@@ -78,7 +61,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 			return
 		}
 		q := query.Query{DB: database.DB()}
-		q.SQL = `SELECT "key" FROM "Users" WHERE `
+		q.SQL = `SELECT "_ROWID_", "id", "key", "flags" FROM "Users" WHERE `
 		if id > 0 {
 			if rid > 0 {
 				q.SQL += `"_ROWID_" = ? && `
@@ -97,8 +80,10 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 			ctx.Error("Unauthorized: user not found", 401)
 			return
 		}
+		var dbRowID, dbID int64
 		var key vault.Key
-		q.ScanClose(&key)
+		var dbFlags uint64
+		q.ScanClose(&dbRowID, &dbID, &key, &dbFlags)
 		if err := q.Error; err != nil || len(key) != 32 {
 			ctx.Error("Internal Server Error: unable to get key for user")
 			return
@@ -115,7 +100,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 			return
 		}
 		ctx.SetStatusCode(200)
-		reply := api(ctx, apiCall.Payload)
+		reply := api(ctx, dbRowID, dbID, flags & dbFlags, apiCall.Payload)
 		http500, err := vault.Reply(ctx, reply, key)
 		if err != nil {
 			ctx.Error(http500, 500)
@@ -151,4 +136,34 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		ctx.Error("Not Implemented", 501)
 		return
 	}
+}
+
+func peek(args *fasthttp.Args, k string) int64 {
+	bytes := args.Peek(k)
+	if len(bytes) > 0 {
+		if !utf8.Valid(bytes) {
+			return -400
+		}
+		i, err := ParseInt(string(bytes), 10, 64)
+		if err != nil {
+			return -400
+		}
+		return i
+	}
+	return -1
+}
+
+func peekUint(args *fasthttp.Args, k string) uint64 {
+	bytes := args.Peek(k)
+	if len(bytes) > 0 {
+		if !utf8.Valid(bytes) {
+			return 0
+		}
+		i, err := ParseUint(string(bytes), 10, 64)
+		if err != nil {
+			return 0
+		}
+		return i
+	}
+	return 0
 }
