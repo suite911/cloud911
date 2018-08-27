@@ -1,75 +1,103 @@
 package handlers
 
 import (
+	"path"
+
 	"github.com/suite911/cloud911/database"
+	"github.com/suite911/cloud911/types"
+
+	"github.com/suite911/vault911/vault"
 
 	"github.com/valyala/fasthttp"
 )
 
-var OverrideAPI func(*fasthttp.RequestCtx, string)
-var APIOverrides = make(map[string]func(*fasthttp.RequestCtx))
+// APIs holds the encrypted APIs
+var APIs = make(map[string]func(*fasthttp.RequestCtx, []byte) []byte)
 
+// Endpoints holds the unencrypted endpoints
+var Endpoints = make(map[string]func(*fasthttp.RequestCtx))
+
+// API handles API calls
 func API(ctx *fasthttp.RequestCtx, path string) {
-	switch {
-	case OverrideAPI == nil:
-		api(ctx, path)
-	default:
-		OverrideAPI(ctx, path)
-	}
-}
-
-type APILogInRequest struct {
-}
-
-type APIUserRequest struct {
-}
-
-func api(ctx *fasthttp.RequestCtx, path string) {
-	if cb, ok := APIOverrides[path]; ok {
+	p = path.Clean(p)
+	if cb, ok := Endpoints[p]; ok {
 		cb(ctx)
 		return
 	}
-	if ctx.IsPost() {
+	if !ctx.IsPost() {
+		ctx.Error("Bad Request", 400)
+		return
+	}
+	switch p {
+	case "/":
 		args := ctx.PostArgs()
-		var resp fasthttp.Args
-		switch path {
-		case "/login":
-			rowid := args.Peek("rowid")
-			id := args.Peek("id")
-			key := args.Peek("key")
-			rand := args.Peek("rand")
-			dig := args.Peek("dig")
-			_ = rowid
-			_ = id
-			_ = key
-			_ = rand
-			_ = dig
-		case "/user":
-			email := args.Peek("email")
-			username := args.Peek("username")
-			user, err := database.User(email, username)
-			if err != nil {
-				ctx.Error("Internal Server Error", 500)
-				return
-			}
-			if user == nil {
-				ctx.Error("Not Found", 404)
-				return
-			}
-			b, err := json.Marshal(user)
-			if err != nil {
-				ctx.Error("Internal Server Error", 500)
-				return
-			}
-			ctx.SetStatusCode(200)
-			if _, err := ctx.Write(b); err != nil {
-				ctx.SetStatusCode(500)
-			}
+		rid := args.Peek("rowid")
+		id := args.Peek("id")
+		q := query.Query{DB: database.DB()}
+		q.SQL = `SELECT "key" FROM "Users" WHERE `
+		if rid > 0 {
+			q.SQL += `"_ROWID_" = ? && `
+		}
+		q.SQL += `"id" = ?;`
+		if rid > 0 {
+			q.Query(rid, id)
+		} else {
+			q.Query(id)
+		}
+		if err := q.Error; err != nil || !q.NextOrClose() {
+			ctx.Error("Unauthorized: user not found", 401)
 			return
 		}
-	} else {
-		switch path {
+		var key vault.Key
+		q.ScanClose(&key)
+		if err := q.Error; err != nil || len(key) != 32 {
+			ctx.Error("Internal Server Error: unable to get key for user")
+			return
 		}
+		b, err := vault.Recv(ctx, key)
+		var apiCall types.APICall
+		if err != nil || json.Unmarshal(b, &apiCall) != nil {
+			ctx.Error("Bad Request", 400)
+			return
+		}
+		api, ok := APIs[apiCall.API]
+		if !ok {
+			ctx.Error("Not Implemented", 501)
+			return
+		}
+		ctx.SetStatusCode(200)
+		reply := api(ctx, apiCall.Payload)
+		http500, err := vault.Reply(ctx, reply, key)
+		if err != nil {
+			ctx.Error(http500, 500)
+			return
+		}
+		return
+	case "register": // set key
+		args := ctx.PostArgs()
+		rid := args.Peek("rowid")
+		id := args.Peek("id")
+		key := args.Peek("key")
+		now := time.Now().UTC().Unix()
+		q := query.Query{DB: database.DB()}
+		q.SQL = `UPDATE "Users" SET "key" = ?, "pwat" = ? WHERE `
+		if rid > 0 {
+			q.SQL += `"_ROWID_" = ? && `
+		}
+		q.SQL += `"id" = ? AND "key" = NULL;`
+		if rid > 0 {
+			q.Exec(key, now, rid, id)
+		} else {
+			q.Exec(key, now, id)
+		}
+		if err := q.Error; err != nil {
+			ctx.Error("Unauthorized: user not found or already has a key", 401)
+			return
+		}
+		ctx.SetStatusCode(200)
+		return
+	default:
+		ctx.Error("Not Implemented", 501)
+		return
 	}
-	ctx.Error("Not Implemented", 501)
 }
