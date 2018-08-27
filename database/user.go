@@ -22,8 +22,8 @@ func implUser(auth *types.Auth, id int64, email, username string) (*types.User, 
 	priv, aid := Auth(auth)
 	q := query.Query{DB: DB()}
 	q.SQL = `SELECT ` +
-		`"_ROWID_", "email", "un", "pw", "regd", "verd", "bal", ` +
-		`"conload", "conchange", "consubmit", "captcha", ` +
+		`"_ROWID_", "email", "un", "pw", "regd", "vemd", "vidd", ` +
+		`"sess", "bal", "conload", "conchange", "consubmit", "captcha", ` +
 		`"flags", "emwho", "emhow", "emrel" ` +
 		`FROM "Users" WHERE `
 	switch {
@@ -44,9 +44,10 @@ func implUser(auth *types.Auth, id int64, email, username string) (*types.User, 
 	}
 	ru := types.User
 	var pw []byte
+	var vEmail, vID int64
 	q.ScanClose(
-		&ru.RowID, &ru.Email, &ru.Username, &pw, &ru.Registered, &ru.Verified, &ru.Balance,
-		&ru.Captcha1, &ru.Captcha2, &ru.Captcha3, &ru.Captchas,
+		&ru.RowID, &ru.Email, &ru.Username, &pw, &ru.Registered, &vEmail, &vID,
+		&ru.Session, &ru.Balance, &ru.Captcha1, &ru.Captcha2, &ru.Captcha3, &ru.Captchas,
 		&ru.Flags, &ru.EmergencyWho, &ru.EmergencyHow, &ru.EmergencyRel,
 	)
 	if err := q.ErrorLogNow(); err != nil {
@@ -56,8 +57,10 @@ func implUser(auth *types.Auth, id int64, email, username string) (*types.User, 
 	result.RowID = ru.RowID
 	result.ID = id
 	result.HasPassword = len(pw) > 0
-	result.Registered = ru.Registered
-	result.Verified = ru.Verified
+	result.RegisteredAt = ru.RegisteredAt
+	result.HasVerifiedEmail = vEmail > 0
+	result.HasVerifiedIdentity = vID > 0
+	result.Session = ru.Session
 	authAsStaff := perm.Any(types.Admin|types.Staff)
 	if authAsStaff || id == aid {
 		result.Email = ru.Email
