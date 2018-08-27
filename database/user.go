@@ -19,8 +19,7 @@ func SearchUser(auth *types.Auth, email, username string) (*types.User, error) {
 }
 
 func implUser(auth *types.Auth, id int64, email, username string) (*types.User, error) {
-	aid := auth.ID
-	priv := Auth(auth)
+	priv, aid := Auth(auth)
 	q := query.Query{DB: DB()}
 	q.SQL = `SELECT ` +
 		`"_ROWID_", "email", "un", "pw", "regd", "verd", "bal", ` +
