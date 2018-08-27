@@ -27,7 +27,7 @@ func Create() error {
 			"vemd" INTEGER NOT NULL DEFAULT(0),
 			"pwat" INTEGER NOT NULL DEFAULT(0),
 			"vidd" INTEGER NOT NULL DEFAULT(0),
-			"sess" INTEGER NOT NULL DEFAULT(0),
+			"ses" INTEGER NOT NULL DEFAULT(0),
 			"bal" INTEGER NOT NULL DEFAULT(0),
 			"conload" INTEGER NOT NULL,
 			"conchange" INTEGER NOT NULL,
