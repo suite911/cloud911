@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"path"
+	pathImport "path" // so we can call a parameter "path" in GoDoc
 	"strconv"
 
 	"github.com/suite911/cloud911/database"
@@ -22,8 +22,8 @@ var Endpoints = map[string]func(*fasthttp.RequestCtx){}
 
 // API handles API calls
 func API(ctx *fasthttp.RequestCtx, path string) {
-	p = path.Clean(p)
-	if cb, ok := Endpoints[p]; ok {
+	path = pathImport.Clean(path)
+	if cb, ok := Endpoints[path]; ok {
 		cb(ctx)
 		return
 	}
@@ -57,7 +57,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		email, username = string(emailBytes), string(usernameBytes)
 	}
 	flags := peekUint(args, "flags")
-	switch p {
+	switch path {
 	case "/":
 		if i < 1 {
 			ctx.Error("Bad Request", 400)
