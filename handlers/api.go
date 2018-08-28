@@ -1,11 +1,15 @@
 package handlers
 
 import (
+	"encoding/json"
 	pathImport "path" // so we can call a parameter "path" in GoDoc
+	"time"
+	"unicode/utf8"
 
 	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/types"
 
+	"github.com/suite911/query911/query"
 	"github.com/suite911/vault911/vault"
 
 	"github.com/valyala/fasthttp"
@@ -87,7 +91,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		var dbFlags uint64
 		q.ScanClose(&dbRowID, &dbID, &key, &dbFlags)
 		if err := q.Error; err != nil || len(key) != 32 {
-			ctx.Error("Internal Server Error: unable to get key for user")
+			ctx.Error("Internal Server Error: unable to get key for user", 500)
 			return
 		}
 		b, err := vault.Recv(ctx, key)
