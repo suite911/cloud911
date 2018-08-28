@@ -20,6 +20,7 @@ type Identity struct {
 	ID    int64  `json:"id"`    // Account ID
 }
 
+/*
 type Register struct {
 	RowID int64  `json:"rowid"` // Row ID for faster retrieval
 	ID    int64  `json:"id"`    // Account ID
@@ -33,6 +34,7 @@ type Login struct {
 	Request uint64 `json:"req"`   // Requested permissions
 	Digest  string `json:"dig"`   // Digest
 }
+*/
 
 type User struct {
 	RowID               int64  `json:"rowid"`
