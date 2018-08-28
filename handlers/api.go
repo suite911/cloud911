@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	pathImport "path" // so we can call a parameter "path" in GoDoc
+	"strconv"
 	"time"
 	"unicode/utf8"
 
@@ -217,7 +218,7 @@ func peek(args *fasthttp.Args, k string) int64 {
 		if !utf8.Valid(bytes) {
 			return -400
 		}
-		i, err := ParseInt(string(bytes), 10, 64)
+		i, err := strconv.ParseInt(string(bytes), 10, 64)
 		if err != nil {
 			return -400
 		}
@@ -232,7 +233,7 @@ func peekUint(args *fasthttp.Args, k string) uint64 {
 		if !utf8.Valid(bytes) {
 			return 0
 		}
-		ui, err := ParseUint(string(bytes), 10, 64)
+		ui, err := strconv.ParseUint(string(bytes), 10, 64)
 		if err != nil {
 			return 0
 		}
