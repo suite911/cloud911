@@ -2,7 +2,6 @@ package handlers
 
 import (
 	pathImport "path" // so we can call a parameter "path" in GoDoc
-	"strconv"
 
 	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/types"
@@ -43,7 +42,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		return
 	}
 	var email, username string
-	if i < 1 {
+	if id < 1 {
 		emailBytes := args.Peek("email")
 		if len(emailBytes) < 1 || !utf8.Valid(emailBytes) {
 			ctx.Error("Bad Request", 400)
@@ -59,7 +58,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 	flags := peekUint(args, "flags")
 	switch path {
 	case "/":
-		if i < 1 {
+		if id < 1 {
 			ctx.Error("Bad Request", 400)
 			return
 		}
@@ -229,11 +228,11 @@ func peekUint(args *fasthttp.Args, k string) uint64 {
 		if !utf8.Valid(bytes) {
 			return 0
 		}
-		i, err := ParseUint(string(bytes), 10, 64)
+		ui, err := ParseUint(string(bytes), 10, 64)
 		if err != nil {
 			return 0
 		}
-		return i
+		return ui
 	}
 	return 0
 }
