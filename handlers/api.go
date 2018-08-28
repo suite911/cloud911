@@ -13,10 +13,12 @@ import (
 )
 
 // APIs holds the encrypted APIs
-var APIs = make(map[string]func(*fasthttp.RequestCtx, int64, int64, uint64, []byte) []byte)
+var APIs = map[string]func(*fasthttp.RequestCtx, int64, int64, uint64, []byte) []byte{
+	"/user": APIUser,
+}
 
 // Endpoints holds the custom endpoints
-var Endpoints = make(map[string]func(*fasthttp.RequestCtx))
+var Endpoints = map[string]func(*fasthttp.RequestCtx){}
 
 // API handles API calls
 func API(ctx *fasthttp.RequestCtx, path string) {
@@ -137,6 +139,9 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 		ctx.Error("Not Implemented", 501)
 		return
 	}
+}
+
+func APIUser(ctx *fasthttp.RequestCtx, rowID, id int64, flags uint64, payload []byte) []byte {
 }
 
 func peek(args *fasthttp.Args, k string) int64 {
