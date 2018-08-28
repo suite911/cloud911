@@ -41,18 +41,18 @@ func Create() error {
 		);
 	`
 	q.Exec()
-	if err := q.ErrorLogNow(); err != nil {
+	if err := q.LogNow(); err != nil {
 		return err
 	}
 	q.SQL = `CREATE UNIQUE INDEX IF NOT EXISTS "idx_Users_email_un" ON ` +
 		`"Users"("email", "un");`
 	q.Exec()
-	if err := q.ErrorLogNow(); err != nil {
+	if err := q.LogNow(); err != nil {
 		return err
 	}
 	q.SQL = `CREATE INDEX IF NOT EXISTS "idx_Users_email" ON "Users"("email");`
 	q.Exec()
-	if err := q.ErrorLogNow(); err != nil {
+	if err := q.LogNow(); err != nil {
 		return err
 	}
 	if vars.Pass.FeatureUserProfiles {
@@ -69,7 +69,7 @@ func Create() error {
 			);
 		`
 		q.Exec()
-		if err := q.ErrorLogNow(); err != nil {
+		if err := q.LogNow(); err != nil {
 			return err
 		}
 	}
