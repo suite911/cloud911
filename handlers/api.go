@@ -10,6 +10,7 @@ import (
 	"github.com/suite911/cloud911/database"
 	"github.com/suite911/cloud911/types"
 
+	"github.com/suite911/maths911/bitfield"
 	"github.com/suite911/query911/query"
 	"github.com/suite911/vault911/vault"
 
@@ -17,7 +18,7 @@ import (
 )
 
 // APIs holds the encrypted APIs
-var APIs = map[string]func(*fasthttp.RequestCtx, int64, int64, uint64, []byte) []byte{
+var APIs = map[string]func(*fasthttp.RequestCtx, int64, int64, bitfield.Uint64, []byte) []byte{
 	"/user": APIUser,
 }
 
@@ -107,7 +108,8 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 			return
 		}
 		ctx.SetStatusCode(200)
-		reply := api(ctx, dbRowID, dbID, flags & dbFlags, apiCall.Payload)
+		f := bitfield.Uint64(flags & dbFlags)
+		reply := api(ctx, dbRowID, dbID, f, apiCall.Payload)
 		http500, err := vault.Reply(ctx, reply, key)
 		if err != nil {
 			ctx.Error(http500, 500)
@@ -145,7 +147,7 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 	}
 }
 
-func APIUser(ctx *fasthttp.RequestCtx, rowID, id int64, flags uint64, payload []byte) []byte {
+func APIUser(ctx *fasthttp.RequestCtx, rowID, id int64, flags bitfield.Uint64, payload []byte) []byte {
 	var identity types.Identity
 	if err := json.Unmarshal(payload, &identity); err != nil {
 		ctx.Error("Bad Request: unable to unmarshal JSON inner payload", 400)
