@@ -15,6 +15,11 @@ type APICall struct {
 	Payload []byte `json:"dat"` // Payload (specific to the named API)
 }
 
+type Identity struct {
+	RowID int64  `json:"rowid"` // Row ID for faster retrieval (optional)
+	ID    int64  `json:"id"`    // Account ID
+}
+
 type Register struct {
 	RowID int64  `json:"rowid"` // Row ID for faster retrieval
 	ID    int64  `json:"id"`    // Account ID
