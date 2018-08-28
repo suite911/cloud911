@@ -43,7 +43,6 @@ type User struct {
 	Registered          int64  `json:"regd"`
 	HasVerifiedEmail    bool   `json:"vemd"`
 	HasVerifiedIdentity bool   `json:"vidd"`
-	Session             int64  `json:"ses"`
 	Balance             int64  `json:"bal"`
 	Captcha1            int    `json:"captcha1"`
 	Captcha2            int    `json:"captcha2"`
