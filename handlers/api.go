@@ -142,6 +142,70 @@ func API(ctx *fasthttp.RequestCtx, path string) {
 }
 
 func APIUser(ctx *fasthttp.RequestCtx, rowID, id int64, flags uint64, payload []byte) []byte {
+	var identity types.Identity
+	if err := json.Unmarshal(payload, &identity); err != nil {
+		ctx.Error("Bad Request: unable to unmarshal JSON inner payload", 400)
+		return nil
+	}
+	if identity.ID == id && identity.RowID < 1 && rowID > 0 {
+		identity.RowID = rowID
+	}
+	q := query.Query{DB: database.DB()}
+	q.SQL = `SELECT ` +
+		`"_ROWID_", "email", "un", "pw", "regd", "vemd", "vidd", ` +
+		`"bal", "conload", "conchange", "consubmit", "captcha", ` +
+		`"flags", "emwho", "emhow", "emrel" ` +
+		`FROM "Users" WHERE `
+	if identity.RowID > 0 {
+		q.SQL += `"_ROWID_" = ? && `
+	}
+	q.SQL += `"id" = ?;`
+	if identity.RowID > 0 {
+		q.Query(identity.RowID, identity.ID)
+	} else {
+		q.Query(identity.ID)
+	}
+	if err := q.Error; err != nil || !q.NextOrClose() {
+		ctx.Error("Not Found: requested user not found", 404)
+		return nil
+	}
+	var u types.User
+	var pw []byte
+	var vEmail, vID int64
+	q.ScanClose(
+		&u.RowID, &u.Email, &u.Username, &pw, &u.Registered, &vEmail, &vID,
+		&u.Balance, &u.Captcha1, &u.Captcha2, &u.Captcha3, &u.Captchas,
+		&u.Flags, &u.EmergencyWho, &u.EmergencyHow, &u.EmergencyRel,
+	)
+	if err := q.LogNow(); err != nil {
+		ctx.Error("Internal Server Error: unable to scan returned database row", 500)
+		return nil
+	}
+	u.HasPassword = len(pw) > 0
+	u.HasVerifiedEmail = vEmail > 0
+	u.HasVerifiedIdentity = vID > 0
+	if !flags.Any(types.Staff|types.Admin) {
+		u.Captcha1 = -1
+		u.Captcha2 = -1
+		u.Captcha3 = -1
+		u.Captchas = -1
+		if identity.ID != id {
+			u.Email = ""
+			u.Username = ""
+			u.Registered = 0
+			u.Balance = -1
+			u.Flags = 0
+			u.EmergencyWho = ""
+			u.EmergencyHow = ""
+			u.EmergencyRel = ""
+		}
+	}
+	b, err := json.Marshal(u)
+	if err != nil {
+		ctx.Error("Internal Server Error: unable to marshal JSON result", 500)
+		return nil
+	}
+	return b
 }
 
 func peek(args *fasthttp.Args, k string) int64 {
