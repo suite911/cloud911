@@ -1,11 +1,5 @@
 package types
 
-import (
-	"crypto/rand"
-	"encoding/json"
-	"encoding/hex"
-)
-
 const (
 	Unlocked uint64 = 1 << iota // Account is not locked from logging in
 	Adult                       // Account owner is an adult
