@@ -35,38 +35,6 @@ type Login struct {
 	Digest  string `json:"dig"`   // Digest
 }
 
-type Auth struct {
-	RowID   int64  `json:"rowid"` // Row ID for faster retrieval
-	ID      int64  `json:"id"`    // Account ID
-	Session int64  `json:"ses"`   // Session timestamp
-	Request uint64 `json:"req"`   // Requested permissions
-	Digest  string `json:"dig"`   // Digest
-}
-
-func NewAuth(rowid, id int64, key [32]byte, request uint64) (*Auth, error) {
-	a, err := new(Auth).Init(rowid, id, key, request)
-	return a, err
-}
-
-func (a *Auth) Init(rowid, id int64, key []byte, request uint64) (*Auth, error) {
-	const lenEnt = 32
-	a.RowID = rowid
-	a.ID = id
-	a.Request = request
-	buf := make([]byte, lenEnt, lenEnt+len(key))
-	if _, err := rand.Read(buf); err != nil {
-		return nil, error
-	}
-	a.Entropy = hex.EncodeToString(buf[:lenEnt])
-	buf = append(buf, key...)
-	if len(buf) != lenEnt + len(key) {
-		panic("Security")
-	}
-	dig := sha3.Sum256(buf)
-	a.Digest = hex.EncodeToString(dig[:])
-	return a, nil
-}
-
 type User struct {
 	RowID               int64  `json:"rowid"`
 	ID                  int64  `json:"id"`
